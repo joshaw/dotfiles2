@@ -1,0 +1,41 @@
+
+Xcursor*theme: Adwaita
+
+! Xterm settings ----------------------------------
+
+XTerm*locale: true
+XTerm*faceName: Inconsolatanti:alias=false
+XTerm*faceSize: 10
+xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*selectToClipboard: true
+XTerm*ScrollBar: false
+XTerm*ScrollKey: true
+! terminal colors ----------------------------------
+
+! Monokai scheme
+*background: #272822
+*foreground: #F2F2F2
+! Black + DarkGrey
+*color0:  #000000
+*color8:  #555555
+! Red + BrightRed
+*color1:  #DC322F
+*color9:  #FF3A36
+! Green + BrightGreen
+*color2:  #A6E22E
+*color10: #C6F666
+! Yellow + BrightYellow
+*color3:  #AA5500
+*color11: #FFFF55
+! Blue + BrightBlue
+*color4:  #1E6FA8
+*color12: #77A6D9
+! Magenta + BrightMagenta
+*color5:  #EB2657
+*color13: #E86988
+! Cyan + BrightCyan
+*color6:  #66D9EF
+*color14: #9CD9E5
+! LightGrey + White
+*color7:  #AAAAAA
+*color15: #F8F8F2

@@ -1,0 +1,9 @@
+#
+# These things are run when an Openbox X Session is started.
+# You may place a similar script in $HOME/.config/openbox/autostart
+# to run user-specific things.
+#
+
+(sleep 1 && /home/josh/.scripts/wallpaper.sh) &
+(sleep 1 && xfce4-panel) &
+

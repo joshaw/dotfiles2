@@ -1,0 +1,50 @@
+rename CD4.mp3
+rename CD5.mp3
+mkdir Music
+search r
+rename info
+search dwb
+search dw
+!gws
+gws
+mkdir knife
+search local
+search nor
+mkdir Norah\ Jones
+search .todo
+mkdir .todo.actions.d
+search todo
+mkdir actions.d
+chmod +x
+chmod 777
+mkdir Other
+touch optical_prescriptions.txt
+open_with vim
+rename Sumatra
+rename GoogleChrome
+rename Top_Gear_Series_20_-_Episode
+
+feh -t
+mkdir 2013
+rename
+mkdir 2011
+rename Brodie Cardiff Graduation Isle of Man 20130729
+terminal 
+open_with mpv
+open_with mplayer 
+open_with mplayer -vf yadif
+search .conf
+search trans
+search open
+search config
+j
+chmod -x
+rename joshaw.github.com
+rename boldFont.svg
+get_cumulative_size 
+open_with 
+delete
+cd 
+rename 
+rename packages
+search_file 

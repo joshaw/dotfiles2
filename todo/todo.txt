@@ -1,0 +1,8 @@
+@friends @computer @uni @blog @vim @mutt @church @zsh @other @linux
+Add music to ipod - Nora Jones, David Bowie, Elvis Costello @computer
+Email cv to recruitment guy, salim at jamitc.co.uk @uni
+Add Seymore close address to physics world when contract starts @uni
+2013-08-29 Add gpx download link to walks pages @website
+2013-09-16 Check out ack as alternative to grep
+2013-09-22 Write blog post - vim format options @blog
+2013-09-24 http://nosubstance.me/articles/2013-09-21-my-vim-gems/ @vim 

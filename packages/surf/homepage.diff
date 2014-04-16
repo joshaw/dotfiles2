@@ -1,0 +1,13 @@
+--- surf.c	2013-11-07 12:05:31.284004890 +0000
++++ surf.c.new	2013-11-07 12:07:18.845715715 +0000
+@@ -1392,6 +1392,10 @@
+ 	default:
+ 		usage();
+ 	} ARGEND;
++
++	#ifdef HOMEPAGE
++		arg.v = HOMEPAGE;
++	#endif
+ 	if(argc > 0)
+ 		arg.v = argv[0];
+ 

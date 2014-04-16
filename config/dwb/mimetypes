@@ -1,0 +1,7 @@
+text/x-diff gvim
+application/x-download open -f
+"image/png" open
+application/octet-stream gvim
+application/postscript open -f
+application/x-tex open
+application/pdf open -f

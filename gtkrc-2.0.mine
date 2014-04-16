@@ -1,0 +1,43 @@
+style "xfce-panel-window-style"
+ {
+   # Time in miliseconds before the panel will unhide on an enter event
+   XfcePanelWindow::popup-delay = 600
+
+   # Time in miliseconds before the panel will hide on a leave event
+   XfcePanelWindow::popdown-delay = 600
+
+   # Size of autohide window in pixels
+   XfcePanelWindow::autohide-size = 1
+ }
+ class "XfcePanelWindow" style "xfce-panel-window-style"
+
+style "user-font"
+{
+   font_name = "Droid Sans 10"
+}
+
+widget_class "*" style "user-font"
+
+gtk-can-change-accels = 1
+
+style "theme-panel"
+{
+    bg[SELECTED] = "#0A0A0A"
+    bg[NORMAL]   = "#0A0A0A"
+#    bg[PRELIGHT] = "#0A0A0A" #@selected_bg_color
+#    bg[ACTIVE]   = "#0A0A0A"
+#    fg[NORMAL]   = "#0A0A0A"
+#    fg[PRELIGHT] = lighter (@selected_bg_color)  # Makes prelighted text colored.
+#    fg[SELECTED] = lighter (@selected_bg_color)  # Makes prelighted text colored.
+#    fg[ACTIVE]   = @base_color  # Makes prelighted text colored.
+}
+
+style "default"
+{
+    GtkWidget::internal_padding = 0
+
+    xthickness = 2
+    ythickness = 2
+}
+widget "*Xfce*Panel*menu*" style "default"
+widget "*Xfce*Panel*launcher-11*" style "default"

@@ -1,0 +1,84 @@
+# KeyBindings -------------------------------------------------------------------
+
+# Get me out off here
+macro index Q   ":set quit=yes\nqy"  "Quit mutt without asking"
+macro browser Q ":set quit=yes\nqqy" "Quit mutt without asking"
+
+# Moves
+bind index  <up> previous-entry
+bind index  <down> next-entry
+macro index <right> <display-message> "Display message"
+macro index <left> <sync-mailbox><change-folder>?<toggle-mailboxes> "Go to the folder menu"
+macro index h      <sync-mailbox><change-folder>?<toggle-mailboxes> "Go to the folder menu"
+
+bind index  - previous-page
+bind index  <space> next-page
+
+macro pager <left>     <exit>
+macro pager h          <exit>
+macro pager <right>    <noop>
+macro pager <up>       <previous-line>
+macro pager <down>     <next-line>
+
+macro pager <pageup>   <previous-entry>
+macro pager <pagedown> <next-entry>
+
+bind pager / search
+bind pager <up> previous-line
+bind pager <down> next-line
+bind pager k previous-line
+bind pager j next-line
+bind pager gg top
+bind pager G bottom
+bind index gg first-entry
+bind index G last-entry
+
+#Reply to all
+bind pager R group-reply
+
+#macro index   <tab>      <next-unread><enter>
+bind index <tab>    sync-mailbox
+macro pager H <display-toggle-weed>
+
+macro browser <right>    <select-entry>
+macro browser <left>     <home><return> "Goto previous folder"
+
+#views
+bind index P collapse-all
+bind index p  collapse-thread
+
+#commands
+bind index x sync-mailbox
+macro pager x <sync-mailbox>q
+bind index,pager X imap-fetch-mail
+
+macro index,pager F "<change-folder>?<toggle-mailboxes>/"
+
+bind pager \n noop
+bind pager P noop # I don't have a printer. Save the trees
+bind index,pager <space> noop
+
+bind compose <return> send-message
+
+# Gmail-style keyboard shortcuts
+#macro index,pager d "<save-message>=[Gmail]/Bin<enter>" "Move message to trash"
+macro index,pager d "<clear-flag>N<Up><save-message>=[Gmail]/Bin<enter>" "Move message to trash"
+#macro index,pager d "<clear-flag>N<Up>s<Down><enter><enter>" "Move message to trash"
+macro index,pager e "<clear-flag>N<Up><delete-message>" "Archive message"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index,pager ga "<change-folder>=[Gmail]/All<quote-char> Mail<enter>" "Go to all mail"
+macro index,pager gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+macro index,pager gs "<change-folder>=[Gmail]/Sent<quote-char> Mail<enter>" "Go to my sent messages"
+
+macro index,pager S "<save-message>=[Gmail]/Spam<enter>" "Move message to spam folder"
+
+macro index c "<copy-message>?<toggle-mailboxes><untag-pattern>~A" "copy a message to a mailbox" # Saner copy/move dialogs
+macro index,pager s "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+#bind index,pager S save-message
+
+# Use stdinOpen to open html part of email in browser
+macro index,pager V "<view-attachments><search>html<enter><pipe-entry>stdinOpen<enter><exit>" "Open html email in std browser"
+
+macro index <esc>m "T~N<enter>;WNT~O<enter>;WO\CT~T<enter>" "mark all messages read"
+#
+# vim: ft=muttrc

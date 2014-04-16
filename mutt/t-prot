@@ -1,0 +1,1256 @@
+#!/usr/bin/perl -w
+# $Id: t-prot,v 1.319 2013/10/29 11:39:43 jochen Exp $
+
+require 5.006;
+use strict;
+use Fcntl qw(O_EXCL O_WRONLY O_CREAT);
+use Getopt::Long qw(:config gnu_getopt no_ignore_case);
+use constant VER            => '3.0';
+use constant REV            => '';
+use constant REL            => q$Revision: 1.319 $=~m/(\d+(?:\.\d+)+)/;
+# MTA expecting mail on STDIN
+# (you might have to adjust this if using a different MTA)
+use constant SENDMAIL       => '/usr/sbin/sendmail -oi';
+# From <sysexits.h>
+# (you might have to adjust those if your libc wants different values)
+use constant EX_OK          =>  0;
+use constant EX_USAGE       => 64;
+use constant EX_DATAERR     => 65;
+use constant EX_UNAVAILABLE => 69;
+use constant EX_SOFTWARE    => 70;
+use constant EX_IOERR       => 74;
+use constant EX_BOUNCE      => EX_UNAVAILABLE;
+use vars qw(
+    $ad $ads $bigqn $bigqx $boun $check $check_ratio $cr $crshrink $diff $elli
+    $fixind $footers $ftr_ad $ftr_ml $hdrs $indent $kamm $kdiff $kminl $kmaxl
+    $lax $lsig $maxsig $maxlines $mda $ml $gw $ms $ms_smart $msg_quote
+    $msg_ratio $mua $nohdr $ofile $pgpshort $pgpmove $pgpmovevrf $reply
+    $sani $sig $sigint $sign $spass $spass_prefix $sysl $trad $trsp
+
+    $gpg_WARNING $gpg_Warning $gpg_Cantcheck $gpg_aka $gpg_bad
+    $gpg_expired $gpg_good $gpg_bug
+
+    $mutt_attachment $mutt_contenttype $mutt_pgpsigned $mutt_beginsigned
+    $mutt_pgpclearsigned $mutt_pgpclearsigstart $mutt_pgpencrypted
+    $mutt_pgpoutstart $mutt_pgpoutend $mutt_pgpcryptend $mutt_pgpcryptstart
+    $mutt_ssloutstart $mutt_ssloutend
+);
+
+
+# Please adjust these vals to your needs only if you know what you are
+# doing. They are no constants because command line can change them or
+# they are used in some rexexp.
+$0 =~ s!^.*/!!;
+$maxsig         = 4;      # max. valid signature length
+$maxlines       = undef;  # no limit of message lines
+$crshrink       = 2;      # multiple blank lines are shrunk to $crshrink lines
+$indent         = '>';    # Indent string to identify a quoted line
+$kminl          = 65;     # see decomb() for details
+$kmaxl          = 80;
+$kdiff          = 20;
+$pgpshort       = 0;      # hide pgp key ids if set
+$pgpmove        = 0;      # move pgp output to bottom if set
+$pgpmovevrf     = 0;
+$sign           = 1;      # max number of sigs tolerated, undef for no limit
+$boun           = "Blocked by $0: This user does not accept TOFUed email. Please see <http://learn.to/quote/> and <http://www.escape.de/users/tolot/mutt/> for more info. Have a nice day!\n";
+$ftr_ad         = undef;  # too hard on performance to be default
+$ftr_ml         = undef;  # too hard on performance to be default
+$ofile          = '-';    # use STDOUT if nothing is specified
+$spass_prefix   = 'SPAM: ';
+$check_ratio    = 0;      # off by default
+$msg_quote      = "Blocked by $0: This message has been rejected because of a full quote. Please see http://learn.to/quote/ and http://www.escape.de/users/tolot/mutt/ for more info. Have a nice day!\n";
+$msg_ratio      = "Blocked by $0: This message has been rejected because of excessive quoting. Please see http://learn.to/quote/ and http://www.escape.de/users/tolot/mutt/ for more info. Have a nice day!\n";
+# end of user adjusted vals
+
+
+# set the defaults to the C locale
+$mutt_attachment        = '[-- Attachment #';
+$mutt_contenttype       = '[-- Type: ';
+$mutt_pgpsigned         = '[-- End of signed data --]';
+$mutt_beginsigned       = '[-- The following data is signed --]';
+$mutt_pgpclearsigstart  = '[-- BEGIN PGP SIGNED MESSAGE --]';
+$mutt_pgpcryptend       = '[-- END PGP MESSAGE --]';
+$mutt_pgpcryptstart     = '[-- BEGIN PGP MESSAGE --]';
+$mutt_pgpclearsigned    = '[-- END PGP SIGNED MESSAGE --]';
+$mutt_pgpencrypted      = '[-- End of PGP/MIME encrypted data --]';
+$mutt_pgpoutstart       = '[-- PGP output follows (current time:';
+$mutt_pgpoutend         = '[-- End of PGP output --]';
+$mutt_ssloutstart       = '[-- OpenSSL output follows';
+$mutt_ssloutend         = '[-- End of OpenSSL output --]';
+
+# set the defaults to the C locale
+$gpg_WARNING            = 'WARNING: ';
+# (yes, the translations in gnupg's po files *are* braindamaged):
+$gpg_Warning            = 'WARNING: ';
+$gpg_Cantcheck          = 'Can\'t check signature: ';
+$gpg_aka                = '                aka ';
+$gpg_bad                = 'BAD signature from ';
+$gpg_expired            = 'Note: This key has expired!';
+$gpg_good               = 'Good signature from';
+# (actually, this bugs me quite often since upgrading gpg from v1.0.7):
+$gpg_bug                = '... this is a bug (';
+
+
+# help(): print help text and exit with appropriate exit code
+sub help {
+    print "Usage: $0 [options] 
+  -A=DIRECTORY    ad footer directory, treat ad footers as signature
+  -a              remove ad footers; requires -A
+  --bigq[=n[,x]]  remove all but x lines of quotes with more than n
+                  lines; default is n=30 and x=10
+  --body          input has no headers; does not work with --pgp-short;
+                  multipart messages will not be detected
+  -c[=n]          merge multiple blank lines to n lines (default is 2)
+  --check[=FLAGS] check various criteria, print error message and quit;
+                  see man page for details
+  -d, --debug     print notice to syslog when bouncing; requires -p
+  --diff          tolerate diffs
+  -e              force ellipsis for excessive punctuation
+  --fixind        fix quotes to adhere to RFC 3676
+  --ftr-ad        enable aggressive ad footer matching; requires -A
+  --ftr-ml        enable aggressive mailing list footer matching; req. -L
+  --groupwise     delete Novell Groupwise style TOFU
+  -h, --help      show this short help and exit
+  -i=INFILE       file to be read; '-' for STDIN (default)
+  -k              try to fix \"Kammquotes\"
+  --kdiff=n       max. length difference between wrapped lines; req. -k
+  --kmaxl=n       max. line length for wrapped line; requires -k
+  --kminl=n       min. line length for wrapped line; requires -k
+  -L=DIRECTORY    mailing list footer directory, treat mailing list
+                  footers as signature
+  -l              delete mailing list footer; requires -L
+  --lax-security  use unsafe writing method; USE ON YOUR OWN RISK!
+  --locale=LOCALE internationalization; currently only used with -Mmutt
+  -M, --mua=MUA   turn on special treatment for some mail user agents
+  -m              delete MS style TOFU; careful: might be too aggressive
+  --max-lines=x   maximum number of message lines
+  --ms-smart      try to be smart with MS style TOFU; req. -Mmutt and -m
+  -o=OUTFILE      file to be written to; '-' for STDOUT (default)
+  -P=MESSAGE      user defined bounce message; requires -p
+  -p[=ADDRESS]    redirect to ADDRESS if no TOFU was found
+  --pgp-move      move pgp verification output to bottom; requires -Mmutt
+  --pgp-move-vrf  move pgp output if verified and good; requires -Mmutt
+  --pgp-short     hide non-relevant pgp key uids; requires -Mmutt
+  -r              delete mail header lines
+  --reply         squeeze multiple reply prefixes in subject line
+  -S[=n]          suppress signatures with more than n lines (default $maxsig)
+  -s              delete signature
+  --sani          sanitize some header fields
+  --sigsmax[=n]   max number of sigs tolerated, no value for unlimited
+  --spass         enable SpamAssassin workaround
+  -t              delete traditional style TOFU
+  -v, --version   show version string and exit
+  -w              delete trailing whitespaces\n";
+    exit(EX_USAGE);
+}
+
+# version(): print version info and exit with appropriate exit code
+sub version {
+    print "$0 v".VER.REV." (Rev. ".REL."), Jochen Striepe <t-prot\@tolot.escape.de>
+Get the latest version at <http://www.escape.de/users/tolot/mutt/>\n";
+    exit(EX_OK);
+}
+
+# sigint_handler(): what to do if we receive a single SIGINT
+sub sigint_handler {
+    $sigint = 1;
+}
+
+sub sanitize_hdr {
+    # Undoes MIME quoted-printable word encoding.
+    sub qp_decode {
+        my $word = shift;
+        $word =~ tr/_/\x20/;
+        $word =~ s/=DF/ss/og;
+        $word =~ s/=C4/Ae/og;
+        $word =~ s/=D6/Oe/og;
+        $word =~ s/=DC/Ue/og;
+        $word =~ s/=E4/ae/og;
+        $word =~ s/=F6/oe/og;
+        $word =~ s/=FC/ue/og;
+        $word =~ s/=([0-9A-F]{2})/chr(hex $1)/ioge;
+        $word;
+    }
+
+    sub umlauts {
+        my $word = shift;
+        $word =~ s/ä/ae/og;
+        $word =~ s/Ä/Ae/og;
+        $word =~ s/ö/oe/og;
+        $word =~ s/Ö/Oe/og;
+        $word =~ s/ü/ue/og;
+        $word =~ s/Ü/Ue/og;
+        $word =~ s/ß/ss/og;
+        $word;
+    }
+
+    my $H = shift;        # array of header lines
+    my $i;
+
+    for ($i=0; $i<$#$H; $i++) {
+        if ($$H[$i] =~ /^subject: /io) {
+            if ($sani) {
+                $$H[$i] =~ s/=\?iso-8859-15?\?q\?([^?]*)\?=/qp_decode($1)/ioge;
+                $$H[$i] =~ s/^subject: *(.*)/"Subject: " . umlauts($1)/ioe;
+            }
+            if ($reply) {
+                $$H[$i] =~ s/^subject: *(?:(?:Re|Antw(?:ort)?|AW|WG): *)+/Subject: Re: /io;
+            }
+
+            $i++;
+            while ($i<$#$H && $$H[$i] =~ /^\s/) {
+                if ($sani) {
+                    $$H[$i] =~ s/=\?iso-8859-15?\?q\?([^?]*)\?=/qp_decode($1)/ioge;
+                    $$H[$i] =~ s/^\s+(\S.*)/" " . umlauts($1)/ioe;
+                }
+                if ($reply) {
+                    $$H[$i] =~ s/^\s+(?:(?:Re|Antw(?:ort)?|AW|WG): *)+/ /io;
+                }
+                $i++;
+            }
+        }
+        elsif ($sani && $$H[$i] =~ /^(?:from|to): /io) {
+            $$H[$i] =~ s/=\?iso-8859-15?\?q\?([^?]*)\?=/qp_decode($1)/ioge;
+
+            $i++;
+            while ($i<$#$H && $$H[$i] =~ /^\s/) {
+                $$H[$i] =~ s/=\?iso-8859-15?\?q\?([^?]*)\?=/qp_decode($1)/ioge;
+                $i++;
+            }
+        }
+    }
+}
+
+# remove_footers(): remove any trailing appearance of footers contained
+# in the given directory.
+sub remove_footers {
+    my $L = shift;        # array of message lines
+    my $S = shift;        # array to store removed lines in
+    my $F = shift;        # footers dir name
+    my $O = shift;        # remove only one footer?
+    my $V = shift;        # allow footers match before end of message
+    my $off;
+
+    if (!defined $V) {
+        for ($off = 0; $#$L>=$off && $$L[$#$L-$off] =~ /^\s*$/; $off++) {;};
+    }
+
+    if ($F && scalar(@$L)) {
+        if (!opendir(DIR, $F))
+            { print STDERR "Could not open $F: $!\n"; exit(EX_IOERR); }
+        my @feet = grep { /^[^.]/ && -f "$F/$_" } readdir DIR;
+        closedir DIR;
+
+        foreach my $f (@feet) {
+            if (!open(IN, "$F/$f"))
+                { print STDERR "Could not open $F/$f: $!\n"; exit(EX_IOERR); }
+            my @l = <IN>;
+            close IN;
+
+            if (!scalar(@l)) { next; }
+            for (my $z=0; $z<=$#l; $z++) { chomp($l[$z]); }
+
+            if (defined $V) {
+                WIPE: for (my $z=scalar(@$L)-scalar(@l); $z>=0; $z--) {
+                    if (scalar(@l)+$z<=scalar(@$L)) {
+                        my $y = 0;
+                        for(my $x=1; $x<=scalar(@l); $x++) {
+                            if (index($$L[scalar(@$L)-$x-$z],
+                                          $l[scalar(@l)-$x])!=0) {
+                                $y = 1;
+                            }
+                        }
+                        if (!$y) {
+                            unshift(@$S, @$L[$#$L-$#l-$z..$#$L]);
+                            splice(@$L, $#$L-$#l-$z);
+                            while (scalar(@$L) && $$L[$#$L] =~ /^\s*$/) {
+                                unshift(@$S, pop(@$L));
+                            }
+                            if ($O) { last; } else { goto WIPE; }
+                        }
+                    }
+                }
+            }
+            else {
+                while (scalar(@l)<=scalar(@$L)) {
+                    for(my $x=1; $x<=scalar(@l); $x++) {
+                        if (index($$L[scalar(@$L)-$x-$off], $l[scalar(@l)-$x])!=0) { 
+                            goto FINISH;
+                        }
+                    }
+                    unshift(@$S, @$L[$#$L-$off-$#l..$#$L]);
+                    splice(@$L, $#$L-$off-$#l);
+                    while (scalar(@$L) && $$L[$#$L] =~ /^\s*$/) {
+                        unshift(@$S, pop(@$L));
+                    }
+                    if ($O) { last; }
+                }
+                FINISH:
+            }
+        }
+    }
+}
+
+# decomb(): Try to detect and fix zig-zag shaped quoting (a.k.a. German
+# "Kammquoting").
+sub decomb {
+    my $L = shift;        # array of message lines
+    my $V = shift;        # array with verbatim list
+    my $max = 0;        # plausible wraparound pos
+
+    # We scan the whole message first for a plausible common maximum line
+    # length where longer lines would be wrapped.
+    for (my $x=0; $x<$#$L; $x++) {
+        if ($$V[$x]!=1 && $max<length($$L[$x])) { $max = length($$L[$x]); }
+    }
+
+    # Next we see if there are plausible wraparounds.    
+    for (my $x=0; $x+1<$#$L; $x++) {
+
+        # OK, 
+        # * it must not be verbatim,
+        # * the 2nd line must not be quoted nor empty nor just 
+        #   underlining some part of the line above (using '^')
+        #   nor begin with a whitespace,
+        # * the 1st line must not end with a hyphen,
+        # * the 2nd line must not indicate content was deleted,
+        # * the 2nd line must not be some mutt(1) commentary,
+        # * there must not be a valid word wrap to produce a longer
+        #   1st line (if not quoted),
+        # * the 1st and 2nd line together must not be longer than some
+        #   magical upper limit nor shorter than some magical lower
+        #   bound nor nearly of the same length, and
+        # * the 3rd line must not be empty.
+        # With all that odds should be quite good that we have an
+        # automatedly wrapped line. Please send a note if you have
+        # additional good criteria. Thanks.
+        if (($$V[$x]!=1 && $$V[$x+1]!=1) &&
+            (index($$L[$x+1], $indent)!=0) &&
+            ($$L[$x+1] !~ /^$/) &&
+            ($$L[$x+1] !~ /^[\s^]/) &&
+            ($$L[$x]   !~ /-$/) &&
+            ($$L[$x+1] !~ /^\Q[...]\E\s*$/) &&
+            ($mua ne 'mutt' || $$L[$x+1] !~ /^(?:\e[^\a]+\a)?\[-- /) &&
+            (length($$L[$x])+index($$L[$x+1], ' ')>$max ||
+                (index($$L[$x+1], ' ')<0 &&
+                 length($$L[$x])+length($$L[$x+1])>$max)) &&
+            (length($$L[$x])+length($$L[$x+1])<$kmaxl) &&
+            (length($$L[$x])+length($$L[$x+1])>$kminl) &&
+            (length($$L[$x])-length($$L[$x+1])>$kdiff) &&
+            ($$L[$x+2] !~ /^\s*$/))
+        {
+            $$L[$x] =~ s/\s*$/' ' . $$L[$x+1]/e;
+            splice(@$L, $x+1, 1);
+            splice(@$V, $x+1, 1);
+        }
+    }
+}
+
+# debigq(): Finds big quotes (more than $n lines quoted) and deletes all
+# but the last $x lines of them.
+sub debigq {
+    my $L = shift;        # array of message lines
+    my $V = shift;        # array with verbatim list
+    my $k = 0;
+
+    for (my $i=0; $i<=$#$L; $i++) {
+
+        if ($$V[$i]) { 
+            $k = 0;
+            next;
+        }
+
+        if (index($$L[$i], $indent)==0) { $k++; } else { 
+            if ($k>$bigqn) {
+                my $x = $k-$bigqx;
+                $i -= $k;
+
+                $$L[$i] = "[---=| Quote block shrunk by $0: " .
+                    "$x lines snipped |=---]\n";
+                $i++;
+                splice(@$L, $i, $x-1);
+                splice(@$V, $i, $x-1);
+
+                $i++;
+            }
+            $k = 0;
+        }
+    }
+}
+
+# pgp(): treat mutt(1)'s pgp/gpg output contained in signed or encrypted
+# messages
+sub pgp {
+
+    sub verified {
+        my $L = shift;    # message body
+        my $X = shift;    # start line
+        my $Z = shift;    # end line
+
+		my $ok = 0;
+
+        while ($X<$Z) {
+            if (index($$L[$X], "gpg: $gpg_WARNING")==0 ||
+                index($$L[$X], "gpg: $gpg_Warning")==0 ||
+                index($$L[$X], "gpg: $gpg_bad")==0 ||
+                index($$L[$X], "gpg: $gpg_Cantcheck")==0 ||
+                index($$L[$X], "gpg: $gpg_expired")==0 ||
+                index($$L[$X], "gpg: $gpg_bug")==0)
+                { return 0; }
+            if (index($$L[$X], "gpg: $gpg_good")==0)
+                { $ok = 1; }
+            $X++;
+        }
+
+        return $ok;
+    }
+
+    my $L = shift;        # message body
+    my $V = shift;        # verbatim list
+    my $H = shift;        # headers
+
+    my @tmp = ();
+    my $tmp = 0;
+
+    for (my $x=0; $x<scalar(@$L); $x++) {
+        if ($$V[$x]) { next; }
+
+        if ($$L[$x]=~/^(?:\e[^\a]+\a)?
+                       (?:\Q$mutt_pgpoutstart\E|\Q$mutt_ssloutstart\E)/ox) {
+            my $from;
+            for (my $m=0; $m<scalar(@$H); $m++) {
+                if (index($$H[$m], 'From:')==0) {
+                    $from = $$H[$m];
+                    $m++;
+                    while (exists($$H[$m]) && $$H[$m] =~ /^\s/)
+                        { $from .= $$H[$m]; $m++; }
+                    last;
+                }
+            }
+            ($from) = $from=~m/(\w[\w.+-]*@(?:[\w.+-]+\.)+[A-Za-z]{2,})/;
+
+            my $uid = 1;
+
+            for (my $i=$x+1; $i<scalar(@$L); $i++) {
+                if ($pgpshort && index($$L[$i], "gpg: $gpg_aka")==0) {
+                    $uid++;
+
+                    if ($uid>1 && index($$L[$i], $from)<0) { 
+                        splice(@$L, $i, 1);
+                        splice(@$V, $i, 1);
+                        $i--;
+                    }
+                }
+                elsif ($$L[$i]=~/^(?:\e[^\a]+\a)?
+                       (?:\Q$mutt_pgpoutend\E|\Q$mutt_ssloutend\E)/ox) {
+                    if ($pgpmove ||
+                        ($pgpmovevrf && (!$sigint) && verified($L, $x+1, $i))) {
+                        push(@{$tmp[++$tmp]}, "\n", @$L[$x..($i+1)]);
+                        splice(@$L, $x, $i-$x+2);
+                        splice(@$V, $x, $i-$x+2);
+                        $i -= $#{$tmp[$tmp]}-2;
+                    }
+                    $x = $i;
+                    last;
+                }
+            }
+        }
+        elsif ($tmp &&
+               $$L[$x] =~ /^
+                        (?:\e[^\a]+\a)?
+                        (?:\Q$mutt_pgpencrypted\E|
+                           \Q$mutt_pgpcryptend\E|
+                           \Q$mutt_pgpclearsigned\E|
+                           \Q$mutt_pgpsigned\E)
+                       /ox) {
+            splice(@$L, $x+1, 0, @{$tmp[$tmp]});
+            for (my $i=$x; $i<scalar(@{$tmp[$tmp]}); $i++) {
+                splice(@$V, $x+1, 0, (0));
+            }
+            $x += scalar(@{$tmp[$tmp--]});
+            pop(@tmp);
+        }
+    }
+
+    while ($tmp>0) {
+        push(@$L, @{$tmp[$tmp--]});
+        pop(@tmp);
+        for (my $i=$#$V; $i<$#$L; $i++) { push(@$V, 0); }
+    }
+}
+
+# write_msg(): output
+sub write_msg {
+    my $O = shift;
+    my $l;
+
+    if ((!$lax) && ($O =~ /^>(.*)/) && ($1 ne '-') && ($1 ne '/dev/null')) {
+        if (!sysopen(OUT, $1, O_EXCL|O_CREAT|O_WRONLY)) { 
+            print STDERR "Could not open $1: $!\n"; exit(EX_IOERR);
+        }
+    }
+    elsif (!open(OUT, $O)) { 
+        print STDERR "Could not open $O: $!\n"; exit(EX_IOERR);
+    }
+    while (scalar(@_)) {
+        $l = shift;
+        if (defined $l) {
+            $^W = 0;
+            print OUT @$l;
+            $^W = 1;
+        }
+    }
+    close OUT;
+}
+
+# process_msg(): This one proc does *everything* what has to be done with
+# the lines of the message
+sub process_msg {
+    my $lines = shift;
+
+    my ($j, $x, $verb) = (0, 0, 0);
+    my (@ads, @hdr, @bo1, @bo2, @ftr, @sig, @vrb, @att) = 
+        ((), (), (), (), (), (), (), (), ());
+
+    # Remove and store lines we might need later...
+    # Remove headers:
+    if (!$nohdr) {
+        for ($x=0; $x<$#$lines; $x++) { if (@$lines[$x] =~ /^$/) { last; }; }
+        @hdr = @$lines[0..$x];
+        splice(@$lines, 0, $x+1);
+    }
+    # remember the original body lines count
+    my $linecount = scalar(@$lines);
+
+    # Sanitize header fields:
+    if ($reply || $sani) { sanitize_hdr(\@hdr); }
+
+    # Remove ML footers:
+    remove_footers($lines, \@ftr, $footers, undef, $ftr_ml);
+
+    # Remove ad footers:
+    remove_footers($lines, \@ads, $ads, undef, $ftr_ad);
+
+    # See if we have a multipart content type. If yes, see if it is already
+    # ripped (e.g. by you MUA, assuming it does not get special treatment with
+    # --mua=foo), otherwise only leave the first part if it is plain text (if
+    # not, we are done - non-text messages are not our business).
+    if ($mua ne 'mutt') { 
+        for ($x=0; $x<scalar(@hdr); $x++) {
+            if ($hdr[$x] =~ /^Content-[Tt]ype:\s+(.*)$/) {
+                my $foo = $1;
+
+                if ($foo =~ m!^multipart/!) {
+                    undef $foo;
+
+                    if ($hdr[$x] =~ /\Wboundary="([^"]+)"/i) { $foo = $1; }
+                    else { 
+                        for (my $z=1; $x+$z<@hdr && $hdr[$x+$z]=~/^\s/; $z++) {
+                            if ($hdr[$x] =~ /\Wboundary="?([^"\s]+)"?$/i) { 
+                                $foo = $1;
+                                last;
+                            }
+                        }
+                    }
+
+                    if (defined $foo) {
+                        for (my $x=0; $x<scalar(@$lines); $x++) {
+                            if (index($$lines[$x], '--'.$foo)!=0) { next; }
+
+                            my $bar = 'text/plain';
+                            for ($x++; $x<@$lines && $$lines[$x]!~/^$/; $x++)
+                            {
+                                if ($$lines[$x] =~ /^Content-[Tt]ype:\s+(.*)/) { 
+                                    $bar = $1;
+                                }
+                            }
+                            if ($x>=scalar(@$lines)) { exit(EX_DATAERR); }
+
+                            if ($bar =~ m!^text/plain!i) {
+                                my $z;
+                                for ($z=1; $x+$z<@$lines; $z++) {
+                                    if (index($$lines[$x+$z], '--'.$foo)==0) {
+                                        last;
+                                    }
+                                }
+                                if ($x+$z>=scalar(@$lines)) { exit(EX_DATAERR); }
+
+                                @bo2 = @$lines[$x+$z..$#$lines];
+                                splice(@$lines, $x+$z);
+                                if ($$lines[$#$lines] =~ /^\s*$/) {
+                                    unshift(@bo2, pop @$lines);
+                                }
+                                @bo1 = @$lines[0..$x];
+                                splice(@$lines, 0, $x+1);
+
+                                # remove mailing list and ad footers within this
+                                # attachment:
+                                remove_footers($lines, \@ftr, $footers, undef, $ftr_ml);
+                                remove_footers($lines, \@ads, $ads, undef, $ftr_ad);
+
+                                last;
+                            }
+                            else { 
+                                write_msg(($mda?'|'.SENDMAIL." $mda":">$ofile"),
+                                    ($hdrs?undef:\@hdr), $lines);
+                                exit;
+                            }
+                        }
+                    }
+                }
+                last;
+            }
+        } 
+    }
+
+
+    # Protect verbatims:
+    $verb = 0;
+    for ($x=0; $x<scalar(@$lines); $x++) {
+        if ($$lines[$x] =~ /^\s*#v([+-])$/o) { 
+            $verb = $1 eq '+' ? 1 : 0;
+            $vrb[$x] = 1;
+        } elsif ($diff && $$lines[$x] =~ /^[0-9]+a([0-9]+),([0-9]+)$/o) {
+            # Detect and protect standard diffs.
+            # Skip and proceed to next line if premature file end or diff line
+            # numbers implausible (so it might be not a diff at all).
+            if ($1>$2 || $x+$2-$1+1>$#$lines) { next; }
+            $vrb[$x] = 1;
+            for (my $i=0; $i<$2-$1+1; $i++) { $vrb[++$x] = 1; }
+        } elsif ($diff &&
+                 $$lines[$x] =~ /^([0-9]+),([0-9]+)c([0-9]+),([0-9]+)$/o) {
+            if ($1!=$3 || $1>$2 || $3>$4 || $x+$2-$1+$4-$3+3>$#$lines) { next; }
+            $vrb[$x] = 1;
+            for (my $i=0; $i<$2-$1+$4-$3+3; $i++) { $vrb[++$x] = 1; }
+        } elsif ($diff &&
+                 $$lines[$x] =~ /^--- ./o &&
+                 $$lines[$x+1] =~ /^\+\+\+ ./o &&
+                 $$lines[$x+2] =~ /^@@ -[0-9]+,([0-9]+) \+[0-9]+,([0-9]+) @@/o
+                ) {
+            # Detect and protect unified diffs.
+            # Proceed only as far as the diff should go.
+            my $minus = $1;
+            my $plus = $2;
+            $vrb[$x++] = 1;
+            $vrb[$x++] = 1;
+            $vrb[$x++] = 1;
+            for (my $cminus = 0, my $cplus = 0;
+                 $cminus<=$minus && $cplus<=$plus && $x<$#$lines;
+                 $x++) {
+                $vrb[$x] = 1;
+                if ($$lines[$x] !~ /^\+/) { $cminus++; };
+                if ($$lines[$x] !~ /^-/) { $cplus++; };
+            }
+            $x-=1;
+        } else { $vrb[$x] = $verb; }
+    }
+
+    # Calculate quoting ratio (with respect to verbatims):
+    if ($check && scalar(@$lines)) {
+        my ($y, $z) = (0, 0);
+        for ($x=0; $x<scalar(@$lines); $x++) {
+            if (!$vrb[$x]) {
+                $z++;
+                if (index($$lines[$x], $indent)==0) { $y++; }
+            }
+        }
+
+        if ($y/$z>=$check_ratio) {
+            print $msg_ratio;
+            exit EX_UNAVAILABLE;
+        }
+    }
+
+    if ($mua eq 'mutt') {
+        # See if we find pgp output generated by mutt before we scramble
+        # the thing. If yes, see if we can beautify it.
+        if ($pgpshort || $pgpmove || $pgpmovevrf) { pgp($lines, \@vrb, \@hdr); }
+
+        # Remove all but the first attachment (if this is text/plain)
+        # mutt did introduce (bah!). Remember, all this ugliness could
+        # be replaced with a proper and clean edit_filter patch in 
+        # mutt(1) itself...
+        for ($x=$#$lines; $x>=0; $x--) {
+            if ($vrb[$x]) { next; }
+            # The following regexp's are quite ugly because for most users
+            # these lines are coloured using termcap... (bah!)
+            if (($$lines[$x] =~
+                     /^(?:\e[^\a]+\a)?\Q$mutt_attachment\E(\d+)/o &&
+                    (($1 ne '1') ||
+                    ($x<$#$lines &&
+                        $$lines[$x+1] !~ m!^
+                            (?:\e[^\a]+\a)?
+                            (?:\Q$mutt_contenttype\E)
+                            (?:text/plain|application/pgp)
+                        !oxi))) ||
+                ($$lines[$x] =~ /^
+                    (?:\e[^\a]+\a)?
+                    (?:\Q$mutt_pgpsigned\E     |
+                       \Q$mutt_pgpclearsigned\E|
+                       \Q$mutt_pgpcryptend\E|
+                       \Q$mutt_pgpencrypted\E)
+                /ox))
+            { 
+                # Strip attachments to prepare further processing
+                unshift(@att, @$lines[$x..$#$lines]);
+                splice(@$lines, $x);
+                # Try to fix trailing empty lines
+                while (scalar(@$lines) && $$lines[$#$lines] =~
+                    /^(?:\e[^\a]+\a)?\s*$/) { 
+                    unshift(@att, pop(@$lines));
+                }
+
+                # Remove ML and ad footers within attachments:
+                my @tmp;
+                if ($ml) { remove_footers($lines, \@tmp, $footers, undef); }
+                if ($ad) { remove_footers($lines, \@tmp, $ads,     undef); }
+                $x = scalar(@$lines);
+            }
+        }
+
+        # care about the rest
+        if (scalar(@att)) {
+            for ($x=0; $x<$#att; $x++) {
+                if ($vrb[scalar(@$lines)+$x]) { next; }
+
+                # Pipe message/rfc822 parts to another instance of
+                # process_msg() for further processing.
+                # Please note that we cannot see what a hierarchy the
+                # original message had -- if there were message/rfc822
+                # parts within other message/rfc822 parts constellations
+                # can occur which we cannot resolve. Therefore we simply
+                # do not even try to be smart. This should work for most
+                # situations.
+                # The following regexp is quite ugly because for most
+                # users the line is coloured using termcap... (bah!)
+                if ($att[$x] =~
+                        /^(?:\e[^\a]+\a)?\Q$mutt_attachment\E\d+/o &&
+                    $att[$x+1] =~ m!^
+                        (?:\e[^\a]+\a)?
+                        (?:\Q$mutt_contenttype\E) (?:message/rfc822|multipart/alternative)
+                    !ox)
+                {
+                    $x += 2;
+                    while ($att[$x] !~ /^\s*$/) { $x++; }
+                    $x++;
+
+                    my @tmp = @att[$x..$#att];
+                    process_msg(\@tmp);
+                    splice(@att, $x, scalar(@att)-$x, @tmp);
+                    $x += scalar(@tmp);
+                }
+            }
+        }
+    }
+
+    # Remove signature:
+    if (scalar(@$lines)) { 
+        my $sn = 0;
+        my $chk_empty = 1;
+        my $empty = 0;
+
+        for ($x = $#$lines; $x>=0; $x--) {
+            if (!$vrb[$x]) {
+                if ($$lines[$x] =~ /^-- $/) {
+                    if ($diff) {
+                        for (my $i=1; $x+$i+1<scalar(@$lines); $i++) {
+                            if ($$lines[$x+$i] =~ /^-{3}\s+\S/ &&
+                                $$lines[$x+$i+1] =~ /^\+{3}\s+\S/)
+                            {
+                                $sig = 0;
+                                unshift(@sig, @$lines[$x..$#$lines]);
+                                splice(@$lines, $x);
+                                last;
+                            }
+                        }
+                        if (scalar(@sig)) {
+                            if (defined($sign) && ++$sn==$sign) { last; } else { next; }
+                        }
+                    }
+
+                    if ($sig || ($lsig && ($#$lines-$x-$empty>$lsig))) {
+                        if ($lsig && !$sig) {
+                            unshift(@sig, "[---=| Overlong signature removed by $0: " .
+                                (scalar(@$lines)-$x) . " lines snipped |=---]\n");
+                        }
+                        splice(@$lines, $x);
+                    }
+                    else {
+                        unshift(@sig, @$lines[$x..$#$lines]);
+                        splice(@$lines, $x);
+                    }
+                    if (defined($sign) && ++$sn==$sign) { last; } else { next; }
+                }
+                # any trailing newlines?
+                elsif ($chk_empty && $$lines[$x] =~ /^\s*$/) { $empty++; }
+                elsif ($chk_empty) { $chk_empty = 0; }
+            }
+        }
+    }
+
+    # Fix quote markers to adhere to RFC 3676, this changes "> >" to ">> " (if
+    # the default $indent is used). The space after ">" is not mandatory by RFC
+    # but makes the result more readable.
+    if ($fixind) {
+        for ($x=0; $x<scalar(@$lines); $x++) {
+            if (!$vrb[$x] && index($$lines[$x], $indent)==0) {
+                # We match space at the beginning to prevent removal of spaces
+                # directly after the last quote mark.
+                $$lines[$x] =~ /^((\Q$indent\E| )*\Q$indent\E ?)(.*)$/;
+                my $tmp = $1;
+                my $len = length $1;
+                my $rest = $3;           # if anything follows after the quote
+                $tmp =~ tr/ //d;
+                $tmp .= ' ' if $rest;    # don't create trailing whitespace
+                substr($$lines[$x], 0, $len, $tmp);
+            }
+        }
+    }
+
+    # See if there is some Kammquoting to fix:
+    if ($kamm) { decomb($lines, \@vrb); }
+
+    # Now care about TOFU.
+    # One common mispractice is M$ and Groupwise style TOFU:
+    if ($ms||$gw) {
+        # bloat this array if you want more internationalization:
+        my @tofu = ('Original Message',
+                    'Original-Nachricht',
+                    'Urspr.ngliche Nachricht',
+                    'Mensagem original',
+                    'Ursprungligt meddelande',
+                    'Oorspronkelijk bericht',
+                    'Message d\'origine',
+                    'Origin message',
+                    'Forwarded message',
+                    'Weitergeleitete Nachricht / Forwarded Message',
+                    '[A-Za-z ]+ <(\w[\w.+-]*@(?:[\w.+-]+\.)+[A-Za-z]{2,})> schrieb:');
+        my $k = 0;    # any text above?
+        my $tmp = 0;  # flagged if inside PGP or SSL output
+
+        DONE: for ($x=0; $x<scalar(@$lines); $x++) { 
+            if (!$vrb[$x]) {
+                foreach my $tmp (@tofu) {
+                    if (($ms && $$lines[$x] =~ /^\s?-+\s?$tmp\s?-+/) ||
+                        ($gw &&
+                            ($$lines[$x] =~ /^>>>[^\<]+<[^\>]+> \d\d?\/\d\d?\/\d\d? \d\d?:\d\d [AP]M >>>/ ||
+                             $$lines[$x] =~ /^>>> On [A-Z][a-z][a-z]?, [A-Z][a-z][a-z]? \d\d?, \d\d\d\d at [ \d]\d:\d\d [AP]M, in message/))) { 
+                        $x++;
+                        $trad = 0;
+                        $bigqn = 0;
+                        last DONE; 
+                    }
+                }
+
+                if ((!$k) && $$lines[$x] !~ /^\s*$/o &&
+                    ((!$mua) ||
+                     ($mua eq 'mutt' &&
+                         # this line seems not necessary since mutt-1.5.18:
+                         $$lines[$x] !~ /^\e[^\a]+\a$/o &&
+                         $$lines[$x] !~
+                             /^(?:\e[^\a]+\a)?(?:\Q$mutt_attachment\E)/o &&
+                         $$lines[$x] !~
+                             /^(?:\e[^\a]+\a)?(?:\Q$mutt_contenttype\E)/o)) &&
+                    ((!$spass) || index($$lines[$x], $spass_prefix)!=0))
+                {
+                    if ($mua eq 'mutt' && (!$tmp) &&
+                        ($$lines[$x] =~
+                             /^(?:\e[^\a]+\a)?(?:\Q$mutt_pgpoutstart\E)/o ||
+                         $$lines[$x] =~
+                             /^(?:\e[^\a]+\a)?(?:\Q$mutt_ssloutstart\E)/o)) {
+                        $tmp = 1;
+                    } elsif ($mua eq 'mutt' && $tmp && 
+                        ($$lines[$x] =~
+                             /^(?:\e[^\a]+\a)?(?:\Q$mutt_beginsigned\E)/o ||
+                         $$lines[$x] =~
+                             /^(?:\e[^\a]+\a)?(?:\Q$mutt_pgpcryptstart\E)/o ||
+                         $$lines[$x] =~
+                             /^(?:\e[^\a]+\a)?(?:\Q$mutt_pgpclearsigstart\E)/o)) {
+                        $tmp = 0;
+                    } elsif (!$tmp) {
+                        $k = 1;
+                    }
+                }
+            }
+        }
+
+        # try to avoid false positives and only delete m$ style tofu if
+        # there is text above
+        if ($k) {
+            if (!$ms_smart) { goto CLEAN; }
+
+            # first, see if there is pgp stuff inside the tofu:
+            my $p = 0;    # levels of pgp signed parts
+
+            for (my $i=$x+1; $i<scalar(@$lines); $i++) {
+                if ($$lines[$i] =~
+                        /^(?:\e[^\a]+\a)?(?:\Q$mutt_pgpclearsigstart\E)/o) {
+                    $p++;
+                }
+            }
+            if ($p) {
+                STAIRS: for (my $i=0; $i<scalar(@att); $i++) {
+                    if ($p==0 && $att[$i] =~ /^(?:\e[^\a]+\a)?\[-- /o) {
+                        splice(@att, 0, $i);
+                        unshift(@att, "\n");
+                        goto CLEAN;
+                    } elsif ($att[$i] =~
+                            /^(?:\e[^\a]+\a)?(?:\Q$mutt_pgpclearsigned\E)/o) {
+                        splice(@att, 0, $i+1);
+                        $p--;
+                        goto STAIRS;
+                    }
+                }
+                splice(@att);
+            }
+
+            # now removing is safe:
+            CLEAN: $j = scalar(@$lines)-$x;
+            splice(@$lines, $x);
+        }
+    }
+
+    # Nothing? Then try traditional TOFU (deleting M$ style TOFU is done
+    # much more aggressively, so we won't need to search any more if we
+    # did find some):
+    if ($trad && (!$j) && !$vrb[$#$lines]) {
+        if (scalar(@$lines) && $$lines[$#$lines] =~ /^\s*$/) { 
+            unshift(@sig, pop(@$lines));
+        }
+
+        my $k;
+        my $x = 1;
+
+        for (my $i=$#$lines; $i>=0; $i--) {
+            if ($vrb[$i]) { last; }
+            if (index($$lines[$i], $indent)==0) {
+                $j++;
+                $k = $i;
+            }
+            elsif ($$lines[$i] !~ /^\s*$/) { last; }
+        }
+
+        if ($j) {
+            # if there is no text above, we will assume the message is meant
+            # as forwarding and therefore OK
+            for (my $i=$k-1; $i>=0; $i--) {
+                if ($$lines[$i] !~ /^\s*$/o) {
+                   $x = 0;
+                   last;
+                }
+            }
+            if ($x) {
+                $j = 0;
+            } else {
+                splice(@$lines, $k);
+            }
+        }
+    }
+
+    # OK, if we found TOFU, we will leave a message that we were here...
+    if ($j) { 
+        # make sendmail bounce if we shall be picky 
+        # and indeed found something:
+        if ($mda) { 
+            if ($mda ne '1') { 
+                print STDERR $boun;
+
+                if ($sysl) {
+                    eval { require Sys::Syslog; }; 
+                    if ($@) { warn $@; } else {
+                        Sys::Syslog::setlogsock('unix');
+                        Sys::Syslog::openlog("$0[$$]", 'pid', 'mail');
+                        Sys::Syslog::syslog('debug', 'bounced message %s', $hdr[0]);
+                        Sys::Syslog::closelog();
+                    }
+                }
+            }
+
+            exit EX_BOUNCE;
+        }
+
+        # if we were invoked just for checking and indeed found something,
+        # print out the error message and quit:
+        if ($check) {
+            print $msg_quote;
+            exit EX_UNAVAILABLE;
+        }
+
+        push(@$lines, "[---=| TOFU protection by $0: " .
+            "$j lines snipped |=---]\n");
+    }
+    elsif ($mda eq '1') { exit EX_OK; }
+
+    # Care for huge blocks of quoted original message:
+    if ($bigqn) { debigq($lines, \@vrb); }
+
+    # Care for trailing whitespaces:
+    if ($trsp) {
+        for ($x=0; $x<scalar(@$lines); $x++) { 
+            if (!$vrb[$x]) { $$lines[$x] =~ s/[\ \t]+$//o; }
+        }
+    }
+
+    # Care for punctuation abuse:
+    if ($elli) {
+        for ($x=0; $x<scalar(@$lines); $x++) { 
+            if (!$vrb[$x]) { $$lines[$x] =~ s/(([.?!])\2\2)\2+/$1/go; }
+        }
+    }
+
+    # (Nearly) at last care for multiple blank lines. (Do not do this
+    # earlier -- the way it is done right now would screw up the verbatim
+    # list)
+    if ($cr) {
+        # When handling regular TOFU above we move the last empty line from
+        # the body to the signature. This prevents the correct removal of
+        # empty lines before a signature (one line less is removed than it
+        # should) when -c and -t are used. This fixes it.
+        if (scalar(@sig) && $sig[0] =~ /^\s*$/) {
+            push(@$lines, shift(@sig));
+        }
+
+        my $t = 0;
+        for ($x=scalar(@$lines)-1; $x>=0; $x--) {
+            if ((!$vrb[$x]) &&
+                (($mua eq 'mutt' && $$lines[$x] =~ /^\e[^\a]+\a\s*$/o) ||
+                  $$lines[$x] =~ /^\s*$/o))
+            { 
+                if ($t<$cr) { $t++; } else { splice(@$lines, $x, 1); }
+            }
+            else { $t = 0; }
+        }
+    }
+
+    # Everything changing the body is done now. Time to fix the line count
+    # header so naive clients do not get confused. Just to be sure, append
+    # the old line count to X-headers.
+    my $l = scalar(@bo1) + scalar(@$lines) + scalar(@att) + scalar(@bo2) +
+                (!$sig?scalar(@sig):0) + (!$ml?scalar(@ftr):0) + 
+                (!$ad?scalar(@ads):0);
+    if ($linecount-$l!=0) {
+        for ($x=0; $x<scalar(@hdr); $x++) {
+            if ($hdr[$x] =~ 
+                s/^(Lines:\s+)(\d+)/$1.($2-$linecount+$l)/e)
+            { 
+                $hdr[$#hdr] = "X-Old-Lines: $2\n";
+                push(@hdr, "\n");
+            }
+        }
+    }
+
+    # Finally, before leaving we put everything back in right order.
+    unshift(@$lines, (!$hdrs?@hdr:()), @bo1);
+    push(@$lines, (!$sig?@sig:()), (!$ad?@ads:()), (!$ml?@ftr:()), @att,
+        @bo2);
+}
+
+
+# environment
+my $locale = $ENV{'LC_ALL'}?$ENV{'LC_ALL'}:
+                 ($ENV{'LC_MESSAGES'}?$ENV{'LC_MESSAGES'}:$ENV{'LANG'});
+
+# command line switches
+($ad, $ads, $bigqn, $bigqx, $check, $cr, $sysl, $diff, $elli, $fixind, $footers, $lax,
+    $ml, $gw, $ms, $ms_smart, $mda, $mua, $hdrs, $kamm, $lsig, $nohdr, $reply,
+    $sani, $sig, $sigint, $spass, $trad, $trsp) =
+    (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+my $ifile   = '-';    # use STDIN if nothing specified
+
+# temp vals:
+my ($_t_bigq, $_t_help, $_t_kminl, $_t_kmaxl, $_t_kdiff, $_t_maxsig, $_t_mua,
+    $_t_redir, $_t_check, $_t_sigsmax, $_t_ver, $_t_nohdr, $_t_cr) = undef;
+
+# get command line params:
+if (!Getopt::Long::GetOptions(
+    'a'             => \$ad,
+    'A=s'           => \$ads,
+    'bigq:s'        => \$_t_bigq,
+    'body'          => \$_t_nohdr,
+    'c:i'           => \$_t_cr,
+    'check:s'       => \$_t_check,
+    'debug|d'       => \$sysl,
+    'diff'          => \$diff,
+    'e'             => \$elli,
+    'fixind'        => \$fixind,
+    'ftr-ad'        => \$ftr_ad,
+    'ftr-ml'        => \$ftr_ml,
+    'groupwise'     => \$gw,
+    'help|h'        => \$_t_help,
+    'i=s'           => \$ifile,
+    'k'             => \$kamm,
+    'kminl=i'       => \$_t_kminl,
+    'kmaxl=i'       => \$_t_kmaxl,
+    'kdiff=i'       => \$_t_kdiff,
+    'L=s'           => \$footers,
+    'l'             => \$ml,
+    'lax-security'  => \$lax,
+    'locale=s'      => \$locale,
+    'max-lines:i'   => \$maxlines,
+    'ms-smart'      => \$ms_smart,
+    'mua|M=s'       => \$_t_mua,
+    'm'             => \$ms,
+    'o=s'           => \$ofile,
+    'P=s'           => \$boun,
+    'p:s'           => \$_t_redir,
+    'pgp-short'     => \$pgpshort,
+    'pgp-move'      => \$pgpmove,
+    'pgp-move-vrf'  => \$pgpmovevrf,
+    'r'             => \$hdrs,
+    'reply'         => \$reply,
+    'S:i'           => \$_t_maxsig,
+    's'             => \$sig,
+    'sani'          => \$sani,
+    'sigsmax:i'     => \$_t_sigsmax,
+    'spass'         => \$spass,
+    't'             => \$trad,
+    'version|v'     => \$_t_ver,
+    'w'             => \$trsp
+    )) {
+    help();
+}
+
+# clean up temp vals:
+if (defined $_t_bigq) {
+    if ($_t_bigq !~ /^(?:(\d+)(?:,(\d+))?)?$/) { help(); }
+    $bigqn = $1?$1:30; 
+    $bigqx = $2?$2:10; 
+    if ($bigqn<=0 || $bigqx<=0 || $bigqn<=$bigqx) { help(); }
+}
+if (defined $_t_help) { help(); }
+if (defined $_t_kminl) { $kminl = $_t_kminl; $kamm = 1; }
+if (defined $_t_kmaxl) { $kmaxl = $_t_kmaxl; $kamm = 1; }
+if (defined $_t_kdiff) { $kdiff = $_t_kdiff; $kamm = 1; }
+if (defined $_t_maxsig) { $lsig = $_t_maxsig ? $_t_maxsig : $maxsig; }
+if (defined $_t_mua) {
+    $mua = lc($_t_mua);
+    # mutt still displays the message when ^C'ing pgp verification:
+    if ($mua eq 'mutt') { $SIG{'INT'} = 'sigint_handler'; }
+}
+if (defined $_t_redir) { $mda = $_t_redir ? $_t_redir : '1'; }
+if (defined $_t_check) {
+    $check = 1;
+    while ($_t_check && $_t_check =~ /^([^,\s]+)(?:,(\S+))?$/) {
+        my $foo = $1;
+        $_t_check = $2;
+        if ($foo =~ /^ratio(?:=(0?\.\d+))?$/) { $check_ratio = $1?$1:0.75; }
+    }
+}
+if (defined $_t_sigsmax) { $sign = $_t_sigsmax ? $_t_sigsmax : undef; }
+if (defined $_t_ver) { version(); }
+if (defined $_t_nohdr) { $nohdr=1; $hdrs=1; }
+if (defined $_t_cr) { $cr = $_t_cr ? $_t_cr : $crshrink; }
+if ($ms_smart) { $ms = 1; }
+
+if ($mua eq 'mutt') {
+    if (defined $locale && $locale ne '' && $locale ne 'C' && $locale ne 'POSIX') {
+        eval { require Locale::gettext; };
+        if ($@) { warn $@; exit(EX_SOFTWARE); } else {
+            Locale::gettext::textdomain('mutt');
+            ($mutt_attachment) =
+                Locale::gettext::gettext("[-- Attachment #%d") =~
+                m/^([^%]*)/;
+            ($mutt_contenttype) =
+                Locale::gettext::gettext("[-- Type: %s/%s, Encoding: %s, Size: %s --]\n") =~
+                m/^([^%]*)/;
+            ($mutt_pgpsigned) =
+                Locale::gettext::gettext("\n[-- End of signed data --]\n")  =~
+                m/^\n*(.*)\n/m;
+            ($mutt_beginsigned) =
+                Locale::gettext::gettext("[-- The following data is signed --]\n\n") =~
+                m/^(.*)\n/m;
+            ($mutt_pgpclearsigned) =
+                Locale::gettext::gettext("[-- END PGP SIGNED MESSAGE --]\n") =~
+                m/^(.*)\n/m;
+            ($mutt_pgpclearsigstart) =
+                Locale::gettext::gettext("[-- BEGIN PGP SIGNED MESSAGE --]\n\n") =~
+                m/^(.*)\n/m;
+            ($mutt_pgpencrypted) =
+                Locale::gettext::gettext("[-- End of PGP/MIME encrypted data --]\n") =~
+                m/^(.*)\n/m;
+            ($mutt_pgpoutstart) =
+                sprintf(Locale::gettext::gettext("[-- %s output follows%s --]\n"), 'PGP', '%s') =~
+                m/^(.*)%s/;
+            $mutt_pgpoutstart =~ s/%s/PGP/;
+            ($mutt_pgpoutend) =
+                Locale::gettext::gettext("[-- End of PGP output --]\n\n") =~
+                m/^(.*)\n/m;
+            ($mutt_ssloutstart) =
+                Locale::gettext::gettext("[-- %s output follows%s --]\n") =~
+                m/^(.*)%s/;
+            $mutt_ssloutstart =~ s/%s/OpenSSL/;
+            ($mutt_ssloutend) =
+                Locale::gettext::gettext("[-- End of OpenSSL output --]\n\n") =~
+                m/^(.*)\n/m;
+
+            Locale::gettext::textdomain('gnupg');
+            ($gpg_WARNING) =
+                Locale::gettext::gettext("WARNING: using insecure random number generator!!\n") =~
+                m/^([^:]*: )/;
+            ($gpg_Warning) =
+                Locale::gettext::gettext("WARNING: message was encrypted with a weak key in the symmetric cipher.\n") =~
+                m/^([^:]*: )/;
+            ($gpg_Cantcheck) =
+                Locale::gettext::gettext("Can't check signature: %s\n") =~
+                m/^([^%]*)/;
+            ($gpg_aka) =
+                Locale::gettext::gettext((' 'x16).'aka "%s"') =~
+                m/^([^"«%]*)["«%]/;
+            ($gpg_bad) =
+                Locale::gettext::gettext('BAD signature from "%s"') =~
+                m/^([^"«%]*)["«%]/;
+            ($gpg_expired) =
+                Locale::gettext::gettext("Note: This key has expired!\n") =~
+                m/^(.*)\n/m;
+            ($gpg_good) =
+                Locale::gettext::gettext('Good signature from "%s"') =~
+                m/^(([^"«%]*))["«%]/;
+            ($gpg_bug) =
+                Locale::gettext::gettext("... this is a bug (%s:%d:%s)\n") =~
+                m/^([^%]*)/;
+        }
+    }
+
+}
+elsif ($ms_smart || $pgpshort || $pgpmove || $pgpmovevrf) { help(); }
+ 
+if (($ml && $footers eq '')||    # no -l without -L
+    ($ad && $ads eq '')||        # no -a without -A
+    ($nohdr && $pgpshort)||      # --body and --pgp-short are like oil and water
+    (($nohdr||$hdrs) && ($sani||$reply))|| # no sanitizing without headers :)
+    ($ifile eq '')||             # no empty -i
+    ($ofile eq ''))              # no empty -o
+{ help(); }
+
+
+# Read message:
+if (!open(IN, $ifile))
+    { print STDERR "Could not open $ifile: $!\n"; exit(EX_IOERR); }
+my @message = <IN>;
+close IN;
+
+# First, check msg length and stop processing if msg is too long:
+if ((defined $maxlines) && (@message > $maxlines)) {
+    if ($mua eq 'mutt') {
+        my $x = 0;
+        if (!$nohdr) {
+            do { $x++; } while ($x<$#message && $message[$x]!~/^$/);
+            $x++;
+        }
+        splice(@message, $x, 0,
+            ("[---=| Processing by $0 skipped: message too long |=---]\n\n"));
+    }
+    write_msg(($mda?'|'.SENDMAIL." $mda":">$ofile"), \@message);
+
+    if ($mua eq 'mutt') { exit(EX_OK); }
+    exit(EX_DATAERR);
+}
+
+# this should be self-explanatory:
+process_msg(\@message);
+
+# Finally, print clean lines:
+write_msg(($mda?'|'.SENDMAIL." $mda":">$ofile"), \@message);
+
+# vim600:set foldmethod=marker:
+# eof

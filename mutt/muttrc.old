@@ -1,0 +1,172 @@
+# Paths --------------------------------------------------------------------------
+set folder           = ~/.mail
+set header_cache     = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set certificate_file = ~/.mutt/certificates
+set mailcap_path     = ~/.mutt/mailcap        # entries for filetypes
+
+# Gmail Account Details ------------------------------------------------------------
+set imap_user = "wainwright.ja@gmail.com"   # Username of the email account
+set from      = $imap_user                  # Use same username for sent emails
+set realname  = "Josh Wainwright"           # My name to add to sent emails
+set smtp_url  = "smtp://wainwright.ja@smtp.gmail.com:587/"
+set smtp_pass = $imap_pass                  # use same password as imap_user
+
+##Keep password out of repo##
+source ~/.mutt/.muttpass
+
+# Gmail Folder Setup -------------------------------------------------------------
+  #set hostname = gmail.com
+  set spoolfile = "+josh-wainwright/INBOX"
+  set mbox      = "+josh-wainwright/[Gmail]/Archive"
+  set postponed = "+josh-wainwright/[Gmail]/Drafts" # Location for unfinished drafts
+mailboxes +josh-wainwright/INBOX \
+          +josh-wainwright/[Gmail]/Sent \
+          +josh-wainwright/[Gmail]/Drafts \
+          +josh-wainwright/[Gmail]/Archive \
+          +josh-wainwright/[Gmail]/Flagged \
+          +josh-wainwright/[Gmail]/Trash
+unset record                      # Gmail automatically saves sent emails so unset this
+
+# Aliases (For Address Book) -----------------------------------------------------
+set alias_file = "~/.mutt/aliases"
+set sort_alias = alias
+set reverse_alias = yes
+source $alias_file
+
+# Header Options -----------------------------------------------------------------
+set edit_headers = yes
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+# Status Bar ---------------------------------------------------------------------
+set status_chars  = " *%A"
+set status_format = "---[ Folder: %f ]---[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]---%>-%?p?( %p postponed )?---"
+
+# Sidebar ------------------------------------------------------------------------
+unset sidebar_visible
+  set sidebar_delim     = ' |'
+  set sidebar_width     = 20
+#  set sidebar_sort      = yes
+#  set sidebar_shortpath = yes
+#color sidebar_new color221 color233
+macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+ bind index,pager \CP sidebar-prev    # Ctrl-n, Ctrl-p to select next, previous folder.
+ bind index,pager \CN sidebar-next    # Ctrl-o to open selected folder.
+ bind index,pager \CO sidebar-open
+
+# Index View Settings ------------------------------------------------------------
+unset arrow_cursor      # uses a small arrow on left instead of highlighting the whole row.
+set uncollapse_jump         # don't collapse on an unread message
+set sort_re                 # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# General Settings ---------------------------------------------------------------
+  set wait_key = no
+  set editor = "nano +8"
+  set fast_reply
+unset mark_old              # don't mark unread messages as Old
+unset menu_scroll           # scroll menu a page on last line
+  set pager_stop            # don't go to next message at end of message
+  set pager_index_lines="15"
+  set sleep_time = 0        # speed up connection and change folder
+  set markers=no            # don't put '+' at the beginning of wrapped lines
+  set move = no
+  set include
+  set imap_peek = no        # correct the mark as read in the archive folder properly
+  set sort = 'threads'      # default sort method
+  set sort_aux = 'reverse-last-date-received'
+  set auto_tag = yes
+  set send_charset="utf-8"
+  set index_format="%4C %Z %{%b %d} %-15.15L (%4c) %s"
+unset mark_old              # read/new is good enough for me
+  set beep_new              # bell on new mails
+  set pipe_decode           # strip headers and eval mimes when piping
+  set thorough_search       # strip headers and eval mimes before searching
+
+auto_view text/html image/*
+alternative_order text/plain text/html *
+
+# IMAP Options -------------------------------------------------------------------
+set imap_check_subscribed
+set mail_check = 120
+set timeout = 3
+set imap_keepalive = 300
+
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+
+# Colours -----------------------------------------------------------------------
+source ~/.mutt/colors
+
+#source ~/.mutt/mailboxes
+
+# KeyBindings -------------------------------------------------------------------
+#Some real macros
+macro index S <tag-prefix><save-message>? "Save tagged messages"
+
+#Update mail with offlineimap
+macro index,index O "<shell-escape>offlineimap -qu basic | grep -v 'Skipping'<enter>"        "run offlineimap to sync all mail"
+macro index,index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+# Get me out off here
+macro index Q   ":set quit=yes\nqy"  "Quit mutt without asking"
+macro browser Q ":set quit=yes\nqqy" "Quit mutt without asking"
+
+# Moves
+bind index  <up> previous-entry
+bind index  <down> next-entry
+macro index <right> <display-message>
+macro index <left> <sync-mailbox><change-folder>? "Go to the folder menu"
+
+bind index  - previous-page
+bind index  <space> next-page
+
+macro pager <left>     <exit>
+macro pager <right>    <noop>
+macro pager <up>       <previous-line>
+macro pager <down>     <next-line>
+
+macro pager <pageup>   <previous-entry>
+macro pager <pagedown> <next-entry>
+
+#macro index   <tab>      <next-unread><enter>
+bind index  <tab>    sync-mailbox
+
+macro browser <space>    <check-new>
+
+macro browser <right>    <select-entry>
+macro browser <left>     <home><return> "Goto previous folder"
+
+#views
+bind index P collapse-all
+bind index p  collapse-thread
+
+#commands
+bind index x sync-mailbox
+macro pager x <sync-mailbox>q
+
+bind pager \n noop
+bind pager P noop # I don't have a printer. Save the trees :P
+
+bind compose <return> send-message
+
+# Gmail-style keyboard shortcuts
+macro index,pager y "<save-message>+josh-wainwright/[Gmail]/Archive<enter>" "Gmail archive message"
+macro index,pager gi "<change-folder>=josh-wainwright/INBOX<enter>" "Go to inbox"
+macro index,pager ga "<change-folder>=josh-wainwright/[Gmail]/Archive<enter>" "Go to all mail"
+macro index,pager gd "<change-folder>=josh-wainwright/[Gmail]/Drafts<enter>" "Go to drafts"
+macro index,pager gs "<change-folder>=josh-wainwright/[Gmail]/Sent<enter>" "Go to my sent messages"
+
+# If I would bind these the d button wouldn't work anymore.
+macro index,pager <delete> d
+macro index,pager s <save-message>?
+
+# From http://www.spinnaker.de/mutt/keybind
+macro index A "!$EDITOR ~/.mutt/aliases\n:source ~/.mutt/aliases\n" "Edit aliases file and reload it"
+macro pager A "!$EDITOR ~/.mutt/aliases\n:source ~/.mutt/aliases\n" "Edit aliases file and reload it"
+

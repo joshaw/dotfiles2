@@ -1,0 +1,98 @@
+
+# A .muttrc file for sending messages from uni servers
+
+# Account Details ------------------------------------------------------------
+#   set imap_user	= "jaw097"										# Username of the email account
+   set from 		= "jaw097@bham.ac.uk"						# Use same username for sent emails
+   set realname 	= "Josh Wainwright"								# My name to add to sent emails
+   set reverse_name
+#alternates "jaw097@bham.ac.uk|wainwright.ja@gmail.com"
+
+##Keep password out of repo##
+#source ~/.mutt/.muttpass
+
+   set smtp_url 	= "smtps://jaw097@auth-smtp.bham.ac.uk:465/"
+   set smtp_pass 	= "Y335441s"									# use same password as imap_user
+#   set imap_pass 	= $smtp_pass
+
+# Folder Setup ------------------------------------------------------------
+#   set folder = "imaps://mail.bham.ac.uk:993"
+   set hostname = bham.ac.uk
+#mailboxes "=imaps://imap.gmail.com/[Gmail]/Inbox"        # The default location to load and check for new mails
+#   set postponed="imaps://imap.gmail.com/[Gmail]/Drafts" # Location for unfinished drafts
+   set record    = "imaps://imap.gmail.com/[Gmail]/Sent Mail"
+#   set postponed = "=Drafts"
+#   set record    = "=Sent"
+#   set spoolfile = "+INBOX"
+
+# Hooks ------------------------------------------------------------------------
+# Reply from the address to which the email was sent.
+send-hook '~t ^jaw097@bham\.ac\.uk$' 'my_hdr From: Josh Wainwright <jaw097@bham.ac.uk>'
+send-hook '~t @bham\.ac\.uk' 'my_hdr From: Josh Wainwright <jaw097@bham.ac.uk>'
+
+# Header Options -----------------------------------------------------------------
+#   set text_flowed = yes
+#   set edit_headers = yes
+#ignore *                                # ignore all headers
+#unignore from: to: cc: date: subject:   # show only these
+#unhdr_order *                           # some distros order things by default
+#hdr_order from: to: cc: date: subject:  # and in this order
+#alternative_order text/plain text/html *
+
+# Status Bar ---------------------------------------------------------------------
+#   set status_chars  = " *%A"
+#   set status_format = "---[ Folder: %f ]---[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]---%>-%?p?( %p postponed )?-----(%s)-"
+
+# Index View Settings ------------------------------------------------------------
+# unset arrow_cursor    # uses a small arrow on left instead of highlighting the whole row.
+#   set uncollapse_jump # don't collapse on an unread message
+#   set sort_re         # thread based on regex
+#   set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# General Settings ---------------------------------------------------------------
+#   set wait_key = no
+#   set editor="vim \"+set nonumber\" \"+set spell\" +/^$/ +9"
+#  set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
+#   set fast_reply
+# unset mark_old                                           # don't mark unread messages as Old
+#   set menu_scroll                                        # for smooth scrolling
+#   set pager_stop                                         # don't go to next message at end of message
+#   set pager_index_lines="15"
+#   set wrapmargin = 3
+#   set sleep_time = 0                                     # speed up connection and change folder
+#   set markers=no                                         # don't put '+' at the beginning of wrapped lines
+#   set smart_wrap                                         # don't wrap words mid line
+#   set header_cache=~/.mutt/cache/headers
+#   set message_cachedir=~/.mutt/cache/bodies
+#   set certificate_file=~/.mutt/certificates
+#   set move = no                                          # stop asking to move messages
+#   set include
+#   set sort = 'threads'                                   # default sort method
+#   set sort_aux = 'reverse-last-date-received'            # append reverse to sort in other direction
+#   set auto_tag = yes
+#   set send_charset="utf-8"
+# set index_format="%4C %Z %{%b %d} %-15.15L (%4c) %s"
+#   set index_format="[%Z] %4C %{%b %d} %-15.15L (%4c) %s"
+# unset mark_old                                           # read/new is good enough for me
+#   set beep_new                                           # bell on new mails
+#   set pipe_decode                                        # strip headers and eval mimes when piping
+#   set thorough_search                                    # strip headers and eval mimes before searching
+
+#auto_view text/html image/*
+
+# IMAP Options -------------------------------------------------------------------
+#   set imap_check_subscribed
+#   set mail_check = 120
+#   set timeout = 3
+#   set imap_keepalive = 300
+
+#ignore "Authentication-Results:"
+#ignore "DomainKey-Signature:"
+#ignore "DKIM-Signature:"
+
+# Colours -----------------------------------------------------------------------
+#source ~/.mutt/colors
+#source /home/josh/.mutt/mutt-colors-solarized-master/mutt-colors-solarized-dark-16.muttrc
+
+#source ~/.mutt/mailboxes
+#source ~/.mutt/keybindings

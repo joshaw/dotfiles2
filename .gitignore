@@ -1,0 +1,17 @@
+.git/
+*.log
+*.pid
+log
+mpdstate
+mutt/cache/
+mutt/aliases_auto
+dwb/default/history
+dwb/default/*.history
+dwb/default/session
+dwb/default/cookies*
+mpdscribble/lastfm.journal
+vim/undodir/
+**/.imappass
+**/.muttpass
+spacefm/session*
+.netrwhist

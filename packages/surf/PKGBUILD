@@ -1,0 +1,44 @@
+# Maintainer: sekret
+_pkgname=surf
+pkgname=$_pkgname-git
+pkgver=20131019.327
+pkgrel=1
+pkgdesc="a WebKit based browser"
+arch=('i686' 'x86_64')
+url="http://surf.suckless.org/"
+license=('custom:MIT/X')
+depends=('webkitgtk2' 'xorg-xprop' 'dmenu')
+makedepends=('git')
+optdepends=('ca-certificates: SSL verification'
+'st: default terminal for the download handler'
+'curl: default download handler')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+source=("$_pkgname::git+http://git.suckless.org/surf")
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgname"
+  echo "$(git log -1 --format="%cd" --date=short | sed 's|-||g').$(git rev-list --count master)"
+}
+
+prepare() {
+  cd "$_pkgname"
+  # applying patches
+  if ls $SRCDEST/*\.diff 2> /dev/null;then for i in $SRCDEST/*\.diff;do msg "applying $i"; git apply $i;done;fi
+  # custom config
+  if [ -e $SRCDEST/config.h ];then msg "using custom config.h";cp $SRCDEST/config.h .;else msg "use default config.h";fi
+}
+
+build() {
+  cd "$_pkgname"
+  make PREFIX=/usr DESTDIR=$pkgdir
+}
+
+package() {
+  cd "$_pkgname"
+  make PREFIX=/usr DESTDIR=$pkgdir install
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
+
+# vim:set ts=2 sw=2 et:

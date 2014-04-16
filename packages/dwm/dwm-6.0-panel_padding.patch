@@ -1,0 +1,11 @@
+--- a/dwm.c.orig	2012-04-15 03:54:36.000000000 +0200
++++ b/dwm.c	2012-04-15 03:58:01.000000000 +0200
+@@ -1590,7 +1596,7 @@
+ 	initfont(font);
+ 	sw = DisplayWidth(dpy, screen);
+ 	sh = DisplayHeight(dpy, screen);
+-	bh = dc.h = dc.font.height + 2;
++	bh = dc.h = dc.font.height + panelpadding;
+ 	updategeom();
+ 	/* init atoms */
+ 	wmatom[WMProtocols] = XInternAtom(dpy, "WM_PROTOCOLS", False);

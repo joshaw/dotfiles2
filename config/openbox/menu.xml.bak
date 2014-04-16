@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/ file:///usr/X11R6/share/openbox/menu.xsd">
+	<menu id="root-menu" label="Scripts">
+		<menu execute="obmenugen --pipe" id="pipe-33120" label="Openbox"/>
+		<item label="Brightness">
+			<action name="Execute">
+				<execute>/home/josh/.scripts/brightness.sh</execute>
+			</action>
+		</item>
+		<item label="Check Mail">
+			<action name="Execute">
+				<execute>/home/josh/.scripts/mailcheck</execute>
+			</action>
+		</item>
+		<item label="Jumanji">
+			<action name="Execute">
+				<execute>/home/josh/.scripts/jumanji</execute>
+			</action>
+		</item>
+		<menu execute="/home/josh/.scripts/dir-menu-pipe" id="pipe-59144" label="Dirs"/>
+		<item label="Run">
+			<action name="Execute">
+				<execute>/home/josh/.scripts/run.sh</execute>
+			</action>
+		</item>
+		<item label="Timer">
+			<action name="Execute">
+				<execute>/home/josh/.scripts/timer.sh</execute>
+			</action>
+		</item>
+		<item label="Exit">
+			<action name="Execute">
+				<execute>/home/josh/.scripts/exit.sh</execute>
+			</action>
+		</item>
+	</menu>
+	<menu execute="obmenugen --pipe" id="root-menu2" label="openbox3"/>
+</openbox_menu>

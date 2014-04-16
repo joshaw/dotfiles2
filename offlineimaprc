@@ -1,0 +1,50 @@
+[general]
+ui = basic
+# ui = Blinkenlights
+accounts = JoshWainwright
+# pythonfile=~/.mutt/offlineimap.py
+fsync = False
+
+[Account JoshWainwright]
+localrepository = JoshWainwright-Local
+remoterepository = JoshWainwright-Remote
+status_backend = sqlite
+postsynchook = notmuch new
+
+[Repository JoshWainwright-Local]
+type = Maildir
+localfolders = ~/.mail/josh-wainwright
+nametrans = lambda folder: {'[Gmail]/Drafts':  '[Gmail]/Drafts',
+                            '[Gmail]/Sent':    '[Gmail]/Sent Mail',
+                            '[Gmail]/Flagged': '[Gmail]/Starred',
+                            '[Gmail]/Trash':   '[Gmail]/Trash',
+                            '[Gmail]/Archive': '[Gmail]/All Mail',
+                            }.get(folder, folder)
+sep = /
+
+[Repository JoshWainwright-Remote]
+maxconnections = 1
+type = Gmail
+remoteuser = wainwright.ja@gmail.com
+remotepassfile = ~/.mutt/.imappass
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+realdelete = no
+nametrans = lambda folder: {'[Gmail]/Drafts':   '[Gmail]/Drafts',
+                           '[Gmail]/Sent Mail': '[Gmail]/Sent',
+                           '[Gmail]/Starred':   '[Gmail]/Flagged',
+                           '[Gmail]/Trash':     '[Gmail]/Trash',
+                           '[Gmail]/All Mail':  '[Gmail]/Archive',
+                           }.get(folder, folder)
+# folderfilter = lambda foldername: foldername not in '[Gmail]/Important'
+folderfilter = lambda folder: folder not in ['[Gmail]/Important',
+                                            '[Gmail]/Spam',
+                                            '[Gmail]/All Mail',
+                                            ]
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"

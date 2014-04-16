@@ -1,0 +1,30 @@
+db_file "/home/josh/.config/mpd/mpd.db"
+input {
+        plugin "curl"
+#       proxy "proxy.isp.com:8080"
+#       proxy_user "user"
+#       proxy_password "password"
+}
+log_file "/home/josh/.config/mpd/log"
+music_directory "/media/Music/"
+pid_file "/home/josh/.config/mpd/mpd.pid"
+playlist_directory "/home/josh/.config/mpd/playlists"
+port "6600"
+state_file "/home/josh/.config/mpd/mpdstate"
+
+audio_output {
+        type            "alsa"
+        name            "My Sound Card"
+        mixer_type      "software"      # optional
+        auto_resample   "no"
+}
+
+audio_output {
+        type            "httpd"
+        name            "mpdStream"
+        encoder         "lame"        # optional, vorbis or lame
+        port            "8000"
+#       quality         "5.0"            # do not define if bitrate is defined
+        bitrate         "128"            # do not define if quality is defined
+        format          "44100:16:1"
+}

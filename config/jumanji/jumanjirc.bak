@@ -1,0 +1,31 @@
+# key bindings
+map <C-q> quit
+
+# Enable plugins
+plugin application/x-shockwave-flash
+
+# Search engines
+searchengine g      http://www.google.com/search?q=%s
+searchengine y      http://www.youtube.com/results?search_query=%s
+searchengine ddg    https://duckduckgo.com/?q=%s
+searchengine gh     https://github.com/search?q=%s
+searchengine imdb   http://www.imdb.com/find?s=all&q=%s
+searchengine w      https://en.wikipedia.org/wiki/Special:Search?search=%s
+searchengine arch   https://wiki.archlinux.org/index.php?search=%s
+
+# scripts
+script ~/.config/jumanji/scripts/hints.js
+
+# browser settings
+set homepage http://www.google.com
+set auto_save 60
+set single_instance true
+# downloads
+set download_dir ~/Downloads/
+set download_command rxvt -e sh -c "wget --load-cookies ~/.config/jumanji/cookies '%s' -O '%s'";
+# keybindings
+map <C-,> nav_history previous
+map <C-.> nav_history next
+map <Button8> nav_history previous
+map <Button9> nav_history next
+bmap ^DD$ quit

@@ -1,0 +1,78 @@
+account gmail {
+    set folder=imaps://wainwright.ja@imap.gmail.com
+    #set password-wainwright.ja@imap.gmail.com=
+    set from="Josh Wainwright <wainwright.ja@gmail.com>"
+    set message-sendmail-extra-arguments="-a gmail"
+    set smtp-use-starttls
+    set smtp=smtp://smtp.gmail.com:587
+    set smtp-auth=login
+    set smtp-auth-user=wainwright.ja@gmail.com
+    #set smtp-auth-password=
+    shortcut all "+[Gmail]/All Mail"
+    shortcut in "+INBOX"
+    shortcut bin "+[Gmail]/Bin"
+    shortcut sent "+[Gmail]/Sent Mail"
+    shortcut spam "+[Gmail]/Spam"
+    shortcut drafts "+[Gmail]/Drafts"
+    shortcut bham "+Birmingham_Uni/jaw097@bham
+    shortcut home "+Home"
+}
+
+account bham {
+    set folder=imaps://jaw097@mail.bham.ac.uk
+    #set password-jaw097@mail.bham.ac.uk=
+    set from="Josh Wainwright <jaw097@bham.ac.uk>
+    set message-sendmail-extra-arguments="-a bham"
+    set smtp=smtp://auth-smtp.bham.ac.uk:587
+    set smtp-use-starttls
+    set smtp-auth=login
+    set smtp-auth-user=jaw097
+    #set smtp-auth-password=
+}
+
+set sendmail="/usr/bin/msmtp"
+set ttycharset=utf8
+set showlast
+retain to from date subject cc
+set autosort=date
+set prompt="=> "
+set autothread
+set headline="%>%a%m %24f | %16d %4l/%-8o|  %i%-s"
+set quiet
+set EDITOR=vim
+set PAGER=less
+set imap-cache=/tmp
+set imap-list-depth=5
+set bsdcompat
+set sendcharsets="utf-8"
+set flipr
+set bsdannounce
+set header
+set pipe-application/pdf=zathura
+
+#Plain Text Mail
+set pipe-text/plain="sed -n '/On.*wrote:/q;p'"
+
+# HTML Mail
+#set pipe-text/html="lynx -dump -force_html -stdin"
+set pipe-text/html="cat >/tmp/mailx.html; open /tmp/mailx.html; lynx -dump -force_html /tmp/mailx.html; rm /tmp/mailx.html"
+
+# PDF Attachments
+set pipe-application/pdf="cat >/tmp/mailx$$.pdf; \
+        open /tmp/mailx$$.pdf; rm /tmp/mailx$$.pdf"
+
+# Image Attachments
+set pipe-image/jpeg="cat >/tmp/mailx$$.jpg; \
+        open /tmp/mailx$$.jpg; rm /tmp/mailx$$.jpg"
+
+define allmail {
+    folder "+[Gmail]/All Mail"
+}
+
+define html {
+    write "/tmp/temp_mail.html"
+    !open "/tmp/temp_mail.html"
+    !rm "/tmp/temp_mail.html"
+}
+
+#source ~/.mailpass

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>version</key>
+	<string>1</string>
+	<key>log</key>
+	<dict>
+		<key>level</key>
+		<dict>
+			<key>value</key>
+			<real>3</real>
+		</dict>
+		<key>file</key>
+		<dict>
+			<key>console</key>
+			<true/>
+			<key>value</key>
+			<string></string>
+			<key>path</key>
+			<string></string>
+			<key>append</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>language</key>
+	<dict>
+		<key>value</key>
+		<string>English</string>
+	</dict>
+	<key>documents_folder</key>
+	<dict>
+		<key>value</key>
+		<string>APHRcwECAQAAAAAlL2hvbWUvam9zaC9Eb2N1bWVudHMvQ2h1cmNoL09wZW5Tb25nLwMAAAAAAQEEAAAAAAEAAAAAAAAA</string>
+		<key>path</key>
+		<string>file:///home/josh/Documents/Church/OpenSong/</string>
+		<key>UseOldFolderDB</key>
+		<dict>
+			<key>value</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>activitylog</key>
+	<dict>
+		<key>level</key>
+		<dict>
+			<key>value</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>promptbeforepresenting</key>
+	<dict>
+		<key>value</key>
+		<false/>
+	</dict>
+	<key>songs</key>
+	<dict>
+		<key>lyrics</key>
+		<dict>
+			<key>whitespace</key>
+			<dict>
+				<key>value</key>
+				<string>ˍ‿</string>
+			</dict>
+		</dict>
+		<key>preview</key>
+		<dict>
+			<key>showchords</key>
+			<dict>
+				<key>value</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>style</key>
+	<dict>
+		<key>embed</key>
+		<false/>
+		<key>print</key>
+		<false/>
+		<key>value</key>
+		<string>APHRcwECAQAAAAApL29wdC9PcGVuU29uZy9PcGVuU29uZyBTZXR0aW5ncy9zdHlsZS5jc3MDAAAAAAEBBAAAAAABAAAAAAAAAA==</string>
+		<key>path</key>
+		<string>file:///opt/OpenSong/OpenSong%20Settings/style.css</string>
+	</dict>
+	<key>folder</key>
+	<dict>
+		<key>unique</key>
+		<true/>
+		<key>value</key>
+		<string></string>
+		<key>path</key>
+		<string></string>
+	</dict>
+</dict>
+</plist>

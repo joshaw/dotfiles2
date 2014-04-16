@@ -1,0 +1,1577 @@
+info_begin
+format: 1
+mpd_version: 0.17.1
+fs_charset: ANSI_X3.4-1968
+tag: Artist
+tag: ArtistSort
+tag: Album
+tag: AlbumArtist
+tag: AlbumArtistSort
+tag: Title
+tag: Track
+tag: Name
+tag: Genre
+tag: Date
+tag: Composer
+tag: Performer
+tag: Disc
+tag: MUSICBRAINZ_ARTISTID
+tag: MUSICBRAINZ_ALBUMID
+tag: MUSICBRAINZ_ALBUMARTISTID
+tag: MUSICBRAINZ_TRACKID
+info_end
+directory: A.A. Milne
+mtime: 1330099151
+begin: A.A. Milne
+song_begin: Winnie-the-Pooh.mp3
+Time: 3902
+Artist: A.A. Milne
+AlbumArtist: A.A. Milne
+Title: Winnie-the-Pooh
+Album: Winnie-the-Pooh
+Track: 1/1
+Genre: Audiobook
+mtime: 1330708397
+song_end
+end: A.A. Milne
+directory: C.S. Lewis
+mtime: 1316867907
+begin: C.S. Lewis
+directory: Screwtape Letters
+mtime: 1316867980
+begin: C.S. Lewis/Screwtape Letters
+song_begin: 01 The Screwtape Letters.mp3
+Time: 14203
+Artist: C. S. Lewis
+AlbumArtist: C. S. Lewis
+Title: The Screwtape Letters
+Album: The Screwtape Letters
+Track: 1
+Genre: Audiobook
+mtime: 1316867314
+song_end
+end: C.S. Lewis/Screwtape Letters
+song_begin: 01 TCON 01 The Magician's Nephew.mp3
+Time: 14230
+Artist: C. S. Lewis
+AlbumArtist: C. S. Lewis
+Title: TCON 01 The Magician's Nephew
+Album: The Chronicles Of Narnia
+Track: 1
+Date: 1952
+Genre: Audiobook
+mtime: 1316867314
+song_end
+song_begin: 07 TCON 07 The Last Battle.mp3
+Time: 17648
+Artist: C. S. Lewis
+AlbumArtist: C. S. Lewis
+Title: TCON 07 The Last Battle
+Album: The Chronicles Of Narnia
+Track: 7
+Date: 1952
+Genre: Audiobook
+mtime: 1316867315
+song_end
+song_begin: 02 TCON 02 The Lion, The Witch And The Wardrobe.mp3
+Time: 15519
+Artist: C. S. Lewis
+AlbumArtist: C. S. Lewis
+Title: TCON 02 The Lion, The Witch And The Wardrobe
+Album: The Chronicles Of Narnia
+Track: 2
+Date: 1952
+Genre: Audiobook
+Composer: Read By Michael York
+Disc: 1/4
+mtime: 1316867314
+song_end
+song_begin: 03 TCON 03 The Horse And His Boy.mp3
+Time: 16900
+Artist: C. S. Lewis
+AlbumArtist: C. S. Lewis
+Title: TCON 03 The Horse And His Boy
+Album: The Chronicles Of Narnia
+Track: 3
+Date: 2003
+Genre: Audiobook
+Composer: Read By Alex Jennings
+Disc: 1/4
+mtime: 1316867314
+song_end
+song_begin: 04 TCON 04 Prince Caspian.mp3
+Time: 16844
+Artist: C. S. Lewis
+AlbumArtist: C. S. Lewis
+Title: TCON 04 Prince Caspian
+Album: The Chronicles Of Narnia
+Track: 4
+Date: 1952
+Genre: Audiobook
+Composer: Read By Lynn Redgrave
+Disc: 1/4
+mtime: 1316867314
+song_end
+song_begin: 05 TCON 05 The Voyage Of The Dawn Treader.mp3
+Time: 21112
+Artist: C. S. Lewis
+AlbumArtist: C. S. Lewis
+Title: TCON 05 The Voyage Of The Dawn Treader
+Album: The Chronicles Of Narnia
+Track: 5
+Date: 1952
+Genre: Audiobook
+Composer: Read By Derek Jacobi
+Disc: 1/5
+mtime: 1316867314
+song_end
+song_begin: 06 TCON 06 The Silver Chair.mp3
+Time: 18959
+Artist: C. S. Lewis
+AlbumArtist: C. S. Lewis
+Title: TCON 06 The Silver Chair
+Album: The Chronicles Of Narnia
+Track: 6
+Date: 1952
+Genre: Audiobook
+Composer: Read By Jeremy Northam
+Disc: 1/5
+mtime: 1316867315
+song_end
+end: C.S. Lewis
+directory: Croation
+mtime: 1316866441
+begin: Croation
+song_begin: 01 01 - Lesson 01.mp3
+Time: 1771
+Artist: Pimleur Language Programs
+AlbumArtist: Pimleur Language Programs
+Title: 01 - Lesson 01
+Album: Croatian
+Track: 1
+Date: 2004
+Genre: Audiobook
+Disc: 2/2
+mtime: 1316866991
+song_end
+song_begin: 02 02 - Lesson 02.mp3
+Time: 1782
+Artist: Pimleur Language Programs
+AlbumArtist: Pimleur Language Programs
+Title: 02 - Lesson 02
+Album: Croatian
+Track: 2
+Date: 2004
+Genre: Audiobook
+Disc: 2/2
+mtime: 1316866991
+song_end
+song_begin: 03 03 - Lesson 03.mp3
+Time: 1808
+Artist: Pimleur Language Programs
+AlbumArtist: Pimleur Language Programs
+Title: 03 - Lesson 03
+Album: Croatian
+Track: 3
+Date: 2004
+Genre: Audiobook
+Disc: 2/2
+mtime: 1316866991
+song_end
+song_begin: 04 04 - Lesson 04.mp3
+Time: 1796
+Artist: Pimleur Language Programs
+AlbumArtist: Pimleur Language Programs
+Title: 04 - Lesson 04
+Album: Croatian
+Track: 4
+Date: 2004
+Genre: Audiobook
+Disc: 2/2
+mtime: 1316866991
+song_end
+song_begin: 05 05 - Lesson 05.mp3
+Time: 1805
+Artist: Pimleur Language Programs
+AlbumArtist: Pimleur Language Programs
+Title: 05 - Lesson 05
+Album: Croatian
+Track: 5
+Date: 2004
+Genre: Audiobook
+Disc: 2/2
+mtime: 1316866991
+song_end
+song_begin: 06 06 - Lesson 06.mp3
+Time: 1797
+Artist: Pimleur Language Programs
+AlbumArtist: Pimleur Language Programs
+Title: 06 - Lesson 06
+Album: Croatian
+Track: 6
+Date: 2004
+Genre: Audiobook
+Disc: 2/2
+mtime: 1316866991
+song_end
+song_begin: 07 07 - Lesson 07.mp3
+Time: 1809
+Artist: Pimleur Language Programs
+AlbumArtist: Pimleur Language Programs
+Title: 07 - Lesson 07
+Album: Croatian
+Track: 7
+Date: 2004
+Genre: Audiobook
+Disc: 2/2
+mtime: 1316866991
+song_end
+song_begin: 08 08 - Lesson 08.mp3
+Time: 1798
+Artist: Pimleur Language Programs
+AlbumArtist: Pimleur Language Programs
+Title: 08 - Lesson 08
+Album: Croatian
+Track: 8
+Date: 2004
+Genre: Audiobook
+Disc: 2/2
+mtime: 1316866991
+song_end
+song_begin: 09 09 - Lesson 09.mp3
+Time: 1806
+Artist: Pimleur Language Programs
+AlbumArtist: Pimleur Language Programs
+Title: 09 - Lesson 09
+Album: Croatian
+Track: 9
+Date: 2004
+Genre: Audiobook
+Disc: 2/2
+mtime: 1316866991
+song_end
+song_begin: 10 10 - Lesson 10.mp3
+Time: 1880
+Artist: Pimleur Language Programs
+AlbumArtist: Pimleur Language Programs
+Title: 10 - Lesson 10
+Album: Croatian
+Track: 10
+Date: 2004
+Genre: Audiobook
+Disc: 2/2
+mtime: 1316866991
+song_end
+song_begin: 11 11 - Lesson 11.mp3
+Time: 869
+Artist: Pimleur Language Programs
+AlbumArtist: Pimleur Language Programs
+Title: 11 - Lesson 11
+Album: Croatian
+Track: 11
+Date: 2004
+Genre: Audiobook
+Disc: 2/2
+mtime: 1316866991
+song_end
+end: Croation
+directory: Dave Gorman
+mtime: 1316866509
+begin: Dave Gorman
+song_begin: 03 Genius - Episode 3.mp3
+Time: 100
+Artist: Dave Gorman
+AlbumArtist: Dave Gorman
+Title: Genius - Episode 3
+Album: Genius Series 1
+Track: 3/5
+Date: 2006
+Genre: Audiobook
+mtime: 1316867078
+song_end
+song_begin: 04 Genius - Episode 4.mp3
+Time: 66
+Artist: Dave Gorman
+AlbumArtist: Dave Gorman
+Title: Genius - Episode 4
+Album: Genius Series 1
+Track: 4/5
+Date: 2006
+Genre: Audiobook
+mtime: 1316867078
+song_end
+song_begin: 05 Genius - Episode 5.mp3
+Time: 82
+Artist: Dave Gorman
+AlbumArtist: Dave Gorman
+Title: Genius - Episode 5
+Album: Genius Series 1
+Track: 5/5
+Date: 2006
+Genre: Audiobook
+mtime: 1316867078
+song_end
+song_begin: 01 Genius - Episode 1.mp3
+Time: 92
+Artist: Dave Gorman
+AlbumArtist: Dave Gorman
+Title: Genius - Episode 1
+Album: Genius Series 1
+Track: 1/5
+Date: 2006
+Genre: Audiobook
+Disc: 1
+mtime: 1316867078
+song_end
+song_begin: 02 Genius - Episode 2.mp3
+Time: 81
+Artist: Dave Gorman
+AlbumArtist: Dave Gorman
+Title: Genius - Episode 2
+Album: Genius Series 1
+Track: 2/5
+Date: 2006
+Genre: Audiobook
+Disc: 1
+mtime: 1316867078
+song_end
+end: Dave Gorman
+directory: Douglas Adams
+mtime: 1316863050
+begin: Douglas Adams
+directory: Douglas Adams
+mtime: 1316866564
+begin: Douglas Adams/Douglas Adams
+directory: Dirk Gently's Holistic Detective Agency
+mtime: 1316868057
+begin: Douglas Adams/Douglas Adams/Dirk Gently's Holistic Detective Agency
+song_begin: 01 DGHDA 1 RBTA.mp3
+Time: 23915
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: DGHDA 1 RBTA
+Album: Dirk Gently's Holistic Detective Agency
+Track: 1
+Date: 1990
+Genre: Audiobook
+mtime: 1316866992
+song_end
+song_begin: 02 DGHDA 2 TLDTTOTS RBTA.mp3
+Time: 21602
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: DGHDA 2 TLDTTOTS RBTA
+Album: Dirk Gently's Holistic Detective Agency
+Track: 2
+Date: 1990
+Genre: Audiobook
+mtime: 1316866992
+song_end
+song_begin: 03 DGHDA 3 TSOD RBTA+O.mp3
+Time: 28464
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: DGHDA 3 TSOD RBTA+O
+Album: Dirk Gently's Holistic Detective Agency
+Track: 3
+Date: 1990
+Genre: Audiobook
+mtime: 1316866992
+song_end
+end: Douglas Adams/Douglas Adams/Dirk Gently's Holistic Detective Agency
+directory: Live in Munich
+mtime: 1316863052
+begin: Douglas Adams/Douglas Adams/Live in Munich
+song_begin: 01 Live in Munich.mp3
+Time: 4458
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: Douglas Adams Live in Munich
+Album: Live in Munich
+Track: 1
+Genre: Audiobook
+mtime: 1316867078
+song_end
+end: Douglas Adams/Douglas Adams/Live in Munich
+directory: Starship Titanic
+mtime: 1316862915
+begin: Douglas Adams/Douglas Adams/Starship Titanic
+song_begin: 01 Starship Titanic.mp3
+Time: 18084
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: Starship Titanic
+Album: Starship Titanic
+Track: 1
+Genre: Audiobook
+mtime: 1316867314
+song_end
+end: Douglas Adams/Douglas Adams/Starship Titanic
+directory: The Hitchhiker's Guide To The Galaxy - A Trilogy In 5 Parts
+mtime: 1316868094
+begin: Douglas Adams/Douglas Adams/The Hitchhiker's Guide To The Galaxy - A Trilogy In 5 Parts
+song_begin: 01 HHGTTG 1 HHGTTG RBTA.mp3
+Time: 17875
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: HHGTTG 1 HHGTTG RBTA
+Album: The Hitchhiker's Guide To The Galaxy - A Trilogy In 5 Parts
+Track: 1/5
+Date: 1992
+Genre: Audiobook
+mtime: 1316867078
+song_end
+song_begin: 02 HHGTTG 2 TRATEOTU RBTA.mp3
+Time: 19823
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: HHGTTG 2 TRATEOTU RBTA
+Album: The Hitchhiker's Guide To The Galaxy - A Trilogy In 5 Parts
+Track: 2/5
+Date: 1992
+Genre: Audiobook
+mtime: 1316867078
+song_end
+song_begin: 03 HHGTTG 3 LTUAE RBTA.mp3
+Time: 19211
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: HHGTTG 3 LTUAE RBTA
+Album: The Hitchhiker's Guide To The Galaxy - A Trilogy In 5 Parts
+Track: 3/5
+Date: 1992
+Genre: Audiobook
+mtime: 1316867078
+song_end
+song_begin: 04 HHGTTG 4 SLATFATF RBTA.mp3
+Time: 15113
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: HHGTTG 4 SLATFATF RBTA
+Album: The Hitchhiker's Guide To The Galaxy - A Trilogy In 5 Parts
+Track: 4/5
+Date: 1992
+Genre: Audiobook
+mtime: 1316867078
+song_end
+song_begin: 05 HHGTTG 5 MH RBTA.mp3
+Time: 20927
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: HHGTTG 5 MH RBTA
+Album: The Hitchhiker's Guide To The Galaxy - A Trilogy In 5 Parts
+Track: 5/5
+Date: 1992
+Genre: Audiobook
+mtime: 1316867078
+song_end
+end: Douglas Adams/Douglas Adams/The Hitchhiker's Guide To The Galaxy - A Trilogy In 5 Parts
+end: Douglas Adams/Douglas Adams
+directory: Douglas Adams + Cast
+mtime: 1316862928
+begin: Douglas Adams/Douglas Adams + Cast
+directory: 1. The Hitchhiker's Guide To The Galaxy Primary Phase
+mtime: 1316867114
+begin: Douglas Adams/Douglas Adams + Cast/1. The Hitchhiker's Guide To The Galaxy Primary Phase
+song_begin: 01 Hhgttgrs1 PriPh Episode 01 Fit The 01St.m4a
+Time: 1716
+AlbumArtist: Douglas Adams + Cast
+Disc: 1
+Track: 1
+Artist: Douglas Adams + Cast
+Album: 1. The Hitchhiker's Guide To The Galaxy Primary Phase
+Title: Hhgttgrs1 Pri.Ph. Episode 01 Fit The 01St
+Composer: Douglas Adams
+mtime: 1316867085
+song_end
+song_begin: 02 Hhgttgrs1 PriPh Episode 02 Fit The 02Nd.m4a
+Time: 1693
+AlbumArtist: Douglas Adams + Cast
+Disc: 1
+Track: 2
+Artist: Douglas Adams + Cast
+Album: 1. The Hitchhiker's Guide To The Galaxy Primary Phase
+Title: Hhgttgrs1 Pri.Ph. Episode 02 Fit The 02Nd
+Composer: Douglas Adams
+mtime: 1316867090
+song_end
+song_begin: 03 Hhgttgrs1 PriPh Episode 03 Fit The 03Rd.m4a
+Time: 1666
+AlbumArtist: Douglas Adams + Cast
+Disc: 2
+Track: 3
+Artist: Douglas Adams + Cast
+Album: 1. The Hitchhiker's Guide To The Galaxy Primary Phase
+Title: Hhgttgrs1 Pri.Ph. Episode 03 Fit The 03Rd
+Composer: Douglas Adams
+mtime: 1316867096
+song_end
+song_begin: 04 Hhgttgrs1 PriPh Episode 04 Fit The 04Th.m4a
+Time: 1755
+AlbumArtist: Douglas Adams + Cast
+Disc: 2
+Track: 4
+Artist: Douglas Adams + Cast
+Album: 1. The Hitchhiker's Guide To The Galaxy Primary Phase
+Title: Hhgttgrs1 Pri.Ph. Episode 04 Fit The 04Th
+Composer: Douglas Adams
+mtime: 1316867102
+song_end
+song_begin: 05 Hhgttgrs1 PriPh Episode 05 Fit The 05Th.m4a
+Time: 1776
+AlbumArtist: Douglas Adams + Cast
+Disc: 3
+Track: 5
+Artist: Douglas Adams + Cast
+Album: 1. The Hitchhiker's Guide To The Galaxy Primary Phase
+Title: Hhgttgrs1 Pri.Ph. Episode 05 Fit The 05Th
+Composer: Douglas Adams
+mtime: 1316867108
+song_end
+song_begin: 06 Hhgttgrs1 PriPh Episode 06 Fit The 06Th.m4a
+Time: 1834
+AlbumArtist: Douglas Adams + Cast
+Disc: 3
+Track: 6
+Artist: Douglas Adams + Cast
+Album: 1. The Hitchhiker's Guide To The Galaxy Primary Phase
+Title: Hhgttgrs1 Pri.Ph. Episode 06 Fit The 06Th
+Composer: Douglas Adams
+mtime: 1316867114
+song_end
+end: Douglas Adams/Douglas Adams + Cast/1. The Hitchhiker's Guide To The Galaxy Primary Phase
+directory: 2. The Hitchhiker's Guide To The Galaxy Secondary Phase
+mtime: 1316867155
+begin: Douglas Adams/Douglas Adams + Cast/2. The Hitchhiker's Guide To The Galaxy Secondary Phase
+song_begin: 01 Hhgttgrs2 SecPh Episode 01 Fit The 07Th.m4a
+Time: 1787
+AlbumArtist: Douglas Adams + Cast
+Disc: 1
+Track: 1
+Artist: Douglas Adams + Cast
+Album: 2. The Hitchhiker's Guide To The Galaxy Secondary Phase
+Title: Hhgttgrs2 Sec.Ph. Episode 01 Fit The 07Th
+Composer: Douglas Adams
+mtime: 1316867120
+song_end
+song_begin: 02 Hhgttgrs2 SecPh Episode 02 Fit The 08Th.m4a
+Time: 1758
+AlbumArtist: Douglas Adams + Cast
+Disc: 1
+Track: 2
+Artist: Douglas Adams + Cast
+Album: 2. The Hitchhiker's Guide To The Galaxy Secondary Phase
+Title: Hhgttgrs2 Sec.Ph. Episode 02 Fit The 08Th
+Composer: Douglas Adams
+mtime: 1316867126
+song_end
+song_begin: 03 Hhgttgrs2 SecPh Episode 03 Fit The 09Th.m4a
+Time: 1779
+AlbumArtist: Douglas Adams + Cast
+Disc: 2
+Track: 3
+Artist: Douglas Adams + Cast
+Album: 2. The Hitchhiker's Guide To The Galaxy Secondary Phase
+Title: Hhgttgrs2 Sec.Ph. Episode 03 Fit The 09Th
+Composer: Douglas Adams
+mtime: 1316867134
+song_end
+song_begin: 04 Hhgttgrs2 SecPh Episode 04 Fit The 10Th.m4a
+Time: 1764
+AlbumArtist: Douglas Adams + Cast
+Disc: 2
+Track: 4
+Artist: Douglas Adams + Cast
+Album: 2. The Hitchhiker's Guide To The Galaxy Secondary Phase
+Title: Hhgttgrs2 Sec.Ph. Episode 04 Fit The 10Th
+Composer: Douglas Adams
+mtime: 1316867141
+song_end
+song_begin: 05 Hhgttgrs2 SecPh Episode 05 Fit The 11Th.m4a
+Time: 1785
+AlbumArtist: Douglas Adams + Cast
+Disc: 3
+Track: 5
+Artist: Douglas Adams + Cast
+Album: 2. The Hitchhiker's Guide To The Galaxy Secondary Phase
+Title: Hhgttgrs2 Sec.Ph. Episode 05 Fit The 11Th
+Composer: Douglas Adams
+mtime: 1316867148
+song_end
+song_begin: 06 Hhgttgrs2 SecPh Episode 06 Fit The 12Th.m4a
+Time: 1665
+AlbumArtist: Douglas Adams + Cast
+Disc: 3
+Track: 6
+Artist: Douglas Adams + Cast
+Album: 2. The Hitchhiker's Guide To The Galaxy Secondary Phase
+Title: Hhgttgrs2 Sec.Ph. Episode 06 Fit The 12Th
+Composer: Douglas Adams
+mtime: 1316867155
+song_end
+end: Douglas Adams/Douglas Adams + Cast/2. The Hitchhiker's Guide To The Galaxy Secondary Phase
+directory: 3. The Hicthhiker's Guide To The Galaxy Teriary Phase
+mtime: 1316867207
+begin: Douglas Adams/Douglas Adams + Cast/3. The Hicthhiker's Guide To The Galaxy Teriary Phase
+song_begin: 01 Hhgttgrs3 TerPh Episode 01 Fit The 13Th.m4a
+Time: 1792
+AlbumArtist: Douglas Adams + Cast
+Disc: 1
+Track: 1
+Artist: Douglas Adams + Cast
+Album: 3. The Hicthhiker's Guide To The Galaxy Teriary Phase
+Title: Hhgttgrs3 Ter.Ph. Episode 01 Fit The 13Th
+Composer: Douglas Adams
+mtime: 1316867164
+song_end
+song_begin: 02 Hhgttgrs3 TerPh Episode 02 Fit The 14Th.m4a
+Time: 1861
+AlbumArtist: Douglas Adams + Cast
+Disc: 1
+Track: 2
+Artist: Douglas Adams + Cast
+Album: 3. The Hicthhiker's Guide To The Galaxy Teriary Phase
+Title: Hhgttgrs3 Ter.Ph. Episode 02 Fit The 14Th
+Composer: Douglas Adams
+mtime: 1316867175
+song_end
+song_begin: 03 Hhgttgrs3 TerPh Episode 03 Fit The 15Th.m4a
+Time: 2139
+AlbumArtist: Douglas Adams + Cast
+Disc: 2
+Track: 3
+Artist: Douglas Adams + Cast
+Album: 3. The Hicthhiker's Guide To The Galaxy Teriary Phase
+Title: Hhgttgrs3 Ter.Ph. Episode 03 Fit The 15Th
+Composer: Douglas Adams
+mtime: 1316867184
+song_end
+song_begin: 04 Hhgttgrs3 TerPh Episode 04 Fit The 16Th.m4a
+Time: 1861
+AlbumArtist: Douglas Adams + Cast
+Disc: 2
+Track: 4
+Artist: Douglas Adams + Cast
+Album: 3. The Hicthhiker's Guide To The Galaxy Teriary Phase
+Title: Hhgttgrs3 Ter.Ph. Episode 04 Fit The 16Th
+Composer: Douglas Adams
+mtime: 1316867192
+song_end
+song_begin: 05 Hhgttgrs3 TerPh Episode 05 Fit The 17Th.m4a
+Time: 1818
+AlbumArtist: Douglas Adams + Cast
+Disc: 3
+Track: 5
+Artist: Douglas Adams + Cast
+Album: 3. The Hicthhiker's Guide To The Galaxy Teriary Phase
+Title: Hhgttgrs3 Ter.Ph. Episode 05 Fit The 17Th
+Composer: Douglas Adams
+mtime: 1316867199
+song_end
+song_begin: 06 Hhgttgrs3 TerPh Episode 06 Fit The 18Th.m4a
+Time: 2075
+AlbumArtist: Douglas Adams + Cast
+Disc: 3
+Track: 6
+Artist: Douglas Adams + Cast
+Album: 3. The Hicthhiker's Guide To The Galaxy Teriary Phase
+Title: Hhgttgrs3 Ter.Ph. Episode 06 Fit The 18Th
+Composer: Douglas Adams
+mtime: 1316867207
+song_end
+end: Douglas Adams/Douglas Adams + Cast/3. The Hicthhiker's Guide To The Galaxy Teriary Phase
+directory: 4. The Hitchhiker's Guide To The Galaxy Quandary Phase
+mtime: 1316867257
+begin: Douglas Adams/Douglas Adams + Cast/4. The Hitchhiker's Guide To The Galaxy Quandary Phase
+song_begin: 01 Hhgttgrs4 QuanPh Episode 01 Fit The 19Th.m4a
+Time: 1966
+AlbumArtist: Douglas Adams + Cast
+Disc: 1
+Track: 1
+Artist: Douglas Adams + Cast
+Album: 4. The Hitchhiker's Guide To The Galaxy Quandary Phase
+Title: Hhgttgrs4 Quan.Ph. Episode 01 Fit The 19Th
+Composer: Douglas Adams
+mtime: 1316867218
+song_end
+song_begin: 02 Hhgttgrs4 QuanPh Episode 02 Fit The 20Th.m4a
+Time: 2076
+AlbumArtist: Douglas Adams + Cast
+Disc: 1
+Track: 2
+Artist: Douglas Adams + Cast
+Album: 4. The Hitchhiker's Guide To The Galaxy Quandary Phase
+Title: Hhgttgrs4 Quan.Ph. Episode 02 Fit The 20Th
+Composer: Douglas Adams
+mtime: 1316867230
+song_end
+song_begin: 03 Hhgttgrs4 QuanPh Episode 03 Fit The 21St.m4a
+Time: 2460
+AlbumArtist: Douglas Adams + Cast
+Disc: 2
+Track: 3
+Artist: Douglas Adams + Cast
+Album: 4. The Hitchhiker's Guide To The Galaxy Quandary Phase
+Title: Hhgttgrs4 Quan.Ph. Episode 03 Fit The 21St
+Composer: Douglas Adams
+mtime: 1316867245
+song_end
+song_begin: 04 Hhgttgrs4 QuanPh Episode 04 Fit The 22Nd.m4a
+Time: 2116
+AlbumArtist: Douglas Adams + Cast
+Disc: 2
+Track: 4
+Artist: Douglas Adams + Cast
+Album: 4. The Hitchhiker's Guide To The Galaxy Quandary Phase
+Title: Hhgttgrs4 Quan.Ph. Episode 04 Fit The 22Nd
+Composer: Douglas Adams
+mtime: 1316867257
+song_end
+end: Douglas Adams/Douglas Adams + Cast/4. The Hitchhiker's Guide To The Galaxy Quandary Phase
+directory: 5. The Hitchhiker's Guide To The Galaxy Quintessential Phase
+mtime: 1316867309
+begin: Douglas Adams/Douglas Adams + Cast/5. The Hitchhiker's Guide To The Galaxy Quintessential Phase
+song_begin: 01 Hhgttgrs5 QuinPh Episode 01 Fit The 23Rd.m4a
+Time: 2239
+AlbumArtist: Douglas Adams + Cast
+Disc: 1
+Track: 1
+Artist: Douglas Adams + Cast
+Album: 5. The Hitchhiker's Guide To The Galaxy Quintessential Phase
+Title: Hhgttgrs5 Quin.Ph. Episode 01 Fit The 23Rd
+Composer: Douglas Adams
+mtime: 1316867270
+song_end
+song_begin: 02 Hhgttgrs5 QuinPh Episode 02 Fit The 24Th.m4a
+Time: 2128
+AlbumArtist: Douglas Adams + Cast
+Disc: 1
+Track: 2
+Artist: Douglas Adams + Cast
+Album: 5. The Hitchhiker's Guide To The Galaxy Quintessential Phase
+Title: Hhgttgrs5 Quin.Ph. Episode 02 Fit The 24Th
+Composer: Douglas Adams
+mtime: 1316867283
+song_end
+song_begin: 03 Hhgttgrs5 QuinPh Episode 03 Fit The 25Th.m4a
+Time: 2009
+AlbumArtist: Douglas Adams + Cast
+Disc: 2
+Track: 3
+Artist: Douglas Adams + Cast
+Album: 5. The Hitchhiker's Guide To The Galaxy Quintessential Phase
+Title: Hhgttgrs5 Quin.Ph. Episode 03 Fit The 25Th
+Composer: Douglas Adams
+mtime: 1316867295
+song_end
+song_begin: 04 Hhgttgrs5 QuinPh Episode 04 Fit The 26Th.m4a
+Time: 2362
+AlbumArtist: Douglas Adams + Cast
+Disc: 2
+Track: 4
+Artist: Douglas Adams + Cast
+Album: 5. The Hitchhiker's Guide To The Galaxy Quintessential Phase
+Title: Hhgttgrs5 Quin.Ph. Episode 04 Fit The 26Th
+Composer: Douglas Adams
+mtime: 1316867309
+song_end
+end: Douglas Adams/Douglas Adams + Cast/5. The Hitchhiker's Guide To The Galaxy Quintessential Phase
+directory: Dirk Gently's Holistic Detective Agency
+mtime: 1316867075
+begin: Douglas Adams/Douglas Adams + Cast/Dirk Gently's Holistic Detective Agency
+song_begin: 01 DGHDARS Episode 01.m4a
+Time: 2257
+AlbumArtist: Douglas Adams + Cast
+Disc: 1
+Track: 1
+Artist: Douglas Adams + Cast
+Album: Dirk Gently's Holistic Detective Agency
+Title: DGHDARS Episode 01
+Composer: Douglas Adams
+mtime: 1316867003
+song_end
+song_begin: 02 DGHDARS Episode 02.m4a
+Time: 2057
+AlbumArtist: Douglas Adams + Cast
+Disc: 1
+Track: 2
+Artist: Douglas Adams + Cast
+Album: Dirk Gently's Holistic Detective Agency
+Title: DGHDARS Episode 02
+Composer: Douglas Adams
+mtime: 1316867021
+song_end
+song_begin: 03 DGHDARS Episode 03.m4a
+Time: 2342
+AlbumArtist: Douglas Adams + Cast
+Disc: 2
+Track: 3
+Artist: Douglas Adams + Cast
+Album: Dirk Gently's Holistic Detective Agency
+Title: DGHDARS Episode 03
+Composer: Douglas Adams
+mtime: 1316867036
+song_end
+song_begin: 04 DGHDARS Episode 04.m4a
+Time: 2180
+AlbumArtist: Douglas Adams + Cast
+Disc: 2
+Track: 4
+Artist: Douglas Adams + Cast
+Album: Dirk Gently's Holistic Detective Agency
+Title: DGHDARS Episode 04
+Composer: Douglas Adams
+mtime: 1316867049
+song_end
+song_begin: 05 DGHDARS Episode 05.m4a
+Time: 2118
+AlbumArtist: Douglas Adams + Cast
+Disc: 3
+Track: 5
+Artist: Douglas Adams + Cast
+Album: Dirk Gently's Holistic Detective Agency
+Title: DGHDARS Episode 05
+Composer: Douglas Adams
+mtime: 1316867063
+song_end
+song_begin: 06 DGHDARS Episode 06.m4a
+Time: 2081
+AlbumArtist: Douglas Adams + Cast
+Disc: 3
+Track: 6
+Artist: Douglas Adams + Cast
+Album: Dirk Gently's Holistic Detective Agency
+Title: DGHDARS Episode 06
+Composer: Douglas Adams
+mtime: 1316867075
+song_end
+end: Douglas Adams/Douglas Adams + Cast/Dirk Gently's Holistic Detective Agency
+directory: The Long Dark Tea Time Of The Soul
+mtime: 1316863018
+begin: Douglas Adams/Douglas Adams + Cast/The Long Dark Tea Time Of The Soul
+song_begin: 01 TLDTTOFS Episode 1.mp3
+Time: 2041
+Artist: Douglas Adams + Cast
+AlbumArtist: Douglas Adams + Cast
+Title: TLDTTOFS Episode 1
+Album: The Long Dark Tea Time Of The Soul
+Track: 1
+Genre: Audiobook
+Disc: 1/3
+mtime: 1316867315
+song_end
+song_begin: 02 TLDTTOFS Episode 2.mp3
+Time: 1941
+Artist: Douglas Adams + Cast
+AlbumArtist: Douglas Adams + Cast
+Title: TLDTTOFS Episode 2
+Album: The Long Dark Tea Time Of The Soul
+Track: 2
+Genre: Audiobook
+Disc: 1
+mtime: 1316867315
+song_end
+song_begin: 06 TLDTTOFS Episode 3.mp3
+Time: 2108
+Artist: Douglas Adams + Cast
+AlbumArtist: Douglas Adams + Cast
+Title: TLDTTOFS Episode 3
+Album: The Long Dark Tea Time Of The Soul
+Track: 3
+Genre: Audiobook
+Disc: 2
+mtime: 1316867315
+song_end
+song_begin: 04 TLDTTOFS Episode 4.mp3
+Time: 1869
+Artist: Douglas Adams + Cast
+AlbumArtist: Douglas Adams + Cast
+Title: TLDTTOFS Episode 4
+Album: The Long Dark Tea Time Of The Soul
+Track: 4
+Genre: Audiobook
+Disc: 2
+mtime: 1316867315
+song_end
+song_begin: 05 TLDTTOFS Episode 5.mp3
+Time: 1758
+Artist: Douglas Adams + Cast
+AlbumArtist: Douglas Adams + Cast
+Title: TLDTTOFS Episode 5
+Album: The Long Dark Tea Time Of The Soul
+Track: 5
+Genre: Audiobook
+Disc: 3
+mtime: 1316867315
+song_end
+song_begin: 03 TLDTTOFS Episode 6.mp3
+Time: 2151
+Artist: Douglas Adams + Cast
+AlbumArtist: Douglas Adams + Cast
+Title: TLDTTOFS Episode 6
+Album: The Long Dark Tea Time Of The Soul
+Track: 6
+Genre: Audiobook
+Disc: 3
+mtime: 1316867315
+song_end
+end: Douglas Adams/Douglas Adams + Cast/The Long Dark Tea Time Of The Soul
+end: Douglas Adams/Douglas Adams + Cast
+directory: Stephen Fry
+mtime: 1316866557
+begin: Douglas Adams/Stephen Fry
+song_begin: 01 HHGTTG RB SF_1.mp3
+Time: 4555
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: HHGTTG RB SF_1
+Album: The Hitchhiker's Guide To The Galaxy Read By Stephen Fry
+Track: 1
+Date: 2005
+Genre: Audiobook
+mtime: 1316867078
+song_end
+song_begin: 02 HHGTTG RB SF_2.mp3
+Time: 4347
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: HHGTTG RB SF_2
+Album: The Hitchhiker's Guide To The Galaxy Read By Stephen Fry
+Track: 2
+Date: 2005
+Genre: Audiobook
+mtime: 1316867079
+song_end
+song_begin: 03 HHGTTG RB SF_3.mp3
+Time: 4241
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: HHGTTG RB SF_3
+Album: The Hitchhiker's Guide To The Galaxy Read By Stephen Fry
+Track: 3
+Date: 2005
+Genre: Audiobook
+mtime: 1316867079
+song_end
+song_begin: 04 HHGTTG RB SF_4.mp3
+Time: 3992
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: HHGTTG RB SF_4
+Album: The Hitchhiker's Guide To The Galaxy Read By Stephen Fry
+Track: 4
+Date: 2005
+Genre: Audiobook
+mtime: 1316867079
+song_end
+song_begin: 05 HHGTTG RB SF_5.mp3
+Time: 3964
+Artist: Douglas Adams
+AlbumArtist: Douglas Adams
+Title: HHGTTG RB SF_5
+Album: The Hitchhiker's Guide To The Galaxy Read By Stephen Fry
+Track: 5
+Date: 2005
+Genre: Audiobook
+mtime: 1316867079
+song_end
+end: Douglas Adams/Stephen Fry
+end: Douglas Adams
+directory: Dylan Moran
+mtime: 1330098452
+begin: Dylan Moran
+directory: Dylan Moran Like Totally
+mtime: 1316866303
+begin: Dylan Moran/Dylan Moran Like Totally
+song_begin: Dylan Moran Like Totally.mp3
+Time: 3922
+Artist: Dylan Moran
+AlbumArtist: Dylan Moran
+Title: Dylan Moran Like Totally
+Album: Like Totally
+Date: 2009
+Genre: Audiobook
+mtime: 1316867078
+song_end
+end: Dylan Moran/Dylan Moran Like Totally
+directory: Dylan Moran Monster
+mtime: 1316866294
+begin: Dylan Moran/Dylan Moran Monster
+song_begin: Dylan Moran Monster.mp3
+Time: 5325
+Artist: Dylan Moran
+AlbumArtist: Dylan Moran
+Title: Dylan Moran Monster
+Album: Monster
+Genre: Audiobook
+mtime: 1316867078
+song_end
+end: Dylan Moran/Dylan Moran Monster
+directory: Dylan Moran What It Is
+mtime: 1316866207
+begin: Dylan Moran/Dylan Moran What It Is
+song_begin: What It Is.mp3
+Time: 4180
+Artist: Dylan Moran
+AlbumArtist: Dylan Moran
+Title: Dylan Moran What It Is
+Album: What It Is
+Genre: Audiobook
+mtime: 1316867078
+song_end
+end: Dylan Moran/Dylan Moran What It Is
+directory: Dylan Moran Yeah Yeah
+mtime: 1330098567
+begin: Dylan Moran/Dylan Moran Yeah Yeah
+song_begin: Dylan_Moran_Yeah_Yeah.mp3
+Time: 4413
+Artist: Dylan Moran
+Title: Dylan Moran Yeah Yeah
+Album: Yeah Yeah
+Genre: Audiobook
+mtime: 1330708126
+song_end
+end: Dylan Moran/Dylan Moran Yeah Yeah
+end: Dylan Moran
+directory: Eoin Colfer
+mtime: 1316868159
+begin: Eoin Colfer
+song_begin: 01 Artemis Fowl 1.mp3
+Time: 22004
+Artist: Eoin Colfer
+AlbumArtist: Eoin Colfer
+Title: Artemis Fowl 1
+Album: Artemis Fowl
+Track: 1
+Genre: Audiobook
+mtime: 1316866991
+song_end
+song_begin: 02 Artemis Fowl 2 The Arctic Incident.mp3
+Time: 22204
+Artist: Eoin Colfer
+AlbumArtist: Eoin Colfer
+Title: Artemis Fowl 2 The Arctic Incident
+Album: Artemis Fowl
+Track: 2
+Genre: Audiobook
+mtime: 1316866991
+song_end
+song_begin: 03 Artemis Fowl 3 The Eternity Code.mp3
+Time: 24860
+Artist: Eoin Colfer
+AlbumArtist: Eoin Colfer
+Title: Artemis Fowl 3 The Eternity Code
+Album: Artemis Fowl
+Track: 3
+Genre: Audiobook
+mtime: 1316866991
+song_end
+song_begin: 04 Artemis Fowl 4 The Opal Deception.mp3
+Time: 26888
+Artist: Eoin Colfer
+AlbumArtist: Eoin Colfer
+Title: Artemis Fowl 4 The Opal Deception
+Album: Artemis Fowl
+Track: 4
+Genre: Audiobook
+mtime: 1316866992
+song_end
+song_begin: 05 Artemis Fowl 5 The Lost Colony.mp3
+Time: 30280
+Artist: Eoin Colfer
+AlbumArtist: Eoin Colfer
+Title: Artemis Fowl 5 The Lost Colony
+Album: Artemis Fowl
+Track: 5
+Genre: Audiobook
+mtime: 1316866992
+song_end
+end: Eoin Colfer
+directory: J.K. Rowling
+mtime: 1346883221
+begin: J.K. Rowling
+song_begin: 04 HP4 HPATGOF RBSF_mono.mp3
+Time: 75284
+mtime: 1346764063
+song_end
+song_begin: 01 HP1 HPATPS RBSF.mp3
+Time: 30163
+Artist: J.K. Rowling
+AlbumArtist: J.K. Rowling
+Title: HP1 HPATPS RBSF
+Album: HP RBSF
+Track: 1/7
+Date: 1997
+Genre: Audiobook
+Performer: Steven Fry
+mtime: 1316867312
+song_end
+song_begin: 02 HP2 HPATCOS RBSF.mp3
+Time: 34927
+Artist: J.K. Rowling
+AlbumArtist: J.K. Rowling
+Title: HP2 HPATCOS RBSF
+Album: HP RBSF
+Track: 2/7
+Date: 1998
+Genre: Audiobook
+Performer: Steven Fry
+mtime: 1316867312
+song_end
+song_begin: 03 HP3 HPATPOA RBSF.mp3
+Time: 43365
+Artist: J.K. Rowling
+AlbumArtist: J.K. Rowling
+Title: HP3 HPATPOA RBSF
+Album: HP RBSF
+Track: 3/7
+Date: 1999
+Genre: Audiobook
+Performer: Steven Fry
+mtime: 1316867312
+song_end
+song_begin: 04 HP4 HPATGOF RBSF.mp3
+Time: 75284
+Artist: J.K. Rowling
+AlbumArtist: J.K. Rowling
+Title: HP4 HPATGOF RBSF
+Album: HP RBSF
+Track: 4/7
+Date: 2000
+Genre: Audiobook
+Performer: Steven Fry
+mtime: 1316867312
+song_end
+song_begin: 05 HP5 HPATOOTP RBSF.mp3
+Time: 104538
+Artist: J.K. Rowling
+AlbumArtist: J.K. Rowling
+Title: HP5 HPATOOTP RBSF
+Album: HP RBSF
+Track: 5/7
+Date: 2003
+Genre: Audiobook
+Performer: Steven Fry
+mtime: 1316867313
+song_end
+song_begin: 06 HP6 HPATHBP RBSF.mp3
+Time: 73882
+Artist: J.K. Rowling
+AlbumArtist: J.K. Rowling
+Title: HP6 HPATHBP RBSF
+Album: HP RBSF
+Track: 6/7
+Date: 2005
+Genre: Audiobook
+Performer: Steven Fry
+mtime: 1316867313
+song_end
+song_begin: 07 HP7 HPATDH RBSF.mp3
+Time: 86481
+Artist: J.K. Rowling
+AlbumArtist: J.K. Rowling
+Title: HP7 HPATDH RBSF
+Album: HP RBSF
+Track: 7/7
+Date: 2007
+Genre: Audiobook
+Performer: Steven Fry
+mtime: 1316867313
+song_end
+end: J.K. Rowling
+directory: JRR Tolkien
+mtime: 1316868213
+begin: JRR Tolkien
+song_begin: 01 TLOTR 1 TFOTR RBRI.mp3
+Time: 69210
+Artist: JRR Tolkien - Rob Inglis
+AlbumArtist: JRR Tolkien
+Title: TLOTR 1 TFOTR RBRI
+Album: TLOTR RBRI
+Track: 1
+Genre: Audiobook
+mtime: 1316867315
+song_end
+end: JRR Tolkien
+directory: Phillip Pullman
+mtime: 1316863534
+begin: Phillip Pullman
+song_begin: 01 HDM 1 Northern Lights.mp3
+Time: 38743
+Artist: Philip Pullman
+AlbumArtist: His Dark Materials
+Title: HDM 1 Northern Lights
+Album: His Dark Materials
+Track: 1/3
+Genre: Audiobook
+mtime: 1316867078
+song_end
+song_begin: 02 HDM 2 The Subtle Knife.mp3
+Time: 35296
+Artist: Philip Pullman
+AlbumArtist: His Dark Materials
+Title: HDM 2 The Subtle Knife
+Album: His Dark Materials
+Track: 2/3
+Genre: Audiobook
+mtime: 1316867078
+song_end
+song_begin: 03 HDM 3 The Amber Spyglass.mp3
+Time: 53559
+Artist: Philip Pullman
+AlbumArtist: His Dark Materials
+Title: HDM 3 The Amber Spyglass
+Album: His Dark Materials
+Track: 3/3
+Genre: Audiobook
+mtime: 1316867078
+song_end
+end: Phillip Pullman
+directory: Phillip Reeve
+mtime: 1316868363
+begin: Phillip Reeve
+song_begin: 01 HC 1 Mortal Engines.mp3
+Time: 30463
+Artist: Philip Reeve
+AlbumArtist: Philip Reeve
+Title: HC 1 Mortal Engines
+Album: Hungry Cities
+Track: 1
+Genre: Audiobook
+Composer: Philip Reeve
+mtime: 1316867078
+song_end
+song_begin: 02 HC 2 Predator's Gold.mp3
+Time: 30248
+Artist: Philip Reeve
+AlbumArtist: Philip Reeve
+Title: HC 2 Predator's Gold
+Album: Hungry Cities
+Track: 2
+Genre: Audiobook
+Composer: Philip Reeve
+mtime: 1316867078
+song_end
+song_begin: 03 HC 3 Infernal Devices.mp3
+Time: 32194
+Artist: Philip Reeve
+AlbumArtist: Philip Reeve
+Title: HC 3 Infernal Devices
+Album: Hungry Cities
+Track: 3
+Genre: Audiobook
+Composer: Philip Reeve
+mtime: 1316867078
+song_end
+song_begin: 04 HC 4 A Darkling Plain1.mp3
+Time: 52314
+Artist: Philip Reeve
+AlbumArtist: Philip Reeve
+Title: HC 4 A Darkling Plain1
+Album: Hungry Cities
+Track: 4
+Genre: Audiobook
+Composer: Philip Reeve
+mtime: 1316867078
+song_end
+end: Phillip Reeve
+directory: Red Dwarf
+mtime: 1323951568
+begin: Red Dwarf
+directory: Backwards
+mtime: 1316866604
+begin: Red Dwarf/Backwards
+song_begin: 01 Red Dwarf - 3_1 Backwards.mp3
+Time: 2717
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 3_1 Backwards
+Album: #3 - Backwards
+Track: 1
+Genre: Audiobook
+mtime: 1316867313
+song_end
+song_begin: 02 Red Dwarf - 3_2 Backwards.mp3
+Time: 2582
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 3_2 Backwards
+Album: #3 - Backwards
+Track: 2
+Genre: Audiobook
+mtime: 1316867313
+song_end
+song_begin: 03 Red Dwarf - 3_3 Backwards.mp3
+Time: 2562
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 3_3 Backwards
+Album: #3 - Backwards
+Track: 3
+Genre: Audiobook
+mtime: 1316867313
+song_end
+song_begin: 04 Red Dwarf - 3_4 Backwards.mp3
+Time: 2485
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 3_4 Backwards
+Album: #3 - Backwards
+Track: 4
+Genre: Audiobook
+mtime: 1316867313
+song_end
+song_begin: 05 Red Dwarf - 3_5 Backwards.mp3
+Time: 2613
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 3_5 Backwards
+Album: #3 - Backwards
+Track: 5
+Genre: Audiobook
+mtime: 1316867313
+song_end
+song_begin: 06 Red Dwarf - 3_6 Backwards.mp3
+Time: 2562
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 3_6 Backwards
+Album: #3 - Backwards
+Track: 6
+Genre: Audiobook
+mtime: 1316867314
+song_end
+end: Red Dwarf/Backwards
+directory: Better Than Life
+mtime: 1316866273
+begin: Red Dwarf/Better Than Life
+song_begin: 01 Red Dwarf - 2_1 Better Than Life.mp3
+Time: 2666
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 2_1 Better Than Life
+Album: #2 - Better Than Life
+Track: 1
+Genre: Audiobook
+mtime: 1316867313
+song_end
+song_begin: 02 Red Dwarf - 2_2 Better Than Life.mp3
+Time: 2656
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 2_2 Better Than Life
+Album: #2 - Better Than Life
+Track: 2
+Genre: Audiobook
+mtime: 1316867313
+song_end
+song_begin: 03 Red Dwarf - 2_3 Better Than Life.mp3
+Time: 2637
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 2_3 Better Than Life
+Album: #2 - Better Than Life
+Track: 3
+Genre: Audiobook
+mtime: 1316867313
+song_end
+song_begin: 04 Red Dwarf - 2_4 Better Than Life.mp3
+Time: 2566
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 2_4 Better Than Life
+Album: #2 - Better Than Life
+Track: 4
+Genre: Audiobook
+mtime: 1316867313
+song_end
+end: Red Dwarf/Better Than Life
+directory: Infinity Welcomes Careful Drivers
+mtime: 1316866385
+begin: Red Dwarf/Infinity Welcomes Careful Drivers
+song_begin: 01 Red Dwarf - 1_1 Infinity Welcomes Careful Drivers.mp3
+Time: 2304
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 1_1 Infinity Welcomes Careful Drivers
+Album: #1 - Infinity Welcomes Careful Drivers
+Track: 1
+Genre: Audiobook
+mtime: 1316867313
+song_end
+song_begin: 02 Red Dwarf - 1_2 Infinity Welcomes Careful Drivers.mp3
+Time: 2195
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 1_2 Infinity Welcomes Careful Drivers
+Album: #1 - Infinity Welcomes Careful Drivers
+Track: 2
+Genre: Audiobook
+mtime: 1316867313
+song_end
+song_begin: 03 Red Dwarf - 1_3 Infinity Welcomes Careful Drivers.mp3
+Time: 2290
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 1_3 Infinity Welcomes Careful Drivers
+Album: #1 - Infinity Welcomes Careful Drivers
+Track: 3
+Genre: Audiobook
+mtime: 1316867313
+song_end
+song_begin: 04 Red Dwarf - 1_4 Infinity Welcomes Careful Drivers.mp3
+Time: 2218
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 1_4 Infinity Welcomes Careful Drivers
+Album: #1 - Infinity Welcomes Careful Drivers
+Track: 4
+Genre: Audiobook
+mtime: 1316867313
+song_end
+end: Red Dwarf/Infinity Welcomes Careful Drivers
+directory: Last Human
+mtime: 1316866406
+begin: Red Dwarf/Last Human
+song_begin: 01 Red Dwarf - 4_1 The Last Human.mp3
+Time: 1985
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 4_1 The Last Human
+Album: #4 - The Last Human
+Track: 1
+Date: 1995
+Genre: Audiobook
+Composer: Harris Iii
+mtime: 1316867314
+song_end
+song_begin: 02 Red Dwarf - 4_2 The Last Human.mp3
+Time: 1965
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 4_2 The Last Human
+Album: #4 - The Last Human
+Track: 2
+Date: 1995
+Genre: Audiobook
+Composer: Harris Iii
+mtime: 1316867314
+song_end
+song_begin: 03 Red Dwarf - 4_3 The Last Human.mp3
+Time: 2194
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 4_3 The Last Human
+Album: #4 - The Last Human
+Track: 3
+Date: 1995
+Genre: Audiobook
+mtime: 1316867314
+song_end
+song_begin: 04 Red Dwarf - 4_4 The Last Human.mp3
+Time: 2156
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 4_4 The Last Human
+Album: #4 - The Last Human
+Track: 4
+Date: 1995
+Genre: Audiobook
+mtime: 1316867314
+song_end
+song_begin: 05 Red Dwarf - 4_5 The Last Human.mp3
+Time: 2083
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 4_5 The Last Human
+Album: #4 - The Last Human
+Track: 5
+Date: 1995
+Genre: Audiobook
+mtime: 1316867314
+song_end
+song_begin: 06 Red Dwarf - 4_6 The Last Human.mp3
+Time: 2072
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 4_6 The Last Human
+Album: #4 - The Last Human
+Track: 6
+Date: 1995
+Genre: Audiobook
+mtime: 1316867314
+song_end
+song_begin: 07 Red Dwarf - 4_7 The Last Human.mp3
+Time: 2453
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 4_7 The Last Human
+Album: #4 - The Last Human
+Track: 7
+Date: 1995
+Genre: Audiobook
+mtime: 1316867314
+song_end
+song_begin: 08 Red Dwarf - 4_8 The Last Human.mp3
+Time: 2435
+Artist: Red Dwarf
+AlbumArtist: Red Dwarf
+Title: Red Dwarf - 4_8 The Last Human
+Album: #4 - The Last Human
+Track: 8
+Date: 1995
+Genre: Audiobook
+mtime: 1316867314
+song_end
+end: Red Dwarf/Last Human
+end: Red Dwarf
+directory: Vintage Beeb
+mtime: 1330708171
+begin: Vintage Beeb
+song_begin: Dads Army.mp3
+Time: 3155
+Artist: Dad's Army
+AlbumArtist: BBC Records
+Title: Dad's Army
+Album: Vintage Beeb
+Genre: Audiobook
+mtime: 1330708351
+song_end
+song_begin: Fawlty Towers - Second Sitting.mp3
+Time: 3350
+Artist: Fawlty Towers
+AlbumArtist: BBC Records
+Title: Fawlty Towers - Second Sitting
+Album: Vintage Beeb
+Genre: Audiobook
+mtime: 1330708351
+song_end
+song_begin: Fawlty Towers.mp3
+Time: 3127
+Artist: Fawlty Towers
+AlbumArtist: John Cleese
+Title: Fawlty Towers
+Album: Vintage Beeb
+Date: 2009
+Genre: Audiobook
+mtime: 1330708351
+song_end
+song_begin: The Two Ronnies.mp3
+Time: 2666
+Artist: The Two Ronnies
+Title: The Two Ronnies
+Album: Vintage Beeb
+Genre: Audiobook
+mtime: 1330708351
+song_end
+song_begin: I'm Sorry I'll Read That Again.mp3
+Time: 37
+Artist: I'm Sorry I'll Read That Again
+AlbumArtist: Unknown Artist
+Title: I'm Sorry I'll Read That Again
+Album: Vintage Beeb
+Genre: Audiobook
+Disc: 1
+mtime: 1330708351
+song_end
+end: Vintage Beeb
