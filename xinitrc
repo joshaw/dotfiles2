@@ -27,7 +27,7 @@ while true; do
 	#xsetroot -name "$(cat /tmp/dwm_status_bar/content)"
 	 sleep 10s
 done &
-exec ~/.scripts/dwm/startdwm
+exec ~/.packages/dwm/startdwm
 #exec selectwm
 #exec goomwwm
 #exec i3
