@@ -54,6 +54,7 @@
 'syntastic_loc_list_height'	syntastic.txt	/*'syntastic_loc_list_height'*
 'syntastic_mode_map'	syntastic.txt	/*'syntastic_mode_map'*
 'syntastic_quiet_messages'	syntastic.txt	/*'syntastic_quiet_messages'*
+'syntastic_sort_aggregated_errors'	syntastic.txt	/*'syntastic_sort_aggregated_errors'*
 'syntastic_stl_format'	syntastic.txt	/*'syntastic_stl_format'*
 'syntastic_style_error_symbol'	syntastic.txt	/*'syntastic_style_error_symbol'*
 'syntastic_style_warning_symbol'	syntastic.txt	/*'syntastic_style_warning_symbol'*
@@ -757,6 +758,7 @@ neobundle#get()	neobundle.txt	/*neobundle#get()*
 neobundle#get_hooks()	neobundle.txt	/*neobundle#get_hooks()*
 neobundle#get_not_installed_bundle_names()	neobundle.txt	/*neobundle#get_not_installed_bundle_names()*
 neobundle#has_cache()	neobundle.txt	/*neobundle#has_cache()*
+neobundle#hooks	neobundle.txt	/*neobundle#hooks*
 neobundle#is_installed()	neobundle.txt	/*neobundle#is_installed()*
 neobundle#is_sourced()	neobundle.txt	/*neobundle#is_sourced()*
 neobundle#local()	neobundle.txt	/*neobundle#local()*
@@ -1334,13 +1336,9 @@ votl-testing	votl_readme.txt	/*votl-testing*
 votl-troubleshooting	votl_readme.txt	/*votl-troubleshooting*
 votl-updating	votl_readme.txt	/*votl-updating*
 votl_readme.txt	votl_readme.txt	/*votl_readme.txt*
-yA	unimpaired.txt	/*yA*
-yI	unimpaired.txt	/*yI*
 yO	unimpaired.txt	/*yO*
-yP	unimpaired.txt	/*yP*
 yS	surround.txt	/*yS*
 ySS	surround.txt	/*ySS*
 yo	unimpaired.txt	/*yo*
-yp	unimpaired.txt	/*yp*
 ys	surround.txt	/*ys*
 yss	surround.txt	/*yss*
