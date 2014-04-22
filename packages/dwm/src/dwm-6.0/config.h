@@ -1,31 +1,26 @@
-/*
-static const char normbordercolor[] = "#444444";
-static const char normbgcolor[]     = "#222222";
-static const char normfgcolor[]     = "#999999";
-static const char selbordercolor[]  = "#005577";
-static const char selbgcolor[]      = "#005577";
-static const char selfgcolor[]      = "#eeeeee";
-*/
+// Created  : Sun 07 Apr 2013 11:51 am
+// Modified : Sat 19 Apr 2014 03:34 pm
+
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const char font[]            = "-*-terminusmod-medium-r-normal-*-12-*-*-*-*-*-*-*";
+static const char font[] = "-*-terminusmod-medium-r-normal-*-12-*-*-*-*-*-*-*";
 #define NUMCOLORS 9
 static const char colors[NUMCOLORS][ColLast][9] = {
 // border foreground background
-  /*{ "#444444", "#999999", "#222222" }, // 0 = normal
-	{ "#005577", "#eeeeee", "#005577" }, // 1 = selected
-	{ "#212121", "#DC322F", "#222222" }, // 2 = red
-	{ "#212121", "#A6E22E", "#222222" }, // 3 = green
-	{ "#212121", "#FFFF55", "#222222" }, // 4 = yellow
-	{ "#212121", "#1E6FA8", "#222222" }, // 5 = blue
-	{ "#212121", "#EB2657", "#222222" }, // 6 = magenta
-	{ "#212121", "#66D9EF", "#222222" }, // 7 = cyan
-	{ "#212121", "#AAAAAA", "#222222" }, // 8 = grey*/
+	{ "#272822", "#999999", "#272822" }, // 0 = normal
+	{ "#272822", "#eeeeee", "#6f725f" }, // 1 = selected
+	{ "#272822", "#DC322F", "#272822" }, // 2 = red
+	{ "#272822", "#A6E22E", "#272822" }, // 3 = green
+	{ "#272822", "#FFFF55", "#272822" }, // 4 = yellow
+	{ "#272822", "#1E6FA8", "#272822" }, // 5 = blue
+	{ "#272822", "#EB2657", "#272822" }, // 6 = magenta
+	{ "#272822", "#66D9EF", "#272822" }, // 7 = cyan
+	{ "#272822", "#AAAAAA", "#272822" }, // 8 = grey
 
 	//Solarized - Dark
-	{ "#444444", "#999999", "#222222" }, // 0 = normal
+  /*{ "#444444", "#999999", "#222222" }, // 0 = normal
 	{ "#005577", "#eeeeee", "#268bd2" }, // 1 = selected
 	{ "#212121", "#dc322f", "#222222" }, // 2 = red
 	{ "#212121", "#859900", "#222222" }, // 3 = green
@@ -33,10 +28,10 @@ static const char colors[NUMCOLORS][ColLast][9] = {
 	{ "#212121", "#268bd2", "#222222" }, // 5 = blue
 	{ "#212121", "#d33682", "#222222" }, // 6 = magenta
 	{ "#212121", "#2aa198", "#222222" }, // 7 = cyan
-	{ "#212121", "#AAAAAA", "#222222" }, // 8 = grey
+	{ "#212121", "#AAAAAA", "#222222" }, // 8 = grey */
 };
-static const unsigned int panelpadding  = 10;    /* padding from fonts on panel */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int panelpadding  = 8;    /* padding from fonts on panel */
+static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const Bool showsystray       = False;    /* False means no systray */
 static const Bool showbar           = True;     /* False means no bar */
@@ -54,7 +49,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact      = 0.6; /* factor of master area size [0.05..0.95] */
 static const int nmaster      = 1;    /* number of clients in master area */
-static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
+static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */

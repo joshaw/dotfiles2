@@ -1,3 +1,5 @@
+" Modified: Mon 21 Apr 2014 11:21 am
+
 set nocompatible
 
 " Pathogen Setup {{{ ----------------------------------------------------------
@@ -185,11 +187,6 @@ let Tlist_Use_Right_Window     = 1
 let Tlist_Enable_Fold_Column   = 0
 let Tlist_File_Fold_Auto_Close = 1
 let Tlist_Sort_Type            = "order"
-augroup RemoveNumbers
-	autocmd!
-	autocmd FileType taglist set norelativenumber
-	autocmd FileType taglist set nonumber
-augroup END
 let g:tagbar_type_markdown = {
             \ 'ctagstype' : 'markdown',
             \ 'kinds' : [
@@ -204,11 +201,6 @@ let g:tagbar_type_markdown = {
 let g:netrw_liststyle = 1
 let g:netrw_sort_options = 'i'
 let g:netrw_list_hide= '.*\.class$'
-augroup netrw
-	autocmd!
-	autocmd VimEnter * if !argc() | Explore | endif
-	" autocmd VimEnter * if isdirectory(expand('<afile>')) | Explore | endif
-augroup END
 
 """ Supertab
 let g:SuperTabCrMapping = 0 "Needed to allow delimitMate_expand_cr
@@ -505,4 +497,5 @@ imap     <4-MiddleMouse>     <LeftMouse>
 
 " }}}
 
+set guifont=Droid\ Sans\ Mono\ 12
 " vim: fdm=marker
