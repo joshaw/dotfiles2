@@ -1,4 +1,4 @@
-" Modified: Mon 21 Apr 2014 11:21 am
+" Modified: Wed 23 Apr 2014 12:37 am
 
 set nocompatible
 
@@ -41,14 +41,14 @@ set nocompatible
 " }}}
 " NeoBundle Setup {{{ --------------------------------------------------------
 
-let iCanHazNeoBundle=1
+let NeoBundleInstalled=1
 let neobundle_readme=expand($HOME.'/.vim/bundle/neobundle.vim/README.md')
 if !filereadable(neobundle_readme)
     echo "Installing NeoBundle.."
     echo ""
     silent !mkdir -p $HOME/.vim/bundle
     silent !git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle.vim
-    let iCanHazNeoBundle=0
+    let NeoBundleInstalled=0
 endif
 
 " Call NeoBundle
@@ -497,5 +497,4 @@ imap     <4-MiddleMouse>     <LeftMouse>
 
 " }}}
 
-set guifont=Droid\ Sans\ Mono\ 12
 " vim: fdm=marker
