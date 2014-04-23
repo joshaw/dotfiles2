@@ -1,4 +1,4 @@
-" Modified: Wed 23 Apr 2014 10:29 am
+" Modified: Wed 23 Apr 2014 05:59 pm
 
 set nocompatible
 
@@ -152,7 +152,7 @@ NeoBundle 'tpope/vim-markdown', {
 NeoBundle 'vimoutliner/vimoutliner', {
 	\ 'lazy' : 1,
 	\ 'autoload' : {
-	\     'filetypes' : ['otl']
+	\     'filetypes' : ['otl', 'votl']
 	\    },
 	\ }
 " }}}
