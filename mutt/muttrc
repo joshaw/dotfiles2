@@ -79,7 +79,7 @@ alternative_order text/plain text/html *
    set move = no                                          # stop asking to move messages
    set include
    set sort = 'threads'                                   # default sort method
-   set sort_aux = 'reverse-last-date-received'            # append reverse to sort in other direction
+   set sort_aux = 'last-date-received'            # append reverse to sort in other direction
    set auto_tag = yes
    set send_charset="utf-8"
  unset mark_old                                           # read/new is good enough for me
