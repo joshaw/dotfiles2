@@ -1,0 +1,11 @@
+--exclude= # Created  : Thu 17 Apr 2014 02:33 pm
+--exclude= # Modified : Thu 17 Apr 2014 02:45 pm
+
+--langdef=markdown
+--langmap=markdown:.md
+--regex-markdown=/^#[ \t]+(.*)/\1/h,heading1/
+--regex-markdown=/^##[ \t]+(.*)/  \1/h,heading2/
+--regex-markdown=/^###[ \t]+(.*)/    \1/h,heading3/
+--regex-markdown=/^####[ \t]+(.*)/      \1/h,heading3/
+--regex-markdown=/\[([^\[]+)\]\(([^\)]+)\)/\1/l,link,Markdown Links/
+--regex-markdown=/!\[\]\(.*[\/ ](.*\.[a-z]{3})\)/\1/i,image,Markdown Image/
