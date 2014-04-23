@@ -121,7 +121,8 @@ NeoBundle 'gregsexton/gitv', {
 NeoBundle 'SirVer/ultisnips.git'
 NeoBundle 'honza/vim-snippets'
 "Super tab completion
-NeoBundle 'ervandew/supertab.git', { 'lazy' : 1, 'autoload' : { 'insert' : 1}}
+" NeoBundle 'ervandew/supertab.git', { 'lazy' : 1, 'autoload' : { 'insert' : 1}}
+NeoBundle 'ervandew/supertab.git'
 "Easy changing, adding and removing of surround objects
 NeoBundle 'tpope/vim-surround', { 'lazy' : 1, 'autoload' : { 'insert' : 1}}
 "Closing of brackets, tags, quotes etc.
