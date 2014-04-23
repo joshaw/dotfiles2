@@ -1,4 +1,4 @@
-" Modified: Wed 23 Apr 2014 12:37 am
+" Modified: Wed 23 Apr 2014 10:29 am
 
 set nocompatible
 
@@ -399,8 +399,8 @@ nnoremap Q :normal n.<CR>
 nnoremap M %
 
 " Easier movement to begining/end of line
-noremap <C-J> G
-noremap <C-K> gg
+" noremap <C-J> G
+" noremap <C-K> gg
 noremap <C-L> g_
 noremap <C-H> ^
 
