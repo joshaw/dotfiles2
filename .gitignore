@@ -2,7 +2,7 @@
 *.log
 *.pid
 log
-mpdstate
+mpd/
 mutt/cache/
 mutt/aliases_auto
 dwb/default/history
