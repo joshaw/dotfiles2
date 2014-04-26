@@ -1,4 +1,4 @@
-" Modified: Wed 23 Apr 2014 05:59 pm
+" Modified: Sat 26 Apr 2014 04:11 pm
 
 set nocompatible
 
@@ -91,7 +91,7 @@ NeoBundle 'majutsushi/tagbar', {
 NeoBundle 'Shougo/vimfiler.vim', {
 	\ 'lazy' : 1,
 	\ 'autoload' : {
-	\     'commands' : ['VimFilerExplorer']
+	\     'commands' : ['VimFiler']
 	\    },
 	\ }
 "Interactive calculator in vim
@@ -451,10 +451,10 @@ nnoremap <silent> <F8> :TagbarToggle<CR>
 "imap <F7>   :NERDTreeToggle<CR>
 "nmap <S-F7> :NERDTreeFind<CR>
 "imap <S-F7> :NERDTreeFind<CR>
-nmap <F7>   :VimFilerExplorer -toggle<CR>
-imap <F7>   :VimFilerExplorer -toggle<CR>
-nmap <S-F7> :VimFilerExplorer -toggle -find<CR>
-imap <S-F7> :VimFilerExplorer -toggle -find<CR>
+nmap <F7>   :VimFiler -split -simple -winwidth=30 -toggle -no-quit<CR>
+imap <F7>   :VimFiler -split -simple -winwidth=30 -toggle -no-quit<CR>
+nmap <S-F7> :VimFiler -split -simple -winwidth=30 -toggle -no-quit -find<CR>
+imap <S-F7> :VimFiler -split -simple -winwidth=30 -toggle -no-quit -find<CR>
 
 " Unset highlighting of a search
 nmap <leader>q :nohlsearch<CR>
