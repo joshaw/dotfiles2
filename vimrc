@@ -1,4 +1,4 @@
-" Modified: Sat 26 Apr 2014 04:11 pm
+" Modified: Sun 27 Apr 2014 03:48 pm
 
 set nocompatible
 
@@ -258,7 +258,7 @@ set autoindent " copy indent from current when starting new line
 set copyindent
 set encoding=utf-8
 set ffs=unix,dos,mac
-set formatoptions=tcroql
+set formatoptions=tcroqln
 silent! set formatoptions+=j
 set noeol
 set noexpandtab
