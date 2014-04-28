@@ -31,5 +31,5 @@ augroup Clean
 augroup END
 
 augroup Whitespace
-	autocmd FileType mail,markdown let b:noStripWhitespace=1
+	autocmd FileType *vmail*,mail,markdown let b:noStripWhitespace=1
 augroup END

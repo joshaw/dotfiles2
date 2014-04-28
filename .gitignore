@@ -2,7 +2,7 @@
 *.log
 *.pid
 log
-mpdstate
+mpd/
 mutt/cache/
 mutt/aliases_auto
 dwb/default/history
@@ -10,6 +10,7 @@ dwb/default/*.history
 dwb/default/session
 dwb/default/cookies*
 mpdscribble/lastfm.journal
+vim/bundle/
 vim/undodir/
 **/.imappass
 **/.muttpass

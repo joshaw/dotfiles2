@@ -1,16 +1,16 @@
-db_file "/home/josh/.config/mpd/mpd.db"
+db_file "/home/josh/.mpd/mpd.db"
 input {
         plugin "curl"
 #       proxy "proxy.isp.com:8080"
 #       proxy_user "user"
 #       proxy_password "password"
 }
-log_file "/home/josh/.config/mpd/log"
+log_file "/home/josh/.mpd/log"
 music_directory "/media/Music/"
-pid_file "/home/josh/.config/mpd/mpd.pid"
-playlist_directory "/home/josh/.config/mpd/playlists"
+pid_file "/home/josh/.mpd/mpd.pid"
+playlist_directory "/home/josh/.mpd/playlists"
 port "6600"
-state_file "/home/josh/.config/mpd/mpdstate"
+state_file "/home/josh/.mpd/mpdstate"
 
 audio_output {
         type            "alsa"
