@@ -1,3 +1,6 @@
+# Created  : Sun 07 Apr 2013 5:20 pm
+# Modified : Thu 01 May 2014 11:10 am
+
 # KeyBindings -------------------------------------------------------------------
 
 # Get me out off here
@@ -62,13 +65,16 @@ bind compose <return> send-message
 
 # Gmail-style keyboard shortcuts
 #macro index,pager d "<save-message>=[Gmail]/Bin<enter>" "Move message to trash"
-macro index,pager d "<clear-flag>N<Up><save-message>=[Gmail]/Bin<enter>" "Move message to trash"
-#macro index,pager d "<clear-flag>N<Up>s<Down><enter><enter>" "Move message to trash"
+macro index d "<clear-flag>N<Up><save-message>=[Gmail]/Bin<enter><enter>" "Move message to trash"
+macro pager d "<exit><clear-flag>N<Up><save-message>=[Gmail]/Bin<enter><enter><display-message>" "Move message to trash"
+
 macro index,pager e "<clear-flag>N<Up><delete-message>" "Archive message"
+
 macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
 macro index,pager ga "<change-folder>=[Gmail]/All<quote-char> Mail<enter>" "Go to all mail"
 macro index,pager gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
 macro index,pager gs "<change-folder>=[Gmail]/Sent<quote-char> Mail<enter>" "Go to my sent messages"
+macro index,pager gt "<change-folder>=[Gmail]/Bin<enter>" "Go to my sent messages"
 
 macro index,pager S "<save-message>=[Gmail]/Spam<enter>" "Move message to spam folder"
 
@@ -80,5 +86,5 @@ macro index,pager s "<save-message>?<toggle-mailboxes>" "move a message to a mai
 macro index,pager V "<view-attachments><search>html<enter><pipe-entry>stdinOpen<enter><exit>" "Open html email in std browser"
 
 macro index <esc>m "T~N<enter>;WNT~O<enter>;WO\CT~T<enter>" "mark all messages read"
-#
+
 # vim: ft=muttrc
