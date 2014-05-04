@@ -25,7 +25,7 @@ sh ~/.fehbg
 while true; do
 	~/Bin/dwmstatus
 	#xsetroot -name "$(cat /tmp/dwm_status_bar/content)"
-	 sleep 10s
+	sleep 10s
 done &
 exec ~/.packages/dwm/startdwm
 #exec selectwm
