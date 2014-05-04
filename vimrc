@@ -1,4 +1,4 @@
-" Modified: Sun 27 Apr 2014 03:48 pm
+" Modified: Sun 04 May 2014 11:58 am
 
 set nocompatible
 
@@ -55,7 +55,7 @@ endif
 if has('vim_starting')
     set rtp+=$HOME/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand($HOME.'/.vim/bundle/'))
+call neobundle#begin()
 
 " is better if NeoBundle rules NeoBundle (needed!)
 NeoBundle 'Shougo/neobundle.vim'
@@ -63,6 +63,7 @@ NeoBundle 'Shougo/neobundle.vim'
 " }}}
 " NeoBundle Bundles {{{ -------------------------------------------------------
 
+" Appearance Utilities {{{
 " Vimproc to asynchronously run commands (NeoBundle, Unite)
 NeoBundle 'Shougo/vimproc', {
 	\ 'build' : {
@@ -72,11 +73,7 @@ NeoBundle 'Shougo/vimproc', {
 	\     'unix' : 'make -f make_unix.mak',
 	\    },
 	\ }
-
-" Appearance Utilities {{{
 NeoBundle 'Shougo/unite.vim'
-"Molokai theme ported from TextMate
-NeoBundle 'tomasr/molokai'
 "Lightweight status bar with colors and info
 NeoBundleLazy 'bling/vim-airline.git'
 "Code tag view and navigation with ctags tags
@@ -120,6 +117,7 @@ NeoBundle 'gregsexton/gitv', {
 "Snippet management
 NeoBundle 'SirVer/ultisnips.git'
 NeoBundle 'honza/vim-snippets'
+NeoBundle 'Valloric/YouCompleteMe'
 "Super tab completion
 " NeoBundle 'ervandew/supertab.git', { 'lazy' : 1, 'autoload' : { 'insert' : 1}}
 NeoBundle 'ervandew/supertab.git'
@@ -139,6 +137,7 @@ NeoBundle 'tommcdo/vim-lion'
 NeoBundle 'tpope/vim-unimpaired'
 "Expand the visual selection by logical increments
 NeoBundle 'terryma/vim-expand-region'
+NeoBundle 'mhinz/vim-startify'
 
 " Filetype specific {{{
 "Override detection of .md files to markdown
@@ -155,6 +154,8 @@ NeoBundle 'vimoutliner/vimoutliner', {
 	\     'filetypes' : ['otl', 'votl']
 	\    },
 	\ }
+
+call neobundle#end()
 " }}}
 
 " }}} -------------------------------------------------------------------------
@@ -163,22 +164,27 @@ filetype off
 
 " Plugin Settings {{{
 
+" YCM settings
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
 """" UltiSnips Plugin
 set runtimepath^=~/.vim/custom
 let g:UltiSnipsSnippetsDir        = "~/.vim/custom/mysnippets"
 let g:UltiSnipsSnippetDirectories =["UltiSnips","mysnippets"]
 let g:UltiSnipsEditSplit          = "vertical"
 
-let g:UltiSnipsExpandTrigger      ="<tab>"
-let g:UltiSnipsJumpForwardTrigger ="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" let g:UltiSnipsExpandTrigger      ="<tab>"
+" let g:UltiSnipsJumpForwardTrigger ="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 """" Airline Status
 let g:airline_right_sep=''
 let g:airline_left_sep =''
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline_exclude_filetypes = ["markdown"] " see source for current list
 autocmd VimEnter * if index(['markdown'], &ft) < 0 | NeoBundleSource vim-airline
+let g:airline_theme="molokai"
 
 """" Molokai Theme
 let g:molokai_original = 1
@@ -207,6 +213,16 @@ let g:netrw_list_hide= '.*\.class$'
 let g:SuperTabCrMapping = 0 "Needed to allow delimitMate_expand_cr
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+	" make YCM compatible with UltiSnips (using supertab)
+	let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+	let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+	let g:SuperTabDefaultCompletionType = '<C-n>'
+
+	" better key bindings for UltiSnipsExpandTrigger
+	let g:UltiSnipsExpandTrigger = "<tab>"
+	let g:UltiSnipsJumpForwardTrigger = "<tab>"
+	let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 """" delimitMate
 let delimitMate_jump_expansion = 0
@@ -338,8 +354,9 @@ if exists("&wildignorecase")
 endif
 
 "UI
+colorscheme molokaiJ
+
 set wrapmargin=0 " Wrap text
-colorscheme molokai
 set showtabline=1
 set cursorline
 set cmdheight=1
@@ -497,5 +514,25 @@ map      <4-MiddleMouse>     <LeftMouse>
 imap     <4-MiddleMouse>     <LeftMouse>
 
 " }}}
+
+" UltiSnips completion function that tries to expand a snippet. If there's no
+" snippet for expanding, it checks for completion window and if it's
+" shown, selects first element. If there's no completion window it tries to
+" jump to next placeholder. If there's no placeholder it just returns TAB key
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
 " vim: fdm=marker
