@@ -1,4 +1,4 @@
-# Modified : Thu 01 May 2014 11:40 am
+# Modified : Thu 01 May 2014 05:24 pm
 
 style "user-font" {
    font_name = "Droid Sans 10"
@@ -14,7 +14,7 @@ style "default" {
 	xthickness = 2
 	ythickness = 2
 
-	GtkPaned::handle-size = 5
+	GtkPaned::handle-size = 1
 }
 
 widget_class "*" style "default"
