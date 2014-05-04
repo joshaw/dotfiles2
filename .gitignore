@@ -16,3 +16,4 @@ vim/undodir/
 **/.muttpass
 spacefm/session*
 .netrwhist
+mpv/watch_later/*
