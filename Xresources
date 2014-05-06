@@ -36,3 +36,14 @@ XTerm*scaleHeight: 1.10
 ! LightGrey + White
 *color7:  #AAAAAA
 *color15: #F8F8F2
+
+XTerm.VT100.translations: #override \
+Meta <Key> minus: smaller-vt-font()\n\
+Meta <Key> plus: larger-vt-font()
+
+XTerm.VT100.faceSize1: 6
+XTerm.VT100.faceSize2: 12
+XTerm.VT100.faceSize3: 14
+XTerm.VT100.faceSize4: 16
+XTerm.VT100.faceSize5: 20
+XTerm.VT100.faceSize6: 26
