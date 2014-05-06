@@ -1,4 +1,4 @@
-" Modified: Sun 04 May 2014 11:58 am
+" Modified: Sun 04 May 2014 01:33 pm
 
 set nocompatible
 
@@ -169,6 +169,9 @@ let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 
 """" UltiSnips Plugin
 set runtimepath^=~/.vim/custom
@@ -448,7 +451,7 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " Fast saving
 nmap <leader>w :w!<cr>
-cmap w!! w !sudo tee > /dev/null %
+cabbrev w!! w !sudo tee > /dev/null %
 augroup Save
 	autocmd!
 	au FocusLost * :silent! wa
