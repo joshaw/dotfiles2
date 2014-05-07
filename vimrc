@@ -1,4 +1,4 @@
-" Modified: Sun 04 May 2014 01:33 pm
+" Modified: Wed 07 May 2014 10:06 am
 
 set nocompatible
 
@@ -138,6 +138,7 @@ NeoBundle 'tpope/vim-unimpaired'
 "Expand the visual selection by logical increments
 NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'mhinz/vim-startify'
+NeoBundle 'jamessan/vim-gnupg'
 
 " Filetype specific {{{
 "Override detection of .md files to markdown
