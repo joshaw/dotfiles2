@@ -1,4 +1,4 @@
-" Modified: Wed 07 May 2014 10:06 am
+" Modified: Fri 09 May 2014 10:21 am
 
 set nocompatible
 
@@ -135,8 +135,6 @@ NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'tommcdo/vim-lion'
 "Multiple useful keybindings
 NeoBundle 'tpope/vim-unimpaired'
-"Expand the visual selection by logical increments
-NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'mhinz/vim-startify'
 NeoBundle 'jamessan/vim-gnupg'
 
@@ -232,13 +230,6 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let delimitMate_jump_expansion = 0
 let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 1
-
-"""" Expand-Region
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-call expand_region#custom_text_objects({
-	\ '$'  :0,
-	\ })
 
 " }}}
 " Functions {{{
