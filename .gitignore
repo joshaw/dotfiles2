@@ -5,10 +5,11 @@ log
 mpd/
 mutt/cache/
 mutt/aliases_auto
-dwb/default/history
-dwb/default/*.history
-dwb/default/session
-dwb/default/cookies*
+config/dwb/default/*history
+config/dwb/default/session
+config/dwb/default/plugindb
+config/dwb/default/custom_keys
+config/dwb/default/cookies*
 mpdscribble/lastfm.journal
 vim/bundle/
 vim/undodir/
