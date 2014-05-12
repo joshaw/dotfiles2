@@ -1,4 +1,4 @@
-" Modified: Fri 09 May 2014 10:21 am
+" Modified: Sat 10 May 2014 05:11 pm
 
 set nocompatible
 
@@ -104,14 +104,6 @@ NeoBundle 'gregsexton/VimCalc', {
 " Git Related {{{
 "Git management from withing vim
 NeoBundleLazy 'tpope/vim-fugitive'
-"Vim implementation of gitk
-NeoBundle 'gregsexton/gitv', {
-	\ 'depends' : ['tpope/vim-fugitive'],
-	\ 'autoload' : {
-	\     'commands':'Gitv'
-	\    },
-	\ }
-
 " }}}
 
 "Snippet management
@@ -119,7 +111,6 @@ NeoBundle 'SirVer/ultisnips.git'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'Valloric/YouCompleteMe'
 "Super tab completion
-" NeoBundle 'ervandew/supertab.git', { 'lazy' : 1, 'autoload' : { 'insert' : 1}}
 NeoBundle 'ervandew/supertab.git'
 "Easy changing, adding and removing of surround objects
 NeoBundle 'tpope/vim-surround', { 'lazy' : 1, 'autoload' : { 'insert' : 1}}
@@ -129,14 +120,17 @@ NeoBundle 'Raimondi/delimitMate', { 'lazy' : 1, 'autoload' : { 'insert' : 1}}
 NeoBundleLazy 'scrooloose/syntastic'
 "Easy commenting/uncommenting of code.
 NeoBundle 'tpope/vim-commentary'
-"Swap selection or movement between two locations
-NeoBundle 'tommcdo/vim-exchange'
 "Simple alignment of lines
 NeoBundle 'tommcdo/vim-lion'
+NeoBundle 'godlygeek/tabular', {
+	\ 'lazy' : 1,
+	\ 'autoload' : {
+	\     'commands' : ['Tabularize']
+	\    },
+	\ }
 "Multiple useful keybindings
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'mhinz/vim-startify'
-NeoBundle 'jamessan/vim-gnupg'
 
 " Filetype specific {{{
 "Override detection of .md files to markdown
@@ -151,6 +145,13 @@ NeoBundle 'vimoutliner/vimoutliner', {
 	\ 'lazy' : 1,
 	\ 'autoload' : {
 	\     'filetypes' : ['otl', 'votl']
+	\    },
+	\ }
+"Decrypt, edit and then re-encrypt gpg stored files.
+NeoBundle 'jamessan/vim-gnupg', {
+	\ 'lazy' : 1,
+	\ 'autoload' : {
+	\     'filetypes' : ['gpg']
 	\    },
 	\ }
 
