@@ -1,4 +1,4 @@
-" Modified: Sat 10 May 2014 05:11 pm
+" Modified: Mon 12 May 2014 07:10 pm
 
 set nocompatible
 
@@ -109,7 +109,13 @@ NeoBundleLazy 'tpope/vim-fugitive'
 "Snippet management
 NeoBundle 'SirVer/ultisnips.git'
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'Valloric/YouCompleteMe'
+if $USERNAME != 'jaw097'
+	NeoBundle 'Valloric/YouCompleteMe' , {
+		\ 'build' : {
+		\ 'unix' : './install.sh'
+		\ },
+	\ }
+endif
 "Super tab completion
 NeoBundle 'ervandew/supertab.git'
 "Easy changing, adding and removing of surround objects
@@ -231,6 +237,11 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let delimitMate_jump_expansion = 0
 let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 1
+
+""" Unite
+if executable("ag")
+	let g:unite_source_grep_command = "ag"
+endif
 
 " }}}
 " Functions {{{
