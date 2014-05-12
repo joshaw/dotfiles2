@@ -1,8 +1,8 @@
 " Created: Thu 17 Apr 2014 03:09 pm
-" Modified: Sun 04 May 2014 12:11 pm
+" Modified: Sat 10 May 2014 12:47 pm
 "
 " auto-update last update if there's a update tag
-autocmd! BufWritePre * :silent undojoin | call s:timestamp()
+autocmd! BufWritePre * :call s:timestamp()
 
 " to update timestamp when saving if its in the first few lines of a file
 function! s:timestamp()
