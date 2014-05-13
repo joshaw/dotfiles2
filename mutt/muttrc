@@ -1,5 +1,5 @@
 # Created  : Sun 07 Apr 2013 5:20 pm
-# Modified : Thu 01 May 2014 11:09 am
+# Modified : Tue 13 May 2014 09:52 am
 
 # A basic .muttrc for use with Gmail
 
@@ -65,7 +65,7 @@ alternative_order text/plain text/html *
    set editor="vim \"+set nonumber\" \"+set spell\" +/^$/ +9"
 #  set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
 #  set editor="vim \"+set nonumber\" \"+set spell\" +/^$/ +9"
-   set editor='vim + -c "set textwidth=72" -c "set spell" -c "set ft=mail" -c "?^$"'
+   set editor='vim + -c "set textwidth=72" -c "set spell" -c "set ft=mail" -c "?^$" -c "set nohlsearch"'
    set fast_reply
  unset mark_old                                           # don't mark unread messages as Old
    set menu_scroll                                        # for smooth scrolling

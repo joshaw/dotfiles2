@@ -1,4 +1,4 @@
-" Modified: Mon 12 May 2014 07:10 pm
+" Modified: Tue 13 May 2014 09:54 am
 
 set nocompatible
 
@@ -111,6 +111,7 @@ NeoBundle 'SirVer/ultisnips.git'
 NeoBundle 'honza/vim-snippets'
 if $USERNAME != 'jaw097'
 	NeoBundle 'Valloric/YouCompleteMe' , {
+		\ 'lazy' : 1,
 		\ 'build' : {
 		\ 'unix' : './install.sh'
 		\ },
@@ -155,7 +156,6 @@ NeoBundle 'vimoutliner/vimoutliner', {
 	\ }
 "Decrypt, edit and then re-encrypt gpg stored files.
 NeoBundle 'jamessan/vim-gnupg', {
-	\ 'lazy' : 1,
 	\ 'autoload' : {
 	\     'filetypes' : ['gpg']
 	\    },
