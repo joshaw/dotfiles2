@@ -1,4 +1,4 @@
-" Modified: Tue 13 May 2014 09:54 am
+" Modified: Tue 13 May 2014 05:40 pm
 
 set nocompatible
 
@@ -413,6 +413,8 @@ augroup END
 " Keybindings {{{
 nnoremap ; :
 
+map <F1> <Nop>
+
 " Make j and k move to the next row on screen rather
 nmap j gj
 nmap k gk
@@ -421,12 +423,6 @@ nnoremap N Nzz
 
 nnoremap Q :normal n.<CR>
 nnoremap M %
-
-" Easier movement to begining/end of line
-" noremap <C-J> G
-" noremap <C-K> gg
-noremap <C-L> g_
-noremap <C-H> ^
 
 " Visually select the last inserted text
 nmap gV `[v`]
@@ -451,7 +447,7 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
 
 " Replace selected text
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 " Fast saving
 nmap <leader>w :w!<cr>
