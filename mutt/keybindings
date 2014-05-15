@@ -1,5 +1,5 @@
 # Created  : Sun 07 Apr 2013 5:20 pm
-# Modified : Thu 01 May 2014 11:10 am
+# Modified : Wed 14 May 2014 11:02 am
 
 # KeyBindings -------------------------------------------------------------------
 
@@ -65,10 +65,11 @@ bind compose <return> send-message
 
 # Gmail-style keyboard shortcuts
 #macro index,pager d "<save-message>=[Gmail]/Bin<enter>" "Move message to trash"
-macro index d "<clear-flag>N<Up><save-message>=[Gmail]/Bin<enter><enter>" "Move message to trash"
-macro pager d "<exit><clear-flag>N<Up><save-message>=[Gmail]/Bin<enter><enter><display-message>" "Move message to trash"
+macro index d "<clear-flag>N<save-message>=[Gmail]/Bin<enter><enter>" "Move message to trash"
+macro pager d "<exit><clear-flag>N<save-message>=[Gmail]/Bin<enter><enter><display-message>" "Move message to trash"
 
-macro index,pager e "<clear-flag>N<Up><delete-message>" "Archive message"
+macro index e "<clear-flag>N<delete-message><next-entry>" "Archive message"
+macro pager e "<clear-flag>N<delete-message><next-entry>"
 
 macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
 macro index,pager ga "<change-folder>=[Gmail]/All<quote-char> Mail<enter>" "Go to all mail"
