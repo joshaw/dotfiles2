@@ -1,5 +1,5 @@
 # Created  : Sun 07 Apr 2013 5:20 pm
-# Modified : Wed 14 May 2014 11:34 am
+# Modified : Fri 16 May 2014 09:30 pm
 
 # A basic .muttrc for use with Gmail
 
@@ -71,7 +71,7 @@ alternative_order text/plain text/html *
    set menu_scroll                                        # for smooth scrolling
    set pager_stop                                         # don't go to next message at end of message
    set pager_index_lines="15"
-   set wrap = 72
+   set wrap = 78
    set markers=no                                         # don't put '+' at the beginning of wrapped lines
    set sleep_time = 0                                     # speed up connection and change folder
    set smart_wrap                                         # don't wrap words mid line
