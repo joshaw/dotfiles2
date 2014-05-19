@@ -1,4 +1,4 @@
-" Modified: Tue 13 May 2014 05:40 pm
+" Modified: Mon 19 May 2014 06:11 pm
 
 set nocompatible
 
@@ -109,14 +109,7 @@ NeoBundleLazy 'tpope/vim-fugitive'
 "Snippet management
 NeoBundle 'SirVer/ultisnips.git'
 NeoBundle 'honza/vim-snippets'
-if $USERNAME != 'jaw097'
-	NeoBundle 'Valloric/YouCompleteMe' , {
-		\ 'lazy' : 1,
-		\ 'build' : {
-		\ 'unix' : './install.sh'
-		\ },
-	\ }
-endif
+NeoBundle 'Shougo/neocomplete'
 "Super tab completion
 NeoBundle 'ervandew/supertab.git'
 "Easy changing, adding and removing of surround objects
@@ -170,15 +163,6 @@ filetype off
 
 " Plugin Settings {{{
 
-" YCM settings
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-
 """" UltiSnips Plugin
 set runtimepath^=~/.vim/custom
 let g:UltiSnipsSnippetsDir        = "~/.vim/custom/mysnippets"
@@ -188,6 +172,21 @@ let g:UltiSnipsEditSplit          = "vertical"
 " let g:UltiSnipsExpandTrigger      ="<tab>"
 " let g:UltiSnipsJumpForwardTrigger ="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+"""" NeoComplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <BS>: close popup and delete backword char.
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 """" Airline Status
 let g:airline_right_sep=''
@@ -433,7 +432,7 @@ nnoremap g+ :call Preserve("normal gg=G")<CR>
 " List all buffers and quickly switch to selected
 nmap <leader>b :ls<CR>:buffer<Space>
 
-map <leader>rc :e! ~/.vimrc<CR>
+map <leader>rc :e! ~/.vim/vimrc<CR>
 augroup Reload_vimrc
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC | echo "vimrc is sourced"
@@ -517,25 +516,5 @@ map      <4-MiddleMouse>     <LeftMouse>
 imap     <4-MiddleMouse>     <LeftMouse>
 
 " }}}
-
-" UltiSnips completion function that tries to expand a snippet. If there's no
-" snippet for expanding, it checks for completion window and if it's
-" shown, selects first element. If there's no completion window it tries to
-" jump to next placeholder. If there's no placeholder it just returns TAB key
-function! g:UltiSnips_Complete()
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips#JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-               return "\<TAB>"
-            endif
-        endif
-    endif
-    return ""
-endfunction
-exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 
 " vim: fdm=marker
