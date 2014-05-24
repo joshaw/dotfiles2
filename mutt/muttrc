@@ -1,5 +1,5 @@
 # Created  : Sun 07 Apr 2013 5:20 pm
-# Modified : Fri 16 May 2014 09:30 pm
+# Modified : Tue 20 May 2014 02:15 pm
 
 # A basic .muttrc for use with Gmail
 
@@ -101,8 +101,9 @@ set query_command="goobook query '%s'"
 bind editor \t complete-query ## tab completion for contacts :)
 
 # IMAP Options -------------------------------------------------------------------
+ unset imap_passive
    set imap_check_subscribed
-   set mail_check = 120
+   set mail_check = 80
    set timeout = 3
    set imap_keepalive = 300
 
