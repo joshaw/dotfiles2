@@ -47,3 +47,28 @@ XTerm.VT100.faceSize3: 14
 XTerm.VT100.faceSize4: 16
 XTerm.VT100.faceSize5: 20
 XTerm.VT100.faceSize6: 26
+
+! URXVT
+! rxvt/plain/next/xterm
+URxvt*scrollstyle:       plain
+URxvt*scrollBar:         false
+URxvt*scrollTtyOutput:   true
+URxvt*scrollTtyKeypress: true
+URxvt*cursorUnderline:   true
+URxvt*pointerBlank:      true
+URxvt*font:              xft:DejaVuSansMono:size=10
+URxvt*boldFont:          xft:DejaVuSansMono:bold:size=10
+URxvt*italicFont:        -misc-dejavu sans mono-medium-o-normal--0-0-0-0-m-0-iso8859-2
+URxvt*boldItalicFont:    -misc-dejavu sans mono-bold-o-normal--0-0-0-0-m-0-iso8859-2
+URxvt*lineSpace:         2
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard
+URxvt.url-launcher: dwb
+URxvt.matcher.button: 1
+URxvt.colorUL: #4682B4
+
+URxvt.keysym.Control-Up:    \033[1;5A
+URxvt.keysym.Control-Down:  \033[1;5B
+URxvt.keysym.Control-Left:  \033[1;5D
+URxvt.keysym.Control-Right: \033[1;5C
+URxvt.keysym.Home:          \033[1~
+URxvt.keysym.End:           \033[4~
