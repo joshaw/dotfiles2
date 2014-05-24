@@ -1,4 +1,4 @@
-" Modified: Mon 19 May 2014 06:11 pm
+" Modified: Fri 23 May 2014 10:47 pm
 
 set nocompatible
 
@@ -160,6 +160,8 @@ call neobundle#end()
 " }}} -------------------------------------------------------------------------
 
 filetype off
+let s:has_ag = executable('ag')
+let s:has_ack = executable('ack')
 
 " Plugin Settings {{{
 
@@ -212,20 +214,10 @@ let g:tagbar_type_markdown = {
     \ "sort" : 0
 \ }
 
-"""" Netrw
-let g:netrw_liststyle = 1
-let g:netrw_sort_options = 'i'
-let g:netrw_list_hide= '.*\.class$'
-
 """ Supertab
 let g:SuperTabCrMapping = 0 "Needed to allow delimitMate_expand_cr
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
-
-	" make YCM compatible with UltiSnips (using supertab)
-	let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-	let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-	let g:SuperTabDefaultCompletionType = '<C-n>'
 
 	" better key bindings for UltiSnipsExpandTrigger
 	let g:UltiSnipsExpandTrigger = "<tab>"
@@ -238,32 +230,20 @@ let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 1
 
 """ Unite
-if executable("ag")
-	let g:unite_source_grep_command = "ag"
+if s:has_ag
+	let g:unite_source_rec_async_command = 'ag -l .'
+	let g:unite_source_grep_command = 'ag'
+	let g:unite_source_grep_default_opts = '--smart-case --nogroup --nocolor --line-numbers'
+	let g:unite_source_grep_recursive_opt = ''
+elseif s:has_ack
+	let g:unite_source_rec_async_command = 'ack -f --nofilter'
+	let g:unite_source_grep_command = 'ack'
+	let g:unite_source_grep_default_opts = '--no-color --no-heading'
+	let g:unite_source_grep_recursive_opt = ''
 endif
 
 " }}}
 " Functions {{{
-
-" from an idea by michael naumann
-function! VisualSearch(direction) range
-	let l:saved_reg = @"
-	execute "normal! vgvy"
-
-	let l:pattern = escape(@", '\\/.*$^~[]')
-	let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-	if a:direction == 'b'
-		execute "normal ?" . l:pattern . "^M"
-	elseif a:direction == 'gv'
-		call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-	elseif a:direction == 'f'
-		execute "normal /" . l:pattern . "^M"
-	endif
-
-	let @/ = l:pattern
-	let @" = l:saved_reg
-endfunction
 
 " View the difference between the buffer and the file the last time it was saved
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
@@ -300,10 +280,10 @@ set list
 
 "External Prgs
 set path+=../**
-if executable('ag')
+if s:has_ag
 	set grepprg=ag\ --nogroup\ --nocolor
 else
-	set grepprg=grep\ -RinH\ $*
+	set grepprg=grep\ --dereference-recursive --ignore-case --line-number --with-filename\ $*
 endif
 set keywordprg=""
 set makeprg=make
@@ -340,24 +320,16 @@ set modeline      " Check for modelines to set files specific settings
 set hidden        " Hide buffer when abandoning rather than unloading
 set lazyredraw    " Don't redraw the screen for macros and registers
 set nostartofline " Dont' move cursor to start of line for gg,G etc.
+set matchpairs+=<:>
 
 "Editor Styling
 set switchbuf=usetab " Method to use when switching buffers
 set scrolloff=5      " Number of lines to keep above and below cursor
-set showcmd          " Show last command in last line of screen
 set synmaxcol=1024   " Syntax highlight long lines
 
 "User Controls
 set whichwrap+=<,>,h,l         " Keys that wrap onto next line
 set backspace=eol,start,indent " Allow backspacing over
-
-"Wild menu
-set wildmenu
-set wildignore=*.o,*~,*.pyc
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.class        "Ignore VCS
-if exists("&wildignorecase")
-	set wildignorecase
-endif
 
 "UI
 colorscheme molokaiJ
@@ -366,12 +338,10 @@ set wrapmargin=0 " Wrap text
 set showtabline=1
 set cursorline
 set cmdheight=1
-set ruler
 if exists("&relativenumber")
 	set relativenumber
 endif
 set number
-set laststatus=2
 set noerrorbells
 set novisualbell
 set t_vb=
@@ -390,6 +360,17 @@ endif
 set splitbelow
 set splitright
 
+"Command Prompt and status line
+set showcmd          " Show last command in last line of scree
+set ruler
+set laststatus=2
+set wildmenu
+set wildignore=*.o,*~,*.pyc
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.class        "Ignore VCS
+if exists("&wildignorecase")
+	set wildignorecase
+endif
+
 "GUI
 if has("gui_running")
 	" set guioptions+=P "allow visual selection to be accessed in system paste
@@ -400,6 +381,12 @@ if has("gui_running")
 	set guioptions-=m "remove menu bar
 	set guioptions-=r "remove left scroll
 endif
+
+" automatically open quickfix window after commands that modify the quickfix list
+autocmd QuickFixCmdPost *grep* if len(getqflist()) | copen | endif
+
+" go to last cursor position when opening files
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 
 " }}}
 " FileTypes {{{
@@ -426,6 +413,10 @@ nnoremap M %
 " Visually select the last inserted text
 nmap gV `[v`]
 
+" Delete to black hole with X
+noremap X "_d
+noremap XX "_dd
+
 " Re-indent whole file
 nnoremap g+ :call Preserve("normal gg=G")<CR>
 
@@ -437,13 +428,6 @@ augroup Reload_vimrc
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC | echo "vimrc is sourced"
 augroup END
-
-"  In visual mode when you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
-
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSearch('gv')<CR>
 
 " Replace selected text
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
