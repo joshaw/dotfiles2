@@ -161,3 +161,6 @@ cookie-expiration=0
 block-insecure-content=false
 tab-width=100
 hint-offset-left=0
+tabbar-height=0
+statusbar-height=0
+favicon-size=0
