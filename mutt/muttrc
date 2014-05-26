@@ -1,5 +1,5 @@
 # Created  : Sun 07 Apr 2013 5:20 pm
-# Modified : Tue 20 May 2014 02:15 pm
+# Modified : Sat 24 May 2014 10:58 pm
 
 # A basic .muttrc for use with Gmail
 
@@ -37,6 +37,7 @@ source $alias_file
 #send-hook '~t ^jaw097@bham\.ac\.uk$' 'my_hdr From: Josh Wainwright <jaw097@bham.ac.uk>'
 #send-hook '~t bham\.ac\.uk' 'my_hdr From: Josh Wainwright <jaw097@bham.ac.uk>'
 send-hook '~t bham.ac.uk' 'source ~/.mutt/muttrc_jaw097'
+send-hook '~t jaw42' 'my_hdr Reply-To: wainwright.ja@gmail.com'
 
 # Header Options -----------------------------------------------------------------
    set text_flowed = no
@@ -92,6 +93,7 @@ alternative_order text/plain text/html *
    set reflow_text
    set reflow_wrap=72
    set text_flowed
+   set to_chars = ' +>-<L'
 
 auto_view text/html image/*
 
