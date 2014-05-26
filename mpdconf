@@ -6,7 +6,8 @@ input {
 #       proxy_password "password"
 }
 log_file "/home/josh/.mpd/log"
-music_directory "/media/Music/"
+# music_directory "/media/Music/"
+music_directory "/media/Volume/Music/"
 pid_file "/home/josh/.mpd/mpd.pid"
 playlist_directory "/home/josh/.mpd/playlists"
 port "6600"
