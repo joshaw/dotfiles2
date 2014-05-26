@@ -1,4 +1,4 @@
-" Modified: Fri 23 May 2014 10:47 pm
+" Modified: Mon 26 May 2014 12:02 pm
 
 set nocompatible
 
@@ -363,7 +363,7 @@ set splitright
 "Command Prompt and status line
 set showcmd          " Show last command in last line of scree
 set ruler
-set laststatus=2
+set laststatus=2     " Show a statusline in all windows
 set wildmenu
 set wildignore=*.o,*~,*.pyc
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.class        "Ignore VCS
@@ -400,6 +400,10 @@ augroup END
 nnoremap ; :
 
 map <F1> <Nop>
+
+" Try using jk and kj as Escape in insert mode.
+inoremap jk <Esc>
+inoremap kj <Esc>
 
 " Make j and k move to the next row on screen rather
 nmap j gj
