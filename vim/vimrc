@@ -1,4 +1,4 @@
-" Modified: Mon 26 May 2014 12:02 pm
+" Modified: Mon 26 May 2014 04:04 pm
 
 set nocompatible
 
@@ -391,8 +391,17 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 " }}}
 " FileTypes {{{
 augroup ft
+	autocmd!
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
 	autocmd Filetype markdown NeoBundleSource vim-markdown
+augroup END
+
+augroup vimp
+	autocmd!
+	autocmd BufEnter *info.gpg set ft=gpg
+	autocmd FileType gpg set conceallevel=2
+	autocmd FileType gpg :syntax region hideup Conceal start='|' end='$'
+	autocmd FileType gpg set colorcolumn=0
 augroup END
 
 " }}}
