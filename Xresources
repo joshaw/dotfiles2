@@ -47,6 +47,8 @@ XTerm.VT100.faceSize3: 14
 XTerm.VT100.faceSize4: 16
 XTerm.VT100.faceSize5: 20
 XTerm.VT100.faceSize6: 26
+XTerm.sessionMgt: false
+XTerm*TrimSelection: true
 
 ! URXVT
 ! rxvt/plain/next/xterm
