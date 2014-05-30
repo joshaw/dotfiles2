@@ -1,10 +1,10 @@
-text/html;              links %s; nametemplate=%s.html
-text/html;              links -dump %s; nametemplate=%s.html; copiousoutput
+text/html;              w3m -I %{charset} -T text/html; copiousoutput
 
 image/*;                open -f %s
 image/jpg;				open -f %s
+image/png;				open -f %s
 
-application/pdf;        open -d -f %s
-application/pdf;        open -d -f %s
+application/pdf;        open -f %s
+application/pdf;        open -f %s
 
 application/msword;     open -f %s
