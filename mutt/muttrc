@@ -1,5 +1,5 @@
 # Created  : Sun 07 Apr 2013 5:20 pm
-# Modified : Thu 29 May 2014 09:47 am
+# Modified : Fri 30 May 2014 06:49 pm
 
 # A basic .muttrc for use with Gmail
 
@@ -59,8 +59,8 @@ alternative_order text/plain text/html *
    set sort_re         # thread based on regex
    set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
    set attribution = "On %{%a, %b %d, %Y at %r} %n wrote:"
-# set index_format="%4C %Z %{%b %d} %-15.15L (%4c) %s"
-   set index_format="[%Z] %4C %{%b %d} %-15.15L (%4c) %s"
+   #set index_format="[%Z] %4C %{%b %d} %-15.15L (%4c) %s"
+   set index_format="[%Z] %4C %(%b %d %H:%M) %-15.15F (%?l?%4l&%4c?) %s"
 
 # General Settings ---------------------------------------------------------------
    set wait_key = no
@@ -78,6 +78,7 @@ alternative_order text/plain text/html *
    set message_cachedir=~/.mutt/cache/bodies
    set certificate_file=~/.mutt/certificates
    set move = no                              # stop asking to move messages
+   set noconfirmappend                        # don't ask to append to folder
    set include
    set sort = 'threads'                       # default sort method
    set sort_aux = 'last-date-received'        # append reverse to sort in other direction
@@ -117,6 +118,6 @@ subscribe mutt-users arch-announce hnb-general nail-devel vim_use vim todotxt
 
 # Colours -----------------------------------------------------------------------
 #source ~/.mutt/colors
-source ~/.mutt/mutt-colors-solarized-master/mutt-colors-solarized-dark-16.muttrc
+source ~/.mutt/colours
 
 source ~/.mutt/keybindings

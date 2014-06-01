@@ -1,5 +1,5 @@
 # Created  : Sun 07 Apr 2013 5:20 pm
-# Modified : Wed 28 May 2014 09:12 am
+# Modified : Fri 30 May 2014 04:44 pm
 
 # KeyBindings -------------------------------------------------------------------
 
@@ -87,7 +87,8 @@ macro index,pager s "<save-message>?<toggle-mailboxes>" "move a message to a mai
 macro index,pager V "<view-attachments><search>html<enter><pipe-entry>stdinOpen<enter><exit>" "Open html email in std browser"
 
 macro index <esc>m "T~N<enter>;WNT~O<enter>;WO\CT~T<enter>" "mark all messages read"
-macro pager "{" ":unset display_filter\n" "unset display filter"
-macro pager "}" ":set display_filter='$my_display_filter'\n" "set display filter"
+
+macro pager [ ":unset display_filter; exec exit\n:exec display-message\n" "unset display filter"
+macro pager ] ":set display_filter='$my_display_filter'; exec exit\n:exec display-message\n" "set display filter"
 
 # vim: ft=muttrc

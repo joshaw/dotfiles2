@@ -1,0 +1,42 @@
+#!/bin/sed -rf
+
+/^\-\-\-\-\-Original Message\-\-\-\-\-/,$s/^/>/
+/\-\-\-\-\-\-\-\-\-\- Forwarded message \-\-\-\-\-\-\-\-\-\-/,$s/^/>/
+/^On [0-9]+ [A-Z][a-z]+ [0-9]{4}/,$s/^/>/
+
+# Some people do sigdashes improperly.
+s/^--$/-- /
+s/^====+$/-- /
+
+###
+# Destroy various mailing list and other footers.
+
+# Generic Yahoo Groups
+/^\(> \)*-\{24\} Yahoo! Groups Sponsor -\{20,21\}~-->$/,/^\(> \)*-\{69\}~->$/d
+/^Your use of Yahoo! Groups is subject to /d
+
+# generic mailman
+/^_\{47\}$/,/^http:\/\/.*\/mailman\/listinfo/d
+
+# Hotmail ads.
+/^_\{65\}$/,/^http:\/\/www\.hotmail\.com$/d
+
+# baltwash-burning
+/^Baltwash-burning@egroups\.com \\o\//,/^Your use of Yahoo! Groups is subject to /d
+# burningass
+/^Playa del Fuego Home Page/,/^Your use of Yahoo! Groups is subject to /d
+
+# ARP has a long history of working in places with silly, expansive email
+# disclaimers.
+/^This e-mail (and any attachment) is intended only for the attention of the$/,/^forwarding e-mails and their contents.$/d
+/#\{64\}/,/#\{64\}/d
+
+# GitHub automated mails footer
+/^Reply to this email directly or view it on GitHub:$/d
+
+# Mutt attachment stuff
+/\[--.*--\]/d
+
+# Google groups notice
+/^You received this message from the "vim_use" maillist.$/,$d
+/^You received this message because you are subscribed to the Google Groups/,$d
