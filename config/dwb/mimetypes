@@ -3,5 +3,5 @@ application/x-download open -f
 "image/png" open
 application/postscript open -f
 application/x-tex open
-application/octet-stream open -f
+application/octet-stream gvim
 application/pdf open -f
