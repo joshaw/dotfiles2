@@ -1,4 +1,4 @@
-" Modified: Mon 26 May 2014 04:04 pm
+" Modified: Fri 30 May 2014 07:36 pm
 
 set nocompatible
 
@@ -130,6 +130,7 @@ NeoBundle 'godlygeek/tabular', {
 	\ }
 "Multiple useful keybindings
 NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'mhinz/vim-startify'
 
 " Filetype specific {{{
