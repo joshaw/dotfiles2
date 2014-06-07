@@ -1,4 +1,4 @@
-" Modified: Fri 30 May 2014 07:36 pm
+" Modified: Mon 02 Jun 2014 10:47 am
 
 set nocompatible
 
@@ -255,6 +255,7 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 filetype plugin on
 filetype indent on
 syntax on
+set ttyfast
 
 " Code Formatting
 set autoindent " copy indent from current when starting new line
@@ -365,6 +366,7 @@ set splitright
 set showcmd          " Show last command in last line of scree
 set ruler
 set laststatus=2     " Show a statusline in all windows
+set wildmode=full
 set wildmenu
 set wildignore=*.o,*~,*.pyc
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.class        "Ignore VCS
@@ -408,6 +410,7 @@ augroup END
 " }}}
 " Keybindings {{{
 nnoremap ; :
+nnoremap , ;
 
 map <F1> <Nop>
 
