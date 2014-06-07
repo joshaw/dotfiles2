@@ -1,36 +1,23 @@
-# Created  : Sun 07 Apr 2013 5:20 pm
-# Modified : Fri 06 Jun 2014 12:15 pm
+# Created  : Wed 04 Jun 2014 05:02 pm
+# Modified : Fri 06 Jun 2014 12:17 pm
 
-# A basic .muttrc for use with Gmail
+set mbox_type   = Maildir
+set sendmail    = /usr/bin/msmtp
 
-# Gmail Account Details ------------------------------------------------------------
-   set imap_user	= "wainwright.ja@gmail.com"						# Username of the email account
-   set from 		= $imap_user									# Use same username for sent emails
+set folder      = ~/mail/gmail/
+set spoolfile   = "+INBOX"
+set mbox        = "+[Gmail]/All Mail"
+set postponed   = "+[Gmail]/Drafts"
+unset record
+
+mailboxes +INBOX
+
+   set from 		= "wainwright.ja@gmail.com"
    set realname 	= "Josh Wainwright"								# My name to add to sent emails
    set reverse_name
 alternates "jaw097@bham.ac.uk|wainwright.ja@gmail.com"
 
-##Keep password out of repo##
-source ~/.mutt/.muttpass
-
-   set smtp_url 	= "smtp://wainwright.ja@smtp.gmail.com:587/"
-   set smtp_pass 	= $imap_pass									# use same password as imap_user
-
 # Gmail Folder Setup ------------------------------------------------------------
-mailboxes "=imaps://imap.gmail.com/[Gmail]/Inbox"        # The default location to load and check for new mails
-   set hostname  = gmail.com
-   set postponed = "imaps://imap.gmail.com/[Gmail]/Drafts" # Location for unfinished drafts
- unset record                                            # Gmail automatically saves sent emails so unset this
-   set folder    = "imaps://imap.gmail.com:993"
-   set spoolfile = "+INBOX"
-   #set record    = "+[Gmail]/Sent Mail"
-
-# Aliases (For Address Book) -----------------------------------------------------
-   # set alias_file = "~/.mutt/aliases"
-   # set sort_alias = alias
-   # set reverse_alias = yes
-# source $alias_file
-   #set display_filter = "~/.mutt/t-prot -cemt -M=mutt"
    set my_display_filter = "~/.mutt/displayfilter"
    set display_filter = $my_display_filter
    set mailcap_path = ~/.mutt/mailcap
@@ -72,6 +59,8 @@ alternative_order text/plain text/html *
    set menu_scroll                            # for smooth scrolling
    set pager_stop                             # don't go to next message at end of message
    set pager_index_lines="15"
+   set pager_context = 5
+   set menu_context = 3
    set wrap = 78
    set markers=no                             # don't put '+' at the beginning of wrapped lines
    set sleep_time = 0                         # speed up connection and change folder
@@ -104,11 +93,7 @@ set query_command="goobook query '%s'"
 bind editor \t complete-query ## tab completion for contacts :)
 
 # IMAP Options -------------------------------------------------------------------
- unset imap_passive
-   set imap_check_subscribed
    set mail_check = 80
-   set timeout = 3
-   set imap_keepalive = 300
 
 ignore "Authentication-Results:"
 ignore "DomainKey-Signature:"
@@ -122,4 +107,4 @@ subscribe mutt-users arch-announce hnb-general nail-devel vim_use vim todotxt
 # Colours -----------------------------------------------------------------------
 source ~/.mutt/colours
 
-source ~/.mutt/keybindings
+source ~/.mutt/keybindings_local
