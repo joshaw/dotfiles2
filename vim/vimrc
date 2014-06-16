@@ -1,4 +1,4 @@
-" Modified: Sun 15 Jun 2014 06:44 pm
+" Modified: Mon 02 Jun 2014 10:47 am
 
 set nocompatible
 
@@ -180,16 +180,16 @@ let g:UltiSnipsEditSplit          = "vertical"
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <BS>: close popup and delete backword char.
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return neocomplete#close_popup() . "\<CR>"
+"   " For no inserting <CR> key.
+"   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+" endfunction
+" " <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" " <BS>: close popup and delete backword char.
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 """" Airline Status
 let g:airline_right_sep=''
@@ -285,7 +285,7 @@ set path+=../**
 if s:has_ag
 	set grepprg=ag\ --nogroup\ --nocolor
 else
-	set grepprg=grep\ --dereference-recursive --ignore-case --line-number --with-filename\ $*
+	set grepprg=grep\ --dereference-recursive\ --ignore-case\ --line-number\ --with-filename\ $*
 endif
 set keywordprg=""
 set makeprg=make
