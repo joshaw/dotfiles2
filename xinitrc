@@ -22,6 +22,7 @@ sh ~/.fehbg
 #xset -b
 
 #conky -c ~/.scripts/dwm/conkyrc | while read -r; do xsetroot -name "$REPLY"; done &
+~/Bin/dwmstatus now
 while true; do
 	~/Bin/dwmstatus
 	#xsetroot -name "$(cat /tmp/dwm_status_bar/content)"
