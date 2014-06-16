@@ -7,7 +7,11 @@ endfunction
 " Find a file and pass it to cmd
 function! DmenuOpen(cmd)
 
-	if $USERNAME == 'jaw097'
+	let test_git = system('git rev-parse --git-dir > /dev/null 2>&1 && echo 1 || echo 0')
+
+	if test_git
+		let command = "git ls-files"
+	elseif $USERNAME == 'jaw097'
 		let command = "git ls-files"
 	else
 		let command = "ag -g \"\""
