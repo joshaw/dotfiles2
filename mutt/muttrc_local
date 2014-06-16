@@ -1,8 +1,7 @@
 # Created  : Wed 04 Jun 2014 05:02 pm
-# Modified : Fri 06 Jun 2014 12:17 pm
+# Modified : Fri 13 Jun 2014 10:17 pm
 
 set mbox_type   = Maildir
-set sendmail    = /usr/bin/msmtp
 
 set folder      = ~/mail/gmail/
 set spoolfile   = "+INBOX"
@@ -16,6 +15,11 @@ mailboxes +INBOX
    set realname 	= "Josh Wainwright"								# My name to add to sent emails
    set reverse_name
 alternates "jaw097@bham.ac.uk|wainwright.ja@gmail.com"
+
+source ~/.mutt/.muttpass
+
+  set smtp_url = "smtp://wainwright.ja@smtp.gmail.com:587/"
+  set smtp_pass = $imap_pass
 
 # Gmail Folder Setup ------------------------------------------------------------
    set my_display_filter = "~/.mutt/displayfilter"
