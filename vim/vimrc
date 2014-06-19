@@ -1,4 +1,4 @@
-" Modified: Fri 13 Jun 2014 01:13 PM
+" Modified: Mon 02 Jun 2014 10:47 am
 
 set nocompatible
 
@@ -395,6 +395,7 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 " FileTypes {{{
 augroup ft
 	autocmd!
+	autocmd BufEnter,BufNew *.tex set ft=tex
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
 	autocmd Filetype markdown NeoBundleSource vim-markdown
 augroup END
