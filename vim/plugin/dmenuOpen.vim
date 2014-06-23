@@ -23,5 +23,5 @@ function! DmenuOpen(cmd)
 	execute a:cmd . " " . fname
 endfunction
 
-map <c-t> :call DmenuOpen("tabe")<cr>
+" map <c-t> :call DmenuOpen("tabe")<cr>
 map <c-f> :call DmenuOpen("e")<cr>
