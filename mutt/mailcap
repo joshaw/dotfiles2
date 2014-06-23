@@ -1,5 +1,5 @@
-# text/html;              w3m -I %{charset} -T text/html; copiousoutput
-text/html;              lynx -stdin -dump; copiousoutput
+text/html;              html2text -ascii -nobs -style pretty; copiousoutput
+# text/html;              lynx -stdin -dump; copiousoutput
 
 image/*;                open -f %s
 image/jpg;				open -f %s
