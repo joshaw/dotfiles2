@@ -1,12 +1,12 @@
 # Created  : Wed 04 Jun 2014 05:02 pm
-# Modified : Fri 13 Jun 2014 10:17 pm
+# Modified : Tue 17 Jun 2014 09:43 pm
 
 set mbox_type   = Maildir
 
 set folder      = ~/mail/gmail/
 set spoolfile   = "+INBOX"
 set mbox        = "+[Gmail]/All Mail"
-set postponed   = "+[Gmail]/Drafts"
+set postponed   = "+[Gmail].Drafts"
 unset record
 
 mailboxes +INBOX
