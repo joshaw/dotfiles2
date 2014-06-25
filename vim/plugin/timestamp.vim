@@ -1,11 +1,12 @@
 " Created: Thu 17 Apr 2014 03:09 pm
-" Modified: Sat 10 May 2014 12:47 pm
+" Modified: Mon 23 Jun 2014 10:46 pm
 "
 " auto-update last update if there's a update tag
-autocmd! BufWritePre * :call s:timestamp()
+" autocmd! BufWritePre * :call s:timestamp()
+cnoremap wq call Timestamp()<CR> :wq
 
 " to update timestamp when saving if its in the first few lines of a file
-function! s:timestamp()
+function! Timestamp()
 	let pat = '\v\C%(Modified\s*:\s*)\zs%(.*20\d{2}.*|TIMESTAMP)$|Created\s*:\s*\zsTIMESTAMP\ze$'
 	let rep = strftime("%a %d %b %Y %I:%M %p")
 
