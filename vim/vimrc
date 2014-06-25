@@ -1,4 +1,4 @@
-" Modified: Mon 23 Jun 2014 04:56 PM
+" Modified: Tue 24 Jun 2014 11:20 AM
 
 set nocompatible
 
@@ -289,6 +289,7 @@ else
 endif
 set keywordprg=""
 set makeprg=make
+set shell=sh
 
 "Search
 set hlsearch
