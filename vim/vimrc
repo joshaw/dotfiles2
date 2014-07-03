@@ -109,7 +109,7 @@ NeoBundleLazy 'tpope/vim-fugitive'
 "Snippet management
 NeoBundle 'SirVer/ultisnips.git'
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'Shougo/neocomplete'
+" NeoBundle 'Shougo/neocomplete'
 "Super tab completion
 NeoBundle 'ervandew/supertab.git'
 "Easy changing, adding and removing of surround objects
@@ -122,12 +122,6 @@ NeoBundleLazy 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-commentary'
 "Simple alignment of lines
 NeoBundle 'tommcdo/vim-lion'
-NeoBundle 'godlygeek/tabular', {
-	\ 'lazy' : 1,
-	\ 'autoload' : {
-	\     'commands' : ['Tabularize']
-	\    },
-	\ }
 "Multiple useful keybindings
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-vinegar'
