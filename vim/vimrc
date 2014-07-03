@@ -186,6 +186,7 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 " inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 """" Airline Status
+let g:airline#extensions#whitespace#enabled = 0
 let g:airline_right_sep=''
 let g:airline_left_sep =''
 autocmd VimEnter * if index(['markdown'], &ft) < 0 | NeoBundleSource vim-airline
@@ -277,7 +278,7 @@ set list
 "External Prgs
 set path+=../**
 if s:has_ag
-	set grepprg=ag\ --nogroup\ --nocolor
+	set grepprg=ag\ --nogroup\ --nocolor\ --smart-case
 else
 	set grepprg=grep\ --dereference-recursive\ --ignore-case\ --line-number\ --with-filename\ $*
 endif
