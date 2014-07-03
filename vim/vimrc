@@ -284,6 +284,7 @@ endif
 set keywordprg=""
 set makeprg=make
 set shell=sh
+set complete+=k
 
 "Search
 set hlsearch
@@ -390,6 +391,7 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 " FileTypes {{{
 augroup ft
 	autocmd!
+	au FileType * exe('setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim')
 	autocmd BufEnter,BufNew *.tex set ft=tex
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
 	autocmd Filetype markdown NeoBundleSource vim-markdown
