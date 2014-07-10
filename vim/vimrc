@@ -437,6 +437,9 @@ noremap XX "_dd
 " Re-indent whole file
 nnoremap g+ :call Preserve("normal gg=G")<CR>
 
+" Insert current filename
+inoremap <leader>fn <C-R>=expand("%:t")<CR>
+
 " List all buffers and quickly switch to selected
 nmap <leader>b :ls<CR>:buffer<Space>
 
