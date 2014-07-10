@@ -1,6 +1,10 @@
-! Modified: Thu 22 May 2014 09:52 am
+! Modified: Fri 04 Jul 2014 03:19 PM
 
 Xcursor*theme: Adwaita
+Vim*tooltipFont: Inconsolatanti:alias=false
+Vim*useSchemes:      all
+Vim*sgiMode:         true
+Vim*useEnhancedFSB:  true
 
 ! Xterm settings ----------------------------------
 
