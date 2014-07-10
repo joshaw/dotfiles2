@@ -170,20 +170,10 @@ let g:UltiSnipsEditSplit          = "vertical"
 " let g:UltiSnipsJumpForwardTrigger ="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-"""" NeoComplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
-"   return neocomplete#close_popup() . "\<CR>"
-"   " For no inserting <CR> key.
-"   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-" endfunction
-" " <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" " <BS>: close popup and delete backword char.
-" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"""" Syntastic
+let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
 
 """" Airline Status
 let g:airline#extensions#whitespace#enabled = 0
@@ -195,19 +185,18 @@ let g:airline_theme="molokai"
 """" Molokai Theme
 let g:molokai_original = 1
 
-"""" TagList
-let Tlist_Use_Right_Window     = 1
-let Tlist_Enable_Fold_Column   = 0
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_Sort_Type            = "order"
-let g:tagbar_type_markdown = {
-            \ 'ctagstype' : 'markdown',
-            \ 'kinds' : [
-                \ 'h:headings',
-                \ 'l:links',
-                \ 'i:images'
-            \ ],
-    \ "sort" : 0
+"""" Tagbar
+let g:tagbar_sort = 0
+let g:tagbar_type_tex = {
+	\ 'ctagstype' : 'latex',
+	\ 'kinds'     : [
+	    \ 's:sections',
+	    \ 'g:graphics',
+	    \ 'l:labels',
+	    \ 'r:refs',
+	    \ 'p:pagerefs'
+	\ ],
+	\ 'sort'    : 0,
 \ }
 
 """ Supertab
@@ -466,7 +455,7 @@ map <S-F9> :silent make<Return>
 map <F10>  :copen<Return>:cprevious<Return>
 map <F11>  :copen<Return>:cnext<Return>
 
-" Open the taglist sidebar
+" Open the Tagbar sidebar
 nnoremap <silent> <F8> :TagbarToggle<CR>
 
 "Toggle NERDTree sidebar
