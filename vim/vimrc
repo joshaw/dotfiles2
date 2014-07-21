@@ -1,4 +1,4 @@
-" Modified: Tue 24 Jun 2014 11:20 AM
+" Modified: Mon 21 Jul 2014 11:43 am
 
 set nocompatible
 
@@ -126,6 +126,7 @@ NeoBundle 'tommcdo/vim-lion'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'mhinz/vim-startify'
+NeoBundle 'nishigori/increment-activator'
 
 " Filetype specific {{{
 "Override detection of .md files to markdown
