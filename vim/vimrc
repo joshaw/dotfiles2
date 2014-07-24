@@ -125,7 +125,7 @@ NeoBundle 'tommcdo/vim-lion'
 "Multiple useful keybindings
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-vinegar'
-NeoBundle 'mhinz/vim-startify'
+"Allow incrementing true/false values etc.
 NeoBundle 'nishigori/increment-activator'
 
 " Filetype specific {{{
