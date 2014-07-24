@@ -1,5 +1,5 @@
 --exclude= # Created  : Thu 17 Apr 2014 02:33 pm
---exclude= # Modified : Thu 10 Jul 2014 03:57 PM
+--exclude= # Modified : Thu 24 Jul 2014 04:13 PM
 
 --langdef=markdown
 --langmap=markdown:.md
@@ -12,6 +12,7 @@
 
 --langdef=latex
 --langmap=latex:.tex
+--latex-kinds=+i
 --regex-latex=/^\\tableofcontents/TABLE OF CONTENTS/s,toc/
 --regex-latex=/^\\frontmatter/FRONTMATTER/s,frontmatter/
 --regex-latex=/^\\mainmatter/MAINMATTER/s,mainmatter/
@@ -32,3 +33,4 @@
 --regex-latex=/\\label[[:space:]]*\{([^}]+)\}/\1/l,label/
 --regex-latex=/\\ref[[:space:]]*\{([^}]+)\}/\1/r,ref/
 --regex-latex=/\\pageref[[:space:]]*\{([^}]+)\}/\1/p,pagere
+--regex-latex=/^\\input\{([^}]+)\}/Input: \1/
