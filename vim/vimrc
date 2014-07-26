@@ -103,7 +103,12 @@ NeoBundle 'gregsexton/VimCalc', {
 
 " Git Related {{{
 "Git management from withing vim
-NeoBundleLazy 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive', {
+	\ 'lazy' : 0,
+	\ 'autoload' : {
+	\     'commands' : ['Fugitive']
+	\    },
+	\ }
 " }}}
 
 "Snippet management
