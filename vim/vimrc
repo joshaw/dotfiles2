@@ -1,4 +1,4 @@
-" Modified: Sun 27 Jul 2014 10:48 am
+" Modified: Sun 27 Jul 2014 12:50 pm
 
 set nocompatible
 
@@ -366,44 +366,51 @@ if exists("&wildignorecase")
 	set wildignorecase
 endif
 
-"StatusLine
+"StatusLine {{{
 function! s:insertStatusLine()
-	set statusline=
-	set statusline+=%1*\ %<%F\                      "full path
-	set statusline+=%9*%h                           "help file flag
-	set statusline+=%r                              "read only flag
-	set statusline+=%w                              "preview flag
-	set statusline+=%q                              "quicklist/locationlist flag
-	set statusline+=%1*%m%*                         "modified flag
-	set statusline+=%=%*                            "left/right separator
-	set statusline+=%y                              "filetype
-	set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-	set statusline+=\ %{&ff}]\                      "file format
-	set statusline+=%8*%c,\                         "cursor column
-	set statusline+=%l%6*/%L                        "cursor line/total lines
-	set statusline+=\ %P                            "percent through file
+	setlocal statusline=
+	setlocal statusline+=%1*\ %<%F\                      "full path
+	setlocal statusline+=%9*%h                           "help file flag
+	setlocal statusline+=%r                              "read only flag
+	setlocal statusline+=%w                              "preview flag
+	setlocal statusline+=%q                              "quicklist/locationlist flag
+	setlocal statusline+=%1*%m%*                         "modified flag
+	setlocal statusline+=%=%*                            "left/right separator
+	setlocal statusline+=%y                              "filetype
+	setlocal statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+	setlocal statusline+=\ %{&ff}]\                      "file format
+	setlocal statusline+=%8*%c,\                         "cursor column
+	setlocal statusline+=%l%6*/%L                        "cursor line/total lines
+	setlocal statusline+=\ %P                            "percent through file
 endfunction
 function! s:normalStatusLine()
-	set statusline=
-	set statusline+=%3*\ %<%F\                      "full path
-	set statusline+=%9*%h                           "help file flag
-	set statusline+=%r                              "read only flag
-	set statusline+=%w                              "preview flag
-	set statusline+=%q                              "quicklist/locationlist flag
-	set statusline+=%1*%m%*                         "modified flag
-	set statusline+=%=%*                            "left/right separator
-	set statusline+=%y                              "filetype
-	set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-	set statusline+=\ %{&ff}]\                      "file format
-	set statusline+=%8*%c,\                         "cursor column
-	set statusline+=%l%6*/%L                        "cursor line/total lines
-	set statusline+=\ %P                            "percent through file
+	setlocal statusline=
+	setlocal statusline+=%3*\ %<%F\                      "full path
+	setlocal statusline+=%9*%h                           "help file flag
+	setlocal statusline+=%r                              "read only flag
+	setlocal statusline+=%w                              "preview flag
+	setlocal statusline+=%q                              "quicklist/locationlist flag
+	setlocal statusline+=%1*%m%*                         "modified flag
+	setlocal statusline+=%=%*                            "left/right separator
+	setlocal statusline+=%y                              "filetype
+	setlocal statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+	setlocal statusline+=\ %{&ff}]\                      "file format
+	setlocal statusline+=%8*%c,\                         "cursor column
+	setlocal statusline+=%l%6*/%L                        "cursor line/total lines
+	setlocal statusline+=\ %P                            "percent through file
+endfunction
+function! s:inactiveStatusLine()
+	setlocal statusline=\ %<%F\ %h%r%w%q%1*%m%*%=%y[%{strlen(&fenc)?&fenc:'none'},\ %{&ff}]\ %c,\ %l/%L\ %P
 endfunction
 
 call s:normalStatusLine()
-au InsertEnter * call s:insertStatusLine()
-au InsertLeave * call s:normalStatusLine()
-
+augroup statuslines
+	au!
+	au InsertEnter * call s:insertStatusLine()
+	au BufEnter,InsertLeave * call s:normalStatusLine()
+	au BufLeave * call s:inactiveStatusLine()
+augroup END
+"}}}
 "GUI
 if has("gui_running")
 	" set guioptions+=P "allow visual selection to be accessed in system paste
