@@ -1,4 +1,4 @@
-" Modified: Mon 21 Jul 2014 11:43 am
+" Modified: Sun 27 Jul 2014 10:48 am
 
 set nocompatible
 
@@ -75,7 +75,6 @@ NeoBundle 'Shougo/vimproc', {
 	\ }
 NeoBundle 'Shougo/unite.vim'
 "Lightweight status bar with colors and info
-NeoBundleLazy 'bling/vim-airline.git'
 "Code tag view and navigation with ctags tags
 NeoBundle 'majutsushi/tagbar', {
 	\ 'lazy' : 1,
@@ -114,7 +113,6 @@ NeoBundle 'tpope/vim-fugitive', {
 "Snippet management
 NeoBundle 'SirVer/ultisnips.git'
 NeoBundle 'honza/vim-snippets'
-" NeoBundle 'Shougo/neocomplete'
 "Super tab completion
 NeoBundle 'ervandew/supertab.git'
 "Easy changing, adding and removing of surround objects
@@ -182,11 +180,13 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_always_populate_loc_list = 1
 
 """" Airline Status
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline_right_sep=''
-let g:airline_left_sep =''
-autocmd VimEnter * if index(['markdown'], &ft) < 0 | NeoBundleSource vim-airline
-let g:airline_theme="molokai"
+" let g:airline#extensions#whitespace#enabled = 0
+" let g:airline_right_sep=''
+" let g:airline_left_sep =''
+" autocmd VimEnter * if index(['markdown'], &ft) < 0 | NeoBundleSource vim-airline
+" let g:airline_theme="molokai"
+
+"""" SmartusLine
 
 """" Molokai Theme
 let g:molokai_original = 1
@@ -265,11 +265,6 @@ set tabstop=4
 set wrap
 set textwidth=79
 
-"Code view
-set listchars=tab:·\ ,trail:▸,nbsp:#
-"set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
-
 "External Prgs
 set path+=../**
 if s:has_ag
@@ -315,6 +310,9 @@ set hidden        " Hide buffer when abandoning rather than unloading
 set lazyredraw    " Don't redraw the screen for macros and registers
 set nostartofline " Dont' move cursor to start of line for gg,G etc.
 set matchpairs+=<:>
+set listchars=tab:·\ ,trail:▸,nbsp:#
+"set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set list
 
 "Editor Styling
 set switchbuf=usetab " Method to use when switching buffers
@@ -326,7 +324,9 @@ set whichwrap+=<,>,h,l         " Keys that wrap onto next line
 set backspace=eol,start,indent " Allow backspacing over
 
 "UI
-colorscheme molokaiJ
+" colorscheme molokaiJ
+colorscheme base16-monokai
+set background=dark
 
 set wrapmargin=0 " Wrap text
 set showtabline=1
@@ -365,6 +365,44 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.class        "Ignore VCS
 if exists("&wildignorecase")
 	set wildignorecase
 endif
+
+"StatusLine
+function! s:insertStatusLine()
+	set statusline=
+	set statusline+=%1*\ %<%F\                      "full path
+	set statusline+=%9*%h                           "help file flag
+	set statusline+=%r                              "read only flag
+	set statusline+=%w                              "preview flag
+	set statusline+=%q                              "quicklist/locationlist flag
+	set statusline+=%1*%m%*                         "modified flag
+	set statusline+=%=%*                            "left/right separator
+	set statusline+=%y                              "filetype
+	set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+	set statusline+=\ %{&ff}]\                      "file format
+	set statusline+=%8*%c,\                         "cursor column
+	set statusline+=%l%6*/%L                        "cursor line/total lines
+	set statusline+=\ %P                            "percent through file
+endfunction
+function! s:normalStatusLine()
+	set statusline=
+	set statusline+=%3*\ %<%F\                      "full path
+	set statusline+=%9*%h                           "help file flag
+	set statusline+=%r                              "read only flag
+	set statusline+=%w                              "preview flag
+	set statusline+=%q                              "quicklist/locationlist flag
+	set statusline+=%1*%m%*                         "modified flag
+	set statusline+=%=%*                            "left/right separator
+	set statusline+=%y                              "filetype
+	set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+	set statusline+=\ %{&ff}]\                      "file format
+	set statusline+=%8*%c,\                         "cursor column
+	set statusline+=%l%6*/%L                        "cursor line/total lines
+	set statusline+=\ %P                            "percent through file
+endfunction
+
+call s:normalStatusLine()
+au InsertEnter * call s:insertStatusLine()
+au InsertLeave * call s:normalStatusLine()
 
 "GUI
 if has("gui_running")
@@ -442,6 +480,8 @@ map <leader>rc :e! ~/.vim/vimrc<CR>
 augroup Reload_vimrc
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC | echo "vimrc is sourced"
+	autocmd BufWritePost '$HOME/.vim/vimrc' source $MYVIMRC | echo "vimrc is sourced"
+	autocmd BufWritePost '~/.vim/vimrc' source $MYVIMRC | echo "vimrc is sourced"
 augroup END
 
 " Replace selected text
