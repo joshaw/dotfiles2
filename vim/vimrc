@@ -429,7 +429,6 @@ augroup ft
 	autocmd BufEnter,BufNew *.tex set ft=tex
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
 	autocmd Filetype markdown NeoBundleSource vim-markdown
-	autocmd Filetype java set makeprg=ant\ compile noautochdir
 augroup END
 
 augroup vimp

@@ -9,4 +9,6 @@ set errorformat=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
 let java_highlight_functions="style"
 let java_highlight_java_lang_ids=1
 
+set noautochdir
+
 source $HOME/.vim/custom/jcomment.vim
