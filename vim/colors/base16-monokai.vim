@@ -283,13 +283,13 @@ call <sid>hi("NERDTreeExecFile",  s:gui05, "", s:cterm05, "", "")
 " User Defined Colors
 call <sid>hi("User1", s:gui01, s:gui0B, "", s:cterm0B, "")
 call <sid>hi("User2", s:gui01, s:gui0C, "", s:cterm03, "")
-call <sid>hi("User3", s:gui01, s:gui04, "", s:cterm04, "") " ##
+call <sid>hi("User3", s:gui01, s:gui04, "", s:cterm04, "")
 call <sid>hi("User4", s:gui01, s:gui0D, "", s:cterm0D, "")
 call <sid>hi("User5", s:gui01, s:gui0E, "", s:cterm0E, "")
 call <sid>hi("User6", s:gui0F, s:gui02, "", s:cterm0F, "")
-call <sid>hi("User7", s:gui08, s:gui02, "", s:cterm08, "bold") " ##
+call <sid>hi("User7", s:gui08, s:gui02, "", s:cterm08, "bold")
 call <sid>hi("User8", s:gui09, s:gui02, "", s:cterm09, "")
-call <sid>hi("User9", s:gui01, s:gui0A, "", s:cterm0A, "") " ##
+call <sid>hi("User9", s:gui01, s:gui0A, "", s:cterm0A, "")
 
 " Remove functions
 delf <sid>hi

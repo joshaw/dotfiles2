@@ -130,6 +130,7 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-vinegar'
 "Allow incrementing true/false values etc.
 NeoBundle 'nishigori/increment-activator'
+NeoBundle 'guns/xterm-color-table.vim'
 
 " Filetype specific {{{
 "Override detection of .md files to markdown
@@ -324,8 +325,8 @@ set whichwrap+=<,>,h,l         " Keys that wrap onto next line
 set backspace=eol,start,indent " Allow backspacing over
 
 "UI
-" colorscheme molokaiJ
-colorscheme base16-monokai
+colorscheme molokaiJ
+" colorscheme base16-monokai
 set background=dark
 
 set wrapmargin=0 " Wrap text
@@ -369,13 +370,13 @@ endif
 "StatusLine {{{
 function! s:insertStatusLine()
 	setlocal statusline=
-	setlocal statusline+=%1*\ %<%F\                      "full path
+	setlocal statusline+=%1*\ %<%f\                      "full path
 	setlocal statusline+=%9*%h                           "help file flag
 	setlocal statusline+=%r                              "read only flag
 	setlocal statusline+=%w                              "preview flag
 	setlocal statusline+=%q                              "quicklist/locationlist flag
 	setlocal statusline+=%1*%m%*                         "modified flag
-	setlocal statusline+=%=%*                            "left/right separator
+	setlocal statusline+=%=%3*                            "left/right separator
 	setlocal statusline+=%y                              "filetype
 	setlocal statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 	setlocal statusline+=\ %{&ff}]\                      "file format
@@ -385,13 +386,14 @@ function! s:insertStatusLine()
 endfunction
 function! s:normalStatusLine()
 	setlocal statusline=
+	setlocal statusline+=%4*%n
 	setlocal statusline+=%3*\ %<%F\                      "full path
 	setlocal statusline+=%9*%h                           "help file flag
 	setlocal statusline+=%r                              "read only flag
 	setlocal statusline+=%w                              "preview flag
 	setlocal statusline+=%q                              "quicklist/locationlist flag
 	setlocal statusline+=%1*%m%*                         "modified flag
-	setlocal statusline+=%=%*                            "left/right separator
+	setlocal statusline+=%=%3*                            "left/right separator
 	setlocal statusline+=%y                              "filetype
 	setlocal statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 	setlocal statusline+=\ %{&ff}]\                      "file format
@@ -400,7 +402,7 @@ function! s:normalStatusLine()
 	setlocal statusline+=\ %P                            "percent through file
 endfunction
 function! s:inactiveStatusLine()
-	setlocal statusline=\ %<%F\ %h%r%w%q%1*%m%*%=%y[%{strlen(&fenc)?&fenc:'none'},\ %{&ff}]\ %c,\ %l/%L\ %P
+	setlocal statusline=%3*\ %<%F\ %h%r%w%q%1*%m%3*%=%y[%{strlen(&fenc)?&fenc:'none'},\ %{&ff}]\ %c,\ %l/%L\ %P
 endfunction
 
 call s:normalStatusLine()
