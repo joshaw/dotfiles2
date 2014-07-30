@@ -1,4 +1,4 @@
-" Modified: Wed 30 Jul 2014 09:30 AM
+" Modified: Wed 30 Jul 2014 03:26 PM
 
 set nocompatible
 
@@ -441,7 +441,8 @@ nmap k gk
 nnoremap n nzz
 nnoremap N Nzz
 
-nnoremap D d$
+nnoremap D dg_
+nnoremap Y yg_
 
 " Jump to start and end of line in insert mode
 inoremap <C-a> <esc>I
