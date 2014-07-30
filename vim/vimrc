@@ -1,4 +1,4 @@
-" Modified: Sun 27 Jul 2014 12:50 pm
+" Modified: Wed 30 Jul 2014 09:12 am
 
 set nocompatible
 
@@ -248,7 +248,7 @@ filetype indent on
 syntax on
 set ttyfast
 
-" Code Formatting
+" Code Formatting {{{
 set autoindent " copy indent from current when starting new line
 set copyindent
 set encoding=utf-8
@@ -265,8 +265,8 @@ set softtabstop=0
 set tabstop=4
 set wrap
 set textwidth=79
-
-"External Prgs
+" }}}
+"External Prgs {{{
 set path+=../**
 if s:has_ag
 	set grepprg=ag\ --nogroup\ --nocolor\ --smart-case
@@ -276,9 +276,9 @@ endif
 set keywordprg=""
 set makeprg=make
 set shell=sh
-set complete+=k
-
-"Search
+set complete=.,w,u,t,i,k
+"}}}
+"Search {{{
 set hlsearch
 set ignorecase
 set incsearch
@@ -286,8 +286,8 @@ set magic
 set matchtime=8
 set showmatch
 set smartcase
-
-"History, Backup and Undo Files
+"}}}
+"History, Backup and Undo Files {{{
 set history=700
 set backup
 set backupdir=/var/tmp,/tmp
@@ -301,8 +301,8 @@ if exists("&undofile")
 		autocmd BufWritePre /tmp/* setlocal noundofile
 	augroup END
 endif
-
-"Editor Setup
+"}}}
+"Editor Setup {{{
 set autoread      " Auto read when a file changes from the outside
 set autowrite     " Auto write before make etc.
 set linebreak     " Don't break across words
@@ -311,20 +311,20 @@ set hidden        " Hide buffer when abandoning rather than unloading
 set lazyredraw    " Don't redraw the screen for macros and registers
 set nostartofline " Dont' move cursor to start of line for gg,G etc.
 set matchpairs+=<:>
-set listchars=tab:·\ ,trail:▸,nbsp:#
+set listchars=tab:·\ ,trail:▸,nbsp:#,extends:❯,precedes:❮
 "set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
-
-"Editor Styling
+set fillchars=vert:│
 set switchbuf=usetab " Method to use when switching buffers
 set scrolloff=5      " Number of lines to keep above and below cursor
-set synmaxcol=1024   " Syntax highlight long lines
-
-"User Controls
+set synmaxcol=800   " Syntax highlight long lines
+set virtualedit+=block
+"}}}
+"User Controls {{{
 set whichwrap+=<,>,h,l         " Keys that wrap onto next line
 set backspace=eol,start,indent " Allow backspacing over
-
-"UI
+"}}}
+"UI {{{
 colorscheme molokaiJ
 " colorscheme base16-monokai
 set background=dark
@@ -354,8 +354,8 @@ else
 endif
 set splitbelow
 set splitright
-
-"Command Prompt and status line
+"}}}
+"Command Prompt and status line {{{
 set showcmd          " Show last command in last line of scree
 set ruler
 set laststatus=2     " Show a statusline in all windows
@@ -413,7 +413,8 @@ augroup statuslines
 	au BufLeave * call s:inactiveStatusLine()
 augroup END
 "}}}
-"GUI
+"}}}
+"GUI {{{
 if has("gui_running")
 	" set guioptions+=P "allow visual selection to be accessed in system paste
 	set guioptions+=c "use console dialogues
@@ -429,7 +430,7 @@ autocmd QuickFixCmdPost *grep* if len(getqflist()) | copen | endif
 
 " go to last cursor position when opening files
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
-
+"}}}
 " }}}
 " FileTypes {{{
 augroup ft
@@ -462,14 +463,20 @@ inoremap kj <Esc>
 " Make j and k move to the next row on screen rather
 nmap j gj
 nmap k gk
+
+" Center search result
 nnoremap n nzz
 nnoremap N Nzz
 
-nnoremap Q :normal n.<CR>
-nnoremap M %
+nnoremap D d$
 
-" Visually select the last inserted text
-nmap gV `[v`]
+" Jump to start and end of line in insert mode
+inoremap <C-a> <esc>I
+inoremap <C-e> <esc>A
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
+
+nnoremap Q :normal n.<CR>
 
 " Delete to black hole with X
 noremap X "_d
@@ -495,12 +502,20 @@ augroup END
 " Replace selected text
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
+" Split lines, oposite of join, J
+nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+
+" Use sane regexes.
+nnoremap / /\v
+vnoremap / /\v
+
 " Fast saving
 nmap <leader>w :w!<cr>
 cabbrev w!! w !sudo tee > /dev/null %
 augroup Save
 	autocmd!
-	au FocusLost * :silent! wa
+	au FocusLost * :silent! wall
+	au VimResized * :wincmd =
 augroup END
 
 " Save the current file and run the make program
@@ -513,10 +528,6 @@ map <F11>  :copen<Return>:cnext<Return>
 nnoremap <silent> <F8> :TagbarToggle<CR>
 
 "Toggle NERDTree sidebar
-"nmap <F7>   :NERDTreeToggle<CR>
-"imap <F7>   :NERDTreeToggle<CR>
-"nmap <S-F7> :NERDTreeFind<CR>
-"imap <S-F7> :NERDTreeFind<CR>
 nmap <F7>   :VimFiler -split -simple -winwidth=30 -toggle -no-quit<CR>
 imap <F7>   :VimFiler -split -simple -winwidth=30 -toggle -no-quit<CR>
 nmap <S-F7> :VimFiler -split -simple -winwidth=30 -toggle -no-quit -find<CR>
@@ -529,7 +540,12 @@ nmap <leader>q :nohlsearch<CR>
 nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
 
-nmap <leader>v "+gP
+" Ranger
+nnoremap <leader>r :silent !ranger %:h<cr>:redraw!<cr>
+nnoremap <leader>R :silent !ranger<cr>:redraw!<cr>
+
+" System clipboard copy and paste
+nmap <leader>v "+gh
 imap <leader>v <ESC>"+gpa
 nmap <leader>ay ggVG"+y
 
