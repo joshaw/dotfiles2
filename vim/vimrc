@@ -1,4 +1,4 @@
-" Modified: Wed 30 Jul 2014 03:26 PM
+" Modified: Thu 31 Jul 2014 09:54 pm
 
 set nocompatible
 
@@ -64,17 +64,6 @@ NeoBundle 'Shougo/neobundle.vim'
 " NeoBundle Bundles {{{
 " Appearance Utilities {{{
 
-" Vimproc to asynchronously run commands (NeoBundle, Unite)
-NeoBundle 'Shougo/vimproc', {
-	\ 'build' : {
-	\     'windows' : 'make -f make_mingw32.mak',
-	\     'cygwin' : 'make -f make_cygwin.mak',
-	\     'mac' : 'make -f make_mac.mak',
-	\     'unix' : 'make -f make_unix.mak',
-	\    },
-	\ }
-NeoBundle 'Shougo/unite.vim'
-"Lightweight status bar with colors and info
 "Code tag view and navigation with ctags tags
 NeoBundle 'majutsushi/tagbar', {
 	\ 'lazy' : 1,
@@ -90,13 +79,6 @@ NeoBundle 'Shougo/vimfiler.vim', {
 	\     'commands' : ['VimFiler']
 	\    },
 	\ }
-"Interactive calculator in vim
-NeoBundle 'gregsexton/VimCalc', {
-	\ 'lazy' : 1,
-	\ 'autoload' : {
-	\     'commands' : ['Calc']
-	\    },
-	\ }
 
 " }}}
 " Git Related {{{
@@ -108,6 +90,7 @@ NeoBundle 'tpope/vim-fugitive', {
 	\     'commands' : ['Fugitive']
 	\    },
 	\ }
+NeoBundle 'airblade/vim-gitgutter'
 " }}}
 
 "Snippet management
