@@ -1,5 +1,5 @@
 " Created:  Wed 30 Jul 2014 03:31 PM
-" Modified: Wed 30 Jul 2014 03:31 PM
+" Modified: Thu 31 Jul 2014 11:24 AM
 
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
@@ -11,7 +11,7 @@ function! AutoHighlightToggle()
     au! auto_highlight
     augroup! auto_highlight
     setl updatetime=4000
-    match IncSearch //
+    " match IncSearch //
     echo 'Highlight current word: off'
     return 0
   else

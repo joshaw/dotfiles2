@@ -1,4 +1,4 @@
-" Modified: Wed 30 Jul 2014 03:26 PM
+" Modified: Thu 31 Jul 2014 01:39 PM
 
 set nocompatible
 
@@ -108,6 +108,7 @@ NeoBundle 'tpope/vim-fugitive', {
 	\     'commands' : ['Fugitive']
 	\    },
 	\ }
+NeoBundle 'gregsexton/gitv'
 " }}}
 
 "Snippet management
@@ -176,7 +177,7 @@ let g:UltiSnipsEditSplit          = "vertical"
 
 """" Syntastic
 let g:syntastic_check_on_wq = 0
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_always_populate_loc_list = 1
 
 """" Airline Status
@@ -408,7 +409,7 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 augroup ft
 	autocmd!
 	au FileType * exe('setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim')
-	autocmd BufEnter,BufNew *.tex set ft=tex
+	autocmd BufEnter,BufNew *.tex source ~/.vim/ftplugin/tex.vim
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
 	autocmd Filetype markdown NeoBundleSource vim-markdown
 augroup END
