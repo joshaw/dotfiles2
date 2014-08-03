@@ -1,4 +1,4 @@
-" Modified: Fri 01 Aug 2014 10:03 AM
+" Modified: Sun 03 Aug 2014 10:51 pm
 
 set nocompatible
 
@@ -90,8 +90,12 @@ NeoBundle 'tpope/vim-fugitive', {
 	\     'commands' : ['Fugitive']
 	\    },
 	\ }
-NeoBundle 'gregsexton/gitv'
-NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'gregsexton/gitv', {
+	\ 'lazy' : 1,
+	\ 'autoload' : {
+	\     'commands' : ['Gitv']
+	\    },
+	\ }
 " }}}
 
 "Snippet management
@@ -115,6 +119,7 @@ NeoBundle 'tpope/vim-vinegar'
 "Allow incrementing true/false values etc.
 NeoBundle 'nishigori/increment-activator'
 NeoBundle 'guns/xterm-color-table.vim'
+NeoBundle 'clever-f.vim'
 
 " Filetype specific {{{
 "Override detection of .md files to markdown
@@ -204,18 +209,10 @@ let delimitMate_jump_expansion = 0
 let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 1
 
-""" Unite
-if s:has_ag
-	let g:unite_source_rec_async_command = 'ag -l .'
-	let g:unite_source_grep_command = 'ag'
-	let g:unite_source_grep_default_opts = '--smart-case --nogroup --nocolor --line-numbers'
-	let g:unite_source_grep_recursive_opt = ''
-elseif s:has_ack
-	let g:unite_source_rec_async_command = 'ack -f --nofilter'
-	let g:unite_source_grep_command = 'ack'
-	let g:unite_source_grep_default_opts = '--no-color --no-heading'
-	let g:unite_source_grep_recursive_opt = ''
-endif
+""" Clever F
+let g:clever_f_smart_case = 1
+let g:clever_f_mark_cursor = 1
+let g:clever_f_mark_cursor_color = 'Error'
 
 " }}}
 " Functions {{{
@@ -504,7 +501,7 @@ nmap <S-F7> :VimFiler -split -simple -winwidth=30 -toggle -no-quit -find<CR>
 imap <S-F7> :VimFiler -split -simple -winwidth=30 -toggle -no-quit -find<CR>
 
 " Unset highlighting of a search
-nmap <leader>q :nohlsearch<CR>
+nmap <silent> <leader>q :nohlsearch<CR><Plug>(clever-f-reset)
 
 " Switch to Next and Previous buffer
 nmap <C-n> :bnext<CR>
