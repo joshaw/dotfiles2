@@ -1,4 +1,4 @@
-" Modified: Sun 03 Aug 2014 10:51 pm
+" Modified: Mon 04 Aug 2014 03:31 PM
 
 set nocompatible
 
@@ -265,7 +265,12 @@ set foldtext=MyFoldText()
 " }}}
 " External Prgs {{{
 set path+=../**
-if s:has_ag
+let s:git=system("git rev-parse --git-dir > /dev/null")
+if !v:shell_error
+	set grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color
+elseif s:has_ack
+	set grepprg=ack\ -H\ --nogroup\ --nocolor\ --smart-case
+elseif s:has_ag
 	set grepprg=ag\ --nogroup\ --nocolor\ --smart-case
 else
 	set grepprg=grep\ --dereference-recursive\ --ignore-case\ --line-number\ --with-filename\ $*
@@ -389,7 +394,7 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 augroup ft
 	autocmd!
 	au FileType * exe('setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim')
-	autocmd BufEnter,BufNew *.tex source ~/.vim/ftplugin/tex.vim
+	autocmd BufEnter,BufNew *.tex source ~/.vim/ftplugin/tex.vim | let g:tex_isk=':,_'
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
 	autocmd Filetype markdown NeoBundleSource vim-markdown
 augroup END
@@ -437,6 +442,8 @@ vnoremap <silent> # :<C-U>
 nnoremap D dg_
 nnoremap Y yg_
 
+map <C-g> :grep<space>
+
 " Jump to start and end of line in insert mode
 inoremap <C-a> <esc>I
 inoremap <C-e> <esc>A
@@ -471,10 +478,6 @@ vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 " Split lines, oposite of join, J
 nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-
-" Use sane regexes.
-nnoremap / /\v
-vnoremap / /\v
 
 " Fast saving
 nmap <leader>w :w!<cr>
