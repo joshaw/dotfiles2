@@ -1,4 +1,4 @@
-" Modified: Mon 04 Aug 2014 03:31 PM
+" Modified: Wed 06 Aug 2014 10:23 am
 
 set nocompatible
 
@@ -174,8 +174,6 @@ let g:syntastic_always_populate_loc_list = 1
 " let g:airline_left_sep =''
 " autocmd VimEnter * if index(['markdown'], &ft) < 0 | NeoBundleSource vim-airline
 " let g:airline_theme="molokai"
-
-"""" SmartusLine
 
 """" Molokai Theme
 let g:molokai_original = 1
@@ -394,7 +392,7 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 augroup ft
 	autocmd!
 	au FileType * exe('setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim')
-	autocmd BufEnter,BufNew *.tex source ~/.vim/ftplugin/tex.vim | let g:tex_isk=':,_'
+	autocmd BufEnter,BufNew *.tex source ~/.vim/ftplugin/tex.vim
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
 	autocmd Filetype markdown NeoBundleSource vim-markdown
 augroup END
