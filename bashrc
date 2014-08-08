@@ -9,4 +9,3 @@ alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
 export LANG=en_GB.UTF-8
-source ~/.fzf.bash
