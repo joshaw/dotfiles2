@@ -1,4 +1,4 @@
-" Modified: Fri 08 Aug 2014 09:05 am
+" Modified: Fri 08 Aug 2014 09:54 am
 
 set nocompatible
 
@@ -42,6 +42,7 @@ Plug 'tpope/vim-vinegar'
 "Allow incrementing true/false values etc.
 Plug 'nishigori/increment-activator'
 Plug 'clever-f.vim'
+Plug 'itchyny/calendar.vim'
 
 "}}}
 " Filetype specific {{{
@@ -61,6 +62,9 @@ call plug#end()
 filetype off
 let s:has_ag = executable('ag')
 let s:has_ack = executable('ack')
+
+"""" Calendar
+let g:calendar_google_calendar = 1
 
 """" UltiSnips Plugin
 set runtimepath^=~/.vim/custom
