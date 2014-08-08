@@ -5,6 +5,5 @@ image/jpg;				open -f %s
 image/png;				open -f %s
 
 application/pdf;        open -f %s
-application/pdf;        open -f %s
 
 application/msword;     open -f %s
