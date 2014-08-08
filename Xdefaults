@@ -1,4 +1,4 @@
-! Modified: Fri 04 Jul 2014 03:19 PM
+! Modified: Fri 08 Aug 2014 01:28 PM
 
 Xcursor*theme: Adwaita
 Vim*tooltipFont: Inconsolatanti:alias=false
@@ -12,6 +12,7 @@ XTerm*locale: true
 XTerm*faceName: Inconsolatanti:alias=false
 XTerm*faceSize: 10
 xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*on3Clicks: regex ([[:alpha:]]+://)?([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
 XTerm*selectToClipboard: true
 XTerm*ScrollBar: false
 XTerm*ScrollKey: true
