@@ -13,6 +13,7 @@ config/dwb/default/cookies*
 mpdscribble/lastfm.journal
 vim/bundle/
 vim/undodir/
+vim/plugged/
 **/.imappass
 **/.muttpass
 spacefm/session*
