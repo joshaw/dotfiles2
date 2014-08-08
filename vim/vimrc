@@ -1,150 +1,59 @@
-" Modified: Wed 06 Aug 2014 10:23 am
+" Modified: Fri 08 Aug 2014 09:05 am
 
 set nocompatible
 
-" Pathogen Setup {{{
-
-"filetype off " Pathogen needs to run before plugin indent on
-"call pathogen#infect()
-"call pathogen#helptags() " generate helptags for everything in 'runtimepath'
-"filetype plugin indent on
-
-" }}}
-" Vundle Setup {{{
-
-"let VundleInstalled=1
-"let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-"
-"if !filereadable(vundle_readme)
-"	echo "Installing Vundle.."
-"	echo ""
-"	silent !mkdir -p ~/.vim/bundle
-"	silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-"	let VundleInstalled=0
-"endif
-"
-"set rtp+=~/.vim/bundle/vundle/
-"call vundle#rc()
-
-" " let Vundle manage Vundle
-" Bundle 'gmarik/vundle'
-
-" if has('vim_starting')
-"    set nocompatible               " Be iMproved
-
-"    " Required:
-"    set runtimepath+=~/.vim/bundle/neobundle.vim/
-" endif
-" call neobundle#rc(expand('~/.vim/bundle/'))
-" BundleFetch 'Shougo/neobundle.vim'
-
-" }}}
-" NeoBundle Setup {{{
-
-let NeoBundleInstalled=1
-let neobundle_readme=expand($HOME.'/.vim/bundle/neobundle.vim/README.md')
-if !filereadable(neobundle_readme)
-	echo "Installing NeoBundle.."
-	echo ""
-	silent !mkdir -p $HOME/.vim/bundle
-	silent !git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle.vim
-	let NeoBundleInstalled=0
-endif
-
-" Call NeoBundle
-if has('vim_starting')
-	set rtp+=$HOME/.vim/bundle/neobundle.vim/
-endif
-call neobundle#begin()
-
-" is better if NeoBundle rules NeoBundle (needed!)
-NeoBundle 'Shougo/neobundle.vim'
-
-" }}}
-" NeoBundle Bundles {{{
+" Vim-Plug Bundles {{{
+call plug#begin('~/.vim/plugged')
 " Appearance Utilities {{{
 
 "Code tag view and navigation with ctags tags
-NeoBundle 'majutsushi/tagbar', {
-	\ 'lazy' : 1,
-	\ 'autoload' : {
-	\     'commands' : ['TagbarToggle']
-	\    },
-	\ }
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 "Filesystem explorer
-" NeoBundle 'scrooloose/nerdtree.git'
-NeoBundle 'Shougo/vimfiler.vim', {
-	\ 'lazy' : 1,
-	\ 'autoload' : {
-	\     'commands' : ['VimFiler']
-	\    },
-	\ }
+Plug 'Shougo/vimfiler.vim', {'on': 'VimFiler'}
 
 " }}}
 " Git Related {{{
 
 "Git management from withing vim
-NeoBundle 'tpope/vim-fugitive', {
-	\ 'lazy' : 0,
-	\ 'autoload' : {
-	\     'commands' : ['Fugitive']
-	\    },
-	\ }
-NeoBundle 'gregsexton/gitv', {
-	\ 'lazy' : 1,
-	\ 'autoload' : {
-	\     'commands' : ['Gitv']
-	\    },
-	\ }
+Plug 'tpope/vim-fugitive', {'on': 'Fugitive'}
+"Gitk for vim
+Plug 'gregsexton/gitv', {'on': 'Gitv'}
+
 " }}}
-
+" Other {{{
 "Snippet management
-NeoBundle 'SirVer/ultisnips.git'
-NeoBundle 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 "Super tab completion
-NeoBundle 'ervandew/supertab.git'
+Plug 'ervandew/supertab'
 "Easy changing, adding and removing of surround objects
-NeoBundle 'tpope/vim-surround', { 'lazy' : 1, 'autoload' : { 'insert' : 1}}
+Plug 'tpope/vim-surround'
 "Closing of brackets, tags, quotes etc.
-NeoBundle 'Raimondi/delimitMate', { 'lazy' : 1, 'autoload' : { 'insert' : 1}}
+Plug 'Raimondi/delimitMate'
 "Syntax checking for a wide range of languages
-NeoBundleLazy 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic', {'on': 'Syntastic'}
 "Easy commenting/uncommenting of code.
-NeoBundle 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 "Simple alignment of lines
-NeoBundle 'tommcdo/vim-lion'
+Plug 'tommcdo/vim-lion'
 "Multiple useful keybindings
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-vinegar'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
 "Allow incrementing true/false values etc.
-NeoBundle 'nishigori/increment-activator'
-NeoBundle 'guns/xterm-color-table.vim'
-NeoBundle 'clever-f.vim'
+Plug 'nishigori/increment-activator'
+Plug 'clever-f.vim'
 
+"}}}
 " Filetype specific {{{
 "Override detection of .md files to markdown
-NeoBundle 'tpope/vim-markdown', {
-	\ 'lazy' : 1,
-	\ 'autoload' : {
-	\     'filetypes' : ['markdown']
-	\    },
-	\ }
+Plug 'tpope/vim-markdown', {'for': 'markdown'}
 "Outline files for notes and bits of info.
-NeoBundle 'vimoutliner/vimoutliner', {
-	\ 'lazy' : 1,
-	\ 'autoload' : {
-	\     'filetypes' : ['otl', 'votl']
-	\    },
-	\ }
+Plug 'vimoutliner/vimoutliner', {'for': ['otl', 'votl'] }
 "Decrypt, edit and then re-encrypt gpg stored files.
-NeoBundle 'jamessan/vim-gnupg', {
-	\ 'autoload' : {
-	\     'filetypes' : ['gpg']
-	\    },
-	\ }
+Plug 'jamessan/vim-gnupg', { 'for': 'gpg'}
 
-call neobundle#end()
 " }}}
+call plug#end()
 
 " }}} -------------------------------------------------------------------------
 " Plugin Settings {{{
@@ -159,21 +68,10 @@ let g:UltiSnipsSnippetsDir        = "~/.vim/custom/mysnippets"
 let g:UltiSnipsSnippetDirectories =["UltiSnips","mysnippets"]
 let g:UltiSnipsEditSplit          = "vertical"
 
-" let g:UltiSnipsExpandTrigger      ="<tab>"
-" let g:UltiSnipsJumpForwardTrigger ="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
 """" Syntastic
 let g:syntastic_check_on_wq = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_always_populate_loc_list = 1
-
-"""" Airline Status
-" let g:airline#extensions#whitespace#enabled = 0
-" let g:airline_right_sep=''
-" let g:airline_left_sep =''
-" autocmd VimEnter * if index(['markdown'], &ft) < 0 | NeoBundleSource vim-airline
-" let g:airline_theme="molokai"
 
 """" Molokai Theme
 let g:molokai_original = 1
@@ -218,6 +116,21 @@ let g:clever_f_mark_cursor_color = 'Error'
 " View the difference between the buffer and the file the last time it was saved
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
+function! MyFoldText() " {{{
+	let line = getline(v:foldstart)
+
+	let nucolwidth = &fdc + &number * &numberwidth
+	let windowwidth = winwidth(0) - nucolwidth - 3
+	let foldedlinecount = v:foldend - v:foldstart
+
+	" expand tabs into spaces
+	let onetab = strpart('          ', 0, &tabstop)
+	let line = substitute(line, '\t', onetab, 'g')
+
+	let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+	let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+	return line . repeat(" ",fillcharcount) . foldedlinecount . ' '
+endfunction " }}}
 " }}}
 " Settings {{{
 
@@ -243,23 +156,8 @@ set softtabstop=0
 set tabstop=4
 set wrap
 set textwidth=79
-
-function! MyFoldText() " {{{
-	let line = getline(v:foldstart)
-
-	let nucolwidth = &fdc + &number * &numberwidth
-	let windowwidth = winwidth(0) - nucolwidth - 3
-	let foldedlinecount = v:foldend - v:foldstart
-
-	" expand tabs into spaces
-	let onetab = strpart('          ', 0, &tabstop)
-	let line = substitute(line, '\t', onetab, 'g')
-
-	let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-	let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-	return line . repeat(" ",fillcharcount) . foldedlinecount . ' '
-endfunction " }}}
 set foldtext=MyFoldText()
+
 " }}}
 " External Prgs {{{
 set path+=../**
@@ -394,7 +292,6 @@ augroup ft
 	au FileType * exe('setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim')
 	autocmd BufEnter,BufNew *.tex source ~/.vim/ftplugin/tex.vim
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
-	autocmd Filetype markdown NeoBundleSource vim-markdown
 augroup END
 
 augroup vimp
