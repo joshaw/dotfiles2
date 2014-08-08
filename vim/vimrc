@@ -1,4 +1,4 @@
-" Modified: Fri 08 Aug 2014 09:54 am
+" Modified: Fri 08 Aug 2014 04:01 PM
 
 set nocompatible
 
@@ -22,18 +22,20 @@ Plug 'gregsexton/gitv', {'on': 'Gitv'}
 " }}}
 " Other {{{
 "Snippet management
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+
+Plug 'SirVer/ultisnips', { 'on' : 'InsertEnter' }
+
+Plug 'honza/vim-snippets', { 'on' : 'InsertEnter' }
 "Super tab completion
 Plug 'ervandew/supertab'
 "Easy changing, adding and removing of surround objects
-Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround', { 'on' : 'InsertEnter' }
 "Closing of brackets, tags, quotes etc.
-Plug 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate', { 'on' : 'InsertEnter' }
 "Syntax checking for a wide range of languages
 Plug 'scrooloose/syntastic', {'on': 'Syntastic'}
 "Easy commenting/uncommenting of code.
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary', { 'on' : 'InsertEnter' }
 "Simple alignment of lines
 Plug 'tommcdo/vim-lion'
 "Multiple useful keybindings
@@ -42,7 +44,7 @@ Plug 'tpope/vim-vinegar'
 "Allow incrementing true/false values etc.
 Plug 'nishigori/increment-activator'
 Plug 'clever-f.vim'
-Plug 'itchyny/calendar.vim'
+Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
 
 "}}}
 " Filetype specific {{{
@@ -119,6 +121,12 @@ let g:clever_f_mark_cursor_color = 'Error'
 
 " View the difference between the buffer and the file the last time it was saved
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+
+augroup load_ultisnips
+  autocmd!
+  autocmd InsertEnter * silent! InsertEnter
+  autocmd InsertEnter * exe 'UltiSnipsAddFiletypes '.&ft | autocmd! load_ultisnips
+augroup END
 
 function! MyFoldText() " {{{
 	let line = getline(v:foldstart)
@@ -294,7 +302,7 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 augroup ft
 	autocmd!
 	au FileType * exe('setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim')
-	autocmd BufEnter,BufNew *.tex source ~/.vim/ftplugin/tex.vim
+	autocmd BufEnter,BufNew *.tex set ft=tex | source ~/.vim/ftplugin/tex.vim
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
 	autocmd BufNewFile,BufRead *.mail set filetype=mail
 augroup END
