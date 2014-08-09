@@ -1,8 +1,9 @@
 " Created:  Thu 24 Jul 2014 12:41 PM
-" Modified: Thu 24 Jul 2014 12:41 PM
+" Modified: Wed 06 Aug 2014 10:25 am
 
-set iskeyword+=:,-,_
-set makeprg=make\ open
+" set iskeyword+=:,-,_
+let g:tex_isk="48-57,a-z,A-Z,192-255,:,-,_"
+set makeprg=make
 
 " Standard error message formats
 " Note: We consider statements that starts with "!" as errors

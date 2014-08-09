@@ -10,10 +10,6 @@ snippet alnn "Equation align with numbers"
 \end{align*}$0
 endsnippet
 
-snippet it "item"
-\item$0
-endsnippet
-
 # snippet fig "figure for images"
 # \begin{figure}[ht]
 # 	\begin{center}
@@ -26,17 +22,17 @@ endsnippet
 
 snippet sfig "subfigures"
 \begin{figure}[tbhp]
-    \centering
-    \begin{subfigure}[b]{${1:0.48}\textwidth}
-        \includegraphics[width=\textwidth]{${2}}
-        \caption{${3}}\label{fig:$2}
-    \end{subfigure}%
-    \quad
-    \begin{subfigure}[b]{${4:$1}\textwidth}
-        \includegraphics[width=\textwidth]{${5}}
-        \caption{${6}}
-    \end{subfigure}
-    \caption{}\label{fig:$5}
+	\centering
+	\begin{subfigure}[b]{${1:0.48\textwidth}}
+		\includegraphics[width=\textwidth]{${2}}
+		\caption{${3}}\label{fig:$2}
+	\end{subfigure}%
+	\quad
+	\begin{subfigure}[b]{${4:$1}}
+		\includegraphics[width=\textwidth]{${5}}
+		\caption{${6}}
+	\end{subfigure}
+	\caption{}\label{fig:$5}
 \end{figure}
 ${0}
 endsnippet
