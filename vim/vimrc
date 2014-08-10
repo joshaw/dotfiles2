@@ -1,4 +1,4 @@
-" Modified: Fri 08 Aug 2014 04:01 PM
+" Modified: Sat 09 Aug 2014 05:05 pm
 
 set nocompatible
 
@@ -23,19 +23,18 @@ Plug 'gregsexton/gitv', {'on': 'Gitv'}
 " Other {{{
 "Snippet management
 
-Plug 'SirVer/ultisnips', { 'on' : 'InsertEnter' }
-
-Plug 'honza/vim-snippets', { 'on' : 'InsertEnter' }
+Plug 'SirVer/ultisnips', { 'on' : [] }
+Plug 'honza/vim-snippets', { 'on' : [] }
 "Super tab completion
 Plug 'ervandew/supertab'
 "Easy changing, adding and removing of surround objects
-Plug 'tpope/vim-surround', { 'on' : 'InsertEnter' }
+Plug 'tpope/vim-surround', { 'on' : [] }
 "Closing of brackets, tags, quotes etc.
-Plug 'Raimondi/delimitMate', { 'on' : 'InsertEnter' }
+Plug 'Raimondi/delimitMate', { 'on' : [] }
 "Syntax checking for a wide range of languages
-Plug 'scrooloose/syntastic', {'on': 'Syntastic'}
+Plug 'scrooloose/syntastic'
 "Easy commenting/uncommenting of code.
-Plug 'tpope/vim-commentary', { 'on' : 'InsertEnter' }
+Plug 'tpope/vim-commentary', { 'on' : [] }
 "Simple alignment of lines
 Plug 'tommcdo/vim-lion'
 "Multiple useful keybindings
@@ -56,6 +55,18 @@ Plug 'vimoutliner/vimoutliner', {'for': ['otl', 'votl'] }
 Plug 'jamessan/vim-gnupg', { 'for': 'gpg'}
 
 " }}}
+
+augroup load_ultisnips
+  autocmd!
+  autocmd InsertEnter * call plug#load('vim-surround')
+  autocmd InsertEnter * call plug#load('delimitMate')
+  autocmd InsertEnter * call plug#load('vim-commentary')
+  autocmd InsertEnter * call plug#load('ultisnips')
+  			  \| doautocmd UltiSnipsFileType FileType
+  autocmd InsertEnter * call plug#load('vim-snippets')
+  			  \| autocmd! load_ultisnips
+augroup END
+
 call plug#end()
 
 " }}} -------------------------------------------------------------------------
@@ -121,12 +132,6 @@ let g:clever_f_mark_cursor_color = 'Error'
 
 " View the difference between the buffer and the file the last time it was saved
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
-
-augroup load_ultisnips
-  autocmd!
-  autocmd InsertEnter * silent! InsertEnter
-  autocmd InsertEnter * exe 'UltiSnipsAddFiletypes '.&ft | autocmd! load_ultisnips
-augroup END
 
 function! MyFoldText() " {{{
 	let line = getline(v:foldstart)
