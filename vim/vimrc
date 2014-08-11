@@ -3,6 +3,8 @@
 set nocompatible
 
 " Vim-Plug Bundles {{{
+let g:plug_threads = 6
+let g:plug_timeout = 20
 call plug#begin('~/.vim/plugged')
 " Appearance Utilities {{{
 
@@ -52,7 +54,7 @@ Plug 'tpope/vim-markdown', {'for': 'markdown'}
 "Outline files for notes and bits of info.
 Plug 'vimoutliner/vimoutliner', {'for': ['otl', 'votl'] }
 "Decrypt, edit and then re-encrypt gpg stored files.
-Plug 'jamessan/vim-gnupg', { 'for': 'gpg'}
+Plug 'jamessan/vim-gnupg'
 
 " }}}
 
