@@ -1,4 +1,4 @@
-" Modified: Sun 10 Aug 2014 04:55 pm
+" Modified: Mon 11 Aug 2014 09:55 AM
 
 set nocompatible
 
@@ -17,7 +17,7 @@ Plug 'Shougo/vimfiler.vim', {'on': 'VimFiler'}
 " Git Related {{{
 
 "Git management from withing vim
-Plug 'tpope/vim-fugitive', {'on': 'Fugitive'}
+Plug 'tpope/vim-fugitive'
 "Gitk for vim
 Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
@@ -298,7 +298,7 @@ if has("gui_running")
 endif
 
 " automatically open quickfix window after commands that modify the quickfix list
-autocmd QuickFixCmdPost *grep* if len(getqflist()) | copen | endif
+" autocmd QuickFixCmdPost *grep* if len(getqflist()) | copen | endif
 
 " go to last cursor position when opening files
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
