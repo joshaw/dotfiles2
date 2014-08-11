@@ -1,4 +1,4 @@
-" Modified: Sat 09 Aug 2014 05:05 pm
+" Modified: Sun 10 Aug 2014 04:55 pm
 
 set nocompatible
 
@@ -91,6 +91,7 @@ let g:UltiSnipsEditSplit          = "vertical"
 let g:syntastic_check_on_wq = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_tex_checkers = ['chktex']
 
 """" Molokai Theme
 let g:molokai_original = 1
