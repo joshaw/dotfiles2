@@ -1,8 +1,12 @@
-" Modified: Fri 08 Aug 2014 04:01 PM
+" Created:  Tue 12 Aug 2014 11:57 AM
+" Author:   Josh Wainwright
+" Filename: vimrc
 
 set nocompatible
 
 " Vim-Plug Bundles {{{
+let g:plug_threads = 6
+let g:plug_timeout = 20
 call plug#begin('~/.vim/plugged')
 " Appearance Utilities {{{
 
@@ -15,7 +19,7 @@ Plug 'Shougo/vimfiler.vim', {'on': 'VimFiler'}
 " Git Related {{{
 
 "Git management from withing vim
-Plug 'tpope/vim-fugitive', {'on': 'Fugitive'}
+Plug 'tpope/vim-fugitive'
 "Gitk for vim
 Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
@@ -23,19 +27,18 @@ Plug 'gregsexton/gitv', {'on': 'Gitv'}
 " Other {{{
 "Snippet management
 
-Plug 'SirVer/ultisnips', { 'on' : 'InsertEnter' }
-
-Plug 'honza/vim-snippets', { 'on' : 'InsertEnter' }
+Plug 'SirVer/ultisnips', { 'on' : [] }
+Plug 'honza/vim-snippets', { 'on' : [] }
 "Super tab completion
 Plug 'ervandew/supertab'
 "Easy changing, adding and removing of surround objects
-Plug 'tpope/vim-surround', { 'on' : 'InsertEnter' }
+Plug 'tpope/vim-surround', { 'on' : [] }
 "Closing of brackets, tags, quotes etc.
-Plug 'Raimondi/delimitMate', { 'on' : 'InsertEnter' }
+Plug 'Raimondi/delimitMate', { 'on' : [] }
 "Syntax checking for a wide range of languages
-Plug 'scrooloose/syntastic', {'on': 'Syntastic'}
+Plug 'scrooloose/syntastic'
 "Easy commenting/uncommenting of code.
-Plug 'tpope/vim-commentary', { 'on' : 'InsertEnter' }
+Plug 'tpope/vim-commentary', { 'on' : [] }
 "Simple alignment of lines
 Plug 'tommcdo/vim-lion'
 "Multiple useful keybindings
@@ -53,9 +56,21 @@ Plug 'tpope/vim-markdown', {'for': 'markdown'}
 "Outline files for notes and bits of info.
 Plug 'vimoutliner/vimoutliner', {'for': ['otl', 'votl'] }
 "Decrypt, edit and then re-encrypt gpg stored files.
-Plug 'jamessan/vim-gnupg', { 'for': 'gpg'}
+Plug 'jamessan/vim-gnupg'
 
 " }}}
+
+augroup load_ultisnips
+  autocmd!
+  autocmd InsertEnter * call plug#load('vim-surround')
+  autocmd InsertEnter * call plug#load('delimitMate')
+  autocmd InsertEnter * call plug#load('vim-commentary')
+  autocmd InsertEnter * call plug#load('ultisnips')
+  			  \| doautocmd UltiSnipsFileType FileType
+  autocmd InsertEnter * call plug#load('vim-snippets')
+  			  \| autocmd! load_ultisnips
+augroup END
+
 call plug#end()
 
 " }}} -------------------------------------------------------------------------
@@ -78,6 +93,7 @@ let g:UltiSnipsEditSplit          = "vertical"
 let g:syntastic_check_on_wq = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_tex_checkers = ['chktex']
 
 """" Molokai Theme
 let g:molokai_original = 1
@@ -121,12 +137,6 @@ let g:clever_f_mark_cursor_color = 'Error'
 
 " View the difference between the buffer and the file the last time it was saved
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
-
-augroup load_ultisnips
-  autocmd!
-  autocmd InsertEnter * silent! InsertEnter
-  autocmd InsertEnter * exe 'UltiSnipsAddFiletypes '.&ft | autocmd! load_ultisnips
-augroup END
 
 function! MyFoldText() " {{{
 	let line = getline(v:foldstart)
@@ -290,7 +300,7 @@ if has("gui_running")
 endif
 
 " automatically open quickfix window after commands that modify the quickfix list
-autocmd QuickFixCmdPost *grep* if len(getqflist()) | copen | endif
+" autocmd QuickFixCmdPost *grep* if len(getqflist()) | copen | endif
 
 " go to last cursor position when opening files
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
