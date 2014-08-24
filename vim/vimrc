@@ -58,6 +58,7 @@ Plug 'vimoutliner/vimoutliner', {'for': ['otl', 'votl'] }
 "Decrypt, edit and then re-encrypt gpg stored files.
 Plug 'jamessan/vim-gnupg'
 
+Plug 'vimwiki/vimwiki'
 " }}}
 
 augroup load_ultisnips
