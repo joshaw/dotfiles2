@@ -1,4 +1,3 @@
-
 " vim-plug: Vim plugin manager
 " ============================
 "
@@ -6,7 +5,7 @@
 "
 "   mkdir -p ~/.vim/autoload
 "   curl -fLo ~/.vim/autoload/plug.vim \
-"     https://raw.github.com/junegunn/vim-plug/master/plug.vim
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "
 " Edit your .vimrc
 "
@@ -69,7 +68,7 @@ let g:loaded_plug = 1
 let s:cpo_save = &cpo
 set cpo&vim
 
-let s:plug_source = 'https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+let s:plug_source = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 let s:plug_buf = get(s:, 'plug_buf', -1)
 let s:mac_gui = has('gui_macvim') && has('gui_running')
 let s:is_win = has('win32') || has('win64')
@@ -380,7 +379,7 @@ function! s:infer_properties(name, repo)
       if repo !~ '/'
         let repo = 'vim-scripts/'. repo
       endif
-      let uri = 'https://git:@github.com/' . repo . '.git'
+      let uri = 'https://git::@github.com/' . repo . '.git'
     endif
     let dir = s:dirpath( fnamemodify(join([g:plug_home, a:name], '/'), ':p') )
     return { 'dir': dir, 'uri': uri }
@@ -459,11 +458,15 @@ function! s:lastline(msg)
   return get(lines, -1, '')
 endfunction
 
+function! s:new_window()
+  execute get(g:, 'plug_window', 'vertical topleft new')
+endfunction
+
 function! s:prepare()
   if bufexists(s:plug_buf)
     let winnr = bufwinnr(s:plug_buf)
     if winnr < 0
-      vertical topleft new
+      call s:new_window()
       execute 'buffer ' . s:plug_buf
     else
       execute winnr . 'wincmd w'
@@ -471,7 +474,7 @@ function! s:prepare()
     setlocal modifiable
     silent %d _
   else
-    vertical topleft new
+    call s:new_window()
     nnoremap <silent> <buffer> q  :if b:plug_preview==1<bar>pc<bar>endif<bar>q<cr>
     nnoremap <silent> <buffer> R  :silent! call <SID>retry()<cr>
     nnoremap <silent> <buffer> D  :PlugDiff<cr>
@@ -871,7 +874,7 @@ function! s:update_parallel(pull, todo, threads)
                 else
                   [false, [data.chomp, "PlugClean required."].join($/)]
                 end
-              elsif current_uri.sub(/git:@/, '') != uri.sub(/git:@/, '')
+              elsif current_uri.sub(/git::?@/, '') != uri.sub(/git::?@/, '')
                 [false, ["Invalid URI: #{current_uri}",
                          "Expected:    #{uri}",
                          "PlugClean required."].join($/)]
@@ -914,8 +917,8 @@ function! s:progress_bar(line, bar, total)
 endfunction
 
 function! s:compare_git_uri(a, b)
-  let a = substitute(a:a, 'git:@', '', '')
-  let b = substitute(a:b, 'git:@', '', '')
+  let a = substitute(a:a, 'git:\{1,2}@', '', '')
+  let b = substitute(a:b, 'git:\{1,2}@', '', '')
   return a ==# b
 endfunction
 
@@ -1248,3 +1251,4 @@ endif
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
+
