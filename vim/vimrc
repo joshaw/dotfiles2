@@ -196,7 +196,7 @@ endif
 set keywordprg=""
 set makeprg=make
 set shell=sh
-set complete=.,w,u,t,i,k
+set complete=.,w,b,u,U,t,i,k
 "}}}
 " Search {{{
 set hlsearch
