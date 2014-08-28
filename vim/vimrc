@@ -12,8 +12,6 @@ call plug#begin('~/.vim/plugged')
 
 "Code tag view and navigation with ctags tags
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-"Filesystem explorer
-Plug 'Shougo/vimfiler.vim', {'on': 'VimFiler'}
 
 " }}}
 " Git Related {{{
@@ -25,8 +23,8 @@ Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
 " }}}
 " Other {{{
-"Snippet management
 
+"Snippet management
 Plug 'SirVer/ultisnips', { 'on' : [] }
 Plug 'honza/vim-snippets', { 'on' : [] }
 "Super tab completion
@@ -43,14 +41,18 @@ Plug 'tpope/vim-commentary', { 'on' : [] }
 Plug 'tommcdo/vim-lion'
 "Multiple useful keybindings
 Plug 'tpope/vim-unimpaired'
+"Simple minimalist alternative to netrw
 Plug 'tpope/vim-vinegar'
 "Allow incrementing true/false values etc.
 Plug 'nishigori/increment-activator'
 Plug 'clever-f.vim'
 Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
+Plug 'AndrewRadev/writable_search.vim', {'on' : 'WritableSearch'}
+Plug 'vim-scripts/renamer.vim'
 
 "}}}
 " Filetype specific {{{
+
 "Override detection of .md files to markdown
 Plug 'tpope/vim-markdown', {'for': 'markdown'}
 "Outline files for notes and bits of info.
@@ -58,9 +60,10 @@ Plug 'vimoutliner/vimoutliner', {'for': ['otl', 'votl'] }
 "Decrypt, edit and then re-encrypt gpg stored files.
 Plug 'jamessan/vim-gnupg'
 
+Plug 'vimwiki/vimwiki'
 " }}}
 
-augroup load_ultisnips
+augroup load_plugs
   autocmd!
   autocmd InsertEnter * call plug#load('vim-surround')
   autocmd InsertEnter * call plug#load('delimitMate')
@@ -68,7 +71,7 @@ augroup load_ultisnips
   autocmd InsertEnter * call plug#load('ultisnips')
   			  \| doautocmd UltiSnipsFileType FileType
   autocmd InsertEnter * call plug#load('vim-snippets')
-  			  \| autocmd! load_ultisnips
+  			  \| autocmd! load_plugs
 augroup END
 
 call plug#end()
