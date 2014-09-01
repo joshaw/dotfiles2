@@ -7,7 +7,7 @@
     <font type="main">
         <name>Latin Modern Sans</name>
         <color>#FFFFFF</color>
-        <size>53</size>
+        <size>50</size>
         <bold>False</bold>
         <italics>False</italics>
         <line_adjustment>5</line_adjustment>
@@ -16,7 +16,7 @@
         <outline outlineColor="#000000" outlineSize="2">False</outline>
     </font>
     <font type="footer">
-        <name>Nimbus Sans L</name>
+        <name>Droid Sans [unknown]</name>
         <color>#FFFFFF</color>
         <size>12</size>
         <bold>False</bold>
