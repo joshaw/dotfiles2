@@ -20,3 +20,6 @@ vim/autoload/plug.vim.old
 spacefm/session*
 .netrwhist
 mpv/watch_later/*
+vifm/Trash/
+vifm/vifminfo
+vifm/vimfiles
