@@ -61,6 +61,7 @@ Plug 'vimoutliner/vimoutliner', {'for': ['otl', 'votl'] }
 Plug 'jamessan/vim-gnupg'
 
 Plug 'vimwiki/vimwiki'
+Plug 'istib/vifm.vim'
 " }}}
 
 augroup load_plugs

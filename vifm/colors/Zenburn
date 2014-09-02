@@ -1,6 +1,6 @@
-highlight Win cterm=none ctermfg=245 ctermbg=234
-highlight Directory cterm=bold ctermfg=166 ctermbg=234
-highlight Link cterm=bold ctermfg=yellow ctermbg=234
+highlight Win cterm=none ctermfg=245 ctermbg=none
+highlight Directory cterm=bold ctermfg=166 ctermbg=none
+highlight Link cterm=bold ctermfg=yellow ctermbg=none
 highlight BrokenLink cterm=reverse ctermfg=red ctermbg=default
 
 highlight Socket cterm=bold ctermfg=125 ctermbg=default
@@ -8,8 +8,8 @@ highlight Device cterm=bold ctermfg=red ctermbg=default
 highlight Fifo cterm=bold ctermfg=cyan ctermbg=default
 highlight Executable cterm=bold ctermfg=0x2aa198 ctermbg=default
 
-highlight Selected cterm=bold ctermfg=125 ctermbg=235
-highlight CurrLine cterm=bold ctermfg=245 ctermbg=235
+highlight Selected cterm=bold ctermfg=125 ctermbg=238
+highlight CurrLine cterm=bold ctermfg=245 ctermbg=238
 
 highlight TopLine cterm=none ctermfg=black ctermbg=white
 highlight TopLineSel cterm=bold ctermfg=black ctermbg=default

@@ -1,108 +1,76 @@
 " Settings     {{{
 
-" This is the actual command used to start vi.  The default is vim.
-" If you would like to use another vi clone such Elvis or Vile
-" you will need to change this setting.
-
+" Command to start vim
 set vicmd=vim
-" set vicmd=elvis\ -G\ termcap
-" set vicmd=vile
 
 " Trash Directory
-" The default is to move files that are deleted with dd or :d to
-" the trash directory.  If you change this you will not be able to move
-" files by deleting them and then using p to put the file in the new location.
-" I recommend not changing this until you are familiar with vifm.
-" This probably shouldn't be an option.
-
+" The default is to move files that are deleted with dd or :d to the trash
+" directory.  If you change this you will not be able to move files by deleting
+" them and then using p to put the file in the new location.  I recommend not
+" changing this until you are familiar with vifm.  This probably shouldn't be
+" an option.
 set trash
 
 " This is how many directories to store in the directory history.
-
 set history=100
 
 " Follow links on l or Enter.
-
 set followlinks
 
 " With this option turned on you can run partially entered commands with
 " unambiguous beginning using :! (e.g. :!Te instead of :!Terminal or :!Te<tab>).
-
 set fastrun
 
 " Natural sort of (version) numbers within text.
-
 set sortnumbers
 
 " Maximum number of changes that can be undone.
-
 set undolevels=100
 
 " If you installed the vim.txt help file set vimhelp.
 " If would rather use a plain text help file set novimhelp.
-
-set novimhelp
+set vimhelp
 
 " If you would like to run an executable file when you
 " press return on the file name set this.
-
 set norunexec
 
 " Use KiB, MiB, ... instead of KB, MB, ...
-
 set noiec
-
-" Selected color scheme
 
 colorscheme Zenburn
 
 " The FUSE_HOME directory will be used as a root dir for all FUSE mounts.
 " Unless it exists with write/exec permissions set, vifm will attempt to
 " create it.
-
 set fusehome=/tmp/vifm_FUSE
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
 " See man date or man strftime for details.
-
 set timefmt=%m/%d\ %H:%M
 
 " Show list of matches on tab complition in command-line mode
-
 set wildmenu
-
-" Ignore case in search patterns unless it contains at least one uppercase
-" letter
-
 set ignorecase
 set smartcase
-
-" highlight search results automatically
-
 set hlsearch
-
-" Use increment searching (search while typing)
 set incsearch
-
-" Try to leave some space from cursor to upper/lower border in lists
-
 set scrolloff=5
+set nowrap
+set cpoptions=""
 
 " Don't do to much requests to slow file systems
-
 set slowfs=curlftpfs
 
-" Set custom status line look
-
-set statusline="  %t%= %A %10u:%-7g %15s %20d  "
+set statusline="  %t%= %A %10u:%-7g %15E %20d  "
 
 " What should be saved automatically between vifm runs
 " Like in previous versions of vifm
 " set vifminfo=options,filetypes,commands,bookmarks,dhistory,state,cs
 " Like in vi
 set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
-    \phistory,fhistory,dirstack,registers,bookmarks
+    \phistory,fhistory,egisters,bookmarks
 
 " }}}
 " Marks        {{{
@@ -163,7 +131,7 @@ command link !ln -s %c %a
 " program.
 
 " Pdf
-filetype *.pdf zathura %f,apvlv %f,xpdf %f
+filextype *.pdf rifle %c
 fileview *.pdf pdftotext -nopgbrk %c -
 
 " PostScript
@@ -174,36 +142,30 @@ filextype *.djvu apvlv %f
 
 " Audio
 filetype *.wav,*.mp3,*.flac,*.ogg,*.m4a
-       \ {Play using ffplay}
-       \ ffplay %c,
-       \ {Play using MPlayer}
+       \ mpv %f,
        \ mplayer %f,
 fileviewer *.mp3 mp3info
 
 " Video
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv
-        \ {View using ffplay}
-        \ ffplay -fs %c,
-        \ {View using Dragon}
-        \ dragon %f,
-        \ {View using mplayer}
+        \ mpv %f,
         \ mplayer %f,
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob
          \ ffprobe -pretty %c 2>&1
 
 " Web
 filetype *.html,*.htm links,mozilla,uzbl-browser %f %i &
+fileviewer *.html,*.htm html2text %f
 
 " Object
 filetype *.o nm %f | less
 
 " Image
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-        \ {View in sxiv}
+        \ rifle %f,
         \ sxiv,
-        \ {View in gpicview}
         \ gpicview %c,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose
 
 " MD5
 filetype *.md5
@@ -255,17 +217,14 @@ filetype *.7z
 filextype *.doc,*.docx,*.xls,*.xlsx libreoffice %f &
 fileview *.docx, docx2txt.pl %f -
 
-" Qt projects
-filextype *.pro qtcreator %f &
-
 " Directories
 filextype */
         \ {View in thunar}
         \ Thunar %f &,
-fileview .*/,*/ tree %f
+fileview .*/,*/ tree %f -L 1
 
 " fileview */ tree %c
-fileview ../ tree %c -L 1
+" fileview ../ tree %c -L 1
 
 " Open all other files with default system programs (you can also remove all
 " :file[x]type commands above to ensure they don't interfere with system-wide
@@ -329,4 +288,4 @@ map gt :cd /tmp<cr>
 
 map <delete> dd
 " }}}
-" vim: filetype=vim foldmethod=marker
+" vim: filetype=vifm foldmethod=marker
