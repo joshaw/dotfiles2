@@ -59,6 +59,8 @@ set incsearch
 set scrolloff=5
 set nowrap
 set cpoptions=""
+set noconfirm
+set relativenumber
 
 " Don't do to much requests to slow file systems
 set slowfs=curlftpfs
@@ -151,7 +153,7 @@ filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv
         \ mpv %f,
         \ mplayer %f,
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob
-         \ ffprobe -pretty %c 2>&1
+         \ ffprobe -pretty %c
 
 " Web
 filetype *.html,*.htm links,mozilla,uzbl-browser %f %i &
@@ -221,10 +223,10 @@ fileview *.docx, docx2txt.pl %f -
 filextype */
         \ {View in thunar}
         \ Thunar %f &,
-fileview .*/,*/ tree %f -L 1
+fileview ../ tree %c -L 1
+fileview .*/,*/ tree %f
 
 " fileview */ tree %c
-" fileview ../ tree %c -L 1
 
 " Open all other files with default system programs (you can also remove all
 " :file[x]type commands above to ensure they don't interfere with system-wide
@@ -287,5 +289,6 @@ map gm :cd /media<cr>
 map gt :cd /tmp<cr>
 
 map <delete> dd
+map gg 2G
 " }}}
 " vim: filetype=vifm foldmethod=marker
