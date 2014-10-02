@@ -3,10 +3,11 @@
 " Filename: vimrc
 
 " Vim-Plug Bundles {{{
+let $VIMHOME=expand('<sfile>:p:h')
 let g:plug_threads = 6
 let g:plug_timeout = 20
 if executable('git')
-	call plug#begin('$HOME/.vim/plugged')
+	call plug#begin($VIMHOME.'/plugged')
 
 	" Appearance Utilities {{{
 
@@ -141,11 +142,11 @@ if executable('git')
 	  let has_period = match(substr, '\.') != -1
 	  let has_slash = match(substr, '\/') != -1
 	  if (!has_period && !has_slash)
-		return "\<C-X>\<C-P>"                  
+		return "\<C-X>\<C-P>"
 	  elseif ( has_slash )
-		return "\<C-X>\<C-F>"                 
+		return "\<C-X>\<C-F>"
 	  else
-		return "\<C-X>\<C-O>"                
+		return "\<C-X>\<C-O>"
 	  endif
 	endfunction
 endif
@@ -344,7 +345,11 @@ endif
 set path+=../**
 set keywordprg=""
 set makeprg=make
-set shell=sh
+if has('win32')
+	set shell=powershell.exe
+else
+	set shell=sh
+endif
 set complete=.,w,b,u,U,t,i,k
 "}}}
 
@@ -360,12 +365,13 @@ endif
 
 augroup ft
 	autocmd!
-	au FileType * exe('setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim')
+	" TODO
+	" au FileType * exe('setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim')
 	autocmd BufEnter,BufNew *.tex set ft=tex | source ~/.vim/ftplugin/tex.vim
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
 	autocmd BufNewFile,BufRead *.mail set filetype=mail
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
-	autocmd BufWritePost $MYVIMRC let b:noStripWhitespace=0
+	autocmd BufWritePre $MYVIMRC unlet g:noStripWhitespace
 augroup END
 
 augroup vimp
