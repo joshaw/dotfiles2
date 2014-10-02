@@ -5,76 +5,79 @@
 " Vim-Plug Bundles {{{
 let g:plug_threads = 6
 let g:plug_timeout = 20
-call plug#begin('~/.vim/plugged')
-" Appearance Utilities {{{
+if executable('git')
+	call plug#begin('$HOME/.vim/plugged')
 
-"Code tag view and navigation with ctags tags
-Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+	" Appearance Utilities {{{
 
-" }}}
-" Git Related {{{
+	"Code tag view and navigation with ctags tags
+	Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
-"Git management from withing vim
-Plug 'tpope/vim-fugitive'
-"Gitk for vim
-Plug 'gregsexton/gitv', {'on': 'Gitv'}
+	" }}}
+	" Git Related {{{
 
-" }}}
-" Other {{{
+	"Git management from withing vim
+	Plug 'tpope/vim-fugitive'
+	"Gitk for vim
+	Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
-"Snippet management
-Plug 'SirVer/ultisnips', { 'on' : [] }
-Plug 'honza/vim-snippets', { 'on' : [] }
-"Super tab completion
-" Plug 'ervandew/supertab'
-Plug 'neitanod/vim-clevertab'
-"Easy changing, adding and removing of surround objects
-Plug 'tpope/vim-surround', { 'on' : [] }
-"Closing of brackets, tags, quotes etc.
-Plug 'Raimondi/delimitMate', { 'on' : [] }
-"Syntax checking for a wide range of languages
-Plug 'scrooloose/syntastic'
-"Easy commenting/uncommenting of code.
-Plug 'tpope/vim-commentary', { 'on' : [] }
-"Simple alignment of lines
-Plug 'tommcdo/vim-lion'
-"Multiple useful keybindings
-Plug 'tpope/vim-unimpaired'
-"Simple minimalist alternative to netrw
-Plug 'tpope/vim-vinegar'
-"Allow incrementing true/false values etc.
-Plug 'nishigori/increment-activator'
-Plug 'clever-f.vim'
-Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
-Plug 'AndrewRadev/writable_search.vim', {'on' : 'WritableSearch'}
-Plug 'vim-scripts/renamer.vim'
+	" }}}
+	" Other {{{
 
-"}}}
-" Filetype specific {{{
+	"Snippet management
+	Plug 'SirVer/ultisnips', { 'on' : [] }
+	Plug 'honza/vim-snippets', { 'on' : [] }
+	"Super tab completion
+	Plug 'ervandew/supertab'
+	Plug 'neitanod/vim-clevertab'
+	"Easy changing, adding and removing of surround objects
+	Plug 'tpope/vim-surround', { 'on' : [] }
+	"Closing of brackets, tags, quotes etc.
+	Plug 'Raimondi/delimitMate', { 'on' : [] }
+	"Syntax checking for a wide range of languages
+	Plug 'scrooloose/syntastic'
+	"Easy commenting/uncommenting of code.
+	Plug 'tpope/vim-commentary', { 'on' : [] }
+	"Simple alignment of lines
+	Plug 'tommcdo/vim-lion'
+	"Multiple useful keybindings
+	Plug 'tpope/vim-unimpaired'
+	"Simple minimalist alternative to netrw
+	Plug 'tpope/vim-vinegar'
+	"Allow incrementing true/false values etc.
+	Plug 'nishigori/increment-activator'
+	Plug 'clever-f.vim'
+	Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
+	Plug 'AndrewRadev/writable_search.vim', {'on' : 'WritableSearch'}
+	Plug 'vim-scripts/renamer.vim'
 
-"Override detection of .md files to markdown
-Plug 'tpope/vim-markdown', {'for': 'markdown'}
-"Outline files for notes and bits of info.
-Plug 'vimoutliner/vimoutliner', {'for': ['otl', 'votl'] }
-"Decrypt, edit and then re-encrypt gpg stored files.
-Plug 'jamessan/vim-gnupg'
+	"}}}
+	" Filetype specific {{{
 
-Plug 'vimwiki/vimwiki'
-Plug 'istib/vifm.vim'
-" }}}
+	"Override detection of .md files to markdown
+	Plug 'tpope/vim-markdown', {'for': 'markdown'}
+	"Outline files for notes and bits of info.
+	Plug 'vimoutliner/vimoutliner', {'for': ['otl', 'votl'] }
+	"Decrypt, edit and then re-encrypt gpg stored files.
+	Plug 'jamessan/vim-gnupg'
 
-augroup load_plugs
-  autocmd!
-  autocmd InsertEnter * call plug#load('vim-surround')
-  autocmd InsertEnter * call plug#load('delimitMate')
-  autocmd InsertEnter * call plug#load('vim-commentary')
-  autocmd InsertEnter * call plug#load('ultisnips')
-  			  \| doautocmd UltiSnipsFileType FileType
-  autocmd InsertEnter * call plug#load('vim-snippets')
-  			  \| autocmd! load_plugs
-augroup END
+	Plug 'vimwiki/vimwiki'
+	Plug 'istib/vifm.vim'
+	" }}}
 
-call plug#end()
+	augroup load_plugs
+		autocmd!
+		autocmd InsertEnter * call plug#load('vim-surround')
+		autocmd InsertEnter * call plug#load('delimitMate')
+		autocmd InsertEnter * call plug#load('vim-commentary')
+		autocmd InsertEnter * call plug#load('ultisnips')
+			  		\| doautocmd UltiSnipsFileType FileType
+		autocmd InsertEnter * call plug#load('vim-snippets')
+			  		\| autocmd! load_plugs
+	augroup END
+
+	call plug#end()
+endif " executable(git)
 
 " }}} -------------------------------------------------------------------------
 " Plugin Settings {{{
@@ -87,7 +90,7 @@ let s:has_ack = executable('ack')
 let g:calendar_google_calendar = 1
 
 """" UltiSnips Plugin
-set runtimepath^=~/.vim/custom
+set runtimepath^=$HOME/.vim/custom
 let g:UltiSnipsSnippetsDir        = "~/.vim/custom/mysnippets"
 let g:UltiSnipsSnippetDirectories =["UltiSnips","mysnippets"]
 let g:UltiSnipsEditSplit          = "vertical"
@@ -125,7 +128,27 @@ let g:SuperTabContextDefaultCompletionType = "<c-p>"
 	let g:UltiSnipsJumpForwardTrigger = "<tab>"
 	let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-call CleverTab#KeywordFirst()
+if executable('git')
+	call CleverTab#KeywordFirst()
+	function! Smart_TabComplete()
+	  let line = getline('.')
+
+	  let substr = strpart(line, -1, col('.')+1)
+	  let substr = matchstr(substr, "[^ \t]*$")
+	  if (strlen(substr)==0)
+		return "\<tab>"
+	  endif
+	  let has_period = match(substr, '\.') != -1
+	  let has_slash = match(substr, '\/') != -1
+	  if (!has_period && !has_slash)
+		return "\<C-X>\<C-P>"                  
+	  elseif ( has_slash )
+		return "\<C-X>\<C-F>"                 
+	  else
+		return "\<C-X>\<C-O>"                
+	  endif
+	endfunction
+endif
 
 """" delimitMate
 let delimitMate_jump_expansion = 0
@@ -136,6 +159,11 @@ let delimitMate_expand_space = 1
 let g:clever_f_smart_case = 1
 let g:clever_f_mark_cursor = 1
 let g:clever_f_mark_cursor_color = 'Error'
+
+""" WhiteSpace
+if $USERNAME == 'JoshWainwright'
+	let g:noStripWhitespace = 1
+endif
 
 " }}}
 " Functions {{{
@@ -186,23 +214,6 @@ set textwidth=79
 set foldtext=MyFoldText()
 
 " }}}
-" External Prgs {{{
-set path+=../**
-let s:git=system("git rev-parse --git-dir > /dev/null")
-if !v:shell_error
-	set grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color
-elseif s:has_ack
-	set grepprg=ack\ -H\ --nogroup\ --nocolor\ --smart-case
-elseif s:has_ag
-	set grepprg=ag\ --nogroup\ --nocolor\ --smart-case
-else
-	set grepprg=grep\ --dereference-recursive\ --ignore-case\ --line-number\ --with-filename\ $*
-endif
-set keywordprg=""
-set makeprg=make
-set shell=sh
-set complete=.,w,b,u,U,t,i,k
-"}}}
 " Search {{{
 set hlsearch
 set ignorecase
@@ -213,10 +224,14 @@ set showmatch
 set smartcase
 "}}}
 " History, Backup and Undo Files {{{
+if has("win32")
+	let $TMP="c:/tmp"
+	let $TEMP="c:/tmp"
+endif
 set history=700
 set backup
-set backupdir=/var/tmp,/tmp
-set directory=/var/tmp,/tmp
+set backupdir=/var/tmp,/tmp,c:/tmp,$TMP,$TEMP
+set directory=/var/tmp,/tmp,c:/tmp,$TMP,$TEMP
 set writebackup
 if exists("&undofile")
 	set undofile
@@ -224,6 +239,7 @@ if exists("&undofile")
 	augroup undo
 		autocmd!
 		autocmd BufWritePre /tmp/* setlocal noundofile
+		autocmd BufWritePre c:/tmp/* setlocal noundofile
 	augroup END
 endif
 "}}}
@@ -267,8 +283,8 @@ set novisualbell
 set t_vb=
 set tm=500
 set mouse=a
-if $USERNAME == 'jaw097'
-	set guifont=DejaVu\ Sans\ Mono\ 10
+if $USERNAME == 'JoshWainwright'
+	set guifont=Consolas:h10:cANSI
 else
 	set guifont=Droid\ Sans\ Mono\ 10
 endif
@@ -309,6 +325,27 @@ endif
 
 " go to last cursor position when opening files
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+
+"}}}
+" External Prgs {{{
+
+if has('unix')
+	let s:git=system("git rev-parse --git-dir > /dev/null")
+	if !v:shell_error
+		set grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color
+	elseif s:has_ag
+		set grepprg=ag\ --nogroup\ --nocolor\ --smart-case
+	elseif s:has_ack
+		set grepprg=ack\ -H\ --nogroup\ --nocolor\ --smart-case
+	endif
+else
+	set grepprg=grep\ --dereference-recursive\ --ignore-case\ --line-number\ --with-filename\ $*
+endif
+set path+=../**
+set keywordprg=""
+set makeprg=make
+set shell=sh
+set complete=.,w,b,u,U,t,i,k
 "}}}
 
 " }}}
@@ -328,6 +365,7 @@ augroup ft
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
 	autocmd BufNewFile,BufRead *.mail set filetype=mail
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
+	autocmd BufWritePost $MYVIMRC let b:noStripWhitespace=0
 augroup END
 
 augroup vimp
@@ -396,7 +434,7 @@ inoremap <leader>fn <C-R>=expand("%:t")<CR>
 " List all buffers and quickly switch to selected
 nmap <leader>b :ls<CR>:buffer<Space>
 
-map <leader>rc :e! ~/.vim/vimrc<CR>
+map <leader>rc :e! $MYVIMRC<CR>
 augroup Reload_vimrc
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC | echo "vimrc is sourced"

@@ -1,6 +1,7 @@
 " Remove trailing spaces
+
 function! <SID>StripTrailingWhitespaces()
-	if exists('b:noStripWhitespace')
+	if exists('b:noStripWhitespace') || exists('g:noStripWhitespace')
         return
     endif
 
@@ -18,6 +19,10 @@ endfunction
 
 " Remove empty line at the end of page
 function! <SID>TrimEndLines()
+	if exists('b:noStripWhitespace') || exists('g:noStripWhitespace')
+        return
+    endif
+
 	let save_cursor = getpos(".")
 	:silent! %s#\($\n\s*\)\+\%$##
 	call setpos('.', save_cursor)
