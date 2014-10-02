@@ -1,7 +1,8 @@
 " Remove trailing spaces
 
-function! <SID>StripTrailingWhitespaces()
-	if exists('b:noStripWhitespace') || exists('g:noStripWhitespace')
+function! StripTrailingWhitespaces()
+	echo "Stripping"
+	if exists('g:noStripWhitespace')
         return
     endif
 
@@ -18,8 +19,8 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 " Remove empty line at the end of page
-function! <SID>TrimEndLines()
-	if exists('b:noStripWhitespace') || exists('g:noStripWhitespace')
+function! TrimEndLines()
+	if exists('g:noStripWhitespace')
         return
     endif
 
@@ -28,11 +29,14 @@ function! <SID>TrimEndLines()
 	call setpos('.', save_cursor)
 endfunction
 
+command StripTrailingWhitespaces :call StripTrailingWhitespaces()
+command TrimEndLines :call TrimEndLines()
+
 " Auto remove when saving
 augroup Clean
 	autocmd!
-	autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-	autocmd BufWritePre * :call <SID>TrimEndLines()
+	autocmd BufWritePre * :call StripTrailingWhitespaces()
+	autocmd BufWritePre * :call TrimEndLines()
 augroup END
 
 augroup Whitespace
