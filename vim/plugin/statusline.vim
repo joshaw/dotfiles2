@@ -1,5 +1,5 @@
 " Created:  Tue 29 Jul 2014 03:05 PM
-" Modified: Tue 29 Jul 2014 04:20 PM
+" Modified: Fri 03 Oct 2014 12:39 PM
 
 "StatusLine {{{
 function! s:insertStatusLine()
@@ -12,7 +12,8 @@ function! s:insertStatusLine()
 	setlocal statusline+=%1*%m%*                         "modified flag
 	setlocal statusline+=%=%3*                           "left/right separator
 	setlocal statusline+=%{&spell?'[s]':''}              "spelling
-	setlocal statusline+=%y                              "filetype
+	setlocal statusline+=%{&binary?'[b]':''}             "binary mode
+	setlocal statusline+={%{&ft}}                        "filetype
 	setlocal statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 	setlocal statusline+=\ %{&ff}]\                      "file format
 	setlocal statusline+=%8*%c,\                         "cursor column
@@ -31,7 +32,8 @@ function! s:normalStatusLine()
 	setlocal statusline+=%1*%m%*                         "modified flag
 	setlocal statusline+=%=%3*                           "left/right separator
 	setlocal statusline+=%{&spell?'[s]':''}              "spelling
-	setlocal statusline+=%y                              "filetype
+	setlocal statusline+=%{&binary?'[b]':''}             "binary mode
+	setlocal statusline+={%{&ft}}                        "filetype
 	setlocal statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 	setlocal statusline+=\ %{&ff}]\                      "file format
 	setlocal statusline+=%8*%c,\                         "cursor column
