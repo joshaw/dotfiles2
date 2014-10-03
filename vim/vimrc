@@ -12,7 +12,9 @@ if executable('git')
 	" Appearance Utilities {{{
 
 	"Code tag view and navigation with ctags tags
-	Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+	if executable('ctags')
+		Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+	endif
 
 	" }}}
 	" Git Related {{{
@@ -36,7 +38,9 @@ if executable('git')
 	"Closing of brackets, tags, quotes etc.
 	Plug 'Raimondi/delimitMate', { 'on' : [] }
 	"Syntax checking for a wide range of languages
-	Plug 'scrooloose/syntastic'
+	if has('win')
+		Plug 'scrooloose/syntastic'
+	end
 	"Easy commenting/uncommenting of code.
 	Plug 'tpope/vim-commentary', { 'on' : [] }
 	"Simple alignment of lines
@@ -47,10 +51,14 @@ if executable('git')
 	Plug 'tpope/vim-vinegar'
 	"Allow incrementing true/false values etc.
 	Plug 'nishigori/increment-activator'
+	"Make f (forward) and t (to) better
 	Plug 'clever-f.vim'
+	"Google calendar in vim
 	Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
-	Plug 'AndrewRadev/writable_search.vim', {'on' : 'WritableSearch'}
 	Plug 'vim-scripts/renamer.vim'
+	if has('win32')
+		Plug 'mhinz/vim-startify'
+	endif
 
 	"}}}
 	" Filetype specific {{{
@@ -225,18 +233,14 @@ set showmatch
 set smartcase
 "}}}
 " History, Backup and Undo Files {{{
-if has("win32")
-	let $TMP="c:/tmp"
-	let $TEMP="c:/tmp"
-endif
 set history=700
 set backup
-set backupdir=/var/tmp,/tmp,c:/tmp,$TMP,$TEMP
-set directory=/var/tmp,/tmp,c:/tmp,$TMP,$TEMP
+set backupdir=/var/tmp,/tmp,$TMP,$TEMP,c:/tmp
+set directory=/var/tmp,/tmp,$TMP,$TEMP,c:/tmp
 set writebackup
 if exists("&undofile")
 	set undofile
-	set undodir=~/.vim/undodir
+	set undodir=$VIMHOME/undodir
 	augroup undo
 		autocmd!
 		autocmd BufWritePre /tmp/* setlocal noundofile
@@ -284,7 +288,7 @@ set novisualbell
 set t_vb=
 set tm=500
 set mouse=a
-if $USERNAME == 'JoshWainwright'
+if has('win32')
 	set guifont=Consolas:h10:cANSI
 else
 	set guifont=Droid\ Sans\ Mono\ 10
@@ -319,6 +323,9 @@ if has("gui_running")
 	set guioptions-=l "remove right scroll
 	set guioptions-=m "remove menu bar
 	set guioptions-=r "remove left scroll
+	if has('win32')
+		set lines=999 columns=999
+	endif
 endif
 
 " automatically open quickfix window after commands that modify the quickfix list
@@ -346,7 +353,9 @@ set path+=../**
 set keywordprg=""
 set makeprg=make
 if has('win32')
-	set shell=powershell.exe
+	set shell=C:/cygwin/bin/bash
+	set shellcmdflag=--login\ -c
+	set shellxquote=\"
 else
 	set shell=sh
 endif
@@ -395,8 +404,8 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 
 " Make j and k move to the next row on screen rather
-nmap j gj
-nmap k gk
+" nmap j gj
+" nmap k gk
 
 " Center search result
 nnoremap n nzz
@@ -417,7 +426,11 @@ vnoremap <silent> # :<C-U>
 nnoremap D dg_
 nnoremap Y yg_
 
-map <C-g> :grep<space>
+if executable('grep')
+	map <C-g> :grep<space>
+else
+	map <C-g> :vimgrep<space>
+endif
 
 " Jump to start and end of line in insert mode
 inoremap <C-a> <esc>I
@@ -459,7 +472,7 @@ nmap <leader>w :w!<cr>
 cabbrev w!! w !sudo tee > /dev/null %
 augroup Save
 	autocmd!
-	au FocusLost * :silent! wall
+	" au FocusLost * :silent! wall
 	au VimResized * :wincmd =
 augroup END
 
@@ -522,6 +535,17 @@ map      <3-MiddleMouse>     <LeftMouse>
 imap     <3-MiddleMouse>     <LeftMouse>
 map      <4-MiddleMouse>     <LeftMouse>
 imap     <4-MiddleMouse>     <LeftMouse>
+
+nnoremap <A-Up> :silent! let &guifont = substitute(
+ \ &guifont,
+ \ ':h\zs\d\+',
+ \ '\=eval(submatch(0)+1)',
+ \ '')<CR>
+nnoremap <A-Down> :silent! let &guifont = substitute(
+ \ &guifont,
+ \ ':h\zs\d\+',
+ \ '\=eval(submatch(0)-1)',
+ \ '')<CR>
 
 " }}}
 
