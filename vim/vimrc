@@ -3,11 +3,15 @@
 " Filename: vimrc
 
 " Vim-Plug Bundles {{{
-let $VIMHOME=expand('<sfile>:p:h')
+if has('unix')
+	let $VIMHOME="~/.vim/"
+elseif has('win32')
+	let $VIMHOME=$HOME."\\vimfiles\\"
+endif
 let g:plug_threads = 6
 let g:plug_timeout = 20
 if executable('git')
-	call plug#begin($VIMHOME.'/plugged')
+	call plug#begin($VIMHOME.'plugged')
 
 	" Appearance Utilities {{{
 
@@ -56,9 +60,7 @@ if executable('git')
 	"Google calendar in vim
 	Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
 	Plug 'vim-scripts/renamer.vim'
-	if has('win32')
-		Plug 'mhinz/vim-startify'
-	endif
+	Plug 'mhinz/vim-startify'
 
 	"}}}
 	" Filetype specific {{{
@@ -71,7 +73,9 @@ if executable('git')
 	Plug 'jamessan/vim-gnupg'
 
 	Plug 'vimwiki/vimwiki'
-	Plug 'istib/vifm.vim'
+	if executable('vifm')
+		Plug 'istib/vifm.vim'
+	endif
 	" }}}
 
 	augroup load_plugs
@@ -249,6 +253,7 @@ if exists("&undofile")
 endif
 "}}}
 " Editor Setup {{{
+set fileformat=unix
 set autoread      " Auto read when a file changes from the outside
 set autowrite     " Auto write before make etc.
 set linebreak     " Don't break across words
