@@ -277,7 +277,6 @@ set backspace=eol,start,indent " Allow backspacing over
 "}}}
 " UI {{{
 colorscheme molokaiJ
-" colorscheme base16-monokai
 set background=dark
 
 set wrapmargin=0 " Wrap text
@@ -294,7 +293,7 @@ set t_vb=
 set tm=500
 set mouse=a
 if has('win32')
-	set guifont=Consolas:h10:cANSI
+	set guifont=Consolas:h11:cANSI
 else
 	set guifont=Droid\ Sans\ Mono\ 10
 endif
@@ -379,12 +378,12 @@ endif
 
 augroup ft
 	autocmd!
-	" TODO
-	" au FileType * exe('setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim')
+	"au FileType * exe('setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim')
 	autocmd BufEnter,BufNew *.tex set ft=tex | source ~/.vim/ftplugin/tex.vim
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
-	autocmd BufNewFile,BufRead *.mail set filetype=mail
+	" Remove spaces at the end of header lines when starting new mail in mutt.
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
+	autocmd BufNewFile,BufRead *.mail set filetype=mail
 	autocmd BufWritePre $MYVIMRC unlet g:noStripWhitespace
 augroup END
 
@@ -498,12 +497,6 @@ map <F11>  :copen<Return>:cnext<Return>
 " Open the Tagbar sidebar
 nnoremap <silent> <F8> :TagbarToggle<CR>
 
-"Toggle NERDTree sidebar
-nmap <F7>   :VimFiler -split -simple -winwidth=30 -toggle -no-quit<CR>
-imap <F7>   :VimFiler -split -simple -winwidth=30 -toggle -no-quit<CR>
-nmap <S-F7> :VimFiler -split -simple -winwidth=30 -toggle -no-quit -find<CR>
-imap <S-F7> :VimFiler -split -simple -winwidth=30 -toggle -no-quit -find<CR>
-
 " Unset highlighting of a search
 nmap <silent> <leader>q :nohlsearch<CR><Plug>(clever-f-reset)
 
@@ -549,17 +542,21 @@ imap     <3-MiddleMouse>     <LeftMouse>
 map      <4-MiddleMouse>     <LeftMouse>
 imap     <4-MiddleMouse>     <LeftMouse>
 
+" Increase and decrease font size in gui using Alt-Up and Alt-Down
 nnoremap <A-Up> :silent! let &guifont = substitute(
  \ &guifont,
  \ ':h\zs\d\+',
  \ '\=eval(submatch(0)+1)',
- \ '')<CR>
+ \ '')<CR><CR>
 nnoremap <A-Down> :silent! let &guifont = substitute(
  \ &guifont,
  \ ':h\zs\d\+',
  \ '\=eval(submatch(0)-1)',
- \ '')<CR>
+ \ '')<CR><CR>
 
 " }}}
 
+" Temp {{{
+normal zz
+" }}}
 " vim: fdm=marker
