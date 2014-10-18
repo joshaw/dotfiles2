@@ -388,6 +388,8 @@ augroup ft
 	autocmd BufWritePre $MYVIMRC unlet g:noStripWhitespace
 augroup END
 
+cabbrev help vert help
+
 augroup ldra
 	autocmd!
 	autocmd BufEnter,BufNew *.tcf set ft=conf
