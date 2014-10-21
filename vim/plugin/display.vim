@@ -6,6 +6,7 @@ function! Display_mode()
 	set guifont=Consolas:h15:cANSI
 	set colorcolumn=0
 	set norelativenumber
+	set nowrap
 endfunction
 
 function! No_display_mode()
