@@ -31,8 +31,10 @@ if executable('git')
 	" }}}
 	" Other {{{
 
-	"Snippet management
-	Plug 'SirVer/ultisnips', { 'on' : [] }
+	if !has('win')
+		"Snippet management
+		Plug 'SirVer/ultisnips', { 'on' : [] }
+	end
 	Plug 'honza/vim-snippets', { 'on' : [] }
 	"Super tab completion
 	Plug 'ervandew/supertab'
@@ -41,8 +43,8 @@ if executable('git')
 	Plug 'tpope/vim-surround', { 'on' : [] }
 	"Closing of brackets, tags, quotes etc.
 	Plug 'Raimondi/delimitMate', { 'on' : [] }
-	"Syntax checking for a wide range of languages
 	if has('win')
+		"Syntax checking for a wide range of languages
 		Plug 'scrooloose/syntastic'
 	end
 	"Easy commenting/uncommenting of code.
@@ -177,6 +179,43 @@ let g:clever_f_mark_cursor_color = 'Error'
 if $USERNAME == 'JoshWainwright'
 	let g:noStripWhitespace = 1
 endif
+
+""" Startify
+
+let g:startify_relative_path          = 1
+let g:startify_change_to_dir          = 1
+
+let g:startify_list_order = [
+			\ ['   LRU:'],
+			\ 'files',
+			\ ['   LRU within this dir:'],
+			\ 'dir',
+			\ ['   Sessions:'],
+			\ 'sessions',
+			\ ['   Bookmarks:'],
+			\ 'bookmarks',
+			\ ]
+
+let g:startify_skiplist = [
+			\ 'COMMIT_EDITMSG',
+			\ $VIMRUNTIME .'/doc',
+			\ 'bundle/.*/doc',
+			\ '\.vimgolf',
+			\ ]
+
+let g:startify_bookmarks = [
+			\ '~\slide-errors.txt',
+			\ '~\Expences.md',
+			\ ]
+
+hi StartifyBracket ctermfg=240
+hi StartifyFile    ctermfg=147
+hi StartifyFooter  ctermfg=240
+hi StartifyHeader  ctermfg=114
+hi StartifyNumber  ctermfg=215
+hi StartifyPath    ctermfg=245
+hi StartifySlash   ctermfg=240
+hi StartifySpecial ctermfg=240
 
 " }}}
 " Functions {{{
