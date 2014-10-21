@@ -63,7 +63,7 @@ set noconfirm
 set relativenumber
 
 " Don't do to much requests to slow file systems
-set slowfs=curlftpfs
+"set slowfs=curlftpfs
 
 set statusline="  %t%= %A %10u:%-7g %15E %20d  "
 
