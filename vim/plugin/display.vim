@@ -7,7 +7,7 @@
 
 " Define the settings that will be changed when entering display mode.
 function! Display_mode()
-	let g:dmode = 1
+	let g:DMODE = 1
 	colorscheme github
 	set guifont=Consolas:h15:cANSI
 	set colorcolumn=0
@@ -17,13 +17,13 @@ endfunction
 
 " Switch back to normal mode by re-sourcing the vimrc file.
 function! No_display_mode()
-	unlet g:dmode
+	unlet g:DMODE
 	source $MYVIMRC
 endfunction
 
 " Toggle display mode.
 function! Switch_display_mode()
-	if exists("g:dmode")
+	if exists("g:DMODE")
 		call No_display_mode()
 	else
 		call Display_mode()
@@ -31,6 +31,10 @@ function! Switch_display_mode()
 endfunction
 
 " When starting, check to see if DMODE exists from a previous session.
+function! Display_mode_start()
+	if exists("g:DMODE")
+		call Display_mode()
+	endif
 function! Save_display_mode()
 	echo "(NOT) Display mode saved."
 	" if !shell("grep \"g:dmode\" $MYVIMRC")
@@ -39,3 +43,6 @@ endfunction
 
 nnoremap <silent> <F5> :<C-u>call Switch_display_mode()<CR>
 nnoremap <silent> <S-F5> :<C-u>call Save_display_mode()<CR>
+augroup dmode
+	autocmd vimenter,bufenter * call Display_mode_start()
+augroup END
