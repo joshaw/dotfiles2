@@ -7,10 +7,11 @@ if has('unix')
 	let $VIMHOME="~/.vim/"
 elseif has('win32')
 	let $VIMHOME=$HOME."\\vimfiles\\"
+	"let $PATH=$PATH.";C:\\Program Files (x86)\\Git\\bin\\"
 endif
 let g:plug_threads = 6
 let g:plug_timeout = 20
-if executable('git')
+"if executable('git')
 	call plug#begin($VIMHOME.'plugged')
 
 	" Appearance Utilities {{{
@@ -31,11 +32,11 @@ if executable('git')
 	" }}}
 	" Other {{{
 
-	if !has('win')
+	if !has('win32unix')
 		"Snippet management
 		Plug 'SirVer/ultisnips', { 'on' : [] }
+		Plug 'honza/vim-snippets', { 'on' : [] }
 	end
-	Plug 'honza/vim-snippets', { 'on' : [] }
 	"Super tab completion
 	Plug 'ervandew/supertab'
 	"Easy changing, adding and removing of surround objects
@@ -84,14 +85,16 @@ if executable('git')
 		autocmd InsertEnter * call plug#load('vim-surround')
 		autocmd InsertEnter * call plug#load('delimitMate')
 		autocmd InsertEnter * call plug#load('vim-commentary')
-		autocmd InsertEnter * call plug#load('ultisnips')
-			  		\| doautocmd UltiSnipsFileType FileType
-		autocmd InsertEnter * call plug#load('vim-snippets')
-			  		\| autocmd! load_plugs
+		if !has("win32") && !has("win32unix")
+			autocmd InsertEnter * call plug#load('ultisnips')
+			  			\| doautocmd UltiSnipsFileType FileType
+			autocmd InsertEnter * call plug#load('vim-snippets')
+			  			\| autocmd! load_plugs
+		endif
 	augroup END
 
 	call plug#end()
-endif " executable(git)
+"endif " executable(git)
 
 " }}} -------------------------------------------------------------------------
 " Plugin Settings {{{
@@ -142,8 +145,9 @@ let g:SuperTabContextDefaultCompletionType = "<c-p>"
 	let g:UltiSnipsJumpForwardTrigger = "<tab>"
 	let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-if executable('git')
-	call CleverTab#KeywordFirst()
+" if executable('git')
+" 	call CleverTab#KeywordFirst()
+" endif
 	function! Smart_TabComplete()
 	  let line = getline('.')
 
@@ -162,7 +166,6 @@ if executable('git')
 		return "\<C-X>\<C-O>"
 	  endif
 	endfunction
-endif
 
 """" delimitMate
 let delimitMate_jump_expansion = 0
@@ -291,7 +294,6 @@ if exists("&undofile")
 endif
 "}}}
 " Editor Setup {{{
-set fileformat=unix
 set autoread      " Auto read when a file changes from the outside
 set autowrite     " Auto write before make etc.
 set linebreak     " Don't break across words
@@ -330,7 +332,7 @@ set novisualbell
 set t_vb=
 set tm=500
 set mouse=a
-if has('win32')
+if has('win32') || has('win32unix')
 	set guifont=Consolas:h11:cANSI
 else
 	set guifont=Droid\ Sans\ Mono\ 10
@@ -419,18 +421,18 @@ augroup ft
 	"au FileType * exe('setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim')
 	autocmd BufEnter,BufNew *.tex set ft=tex | source ~/.vim/ftplugin/tex.vim
 	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
+	autocmd BufEnter,BufNew *.md set ft=markdown
 	" Remove spaces at the end of header lines when starting new mail in mutt.
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
 	autocmd BufNewFile,BufRead *.mail set filetype=mail
 	autocmd BufWritePre $MYVIMRC unlet g:noStripWhitespace
 augroup END
 
-cabbrev help vert help
-
 augroup ldra
 	autocmd!
 	autocmd BufEnter,BufNew *.tcf set ft=conf
 	autocmd BufEnter,BufNew *.tct set ft=conf
+	autocmd BufEnter,BufNew */WeeklyReports/* setl ft=markdown ff=dos
 augroup END
 
 augroup vimp
@@ -504,6 +506,7 @@ inoremap <leader>fn <C-R>=expand("%:t")<CR>
 nmap <leader>b :ls<CR>:buffer<Space>
 
 map <leader>rc :e! $MYVIMRC<CR>
+map <leader>rd :e! $VIMHOME/plugin/display.vim<CR>
 augroup Reload_vimrc
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC | echo "vimrc is sourced"
@@ -616,6 +619,13 @@ iabbrev Vacat Vacation<CR>
 " }}}
 
 " Temp {{{
+if has('win32')
+	augroup win
+		au!
+		au GUIEnter * simalt ~x
+	augroup END
+endif
 normal zz
+set viminfo^=!
 " }}}
 " vim: fdm=marker
