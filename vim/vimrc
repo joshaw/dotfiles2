@@ -593,6 +593,27 @@ nnoremap <A-Down> :silent! let &guifont = substitute(
  \ '')<CR><CR>
 
 " }}}
+" Abbreviations {{{
+
+cabbrev help vert help
+
+abbrev <expr> dts strftime("%d/%m/%Y")
+abbrev <expr> dty strftime("%Y%m%d")
+abbrev <expr> dtl strftime("%c")
+
+iabbrev <expr> Cre: "Created: ".strftime("%d/%m/%Y")
+iabbrev <expr> Edi: "Edited : ".strftime("%d/%m/%Y")
+
+iabbrev <expr> Weeklyr "Weekly Report<CR>
+                       \=============<CR>
+                       \Josh Wainwright<CR>
+                       \Week ending " . system("date -d Fri '+%d/%m/%Y'")"
+iabbrev Custvisit Customer Site Visits<CR>
+                 \--------------------
+iabbrev Vacat Vacation<CR>
+             \--------
+
+" }}}
 
 " Temp {{{
 normal zz
