@@ -9,10 +9,11 @@
 function! Display_mode()
 	let g:DMODE = 1
 	colorscheme github
-	set guifont=Consolas:h15:cANSI
+	set guifont=Consolas:h13:cANSI
 	set colorcolumn=0
 	set norelativenumber
 	set nowrap
+	set guioptions+=m
 endfunction
 
 " Switch back to normal mode by re-sourcing the vimrc file.
@@ -35,14 +36,10 @@ function! Display_mode_start()
 	if exists("g:DMODE")
 		call Display_mode()
 	endif
-function! Save_display_mode()
-	echo "(NOT) Display mode saved."
-	" if !shell("grep \"g:dmode\" $MYVIMRC")
-	" 	shell("echo \"let g:dmode = 1\"")
 endfunction
 
 nnoremap <silent> <F5> :<C-u>call Switch_display_mode()<CR>
-nnoremap <silent> <S-F5> :<C-u>call Save_display_mode()<CR>
+
 augroup dmode
 	autocmd vimenter,bufenter * call Display_mode_start()
 augroup END
