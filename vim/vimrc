@@ -38,7 +38,6 @@ if executable('git')
 	Plug 'honza/vim-snippets', { 'on' : [] }
 	"Super tab completion
 	Plug 'ervandew/supertab'
-	Plug 'neitanod/vim-clevertab'
 	"Easy changing, adding and removing of surround objects
 	Plug 'tpope/vim-surround', { 'on' : [] }
 	"Closing of brackets, tags, quotes etc.
