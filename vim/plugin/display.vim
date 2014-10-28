@@ -9,11 +9,16 @@
 function! Display_mode()
 	let g:DMODE = 1
 	colorscheme github
-	set guifont=Consolas:h13:cANSI
+	set guioptions+=mbl
+	if has("unix")
+		set guifont=Droid\ Sans\ Mono\ 10
+	else
+		set guifont=Consolas:h13:cANSI
+	endif
 	set colorcolumn=0
+	set nolist
 	set norelativenumber
 	set nowrap
-	set guioptions+=m
 endfunction
 
 " Switch back to normal mode by re-sourcing the vimrc file.
@@ -38,8 +43,8 @@ function! Display_mode_start()
 	endif
 endfunction
 
-nnoremap <silent> <F5> :<C-u>call Switch_display_mode()<CR>
-
 augroup dmode
 	autocmd vimenter,bufenter * call Display_mode_start()
 augroup END
+
+nnoremap <silent> <F5> :<C-u>call Switch_display_mode()<CR>
