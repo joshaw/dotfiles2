@@ -430,7 +430,7 @@ augroup ft
 	" Remove spaces at the end of header lines when starting new mail in mutt.
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
 	autocmd BufNewFile,BufRead *.mail set filetype=mail
-	autocmd BufWritePre $MYVIMRC unlet g:noStripWhitespace
+	autocmd BufWritePre *.vim g:noStripWhitespace
 augroup END
 
 augroup ldra
