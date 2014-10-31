@@ -182,12 +182,11 @@ let g:startify_skiplist = [
 			\ 'COMMIT_EDITMSG',
 			\ $VIMRUNTIME .'/doc',
 			\ 'bundle/.*/doc',
-			\ '\.vimgolf',
 			\ ]
 
 let g:startify_bookmarks = [
-			\ '~\slide-errors.txt',
-			\ '~\Expences.md',
+			\ '~\Documents\slide-errors.txt',
+			\ '~\Documents\Forms\Expences.md',
 			\ ]
 
 hi StartifyBracket ctermfg=240
@@ -203,11 +202,24 @@ hi StartifySpecial ctermfg=240
 let g:outlook_Javascript = expand('$VIMHOME\plugged\OutlookVim\plugin\outlookvim.js')
 let g:outlook_javascript = 'C:\home\JoshWainwright\vimfiles\plugged\OutlookVim\plugin\outlookvim.js'
 let g:outlook_debug = 1
+
 " }}}
 " Functions {{{
 
 " View the difference between the buffer and the file the last time it was saved
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+
+nnoremap <F12> call EditWeeklyr()
+command! EditWeeklyReport :call EditWeeklyr()
+function! EditWeeklyr()
+	let date = system("echo -n `date -d Fri '+%Y%m%d'`")
+	let thisweek = '~\Documents\Forms\WeeklyReports\'.date.'.md'
+	if !exists(thisweek)
+		exec "edit ".thisweek . "| normal iWeeklyro"
+	else
+		exec "edit ".thisweek
+	endif
+endfunction
 
 function! MyFoldText() " {{{
 	let line = getline(v:foldstart)
@@ -421,7 +433,7 @@ augroup ldra
 	autocmd!
 	autocmd BufEnter,BufNew *.tcf set ft=conf
 	autocmd BufEnter,BufNew *.tct set ft=conf
-	autocmd BufEnter,BufNew */WeeklyReports/* setl ft=markdown ff=dos
+	autocmd BufEnter,BufNew */WeeklyReports/201* setl ft=markdown
 augroup END
 
 augroup vimp
@@ -599,7 +611,16 @@ iabbrev <expr> Edi: "Edited : ".strftime("%d/%m/%Y")
 iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \=============<CR>
                        \Josh Wainwright<CR>
-                       \Week ending " . system("date -d Fri '+%d/%m/%Y'")"
+                       \Week ending " . system("date -d Fri '+%d/%m/%Y'") . "<CR>
+                       \- <CR>
+                       \<CR>
+                       \Customer Site Visits<CR>
+                       \--------------------<CR>
+                       \<CR>
+                       \Vacation<CR>
+                       \--------<CR>
+                       \- None"
+
 iabbrev Custvisit Customer Site Visits<CR>
                  \--------------------
 iabbrev Vacat Vacation<CR>
