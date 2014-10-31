@@ -1,10 +1,12 @@
 " Remove trailing spaces
 
-function! StripTrailingWhitespaces()
+function! s:stripTrailing(force)
 	echo "Stripping"
-	if exists('g:noStripWhitespace')
-        return
-    endif
+	if !a:force
+		if exists('g:noStripWhitespace')
+			return
+		endif
+	endif
 
 	" Preparation: save last search, and cursor position.
 	let _s=@/
@@ -21,21 +23,21 @@ endfunction
 " Remove empty line at the end of page
 function! TrimEndLines()
 	if exists('g:noStripWhitespace')
-        return
-    endif
+		return
+	endif
 
 	let save_cursor = getpos(".")
 	:silent! %s#\($\n\s*\)\+\%$##
 	call setpos('.', save_cursor)
 endfunction
 
-command StripTrailingWhitespaces :call StripTrailingWhitespaces()
-command TrimEndLines :call TrimEndLines()
+command! -nargs=0 -bang StripTrailing :call s:stripTrailing('<bang>' == '!')
+command! TrimEndLines :call TrimEndLines()
 
 " Auto remove when saving
 augroup Clean
 	autocmd!
-	autocmd BufWritePre * :call StripTrailingWhitespaces()
+	autocmd BufWritePre * StripTrailing
 	autocmd BufWritePre * :call TrimEndLines()
 augroup END
 
