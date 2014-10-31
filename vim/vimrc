@@ -63,6 +63,9 @@ let g:plug_timeout = 20
 	Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
 	Plug 'vim-scripts/renamer.vim'
 	Plug 'mhinz/vim-startify'
+	if has('win32') || has('win32unix')
+		Plug 'vim-scripts/OutlookVim'
+	endif
 
 	"}}}
 	" Filetype specific {{{
@@ -196,6 +199,10 @@ hi StartifyPath    ctermfg=245
 hi StartifySlash   ctermfg=240
 hi StartifySpecial ctermfg=240
 
+""" OutlookVim
+let g:outlook_Javascript = expand('$VIMHOME\plugged\OutlookVim\plugin\outlookvim.js')
+let g:outlook_javascript = 'C:\home\JoshWainwright\vimfiles\plugged\OutlookVim\plugin\outlookvim.js'
+let g:outlook_debug = 1
 " }}}
 " Functions {{{
 
