@@ -302,7 +302,7 @@ set hidden        " Hide buffer when abandoning rather than unloading
 set lazyredraw    " Don't redraw the screen for macros and registers
 set nostartofline " Dont' move cursor to start of line for gg,G etc.
 set matchpairs+=<:>
-set listchars=tab:·\ ,trail:▸,nbsp:#,extends:❯,precedes:❮
+set listchars=tab:·\ ,trail:▸,nbsp:#,extends:»,precedes:«
 "set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
 set fillchars=vert:│
