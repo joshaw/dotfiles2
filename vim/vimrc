@@ -404,6 +404,11 @@ else
 	set shell=sh
 endif
 set complete=.,w,b,u,U,t,i,k
+if has('win32') || has('win32unix')
+	set dictionary+=C:\cygwin\usr\share\dict\words
+else
+	set dictionary+=/usr/share/dict/words
+endif
 "}}}
 
 " }}}
