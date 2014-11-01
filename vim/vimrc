@@ -606,6 +606,9 @@ abbrev <expr> dtl strftime("%c")
 
 iabbrev <expr> Cre: "Created: ".strftime("%d/%m/%Y")
 iabbrev <expr> Edi: "Edited : ".strftime("%d/%m/%Y")
+iabbrev <expr> ccreate "Created:  TIMESTAMP<CR>
+                       \Author:   Josh Wainwright<CR>
+                       \Filename: " . expand('%:t')
 
 iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \=============<CR>
