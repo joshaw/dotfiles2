@@ -1,8 +1,8 @@
 " Created:  Tue 29 Jul 2014 03:05 PM
-" Modified: Fri 03 Oct 2014 12:39 PM
+" Modified: Wed 29 Oct 2014 12:38 PM
 
 "StatusLine {{{
-function! s:insertStatusLine()
+function! StatusLineInsert()
 	setlocal statusline=
 	setlocal statusline+=%1*\ %<%f\                      "full path
 	setlocal statusline+=%9*%h                           "help file flag
@@ -21,7 +21,7 @@ function! s:insertStatusLine()
 	setlocal statusline+=\ %p%%                          "percent through file
 endfunction
 
-function! s:normalStatusLine()
+function! StatusLineNormal()
 	setlocal statusline=
 	setlocal statusline+=%4*%n
 	setlocal statusline+=%3*\ %<%F\                      "full path
@@ -41,15 +41,15 @@ function! s:normalStatusLine()
 	setlocal statusline+=\ %p%%                          "percent through file
 endfunction
 
-function! s:inactiveStatusLine()
+function! StatusLineInactive()
 	setlocal statusline=%F
 endfunction
 
-call s:normalStatusLine()
+call StatusLineNormal()
 augroup statuslines
 	au!
-	au InsertEnter * call s:insertStatusLine()
-	au BufEnter,InsertLeave * call s:normalStatusLine()
-	au BufLeave * call s:inactiveStatusLine()
+	au InsertEnter * call StatusLineInsert()
+	au BufEnter,InsertLeave * call StatusLineNormal()
+	au BufLeave * call StatusLineInactive()
 augroup END
 "}}}

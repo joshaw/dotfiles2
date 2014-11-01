@@ -63,6 +63,9 @@ let g:plug_timeout = 20
 	Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
 	Plug 'vim-scripts/renamer.vim'
 	Plug 'mhinz/vim-startify'
+	if has('win32') || has('win32unix')
+		Plug 'vim-scripts/OutlookVim'
+	endif
 
 	"}}}
 	" Filetype specific {{{
@@ -74,7 +77,6 @@ let g:plug_timeout = 20
 	"Decrypt, edit and then re-encrypt gpg stored files.
 	Plug 'jamessan/vim-gnupg'
 
-	Plug 'vimwiki/vimwiki'
 	if executable('vifm')
 		Plug 'istib/vifm.vim'
 	endif
@@ -145,28 +147,6 @@ let g:SuperTabContextDefaultCompletionType = "<c-p>"
 	let g:UltiSnipsJumpForwardTrigger = "<tab>"
 	let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-" if executable('git')
-" 	call CleverTab#KeywordFirst()
-" endif
-	function! Smart_TabComplete()
-	  let line = getline('.')
-
-	  let substr = strpart(line, -1, col('.')+1)
-	  let substr = matchstr(substr, "[^ \t]*$")
-	  if (strlen(substr)==0)
-		return "\<tab>"
-	  endif
-	  let has_period = match(substr, '\.') != -1
-	  let has_slash = match(substr, '\/') != -1
-	  if (!has_period && !has_slash)
-		return "\<C-X>\<C-P>"
-	  elseif ( has_slash )
-		return "\<C-X>\<C-F>"
-	  else
-		return "\<C-X>\<C-O>"
-	  endif
-	endfunction
-
 """" delimitMate
 let delimitMate_jump_expansion = 0
 let delimitMate_expand_cr = 2
@@ -202,12 +182,11 @@ let g:startify_skiplist = [
 			\ 'COMMIT_EDITMSG',
 			\ $VIMRUNTIME .'/doc',
 			\ 'bundle/.*/doc',
-			\ '\.vimgolf',
 			\ ]
 
 let g:startify_bookmarks = [
-			\ '~\slide-errors.txt',
-			\ '~\Expences.md',
+			\ '~\Documents\slide-errors.txt',
+			\ '~\Documents\Forms\Expences.md',
 			\ ]
 
 hi StartifyBracket ctermfg=240
@@ -219,11 +198,28 @@ hi StartifyPath    ctermfg=245
 hi StartifySlash   ctermfg=240
 hi StartifySpecial ctermfg=240
 
+""" OutlookVim
+let g:outlook_Javascript = expand('$VIMHOME\plugged\OutlookVim\plugin\outlookvim.js')
+let g:outlook_javascript = 'C:\home\JoshWainwright\vimfiles\plugged\OutlookVim\plugin\outlookvim.js'
+let g:outlook_debug = 1
+
 " }}}
 " Functions {{{
 
 " View the difference between the buffer and the file the last time it was saved
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+
+nnoremap <F12> call EditWeeklyr()
+command! EditWeeklyReport :call EditWeeklyr()
+function! EditWeeklyr()
+	let date = system("echo -n `date -d Fri '+%Y%m%d'`")
+	let thisweek = '~\Documents\Forms\WeeklyReports\'.date.'.md'
+	if !exists(thisweek)
+		exec "edit ".thisweek . "| normal iWeeklyro"
+	else
+		exec "edit ".thisweek
+	endif
+endfunction
 
 function! MyFoldText() " {{{
 	let line = getline(v:foldstart)
@@ -302,7 +298,7 @@ set hidden        " Hide buffer when abandoning rather than unloading
 set lazyredraw    " Don't redraw the screen for macros and registers
 set nostartofline " Dont' move cursor to start of line for gg,G etc.
 set matchpairs+=<:>
-set listchars=tab:·\ ,trail:▸,nbsp:#,extends:❯,precedes:❮
+set listchars=tab:·\ ,trail:▸,nbsp:#,extends:»,precedes:«
 "set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
 set fillchars=vert:│
@@ -404,6 +400,11 @@ else
 	set shell=sh
 endif
 set complete=.,w,b,u,U,t,i,k
+if has('win32') || has('win32unix')
+	set dictionary+=C:\cygwin\usr\share\dict\words
+else
+	set dictionary+=/usr/share/dict/words
+endif
 "}}}
 
 " }}}
@@ -425,14 +426,14 @@ augroup ft
 	" Remove spaces at the end of header lines when starting new mail in mutt.
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
 	autocmd BufNewFile,BufRead *.mail set filetype=mail
-	autocmd BufWritePre $MYVIMRC unlet g:noStripWhitespace
+	autocmd BufWritePre *.vim g:noStripWhitespace
 augroup END
 
 augroup ldra
 	autocmd!
 	autocmd BufEnter,BufNew *.tcf set ft=conf
 	autocmd BufEnter,BufNew *.tct set ft=conf
-	autocmd BufEnter,BufNew */WeeklyReports/* setl ft=markdown ff=dos
+	autocmd BufEnter,BufNew */WeeklyReports/201* setl ft=markdown
 augroup END
 
 augroup vimp
@@ -613,7 +614,16 @@ iabbrev <expr> ccreate "Created:  TIMESTAMP<CR>
 iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \=============<CR>
                        \Josh Wainwright<CR>
-                       \Week ending " . system("date -d Fri '+%d/%m/%Y'")"
+                       \Week ending " . system("date -d Fri '+%d/%m/%Y'") . "<CR>
+                       \- <CR>
+                       \<CR>
+                       \Customer Site Visits<CR>
+                       \--------------------<CR>
+                       \<CR>
+                       \Vacation<CR>
+                       \--------<CR>
+                       \- None"
+
 iabbrev Custvisit Customer Site Visits<CR>
                  \--------------------
 iabbrev Vacat Vacation<CR>
