@@ -9,7 +9,7 @@
 function! Display_mode()
 	let g:DMODE = 1
 	colorscheme github
-	set guioptions+=mbl
+	set guioptions+=mbr
 	if has("unix")
 		set guifont=Droid\ Sans\ Mono\ 10
 	else

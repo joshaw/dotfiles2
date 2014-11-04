@@ -213,7 +213,7 @@ nnoremap <F12> call EditWeeklyr()
 command! EditWeeklyReport :call EditWeeklyr()
 function! EditWeeklyr()
 	let date = system("echo -n `date -d Fri '+%Y%m%d'`")
-	let thisweek = '~\Documents\Forms\WeeklyReports\'.date.'.md'
+	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.'.md'
 	if !exists(thisweek)
 		exec "edit ".thisweek . "| normal iWeeklyro"
 	else
