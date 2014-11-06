@@ -429,13 +429,6 @@ augroup ft
 	autocmd BufWritePre *.vim g:noStripWhitespace
 augroup END
 
-augroup ldra
-	autocmd!
-	autocmd BufEnter,BufNew *.tcf set ft=conf
-	autocmd BufEnter,BufNew *.tct set ft=conf
-	autocmd BufEnter,BufNew */WeeklyReports/201* setl ft=markdown
-augroup END
-
 augroup vimp
 	autocmd!
 	autocmd BufEnter *info.gpg set ft=gpg
@@ -630,7 +623,18 @@ iabbrev Vacat Vacation<CR>
              \--------
 
 " }}}
+" LDRA {{{
 
+augroup ldra
+	autocmd!
+	autocmd BufEnter,BufNew *.tcf set ft=conf
+	autocmd BufEnter,BufNew *.tct set ft=conf
+	autocmd BufEnter,BufNew */WeeklyReports/201* setl ft=markdown
+augroup END
+
+command! TBini :e C:\ProgramData\LDRA\TESTBED.ini
+
+" }}}
 " Temp {{{
 if has('win32')
 	augroup win
