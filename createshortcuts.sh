@@ -1,3 +1,6 @@
+#!/bin/bash
+set +e
+
 VERSION="946"
 GENFOLDER="LDRA Tool Suite"
 DESKTOP="/cygdrive/c/Users/JoshWainwright/Desktop"
@@ -69,5 +72,5 @@ for LANG in "C_C++" "Ada"; do
 
 done
 
-rm "$STARTMENU/LDRA"*
-rm "$STARTMENU/TB"*
+rm "$STARTMENU/LDRA"* 2> /dev/null || true
+rm "$STARTMENU/TB"* 2> /dev/null || true
