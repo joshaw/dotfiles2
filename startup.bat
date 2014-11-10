@@ -20,4 +20,5 @@ set TBINI="C:\LDRA_Toolsuite\946\TBini.exe"
 
 :: Start Skype otherwise it won't start as the tmp files have been deleted
 :: ---------------------------------------------------------------------------
-"C:\Program Files (x86)\Skype\Phone\Skype.exe"
+timeout 5
+start "C:\Program Files (x86)\Skype\Phone\Skype.exe"
