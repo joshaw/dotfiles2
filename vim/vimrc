@@ -208,17 +208,20 @@ let g:outlook_debug = 1
 " View the difference between the buffer and the file the last time it was saved
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
-nnoremap <F12> call EditWeeklyr()
-command! EditWeeklyReport :call EditWeeklyr()
-function! EditWeeklyr()
-	let date = system("echo -n `date -d Fri '+%Y%m%d'`")
-	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.'.md'
-	if !exists(thisweek)
-		exec "edit ".thisweek . "| normal iWeeklyro"
-	else
-		exec "edit ".thisweek
-	endif
+function! RenameFile(...)
+    let old_name = expand('%')
+    if a:1 == ""
+        let new_name = input('New file name: ', expand('%'), 'file')
+    else
+        let new_name = a:1
+    endif
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
 endfunction
+command! -nargs=? Rename :call RenameFile(<q-args>)
 
 function! MyFoldText() " {{{
 	let line = getline(v:foldstart)
@@ -318,6 +321,7 @@ set wrapmargin=0 " Wrap text
 set showtabline=1
 set cursorline
 set cmdheight=1
+set cmdwinheight=3
 if exists("&relativenumber")
 	set relativenumber
 endif
@@ -633,6 +637,18 @@ augroup END
 
 command! TBini :e C:\ProgramData\LDRA\TESTBED.ini
 
+nnoremap <F12> call EditWeeklyr()
+command! WeeklyReport :call EditWeeklyr()
+function! EditWeeklyr()
+	let date = system("echo -n `date -d Fri '+%Y%m%d'`")
+	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.'.md'
+	if !exists(thisweek)
+		exec "edit ".thisweek . "| normal iWeeklyro"
+	else
+		exec "edit ".thisweek
+	endif
+endfunction
+
 " }}}
 " Temp {{{
 if has('win32')
@@ -643,5 +659,8 @@ if has('win32')
 endif
 normal zz
 set viminfo^=!
+set shell=C:/cygwin/bin/zsh.exe\ -i 
+set shellcmdflag=-c
+
 " }}}
 " vim: fdm=marker
