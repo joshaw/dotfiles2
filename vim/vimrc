@@ -11,7 +11,8 @@ elseif has('win32')
 endif
 let g:plug_threads = 6
 let g:plug_timeout = 20
-"if executable('git')
+
+if executable('git')
 	call plug#begin($VIMHOME.'plugged')
 
 	" Appearance Utilities {{{
@@ -36,6 +37,8 @@ let g:plug_timeout = 20
 		"Snippet management
 		Plug 'SirVer/ultisnips', { 'on' : [] }
 		Plug 'honza/vim-snippets', { 'on' : [] }
+		"Google calendar in vim
+		Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
 	end
 	"Super tab completion
 	Plug 'ervandew/supertab'
@@ -43,10 +46,8 @@ let g:plug_timeout = 20
 	Plug 'tpope/vim-surround', { 'on' : [] }
 	"Closing of brackets, tags, quotes etc.
 	Plug 'Raimondi/delimitMate', { 'on' : [] }
-	if has('win')
-		"Syntax checking for a wide range of languages
-		Plug 'scrooloose/syntastic'
-	end
+	"Syntax checking for a wide range of languages
+	Plug 'scrooloose/syntastic'
 	"Easy commenting/uncommenting of code.
 	Plug 'tpope/vim-commentary', { 'on' : [] }
 	"Simple alignment of lines
@@ -59,8 +60,6 @@ let g:plug_timeout = 20
 	Plug 'nishigori/increment-activator'
 	"Make f (forward) and t (to) better
 	Plug 'clever-f.vim'
-	"Google calendar in vim
-	Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
 	Plug 'vim-scripts/renamer.vim'
 	Plug 'mhinz/vim-startify'
 	if has('win32') || has('win32unix')
@@ -96,7 +95,7 @@ let g:plug_timeout = 20
 	augroup END
 
 	call plug#end()
-"endif " executable(git)
+endif " executable(git)
 
 " }}} -------------------------------------------------------------------------
 " Plugin Settings {{{
