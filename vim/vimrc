@@ -39,6 +39,9 @@ if executable('git')
 		Plug 'honza/vim-snippets', { 'on' : [] }
 		"Google calendar in vim
 		Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
+		"Syntax checking for a wide range of languages
+		Plug 'scrooloose/syntastic'
+		Plug 'kien/ctrlp.vim'
 	end
 	"Super tab completion
 	Plug 'ervandew/supertab'
@@ -46,8 +49,6 @@ if executable('git')
 	Plug 'tpope/vim-surround', { 'on' : [] }
 	"Closing of brackets, tags, quotes etc.
 	Plug 'Raimondi/delimitMate', { 'on' : [] }
-	"Syntax checking for a wide range of languages
-	Plug 'scrooloose/syntastic'
 	"Easy commenting/uncommenting of code.
 	Plug 'tpope/vim-commentary', { 'on' : [] }
 	"Simple alignment of lines
@@ -201,6 +202,17 @@ hi StartifySpecial ctermfg=240
 let g:outlook_Javascript = expand('$VIMHOME\plugged\OutlookVim\plugin\outlookvim.js')
 let g:outlook_javascript = 'C:\home\JoshWainwright\vimfiles\plugged\OutlookVim\plugin\outlookvim.js'
 let g:outlook_debug = 1
+
+""" CtrlP
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $TMP.'/ctrlp'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_lazy_update = 1
+let g:ctrlp_user_command = {
+\ 'types': {
+  \ 1: ['.git', 'cd %s && git ls-files'],
+  \ },
+\ }
 
 " }}}
 " Functions {{{
@@ -403,11 +415,6 @@ else
 	set shell=sh
 endif
 set complete=.,w,b,u,U,t,i,k
-if has('win32') || has('win32unix')
-	set dictionary+=C:\cygwin\usr\share\dict\words
-else
-	set dictionary+=/usr/share/dict/words
-endif
 "}}}
 
 " }}}
@@ -420,15 +427,20 @@ autocmd Filetype *
 		\	endif
 endif
 
+if has('win32') || has('win32unix')
+	let dictfile="C:/cygwin/usr/share/dict/words"
+else
+	let dictfile="/usr/share/dict/words"
+endif
 augroup ft
 	autocmd!
-	"au FileType * exe('setl dict+='.$VIMRUNTIME.'/syntax/'.&filetype.'.vim')
-	autocmd BufEnter,BufNew *.tex set ft=tex | source ~/.vim/ftplugin/tex.vim
-	autocmd BufEnter,BufNew *.rout,*.Rout set ft=r
-	autocmd BufEnter,BufNew *.md set ft=markdown
+	au FileType * exe 'setl dict+='.fnameescape($VIMRUNTIME).'/syntax/'.&filetype.'.vim'
+	autocmd BufEnter,BufNew *.tex setl ft=tex | source ~/.vim/ftplugin/tex.vim
+	autocmd BufEnter,BufNew *.rout,*.Rout setl ft=r
+	autocmd BufEnter,BufNew *.md exe 'setl dict+='.dictfile.' | setl ft=markdown'
 	" Remove spaces at the end of header lines when starting new mail in mutt.
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
-	autocmd BufNewFile,BufRead *.mail set filetype=mail
+	autocmd BufNewFile,BufRead *.mail setl filetype=mail
 	autocmd BufWritePre *.vim g:noStripWhitespace
 augroup END
 
@@ -451,10 +463,6 @@ map <F1> <Nop>
 " Try using jk and kj as Escape in insert mode.
 inoremap jk <Esc>
 inoremap kj <Esc>
-
-" Make j and k move to the next row on screen rather
-" nmap j gj
-" nmap k gk
 
 " Center search result
 nnoremap n nzz
@@ -642,7 +650,7 @@ command! WeeklyReport :call EditWeeklyr()
 function! EditWeeklyr()
 	let date = system("echo -n `date -d Fri '+%Y%m%d'`")
 	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.'.md'
-	if !exists(thisweek)
+	if !exists(expand(thisweek))
 		exec "edit ".thisweek . "| normal iWeeklyro"
 	else
 		exec "edit ".thisweek
@@ -651,15 +659,14 @@ endfunction
 
 " }}}
 " Temp {{{
-if has('win32')
+if has('win32') && has('gui_running')
 	augroup win
 		au!
 		au GUIEnter * simalt ~x
 	augroup END
 endif
-normal zz
 set viminfo^=!
-set shell=C:/cygwin/bin/zsh.exe\ -i 
+" set shell=C:/cygwin/bin/zsh.exe\ -i 
 set shellcmdflag=-c
 
 " }}}
