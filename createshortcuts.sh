@@ -4,6 +4,8 @@ set +e
 VERSION="946"
 GENFOLDER="LDRA Tool Suite"
 DESKTOP="/cygdrive/c/Users/JoshWainwright/Desktop"
+DESKTOPPUB="/cygdrive/c/Users/Public/Desktop"
+STARTMENU="/cygdrive/c/ProgramData/Microsoft/Windows/Start Menu"
 
 PROGRAMS=("
 TBvision
@@ -21,12 +23,13 @@ CompilerOptions:X
 InstrumentationStrategy:INSTR
 ")
 
-# Remove any old Start Menu Entries
-STARTMENU="/cygdrive/c/ProgramData/Microsoft/Windows/Start Menu"
+# Remove any old Start Menu and Desktop Entries
 rm -r "$STARTMENU/Programs/$GENFOLDER"*
+find "$DESKTOPPUB" -maxdepth 1 -name "LDRA*" -delete -or -name "TB*" -delete
 
 for LANG in "C_C++" "Ada"; do
 
+	echo $LANG
 	SPECFOLDER="$GENFOLDER $LANG v$VERSION"
 	WORKINGDIR="/cygdrive/c/LDRA_Workarea/$LANG/$VERSION/"
 	rm -r "$DESKTOP/$SPECFOLDER"
@@ -34,6 +37,7 @@ for LANG in "C_C++" "Ada"; do
 
 	# LDRA Toolsuite Programs
 	for TBPROG in $PROGRAMS; do
+		echo -e "\t$TBPROG"
 		LINKFILE="$DESKTOP/$SPECFOLDER/$TBPROG - $LANG"
 		TBFILE="/cygdrive/c/LDRA_Toolsuite/$LANG/$VERSION/$TBPROG.exe"
 
@@ -44,6 +48,7 @@ for LANG in "C_C++" "Ada"; do
 	# Configuration Options
 	mkdir -p "$DESKTOP/$SPECFOLDER/Configure"
 	for OPT in $CONFIGURES; do
+		echo -e "\t$OPT"
 		OPTNAME=${OPT%:*}
 		OPTSET=${OPT#*:}
 
