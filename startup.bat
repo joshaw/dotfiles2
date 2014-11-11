@@ -18,7 +18,8 @@ set TBINI="C:\LDRA_Toolsuite\946\TBini.exe"
 %TBINI% -Section="C/C++ LDRA Testbed" "SHOW_CMTOOL_MENU=TRUE"
 %TBINI% -Section="C/C++ LDRA Testbed" "CM_TOOL_SELECTED=Git"
 
+
 :: Start Skype otherwise it won't start as the tmp files have been deleted
 :: ---------------------------------------------------------------------------
 timeout 5
-start "C:\Program Files (x86)\Skype\Phone\Skype.exe"
+start "Skype" /B /MIN /LOW "C:\Program Files (x86)\Skype\Phone\Skype.exe"
