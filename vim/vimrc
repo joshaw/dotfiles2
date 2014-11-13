@@ -33,15 +33,15 @@ if executable('git')
 	" }}}
 	" Other {{{
 
+	"Snippet management
+	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets'
+	Plug 'kien/ctrlp.vim'
 	if !has('win32unix')
-		"Snippet management
-		Plug 'SirVer/ultisnips', { 'on' : [] }
-		Plug 'honza/vim-snippets', { 'on' : [] }
 		"Google calendar in vim
 		Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
 		"Syntax checking for a wide range of languages
 		Plug 'scrooloose/syntastic'
-		Plug 'kien/ctrlp.vim'
 	end
 	"Super tab completion
 	Plug 'ervandew/supertab'
@@ -87,12 +87,10 @@ if executable('git')
 		autocmd InsertEnter * call plug#load('vim-surround')
 		autocmd InsertEnter * call plug#load('delimitMate')
 		autocmd InsertEnter * call plug#load('vim-commentary')
-		if !has("win32") && !has("win32unix")
-			autocmd InsertEnter * call plug#load('ultisnips')
-			  			\| doautocmd UltiSnipsFileType FileType
-			autocmd InsertEnter * call plug#load('vim-snippets')
-			  			\| autocmd! load_plugs
-		endif
+		autocmd InsertEnter * call plug#load('ultisnips')
+			  		\| doautocmd UltiSnipsFileType FileType
+		autocmd InsertEnter * call plug#load('vim-snippets')
+			  		\| autocmd! load_plugs
 	augroup END
 
 	call plug#end()
