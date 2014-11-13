@@ -650,10 +650,10 @@ command! WeeklyReport :call EditWeeklyr()
 function! EditWeeklyr()
 	let date = system("echo -n `date -d Fri '+%Y%m%d'`")
 	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.'.md'
-	if !exists(expand(thisweek))
-		exec "edit ".thisweek . "| normal iWeeklyro"
-	else
+	if filereadable(expand(thisweek))
 		exec "edit ".thisweek
+	else
+		exec "edit ".thisweek . "| normal iWeeklyro"
 	endif
 endfunction
 
@@ -666,8 +666,8 @@ if has('win32') && has('gui_running')
 	augroup END
 endif
 set viminfo^=!
-" set shell=C:/cygwin/bin/zsh.exe\ -i 
-set shellcmdflag=-c
+" set shell=C:/cygwin/bin/zsh.exe\ -i
+" set shellcmdflag=-c
 
 " }}}
 " vim: fdm=marker
