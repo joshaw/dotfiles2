@@ -2,6 +2,7 @@
 :: ---------------------------------------------------------------------------
 subst r: c:\_in_out
 subst h: c:\home\JoshWainwright
+subst l: c:\home\JoshWainwright\TLPs\
 
 
 :: Remove everythin inside the "tmp" directory
@@ -9,6 +10,7 @@ subst h: c:\home\JoshWainwright
 set tmpdir="c:\tmp"
 del /q %tmpdir%\*
 for /d %%x in (%tmpdir%\*) do @rd /s /q ^"%%x^"
+mkdir %tmpdir%\jaw
 
 
 :: Set flags in Testbed.ini
