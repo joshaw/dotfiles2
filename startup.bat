@@ -2,7 +2,7 @@
 :: ---------------------------------------------------------------------------
 subst r: c:\_in_out
 subst h: c:\home\JoshWainwright
-subst l: c:\home\JoshWainwright\TLPs\
+subst l: c:\home\JoshWainwright\TLPs
 
 
 :: Remove everythin inside the "tmp" directory
