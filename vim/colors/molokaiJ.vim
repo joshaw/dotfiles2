@@ -274,18 +274,19 @@ highlight Normal ctermbg=NONE
 highlight CursorLine ctermbg=236
 highlight Visual ctermbg=238
 
-hi StatusLine guifg=#383830 guibg=fg ctermfg=238 ctermbg=253
+hi StatusLine guifg=#383830 guibg=fg ctermfg=238 ctermbg=253 gui=reverse term=reverse
+hi StatusLineNC guifg=#808080 guibg=#080808 gui=italic
 
 " User Defined Colors
-hi User1 guifg=#383830 guibg=#a6e22e ctermfg=238 ctermbg=02
-hi User2 guifg=#383830 guibg=#a1efe4 ctermfg=238 ctermbg=06
-hi User3 guifg=#a59f85 guibg=#383830 ctermfg=07 ctermbg=238
-hi User4 guifg=#383830 guibg=#66d9ef ctermfg=238 ctermbg=04
-hi User5 guifg=#383830 guibg=#ae81ff ctermfg=238 ctermbg=135
-hi User6 guifg=#cc6633 guibg=#383830 ctermfg=166 ctermbg=238
-hi User7 guifg=#f92672 guibg=#383830 ctermfg=01 ctermbg=08 gui=bold cterm=bold
-hi User8 guifg=#fd971f guibg=#383830 ctermfg=208 ctermbg=238
-hi User9 guifg=#383830 guibg=#f4bf75 ctermfg=238 ctermbg=221
+" hi User1 guibg=#383830 ctermfg=238 ctermbg=238
+" hi User2 guibg=#383830 ctermfg=238 ctermbg=238
+" hi User3 guibg=#383830 ctermfg=238 ctermbg=238
+" hi User4 guibg=#383830 ctermfg=238 ctermbg=238
+" hi User5 guibg=#383830 ctermfg=238 ctermbg=238
+" hi User6 guibg=#383830 ctermfg=238 ctermbg=238
+" hi User7 guibg=#383830 ctermfg=238 ctermbg=238
+" hi User8 guibg=#383830 ctermfg=238 ctermbg=238
+" hi User9 guibg=#383830 ctermfg=238 ctermbg=238
 
 " Must be at the end, because of ctermbg=234 bug.
 " https://groups.google.com/forum/#!msg/vim_dev/afPqwAFNdrU/nqh6tOM87QUJ
