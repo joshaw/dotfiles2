@@ -318,7 +318,7 @@ set list
 set fillchars=vert:│
 set switchbuf=usetab " Method to use when switching buffers
 set scrolloff=5      " Number of lines to keep above and below cursor
-set synmaxcol=800   " Syntax highlight long lines
+set synmaxcol=200   " Syntax highlight long lines
 set virtualedit+=block
 "}}}
 " User Controls {{{
@@ -387,7 +387,7 @@ endif
 " autocmd QuickFixCmdPost *grep* if len(getqflist()) | copen | endif
 
 " go to last cursor position when opening files
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 "}}}
 " External Prgs {{{
@@ -397,7 +397,8 @@ if has('unix')
 	if !v:shell_error
 		set grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color
 	elseif s:has_ag
-		set grepprg=ag\ --nogroup\ --nocolor\ --smart-case
+		set grepprg=ag\ --column\ --line-numbers\ --nogroup\ --nocolor\ --smart-case
+		set grepformat=%f:%l:%c:%m
 	elseif s:has_ack
 		set grepprg=ack\ -H\ --nogroup\ --nocolor\ --smart-case
 	endif
@@ -484,9 +485,9 @@ nnoremap D dg_
 nnoremap Y yg_
 
 if executable('grep')
-	map <C-g> :grep<space>
+	map <C-g> :grep<space><space>.<left><left>
 else
-	map <C-g> :vimgrep<space>
+	map <C-g> :vimgrep<space><space>.<left><left>
 endif
 
 " Jump to start and end of line in insert mode
@@ -495,14 +496,14 @@ inoremap <C-e> <esc>A
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
-nnoremap Q :normal n.<CR>
+nnoremap Q :normal! n.<CR>
 
 " Delete to black hole with X
 noremap X "_d
 noremap XX "_dd
 
 " Re-indent whole file
-nnoremap g+ :call Preserve("normal gg=G")<CR>
+nnoremap g+ :call Preserve("normal! gg=G")<CR>
 
 " Insert current filename
 inoremap <leader>fn <C-R>=expand("%:t")<CR>
