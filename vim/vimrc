@@ -21,6 +21,7 @@ if executable('git')
 	if executable('ctags')
 		Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 	endif
+	Plug 'ap/vim-buftabline'
 
 	" }}}
 	" Git Related {{{
@@ -37,6 +38,7 @@ if executable('git')
 	Plug 'SirVer/ultisnips'
 	Plug 'honza/vim-snippets'
 	Plug 'kien/ctrlp.vim'
+	Plug 'Shougo/unite.vim'
 	if !has('win32unix')
 		"Google calendar in vim
 		Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
