@@ -643,15 +643,34 @@ augroup END
 
 command! TBini :e C:\ProgramData\LDRA\TESTBED.ini
 
-nnoremap <F12> call EditWeeklyr()
-command! WeeklyReport :call EditWeeklyr()
-function! EditWeeklyr()
-	let date = system("echo -n `date -d Fri '+%Y%m%d'`")
-	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.'.md'
-	if filereadable(expand(thisweek))
-		exec "edit ".thisweek
+nnoremap <F12> :EditReport<cr>
+nnoremap <S-F12> :EditReport!<cr>
+command! -nargs=* -bang EditReport :call EditReport('<bang>' == '!', <f-args>)
+function! EditReport(monthly, ...)
+	let prefix = ''
+
+	" a:0 (number of args) is >0 if a specific date is given
+	if a:0 > 0
+		let date = a:1
+		if a:monthly
+			let prefix = 'MonthlyJAW'
+		endif
+	" Otherwise get the relevant current date
 	else
-		exec "edit ".thisweek . "| normal iWeeklyro"
+		if a:monthly
+			let date = system("echo -n `date '+%Y%m'`")
+			let prefix = 'MonthlyJAW'
+		else
+			let date = system("echo -n `date -d Fri '+%Y%m%d'`")
+		endif
+	endif
+	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.prefix
+	if filereadable(expand(thisweek).'.md')
+		exec "edit ".thisweek.".md"
+	elseif filereadable(expand(thisweek).'.txt')
+		exec "edit ".thisweek.".txt"
+	else
+		exec "edit ".thisweek . ".md | normal iWeeklyro"
 	endif
 endfunction
 
