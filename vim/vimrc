@@ -37,7 +37,6 @@ if executable('git')
 	"Snippet management
 	Plug 'SirVer/ultisnips'
 	Plug 'honza/vim-snippets'
-	Plug 'kien/ctrlp.vim'
 	Plug 'Shougo/unite.vim'
 	if !has('win32unix')
 		"Google calendar in vim
@@ -65,9 +64,6 @@ if executable('git')
 	Plug 'clever-f.vim'
 	Plug 'vim-scripts/renamer.vim'
 	Plug 'mhinz/vim-startify'
-	if has('win32') || has('win32unix')
-		Plug 'vim-scripts/OutlookVim'
-	endif
 
 	"}}}
 	" Filetype specific {{{
@@ -163,56 +159,17 @@ if $USERNAME == 'JoshWainwright'
 endif
 
 """ Startify
-
 let g:startify_relative_path          = 1
 let g:startify_change_to_dir          = 1
-
-let g:startify_list_order = [
-			\ ['   LRU:'],
-			\ 'files',
-			\ ['   LRU within this dir:'],
-			\ 'dir',
-			\ ['   Sessions:'],
-			\ 'sessions',
-			\ ['   Bookmarks:'],
-			\ 'bookmarks',
-			\ ]
-
-let g:startify_skiplist = [
-			\ 'COMMIT_EDITMSG',
-			\ $VIMRUNTIME .'/doc',
-			\ 'bundle/.*/doc',
-			\ ]
-
 let g:startify_bookmarks = [
 			\ '~\Documents\slide-errors.txt',
 			\ '~\Documents\Forms\Expences.md',
 			\ ]
 
-hi StartifyBracket ctermfg=240
-hi StartifyFile    ctermfg=147
-hi StartifyFooter  ctermfg=240
-hi StartifyHeader  ctermfg=114
-hi StartifyNumber  ctermfg=215
-hi StartifyPath    ctermfg=245
-hi StartifySlash   ctermfg=240
-hi StartifySpecial ctermfg=240
-
-""" OutlookVim
-let g:outlook_Javascript = expand('$VIMHOME\plugged\OutlookVim\plugin\outlookvim.js')
-let g:outlook_javascript = 'C:\home\JoshWainwright\vimfiles\plugged\OutlookVim\plugin\outlookvim.js'
-let g:outlook_debug = 1
-
-""" CtrlP
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_cache_dir = $TMP.'/ctrlp'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_lazy_update = 1
-let g:ctrlp_user_command = {
-\ 'types': {
-  \ 1: ['.git', 'cd %s && git ls-files'],
-  \ },
-\ }
+""" BufTabLine
+let g:buftabline_show = 1
+let g:buftabline_numbers = 1
+let g:buftabline_indicators = 1
 
 " }}}
 " Functions {{{
