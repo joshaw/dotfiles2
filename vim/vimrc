@@ -6,8 +6,8 @@
 if has('unix')
 	let $VIMHOME="~/.vim/"
 elseif has('win32')
-	let $VIMHOME=$HOME."\\vimfiles\\"
-	"let $PATH=$PATH.";C:\\Program Files (x86)\\Git\\bin\\"
+	let $VIMHOME=$HOME."/vimfiles/"
+	let $PATH=$PATH.";C:/cygwin/bin/"
 endif
 let g:plug_threads = 6
 let g:plug_timeout = 20
@@ -250,6 +250,7 @@ set backup
 set backupdir=/var/tmp,/tmp,$TMP,$TEMP,c:/tmp
 set directory=/var/tmp,/tmp,$TMP,$TEMP,c:/tmp
 set writebackup
+set viminfo^=!
 if exists("&undofile")
 	set undofile
 	set undodir=$VIMHOME/undodir
@@ -332,12 +333,10 @@ if has("gui_running")
 	set guioptions+=c "use console dialogues
 	set guioptions-=L "left hand toolbar isn't present
 	set guioptions-=T "remove tool bar
-	set guioptions-=l "remove right scroll
 	set guioptions-=m "remove menu bar
+	set guioptions-=l "remove right scroll
 	set guioptions-=r "remove left scroll
-	if has('win32')
-		set lines=999 columns=999
-	endif
+	set guioptions-=b "remove bottom scroll
 endif
 
 " automatically open quickfix window after commands that modify the quickfix list
@@ -349,29 +348,31 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 "}}}
 " External Prgs {{{
 
-if has('unix')
-	let s:git=system("git rev-parse --git-dir > /dev/null")
-	if !v:shell_error
-		set grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color
-	elseif s:has_ag
-		set grepprg=ag\ --column\ --line-numbers\ --nogroup\ --nocolor\ --smart-case
-		set grepformat=%f:%l:%c:%m
-	elseif s:has_ack
-		set grepprg=ack\ -H\ --nogroup\ --nocolor\ --smart-case
-	endif
-else
-	set grepprg=grep\ --dereference-recursive\ --ignore-case\ --line-number\ --with-filename\ $*
-endif
-set path+=../**
-set keywordprg=""
-set makeprg=make
-if has('win32')
+if has('win32') && executable('zsh')
+	set shell=C:/cygwin/bin/zsh.exe\ -i
+	set shellcmdflag=-c
+elseif has('win32')
 	set shell=C:/cygwin/bin/bash
 	set shellcmdflag=--login\ -c
 	set shellxquote=\"
 else
 	set shell=sh
 endif
+
+let s:git=system("git rev-parse --git-dir > /dev/null")
+if !v:shell_error
+	set grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color
+elseif s:has_ag
+	set grepprg=ag\ --vimgrep\ --smart-case
+elseif s:has_ack
+	set grepprg=ack\ -H\ --nogroup\ --nocolor\ --smart-case
+else
+	set grepprg=grep\ --dereference-recursive\ --ignore-case\ --line-number\ --with-filename\ $*
+endif
+
+set path+=../**
+set keywordprg=""
+set makeprg=make
 set complete=.,w,b,u,U,t,i,k
 "}}}
 
@@ -473,8 +474,6 @@ map <leader>rd :e! $VIMHOME/plugin/display.vim<CR>
 augroup Reload_vimrc
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC | echo "vimrc is sourced"
-	autocmd BufWritePost '$HOME/.vim/vimrc' source $MYVIMRC | echo "vimrc is sourced"
-	autocmd BufWritePost '~/.vim/vimrc' source $MYVIMRC | echo "vimrc is sourced"
 augroup END
 
 " Replace selected text
@@ -642,9 +641,6 @@ if has('win32') && has('gui_running')
 		au GUIEnter * simalt ~x
 	augroup END
 endif
-set viminfo^=!
-" set shell=C:/cygwin/bin/zsh.exe\ -i
-" set shellcmdflag=-c
 
 " }}}
 " vim: fdm=marker
