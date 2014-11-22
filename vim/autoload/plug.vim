@@ -909,7 +909,7 @@ while 1 " Without TCO, Vim stack is bound to explode
     endif
   else
     call s:spawn(name,
-          \ printf('git clone --progress --recursive %s -b %s %s 2>&1',
+          \ printf('git clone --progress --recursive %s -b %s %s --depth 1 2>&1',
           \ s:shellesc(spec.uri),
           \ s:shellesc(spec.branch),
           \ s:shellesc(s:trim(spec.dir))), { 'new': 1 })
