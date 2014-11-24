@@ -5,7 +5,7 @@ source settings.sh
 
 dryrun=true
 
-if [[ "x$1" -eq "x" ]]; then
+if [[ "x$1" == "x" ]]; then
 	dryrun=false
 fi
 

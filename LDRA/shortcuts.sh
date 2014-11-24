@@ -64,7 +64,7 @@ for VERSION in $VERSIONS; do
 			fi
 
 			LINKFILE="$DESKTOP/$SPECFOLDER/Configure/$OPTNAME"
-			OPTFILE="/cygdrive/c/LDRA_Toolsuite/$LANGUAGE/$VERSION/Compconfig/setup.exe"
+			OPTFILE="$TOOLSUITE_DIR/$LANGUAGE/$VERSION/Compconfig/setup.exe"
 
 			mkshortcut -n "$LINKFILE" -w "$WORKINGDIR" "$OPTIONSDASH" "$OPTFILE"
 		done
@@ -74,7 +74,7 @@ for VERSION in $VERSIONS; do
 		mkdir -p "$LINKDIR"
 
 		LINKFILE="$LINKDIR/LicenseManager"
-		LICENSE="/cygdrive/c/LDRA_Toolsuite/$LANGUAGE/$VERSION/Liccfgdlg.exe"
+		LICENSE="$TOOLSUITE_DIR/$LANGUAGE/$VERSION/Liccfgdlg.exe"
 		OPTION="/use_lang=$LANGUAGE"
 		mkshortcut -n "$LINKFILE" -a "$OPTION" "$LICENSE"
 
