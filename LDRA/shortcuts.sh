@@ -1,7 +1,7 @@
 #!/bin/bash
 set +e
 
-source settings.sh
+source $(dirname $BASH_SOURCE)/settings.sh
 
 GENFOLDER="LDRA Tool Suite"
 DESKTOP="/cygdrive/c/Users/JoshWainwright/Desktop"
