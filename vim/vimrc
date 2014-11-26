@@ -34,9 +34,11 @@ if executable('git')
 	" }}}
 	" Other {{{
 
-	"Snippet management
-	Plug 'SirVer/ultisnips'
-	Plug 'honza/vim-snippets'
+	if has('python')
+		"Snippet management
+		Plug 'SirVer/ultisnips'
+		Plug 'honza/vim-snippets'
+	endif
 	Plug 'Shougo/unite.vim'
 	if !has('win32unix')
 		"Google calendar in vim
