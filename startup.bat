@@ -15,7 +15,7 @@ mkdir %tmpdir%\jaw
 
 :: Set flags in Testbed.ini
 :: ---------------------------------------------------------------------------
-set TBINI="C:\LDRA_Toolsuite\946\TBini.exe"
+set TBINI="C:\LDRA_Toolsuite\C_C++\946\TBini.exe"
 
 %TBINI% -Section="C/C++ LDRA Testbed" "SHOW_CMTOOL_MENU=TRUE"
 %TBINI% -Section="C/C++ LDRA Testbed" "CM_TOOL_SELECTED=Git"
