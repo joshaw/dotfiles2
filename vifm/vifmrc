@@ -223,8 +223,8 @@ fileview *.docx, docx2txt.pl %f -
 filextype */
         \ {View in thunar}
         \ Thunar %f &,
-fileview ../ tree %c -L 1
-fileview .*/,*/ tree %f
+fileview ../ tree %c -L 1 -F
+fileview .*/,*/ tree %f -L 1 -F
 
 " fileview */ tree %c
 
@@ -291,4 +291,4 @@ map gt :cd /tmp<cr>
 map <delete> dd
 map gg 2G
 " }}}
-" vim: filetype=vifm foldmethod=marker
+" vim: filetype=vim foldmethod=marker
