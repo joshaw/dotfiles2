@@ -77,9 +77,7 @@ if executable('git')
 	"Decrypt, edit and then re-encrypt gpg stored files.
 	Plug 'jamessan/vim-gnupg'
 
-	if executable('vifm')
-		Plug 'istib/vifm.vim'
-	endif
+	Plug 'istib/vifm.vim'
 	" }}}
 
 	augroup load_plugs
