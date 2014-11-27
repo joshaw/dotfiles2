@@ -17,10 +17,12 @@ mkdir %tmpdir%\jaw
 :: ---------------------------------------------------------------------------
 set TBINI="C:\LDRA_Toolsuite\C_C++\946\TBini.exe"
 
-%TBINI% -Section="C/C++ LDRA Testbed" "SHOW_CMTOOL_MENU=TRUE"
-%TBINI% -Section="C/C++ LDRA Testbed" "CM_TOOL_SELECTED=Git"
-%TBINI% -Section="Ada95 LDRA Testbed" "SHOW_CMTOOL_MENU=TRUE"
-%TBINI% -Section="Ada95 LDRA Testbed" "CM_TOOL_SELECTED=Git"
+%TBINI% -Section="C/C++ LDRA Testbed" SHOW_CMTOOL_MENU=TRUE
+%TBINI% -Section="C/C++ LDRA Testbed" CM_TOOL_SELECTED=Git
+%TBINI% -Section="Ada95 LDRA Testbed" SHOW_CMTOOL_MENU=TRUE
+%TBINI% -Section="Ada95 LDRA Testbed" CM_TOOL_SELECTED=Git
+
+%TBINI% -Section="C/C++ LDRA Testbed" REDIRECT_MAILTO=TRUE
 
 
 :: Start Skype otherwise it won't start as the tmp files have been deleted
