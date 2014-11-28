@@ -18,7 +18,6 @@ function! Display_mode()
 	set colorcolumn=0
 	set nolist
 	set norelativenumber
-	set nowrap
 endfunction
 
 " Switch back to normal mode by re-sourcing the vimrc file.
