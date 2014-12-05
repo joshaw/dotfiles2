@@ -284,8 +284,7 @@ set whichwrap+=<,>,h,l         " Keys that wrap onto next line
 set backspace=eol,start,indent " Allow backspacing over
 "}}}
 " UI {{{
-colorscheme molokaiJ
-set background=dark
+colorscheme molokaiV
 
 set wrapmargin=0 " Wrap text
 set showtabline=1
@@ -308,6 +307,7 @@ else
 endif
 if exists("&colorcolumn")
 	set colorcolumn=+1
+	hi! link ColorColumn CursorLine 
 else
 	:mat ErrorMsg '\%81v.\+'
 endif
@@ -636,12 +636,12 @@ endfunction
 
 " }}}
 " Temp {{{
-if has('win32') && has('gui_running')
-	augroup win
-		au!
-		au GUIEnter * simalt ~x
-	augroup END
-endif
+" if has('win32') && has('gui_running')
+" 	augroup win
+" 		au!
+" 		au GUIEnter * simalt ~x
+" 	augroup END
+" endif
 
 " }}}
 " vim: fdm=marker
