@@ -3,3 +3,4 @@
 "let b:noStripWhitespace=1
 
 let g:airline#extensions#whitespace#enabled = 0
+exe 'setl dict+='.dictfile

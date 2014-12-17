@@ -396,7 +396,7 @@ augroup ft
 	au FileType * exe 'setl dict+='.fnameescape($VIMRUNTIME).'/syntax/'.&filetype.'.vim'
 	autocmd BufEnter,BufNew *.tex setl ft=tex | source ~/.vim/ftplugin/tex.vim
 	autocmd BufEnter,BufNew *.rout,*.Rout setl ft=r
-	autocmd BufEnter,BufNew *.md exe 'setl dict+='.dictfile.' | setl ft=markdown'
+	autocmd BufEnter,BufNew *.md setl ft=markdown
 	" Remove spaces at the end of header lines when starting new mail in mutt.
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
 	autocmd BufNewFile,BufRead *.mail setl filetype=mail

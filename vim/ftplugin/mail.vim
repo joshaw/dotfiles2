@@ -2,6 +2,7 @@
 "formatoptions+=a
 "let b:noStripWhitespace=1
 setlocal textwidth=71
+exe 'setlocal dictionary+='.dictfile
 set spell
 
 if getline(1) =~ "JAW Weekly Report"
