@@ -66,6 +66,7 @@ if executable('git')
 	Plug 'clever-f.vim'
 	Plug 'vim-scripts/renamer.vim'
 	Plug 'mhinz/vim-startify'
+	Plug 'Wolfy87/vim-expand'
 
 	"}}}
 	" Filetype specific {{{
@@ -121,17 +122,6 @@ let g:molokai_original = 1
 
 """" Tagbar
 let g:tagbar_sort = 0
-let g:tagbar_type_tex = {
-	\ 'ctagstype' : 'latex',
-	\ 'kinds'     : [
-		\ 's:sections',
-		\ 'g:graphics',
-		\ 'l:labels',
-		\ 'r:refs',
-		\ 'p:pagerefs'
-	\ ],
-	\ 'sort'    : 0,
-\ }
 
 """ Supertab
 let g:SuperTabCrMapping = 0 "Needed to allow delimitMate_expand_cr
@@ -238,6 +228,7 @@ set foldtext=MyFoldText()
 " Search {{{
 set hlsearch
 set ignorecase
+set infercase
 set incsearch
 set magic
 set matchtime=8
@@ -401,6 +392,7 @@ augroup ft
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
 	autocmd BufNewFile,BufRead *.mail setl filetype=mail
 	autocmd BufWritePre *.vim g:noStripWhitespace
+	autocmd Filetype netrw setlocal bufhidden=wipe
 augroup END
 
 augroup vimp
