@@ -59,7 +59,8 @@ if executable('git')
 	"Multiple useful keybindings
 	Plug 'tpope/vim-unimpaired'
 	"Simple minimalist alternative to netrw
-	Plug 'tpope/vim-vinegar'
+	" Plug 'tpope/vim-vinegar'
+	Plug 'jeetsukumaran/vim-filebeagle'
 	"Allow incrementing true/false values etc.
 	Plug 'nishigori/increment-activator'
 	"Make f (forward) and t (to) better
