@@ -36,15 +36,15 @@ if executable('git')
 
 	if has('python')
 		"Snippet management
-		Plug 'SirVer/ultisnips'
-		Plug 'honza/vim-snippets'
+		Plug 'SirVer/ultisnips', {'on' : [] }
+		Plug 'honza/vim-snippets', {'on' : [] }
 	endif
 	Plug 'Shougo/unite.vim'
 	if !has('win32unix')
 		"Google calendar in vim
-		Plug 'itchyny/calendar.vim', {'on': 'Calendar'}
+		Plug 'itchyny/calendar.vim', {'on' : 'Calendar'}
 		"Syntax checking for a wide range of languages
-		Plug 'scrooloose/syntastic'
+		Plug 'scrooloose/syntastic', {'on' : [] }
 	end
 	"Super tab completion
 	Plug 'ervandew/supertab'
@@ -59,15 +59,15 @@ if executable('git')
 	"Multiple useful keybindings
 	Plug 'tpope/vim-unimpaired'
 	"Simple minimalist alternative to netrw
-	" Plug 'tpope/vim-vinegar'
 	Plug 'jeetsukumaran/vim-filebeagle'
 	"Allow incrementing true/false values etc.
 	Plug 'nishigori/increment-activator'
 	"Make f (forward) and t (to) better
 	Plug 'clever-f.vim'
-	Plug 'vim-scripts/renamer.vim'
+	"Rename multiple files using vim
+	Plug 'vim-scripts/renamer.vim', {'on' : 'Renamer' }
 	Plug 'mhinz/vim-startify'
-	Plug 'Wolfy87/vim-expand'
+	Plug 'Wolfy87/vim-expand', {'on' : 'Expand' }
 
 	"}}}
 	" Filetype specific {{{
@@ -87,6 +87,7 @@ if executable('git')
 		autocmd InsertEnter * call plug#load('vim-surround')
 		autocmd InsertEnter * call plug#load('delimitMate')
 		autocmd InsertEnter * call plug#load('vim-commentary')
+		autocmd InsertEnter * call plug#load('syntastic')
 		autocmd InsertEnter * call plug#load('ultisnips')
 			  		\| doautocmd UltiSnipsFileType FileType
 		autocmd InsertEnter * call plug#load('vim-snippets')
@@ -299,7 +300,7 @@ else
 endif
 if exists("&colorcolumn")
 	set colorcolumn=+1
-	hi! link ColorColumn CursorLine 
+	hi! link ColorColumn CursorLine
 else
 	:mat ErrorMsg '\%81v.\+'
 endif
