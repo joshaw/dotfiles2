@@ -146,7 +146,7 @@ filextype *.djvu apvlv %f
 filetype *.wav,*.mp3,*.flac,*.ogg,*.m4a
        \ mpv %f,
        \ mplayer %f,
-fileviewer *.mp3 mp3info
+fileviewer *.mp3 mp3info -x
 
 " Video
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv

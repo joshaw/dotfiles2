@@ -11,6 +11,8 @@
 #	unset f
 #fi
 
+export ZSH_SHLVL_INIT=$((SHLVL))
+
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 setxkbmap gb
