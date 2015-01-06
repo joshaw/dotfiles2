@@ -1,18 +1,18 @@
 set ls=2 " Always show status line
 let g:last_mode=""
 
-hi StatusLine guibg=#3b3a32 guifg=#F8F8F2 guisp=#F8F8F2 gui=NONE ctermfg=240 ctermbg=230 cterm=NONE
+" hi StatusLine guibg=#3b3a32 guifg=#F8F8F2 guisp=#F8F8F2 gui=NONE ctermfg=230 ctermbg=237 cterm=NONE
+hi StatusLine guibg=#3b3a32 guifg=#F8F8F2 guisp=#F8F8F2 gui=NONE ctermfg=230 ctermbg=237 cterm=NONE
 
-let g:status_normal   = 'guifg=#000000 guibg=#7dcc7d ctermfg=0 ctermbg=2'
-let g:status_insert   = 'guifg=#ffffff guibg=#ff0000 ctermfg=15 ctermbg=9'
+let g:status_normal   = 'guifg=#000000 guibg=#7dcc7d ctermfg=0   ctermbg=2'
+let g:status_insert   = 'guifg=#ffffff guibg=#ff0000 ctermfg=15  ctermbg=9'
 let g:status_replace  = 'guifg=#ffff00 guibg=#5b7fbb ctermfg=190 ctermbg=67'
-let g:status_visual   = 'guifg=#ffffff guibg=#810085 ctermfg=15 ctermbg=53'
-let g:status_modified = 'guifg=#ffffff guibg=#ff00ff ctermfg=15 ctermbg=5'
+let g:status_visual   = 'guifg=#ffffff guibg=#810085 ctermfg=15  ctermbg=53'
+let g:status_modified = 'guifg=#ffffff guibg=#ff00ff ctermfg=15  ctermbg=5'
 let g:status_position = 'guifg=#cc6633 ctermfg=15'
-let g:status_line     = 'guifg=#ff00ff guibg=#383830 ctermfg=207'
-let g:status_lines    = 'guifg=#cc6633 guibg=#383830 ctermfg=15'
+let g:status_line     = 'guifg=#ff00ff guibg=#383830 ctermfg=207 ctermbg=237'
+let g:status_lines    = 'guifg=#cc6633 guibg=#383830 ctermfg=208 ctermbg=237'
 
-let g:status_separator = '|'
 " Set up the colors for the status bar
 function! statusline#colour()
 	" Basic color presets
@@ -43,29 +43,28 @@ endfunc
 call statusline#colour()
 
 let s:stl= ""
-let s:stl.="%1*%n%0*"           " buffer number
-let s:stl.="%1*\ %{statusline#mode()} %0*" " mode (changes color)
-let s:stl.=" %<%F "             " file path
-let s:stl.="%([%R%M]%) "        " read only, modified, modifiable flags
+let s:stl.="%1*%n%0*"                           " buffer number
+let s:stl.="%1*\ %{statusline#mode()} %0*"      " mode (changes color)
+let s:stl.=" %<%F "                             " file path
+let s:stl.="%(%7*[%M]%)%0*"                     " modified flag
 
-let s:stl.="%= "                " right-align
+let s:stl.="%="                                 " right-align
 
-let s:stl.="%(%6* %{&modified ? 'modified':''} %)%0*" " modified / unmodified
-let s:stl.="%(%{(&spell!=0?'[s]':'')} %)"             " spell check flag
-let s:stl.="%(%{(&bin!=0?'[b]':'')} %)"               " binary flag
-let s:stl.="%(%{(&ro!=0?'[ro]':'')} |%)"              " readonly flag
-let s:stl.="%( %{&filetype} | %)"                     " file type
-let s:stl.="%{&fileformat}, "                         " file format
-let s:stl.="%(%{(&fenc!=''?&fenc:&enc)} |%)"          " file encoding
-let s:stl.="%3.c : "                                  " column number
-let s:stl.="%7*%4.l%8*/%-4.L\ "                       " line number / total lines
-let s:stl.="%-3.p%% "                                 " percentage done
+let s:stl.="%(%{(&spell!=0?'[s]':'')} %)"       " spell check flag
+let s:stl.="%(%{(&ro!=0?'[ro]':'')} %)"         " readonly flag
+let s:stl.="%(%{(&bin!=0?'[b]':'')} %)"         " binary flag
+let s:stl.="%(%{&filetype} | %)"                " file type
+let s:stl.="%{&fileformat}, "                   " file format
+let s:stl.="%(%{(&fenc!=''?&fenc:&enc)} |%)"    " file encoding
+let s:stl.="%3.c:"                              " column number
+let s:stl.="%7*%3.l%8*/%-2.L\ "                 " line number / total lines
+let s:stl.="%3.p%% "                            " percentage done
 
-augroup STL
+augroup statusline
 	" whenever the color scheme changes re-apply the colors
 	au ColorScheme * call statusline#colour()
 
-	au WinEnter,BufWinEnter *
+	au WinEnter,BufEnter *
 				\ call setwinvar(0, "&statusline", s:stl)
 	au WinLeave *
 				\ exec "hi StatusLineNC guifg=#BBBBBB guibg=#111111" |
