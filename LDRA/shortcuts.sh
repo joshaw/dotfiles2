@@ -25,7 +25,7 @@ InstrumentationStrategy:INSTR
 ")
 
 # Remove any old Start Menu and Desktop Entries
-rm -r "$STARTMENU/Programs/$GENFOLDER"*
+rm -r "$STARTMENU/Programs/$GENFOLDER"* 2> /dev/null || true
 find "$DESKTOPPUB" -maxdepth 1 -name "LDRA*" -delete -or -name "TB*" -delete
 
 for VERSION in $VERSIONS; do
@@ -35,6 +35,7 @@ for VERSION in $VERSIONS; do
 	for LANGUAGE in $LANGUAGES; do
 
 		echo $LANGUAGE
+
 		SPECFOLDER="$GENFOLDER $LANGUAGE v$VERSION"
 		WORKINGDIR="$WORKAREA_DIR/$LANGUAGE/$VERSION/"
 		rm -r "$DESKTOP/$SPECFOLDER"
@@ -63,7 +64,7 @@ for VERSION in $VERSIONS; do
 				OPTIONSDASH="-a -$OPTSET -NOINI"
 			fi
 
-			LINKFILE="$DESKTOP/$SPECFOLDER/Configure/$OPTNAME"
+			LINKFILE="$DESKTOP/$SPECFOLDER/Configure/${VERSION}_${LANGUAGE}_$OPTNAME"
 			OPTFILE="$TOOLSUITE_DIR/$LANGUAGE/$VERSION/Compconfig/setup.exe"
 
 			mkshortcut -n "$LINKFILE" -w "$WORKINGDIR" "$OPTIONSDASH" "$OPTFILE"
@@ -73,7 +74,7 @@ for VERSION in $VERSIONS; do
 		LINKDIR="$DESKTOP/$SPECFOLDER/Licensing/"
 		mkdir -p "$LINKDIR"
 
-		LINKFILE="$LINKDIR/LicenseManager"
+		LINKFILE="$LINKDIR/${VERSION}_${LANGUAGE}_LicenseManager"
 		LICENSE="$TOOLSUITE_DIR/$LANGUAGE/$VERSION/Liccfgdlg.exe"
 		OPTION="/use_lang=$LANGUAGE"
 		mkshortcut -n "$LINKFILE" -a "$OPTION" "$LICENSE"
