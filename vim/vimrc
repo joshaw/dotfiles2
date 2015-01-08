@@ -269,6 +269,11 @@ set nostartofline " Dont' move cursor to start of line for gg,G etc.
 set matchpairs+=<:>
 set listchars=tab:·\ ,trail:▸,nbsp:#,extends:»,precedes:«
 "set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+augroup trailing " {{{
+	au!
+	au InsertEnter * :set listchars-=trail:▸
+	au InsertLeave * :set listchars+=trail:▸
+augroup END " }}}
 set list
 set fillchars=vert:│
 set switchbuf=usetab " Method to use when switching buffers
