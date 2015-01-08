@@ -1,0 +1,36 @@
+[TfcViewerForm_ShortCuts]
+actViewModeText=T
+actViewModeBinText=B
+actViewModeTextHex=H
+actEditFind=Ctrl+F
+actEditFindNext=F3
+actFileNext=Right
+actFilePrevious=Left
+actFileEdit=F4
+actViewModeTextUnicode=U
+actViewModeTextRtfUtf=R
+actViewModeImageMultimedia=I
+actViewPlus=NUM PLUS
+actViewMinus=NUM SUB
+actViewOrigSize=Ctrl+NUMMULT
+actViewWinSize=NUMMULT
+actViewRotateClockwise90=Ctrl+Right
+actViewRotateAntiClockwise90=Ctrl+Left
+actFileDelete=F8
+actFileProperties=Alt+Enter
+actViewModeInternetOffice=O
+actViewModePlugin=P
+actEditFindPrev=Ctrl+F3
+actEditCopy=Ctrl+C
+actEditSelectAll=Ctrl+A
+actFileSaveAs=Ctrl+S
+actEditGoTo=Ctrl+G
+actFileContextMenu=Shift+F10
+actFileReload=Ctrl+R
+actOptionsConfigure=F9
+actFileExit=Esc
+actViewFullScreen=Ctrl+F11
+actViewShowTargetForLnk=Ctrl+L
+actEditPaste=Ctrl+V
+actFileLinkToFileList=Shift+Ctrl+L
+
