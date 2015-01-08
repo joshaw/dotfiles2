@@ -131,7 +131,7 @@ let g:tagbar_sort = 0
 """ Supertab
 let g:SuperTabCrMapping = 0 "Needed to allow delimitMate_expand_cr
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-p>"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 	" better key bindings for UltiSnipsExpandTrigger
 	let g:UltiSnipsExpandTrigger = "<tab>"
@@ -380,7 +380,7 @@ endif
 set path+=../**
 set keywordprg=""
 set makeprg=make
-set complete=.,w,b,u,U,t,i,k
+set complete=.,w,b,u,U,k,t
 "}}}
 
 " }}}
