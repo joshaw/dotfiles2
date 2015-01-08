@@ -1,21 +1,24 @@
-" Created:  Tue 12 Aug 2014 11:57 AM
+" Created:  Tue 12 Aug 2014
+" Modified: Thu 08 Jan 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
-" Vim-Plug Bundles {{{
+" Paths and Variables            {{{
 if has('unix')
 	let $VIMHOME=$HOME.'/.vim/'
 elseif has('win32')
 	let $VIMHOME=$HOME.'/vimfiles/'
 	let $PATH=$PATH.';C:/cygwin/bin/'
 endif
+" }}}
+" Vim-Plug Bundles               {{{
 let g:plug_threads = 6
 let g:plug_timeout = 20
 
 if executable('git')
 	call plug#begin($VIMHOME.'plugged')
 
-	" Appearance Utilities {{{
+	" Appearance Utilities       {{{
 
 	"Code tag view and navigation with ctags tags
 	if executable('ctags')
@@ -24,7 +27,7 @@ if executable('git')
 	Plug 'ap/vim-buftabline'
 
 	" }}}
-	" Git Related {{{
+	" Git Related                {{{
 
 	"Git management from withing vim
 	Plug 'tpope/vim-fugitive'
@@ -32,7 +35,7 @@ if executable('git')
 	Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
 	" }}}
-	" Other {{{
+	" Other                      {{{
 
 	if has('python')
 		"Snippet management
@@ -70,7 +73,7 @@ if executable('git')
 	Plug 'Wolfy87/vim-expand', {'on' : 'Expand' }
 
 	"}}}
-	" Filetype specific {{{
+	" Filetype specific          {{{
 
 	"Override detection of .md files to markdown
 	Plug 'tpope/vim-markdown', {'for': 'markdown'}
@@ -98,7 +101,7 @@ if executable('git')
 endif " executable(git)
 
 " }}} -------------------------------------------------------------------------
-" Plugin Settings {{{
+" Plugin Settings                {{{
 
 filetype off
 let s:has_ag = executable('ag')
@@ -153,10 +156,6 @@ endif
 """ Startify
 let g:startify_relative_path          = 1
 let g:startify_change_to_dir          = 1
-let g:startify_bookmarks = [
-			\ '~\Documents\slide-errors.txt',
-			\ '~\Documents\Forms\Expences.md',
-			\ ]
 
 """ BufTabLine
 let g:buftabline_show = 1
@@ -164,7 +163,7 @@ let g:buftabline_numbers = 1
 let g:buftabline_indicators = 1
 
 " }}}
-" Functions {{{
+" Functions                      {{{
 
 " View the difference between the buffer and the file the last time it was saved
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
@@ -184,7 +183,7 @@ function! RenameFile(...)
 endfunction
 command! -nargs=? Rename :call RenameFile(<q-args>)
 
-function! MyFoldText() " {{{
+function! MyFoldText() "         {{{
 	let line = getline(v:foldstart)
 
 	let nucolwidth = &fdc + &number * &numberwidth
@@ -200,14 +199,14 @@ function! MyFoldText() " {{{
 	return line . repeat(" ",fillcharcount) . foldedlinecount . ' '
 endfunction " }}}
 " }}}
-" Settings {{{
+" Settings                       {{{
 
 filetype plugin on
 filetype indent on
 syntax on
 set ttyfast
 
-" Code Formatting {{{
+" Code Formatting                {{{
 set autoindent " copy indent from current when starting new line
 set copyindent
 set encoding=utf-8
@@ -227,7 +226,7 @@ set textwidth=79
 set foldtext=MyFoldText()
 
 " }}}
-" Search {{{
+" Search                         {{{
 set hlsearch
 set ignorecase
 set infercase
@@ -258,7 +257,7 @@ if !isdirectory(expand(&directory))
 endif " }}}
 set viminfo^=!
 "}}}
-" Editor Setup {{{
+" Editor Setup                   {{{
 set autoread      " Auto read when a file changes from the outside
 set autowrite     " Auto write before make etc.
 set linebreak     " Don't break across words
@@ -281,11 +280,11 @@ set scrolloff=5      " Number of lines to keep above and below cursor
 set synmaxcol=200   " Syntax highlight long lines
 set virtualedit+=block
 "}}}
-" User Controls {{{
+" User Controls                  {{{
 set whichwrap+=<,>,h,l         " Keys that wrap onto next line
 set backspace=eol,start,indent " Allow backspacing over
 "}}}
-" UI {{{
+" UI                             {{{
 colorscheme molokaiV
 
 set wrapmargin=0 " Wrap text
@@ -329,7 +328,7 @@ if exists("&wildignorecase")
 endif
 
 "}}}
-" GUI {{{
+" GUI                            {{{
 if has("gui_running")
 	" set guioptions+=P "allow visual selection to be accessed in system paste
 	set guioptions+=c "use console dialogues
@@ -345,10 +344,16 @@ endif
 " autocmd QuickFixCmdPost *grep* if len(getqflist()) | copen | endif
 
 " go to last cursor position when opening files
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+augroup line_return
+	au!
+	autocmd BufReadPost * 
+		\ if line("'\"") > 0 && line("'\"") <= line("$") | 
+			\ exe "normal! g'\"" | 
+		\ endif
+augroup END
 
 "}}}
-" External Prgs {{{
+" External Prgs                  {{{
 
 if has('win32') && executable('zsh')
 	set shell=C:/cygwin/bin/zsh.exe\ -i
@@ -379,7 +384,7 @@ set complete=.,w,b,u,U,t,i,k
 "}}}
 
 " }}}
-" FileTypes {{{
+" FileTypes                      {{{
 
 if has("autocmd") && exists("+omnifunc")
 autocmd Filetype *
@@ -415,7 +420,7 @@ augroup vimp
 augroup END
 
 " }}}
-" Keybindings {{{
+" Keybindings                    {{{
 
 nnoremap ; :
 nnoremap , ;
@@ -484,6 +489,10 @@ vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 " Split lines, oposite of join, J
 nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+
+" Don't change case when meaning to undo in visual mode
+vnoremap u <nop>
+vnoremap gu u
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -561,7 +570,7 @@ nnoremap <A-Down> :silent! let &guifont = substitute(
  \ '')<CR><CR>
 
 " }}}
-" Abbreviations {{{
+" Abbreviations                  {{{
 
 cabbrev help vert help
 
@@ -570,11 +579,11 @@ abbrev <expr> dty strftime("%Y%m%d")
 abbrev <expr> dtyd strftime("%Y-%m-%d")
 abbrev <expr> dtl strftime("%c")
 
-iabbrev <expr> Cre: "Created: ".strftime("%d/%m/%Y")
-iabbrev <expr> Edi: "Edited : ".strftime("%d/%m/%Y")
-iabbrev <expr> ccreate "Created:  TIMESTAMP<CR>
+iabbrev <expr> Cre: "Created:  TIMESTAMP<CR>
+                       \Modified: TIMESTAMP<CR>
                        \Author:   Josh Wainwright<CR>
                        \Filename: " . expand('%:t')
+iabbrev TST TIMESTAMP
 
 iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \=============<CR>
@@ -589,13 +598,8 @@ iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \--------<CR>
                        \- None"
 
-iabbrev Custvisit Customer Site Visits<CR>
-                 \--------------------
-iabbrev Vacat Vacation<CR>
-             \--------
-
 " }}}
-" LDRA {{{
+" LDRA                           {{{
 
 augroup ldra
 	autocmd!
@@ -638,7 +642,7 @@ function! EditReport(monthly, ...)
 endfunction
 
 " }}}
-" Temp {{{
+" Temp                           {{{
 " if has('win32') && has('gui_running')
 " 	augroup win
 " 		au!
