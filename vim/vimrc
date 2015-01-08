@@ -4,7 +4,7 @@
 
 " Vim-Plug Bundles {{{
 if has('unix')
-	let $VIMHOME='~/.vim/'
+	let $VIMHOME=$HOME.'/.vim/'
 elseif has('win32')
 	let $VIMHOME=$HOME.'/vimfiles/'
 	let $PATH=$PATH.';C:/cygwin/bin/'
