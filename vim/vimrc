@@ -240,19 +240,23 @@ set smartcase
 " History, Backup and Undo Files {{{
 set history=700
 set backup
-set backupdir=/var/tmp,/tmp,$TMP,$TEMP,c:/tmp
-set directory=/var/tmp,/tmp,$TMP,$TEMP,c:/tmp
 set writebackup
-set viminfo^=!
-if exists("&undofile")
-	set undofile
-	set undodir=$VIMHOME/undodir
-	augroup undo
-		autocmd!
-		autocmd BufWritePre /tmp/* setlocal noundofile
-		autocmd BufWritePre c:/tmp/* setlocal noundofile
-	augroup END
+" set noswapfile
+set undofile
+set undodir  =$VIMHOME/tmp/undo//
+set backupdir=$VIMHOME/tmp/backup//
+set directory=$VIMHOME/tmp/directory//
+" Make those folders if they don't already exist. " {{{
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
 endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif " }}}
+set viminfo^=!
 "}}}
 " Editor Setup {{{
 set autoread      " Auto read when a file changes from the outside
