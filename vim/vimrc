@@ -95,9 +95,6 @@ endif " executable(git)
 " Plugin Settings                {{{
 
 filetype off
-let s:has_ag = executable('ag')
-let s:has_ack = executable('ack')
-
 
 """" UltiSnips Plugin
 set runtimepath^=$HOME/.vim/custom
@@ -146,25 +143,6 @@ let g:buftabline_indicators = 1
 
 " }}}
 " Functions                      {{{
-
-" View the difference between the buffer and the file the last time it was saved
-command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
-
-function! RenameFile(...)
-    let old_name = expand('%')
-    if a:1 == ""
-        let new_name = input('New file name: ', expand('%'), 'file')
-    else
-        let new_name = a:1
-    endif
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction
-command! -nargs=? Rename :call RenameFile(<q-args>)
-
 function! MyFoldText() "         {{{
 	let line = getline(v:foldstart)
 
@@ -322,9 +300,6 @@ if has("gui_running")
 	set guioptions-=b "remove bottom scroll
 endif
 
-" automatically open quickfix window after commands that modify the quickfix list
-" autocmd QuickFixCmdPost *grep* if len(getqflist()) | copen | endif
-
 " go to last cursor position when opening files
 augroup line_return
 	au!
@@ -346,17 +321,6 @@ elseif has('win32')
 	set shellxquote=\"
 else
 	set shell=sh
-endif
-
-let s:git=system("git rev-parse --git-dir > /dev/null")
-if !v:shell_error
-	set grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color
-elseif s:has_ag
-	set grepprg=ag\ --vimgrep\ --smart-case
-elseif s:has_ack
-	set grepprg=ack\ -H\ --nogroup\ --nocolor\ --smart-case
-else
-	set grepprg=grep\ --dereference-recursive\ --ignore-case\ --line-number\ --with-filename\ $*
 endif
 
 set path+=../**
@@ -431,12 +395,6 @@ vnoremap <silent> # :<C-U>
 
 nnoremap D dg_
 nnoremap Y yg_
-
-if executable('grep')
-	map <C-g> :grep<space><space>.<left><left>
-else
-	map <C-g> :vimgrep<space><space>.<left><left>
-endif
 
 " Jump to start and end of line in insert mode
 inoremap <C-a> <esc>I
