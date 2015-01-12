@@ -19,11 +19,6 @@ if executable('git')
 	call plug#begin($VIMHOME.'plugged')
 
 	" Appearance Utilities       {{{
-
-	"Code tag view and navigation with ctags tags
-	if executable('ctags')
-		Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-	endif
 	Plug 'ap/vim-buftabline'
 
 	" }}}
@@ -44,8 +39,6 @@ if executable('git')
 	endif
 	Plug 'Shougo/unite.vim'
 	if !has('win32unix')
-		"Google calendar in vim
-		Plug 'itchyny/calendar.vim', {'on' : 'Calendar'}
 		"Syntax checking for a wide range of languages
 		Plug 'scrooloose/syntastic', {'on' : [] }
 	end
@@ -69,8 +62,6 @@ if executable('git')
 	Plug 'clever-f.vim'
 	"Rename multiple files using vim
 	Plug 'vim-scripts/renamer.vim', {'on' : 'Renamer' }
-	Plug 'mhinz/vim-startify'
-	Plug 'Wolfy87/vim-expand', {'on' : 'Expand' }
 
 	"}}}
 	" Filetype specific          {{{
@@ -107,8 +98,6 @@ filetype off
 let s:has_ag = executable('ag')
 let s:has_ack = executable('ack')
 
-"""" Calendar
-let g:calendar_google_calendar = 1
 
 """" UltiSnips Plugin
 set runtimepath^=$HOME/.vim/custom
@@ -124,9 +113,6 @@ let g:syntastic_tex_checkers = ['chktex']
 
 """" Molokai Theme
 let g:molokai_original = 1
-
-"""" Tagbar
-let g:tagbar_sort = 0
 
 """ Supertab
 let g:SuperTabCrMapping = 0 "Needed to allow delimitMate_expand_cr
@@ -152,10 +138,6 @@ let g:clever_f_mark_cursor_color = 'Error'
 if $USERNAME == 'JoshWainwright'
 	let g:noStripWhitespace = 1
 endif
-
-""" Startify
-let g:startify_relative_path          = 1
-let g:startify_change_to_dir          = 1
 
 """ BufTabLine
 let g:buftabline_show = 1
