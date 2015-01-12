@@ -74,6 +74,7 @@ if executable('git')
 	Plug 'jamessan/vim-gnupg'
 
 	Plug 'istib/vifm.vim'
+	Plug 'Z1MM32M4N/vim-superman'
 	" }}}
 
 	augroup load_plugs
