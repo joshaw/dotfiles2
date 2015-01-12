@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Thu 08 Jan 2015
+" Modified: Mon 12 Jan 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -208,11 +208,7 @@ set directory=$VIMHOME/tmp/directory//
 " Make those folders if they don't already exist. " {{{
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), "p")
-endif
-if !isdirectory(expand(&backupdir))
     call mkdir(expand(&backupdir), "p")
-endif
-if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif " }}}
 set viminfo^=!
@@ -303,9 +299,9 @@ endif
 " go to last cursor position when opening files
 augroup line_return
 	au!
-	autocmd BufReadPost * 
-		\ if line("'\"") > 0 && line("'\"") <= line("$") | 
-			\ exe "normal! g'\"" | 
+	autocmd BufReadPost *
+		\ if line("'\"") > 0 && line("'\"") <= line("$") |
+			\ exe "normal! g'\"" |
 		\ endif
 augroup END
 
@@ -580,15 +576,6 @@ function! EditReport(monthly, ...)
 		exec "edit ".thisweek . ".md | normal iWeeklyro"
 	endif
 endfunction
-
-" }}}
-" Temp                           {{{
-" if has('win32') && has('gui_running')
-" 	augroup win
-" 		au!
-" 		au GUIEnter * simalt ~x
-" 	augroup END
-" endif
 
 " }}}
 " vim: fdm=marker
