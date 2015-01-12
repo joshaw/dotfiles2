@@ -1,7 +1,11 @@
+" Created:  Wed 16 Apr 2014
+" Modified: Mon 12 Jan 2015
+" Author:   Josh Wainwright
+" Filename: whitespace.vim
+"
 " Remove trailing spaces
 
 function! s:stripTrailing(force)
-	echo "Stripping"
 	if !a:force
 		if exists('g:noStripWhitespace')
 			return
@@ -20,7 +24,7 @@ function! s:stripTrailing(force)
 	call cursor(l, c)
 endfunction
 
-" Remove empty line at the end of page
+" Remove empty line at the end of file
 function! TrimEndLines()
 	if exists('g:noStripWhitespace')
 		return
@@ -38,7 +42,7 @@ command! TrimEndLines :call TrimEndLines()
 augroup Clean
 	autocmd!
 	autocmd BufWritePre * StripTrailing
-	autocmd BufWritePre * :call TrimEndLines()
+	autocmd BufWritePre * TrimEndLines
 augroup END
 
 augroup Whitespace

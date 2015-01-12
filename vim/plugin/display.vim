@@ -1,9 +1,11 @@
+" Created:  Sat 18 Oct 2014
+" Modified: Mon 12 Jan 2015
+" Author:   Josh Wainwright
+" Filename: display.vim
+
 " Vim Plugin which provides a "Display Mode", ie a mode that is more
 " suitable for displaying code to others. The mode is toggled using a
 " keybinding and the state is saved across restarts if &viminfo includes !.
-
-" Maintainer:  Josh Wainwright <wainwright.ja@gmail.com>
-" Last Change: 2014 October 27
 
 " Define the settings that will be changed when entering display mode.
 function! Display_mode()
@@ -42,8 +44,8 @@ function! Display_mode_start()
 	endif
 endfunction
 
-augroup dmode
-	autocmd vimenter,bufenter * call Display_mode_start()
+augroup DisplayMode
+	autocmd VimEnter,BufEnter * call Display_mode_start()
 augroup END
 
 nnoremap <silent> <F5> :<C-u>call Switch_display_mode()<CR>
