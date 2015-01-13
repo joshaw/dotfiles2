@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Fri 09 Jan 2015
+" Modified: Mon 12 Jan 2015
 " Author:   Josh Wainwright
 " Filename: mail.vim
 
@@ -19,3 +19,4 @@ endif
 " then insert the contents of the signature file.
 nnoremap <leader>- :%s#\($\n\s*\)\+\%$##e<cr>Go<esc>:r ~/.signature2<cr>
 
+nnoremap <leader>_ :r ~/.signature2<cr>
