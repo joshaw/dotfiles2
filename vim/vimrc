@@ -234,7 +234,6 @@ set list
 set fillchars=vert:│
 set switchbuf=usetab " Method to use when switching buffers
 set scrolloff=5      " Number of lines to keep above and below cursor
-set synmaxcol=200   " Syntax highlight long lines
 set virtualedit+=block
 "}}}
 " User Controls                  {{{
@@ -244,6 +243,7 @@ set backspace=eol,start,indent " Allow backspacing over
 " UI                             {{{
 colorscheme molokaiV
 
+set synmaxcol=200   " Syntax highlight long lines
 set wrapmargin=0 " Wrap text
 set showtabline=1
 set cursorline
