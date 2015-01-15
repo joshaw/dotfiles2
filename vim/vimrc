@@ -347,6 +347,8 @@ augroup ft
 	autocmd BufEnter,BufNew *.tex setl ft=tex | source ~/.vim/ftplugin/tex.vim
 	autocmd BufEnter,BufNew *.rout,*.Rout setl ft=r
 	autocmd BufEnter,BufNew *.md setl ft=markdown
+	autocmd BufEnter,BufNew *.bible setl ft=bible
+	autocmd BufEnter,BufNew three_year.txt setl ft=biblereading
 	" Remove spaces at the end of header lines when starting new mail in mutt.
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
 	autocmd BufNewFile,BufRead *.mail setl filetype=mail
