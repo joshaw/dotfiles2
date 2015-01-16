@@ -1,5 +1,5 @@
 " Created:  Sat 18 Oct 2014
-" Modified: Mon 12 Jan 2015
+" Modified: Fri 16 Jan 2015
 " Author:   Josh Wainwright
 " Filename: display.vim
 
@@ -20,6 +20,7 @@ function! Display_mode()
 	set colorcolumn=0
 	set nolist
 	set norelativenumber
+	set statusline&
 endfunction
 
 " Switch back to normal mode by re-sourcing the vimrc file.
