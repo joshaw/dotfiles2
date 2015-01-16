@@ -433,6 +433,10 @@ vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 " Split lines, oposite of join, J
 nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 
+" Visual increment numbers
+vnoremap <c-a> :norm <c-v><c-a><cr>gv
+vnoremap <c-x> :norm <c-v><c-x><cr>gv
+
 " Don't change case when meaning to undo in visual mode
 vnoremap u <nop>
 vnoremap gu u
