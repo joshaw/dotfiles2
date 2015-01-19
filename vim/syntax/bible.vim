@@ -1,5 +1,5 @@
 " Created:  Tue 13 Jan 2015
-" Modified: Thu 15 Jan 2015
+" Modified: Mon 19 Jan 2015
 " Author:   Josh Wainwright
 " Filename: bible.vim
 
@@ -25,7 +25,7 @@ syn match number     "\v\d*,*\d"
 syn match hashStart  "\v^#+"
 syn match bookname   "\v(^# )@<=([1-3][snrt][tdh] )*[A-Z][A-Za-z: ]+"
 syn match testament  "\v(^# )@<=.{-}TESTAMENT.*$"
-syn match psalmnum   "\v^ {5}PSALM \d+"
+syn match psalmnum   "\v^ {5}PSALM\s+\d+"
 syn match chapterNum "\v^\[[ 0-9]+\] "
 syn match verseNum   "\v(^\[[ 0-9]+\] +)@8<=[0-9]+"
 
@@ -55,7 +55,7 @@ function! BibleIndent()
 		let indprev = indent(v:lnum - 1)
 		if indprev == 10 || prevline =~ '\v^\[.{3}\]'
 			return 10
-		elseif  line =~ '\v^\s*PSALM'
+		elseif  line =~ '\v^\s*PSALM\s+\d+'
 			return 5
 		else
 			return 8
@@ -63,7 +63,8 @@ function! BibleIndent()
 	endif
 endfunction
 
-setlocal showbreak=\ \ \ \ \ \ \ \ 
+let s:showbreakstr = '\ \ \ \ \ \ \ \ '
+exe 'setlocal showbreak=' . s:showbreakstr
 setlocal highlight-=@:NonText
 setlocal highlight+=@:Normal
 setlocal nonumber
