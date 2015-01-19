@@ -359,10 +359,10 @@ augroup END
 
 augroup vimp
 	autocmd!
-	autocmd BufEnter *info.gpg set ft=gpg
-	autocmd FileType gpg set conceallevel=2
-	autocmd FileType gpg :syntax region hideup Conceal start='|' end='$'
-	autocmd FileType gpg set colorcolumn=0
+	autocmd BufEnter pass.gpg set ft=mypass
+	autocmd FileType mypass set conceallevel=2
+	autocmd FileType mypass :syntax region hideup Conceal start='|' end='$'
+	autocmd FileType mypass set colorcolumn=0
 augroup END
 
 " }}}
