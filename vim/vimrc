@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Mon 12 Jan 2015
+" Modified: Mon 19 Jan 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -201,7 +201,7 @@ set smartcase
 set history=700
 set backup
 set writebackup
-" set noswapfile
+set noswapfile
 set undofile
 set undodir  =$VIMHOME/tmp/undo//
 set backupdir=$VIMHOME/tmp/backup//
