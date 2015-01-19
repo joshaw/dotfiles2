@@ -1,5 +1,5 @@
 " Created:  Thu 15 Jan 2015
-" Modified: Thu 15 Jan 2015
+" Modified: Mon 19 Jan 2015
 " Author:   Josh Wainwright
 " Filename: biblereading.vim
 
@@ -37,6 +37,7 @@ function! GotoReading()
 	let parts = split(booknum)
 	let [book; numbers] = parts
 
+	" For cases like 2Tim, make the regex match 2.*Tim
 	if book =~ '\v^\d.+'
 		let book = book[:0].".*".book[1:]
 	endif
@@ -52,7 +53,16 @@ function! GotoReading()
 		let rangestr = nums
 	endif
 
-	vsplit ~/Documents/Church/NIV.bible
+	let bibfile = "~/Documents/Church/NIV.bible"
+	let bufnum=bufnr(expand(bibfile))
+	let winnum=bufwinnr(bufnum)
+	if winnum != -1
+		" Jump to existing split
+		exe winnum . "wincmd w"
+	else
+		" Make new split as usual
+		exe "vsplit " . bibfile
+	endif
 
 	let booksearch = "\\v^# ".book
 	exe "silent! /".booksearch
@@ -61,7 +71,7 @@ function! GotoReading()
 	let numsearch = "\\v^\\[ *(".rangestr.")\\]"
 	call matchadd("Error", numsearch)
 	exe "silent! /".numsearch
-	
+
 endfunction
 
 " Goto next unchecked line when opening file
