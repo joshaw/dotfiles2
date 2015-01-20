@@ -34,8 +34,8 @@ if executable('git')
 
 	if has('python')
 		"Snippet management
-		Plug 'SirVer/ultisnips'
-		Plug 'honza/vim-snippets'
+		Plug 'SirVer/ultisnips', { 'on': ['UltisnipsAddFiletypes'] }
+		Plug 'honza/vim-snippets', { 'on': [] }
 	endif
 	Plug 'Shougo/unite.vim'
 	if !has('win32unix')
