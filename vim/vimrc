@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Mon 19 Jan 2015
+" Modified: Tue 20 Jan 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -34,22 +34,20 @@ if executable('git')
 
 	if has('python')
 		"Snippet management
-		Plug 'SirVer/ultisnips', {'on' : [] }
-		Plug 'honza/vim-snippets', {'on' : [] }
+		Plug 'SirVer/ultisnips'
+		Plug 'honza/vim-snippets'
 	endif
 	Plug 'Shougo/unite.vim'
 	if !has('win32unix')
 		"Syntax checking for a wide range of languages
-		Plug 'scrooloose/syntastic', {'on' : [] }
+		Plug 'scrooloose/syntastic'
 	end
 	"Super tab completion
 	Plug 'ervandew/supertab'
-	"Easy changing, adding and removing of surround objects
-	Plug 'tpope/vim-surround', { 'on' : [] }
 	"Closing of brackets, tags, quotes etc.
-	Plug 'Raimondi/delimitMate', { 'on' : [] }
+	Plug 'Raimondi/delimitMate'
 	"Easy commenting/uncommenting of code.
-	Plug 'tpope/vim-commentary', { 'on' : [] }
+	Plug 'tpope/vim-commentary'
 	"Simple alignment of lines
 	Plug 'tommcdo/vim-lion'
 	"Multiple useful keybindings
@@ -77,18 +75,6 @@ if executable('git')
 	Plug 'Z1MM32M4N/vim-superman'
 	" }}}
 
-	augroup load_plugs
-		autocmd!
-		autocmd InsertEnter * call plug#load('vim-surround')
-		autocmd InsertEnter * call plug#load('delimitMate')
-		autocmd InsertEnter * call plug#load('vim-commentary')
-		autocmd InsertEnter * call plug#load('syntastic')
-		autocmd InsertEnter * call plug#load('ultisnips')
-			  		\| doautocmd UltiSnipsFileType FileType
-		autocmd InsertEnter * call plug#load('vim-snippets')
-			  		\| autocmd! load_plugs
-	augroup END
-
 	call plug#end()
 endif " executable(git)
 
@@ -102,6 +88,7 @@ set runtimepath^=$HOME/.vim/custom
 let g:UltiSnipsSnippetsDir        = "~/.vim/custom/mysnippets"
 let g:UltiSnipsSnippetDirectories =["UltiSnips","mysnippets"]
 let g:UltiSnipsEditSplit          = "vertical"
+let g:UltiSnipsEnableSnipMate     = 0
 
 """" Syntastic
 let g:syntastic_check_on_wq = 0
