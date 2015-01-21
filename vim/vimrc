@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Tue 20 Jan 2015
+" Modified: Wed 21 Jan 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -71,7 +71,9 @@ if executable('git')
 	"Decrypt, edit and then re-encrypt gpg stored files.
 	Plug 'jamessan/vim-gnupg'
 
-	Plug 'istib/vifm.vim'
+	if executable('vifm')
+		Plug 'istib/vifm.vim'
+	endif
 	Plug 'Z1MM32M4N/vim-superman'
 	" }}}
 
