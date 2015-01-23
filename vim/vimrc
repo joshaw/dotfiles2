@@ -155,6 +155,26 @@ function! MyFoldText() "         {{{
 	let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
 	return line . repeat(" ",fillcharcount) . foldedlinecount . ' '
 endfunction " }}}
+
+" Verbose {{{2
+"
+
+command! -range=999998 -nargs=1 -complete=command Verbose
+      \ :exe s:Verbose(<count> == 999998 ? '' : <count>, <q-args>)
+
+function! s:Verbose(level, excmd)
+  let temp = tempname()
+  let verbosefile = &verbosefile
+  call writefile([':'.a:level.'Verbose '.a:excmd], temp, 'b')
+  return
+        \ 'try|' .
+        \ 'let &verbosefile = '.string(temp).'|' .
+        \ 'silent '.a:level.'verbose exe '.string(a:excmd).'|' .
+        \ 'finally|' .
+        \ 'let &verbosefile = '.string(verbosefile).'|' .
+        \ 'endtry|' .
+        \ 'pedit '.temp.'|wincmd P|nnoremap <buffer> q :bd<CR>'
+endfunction " }}}
 " }}}
 " Settings                       {{{
 
