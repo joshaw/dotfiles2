@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Wed 21 Jan 2015
+" Modified: Fri 23 Jan 2015
 " Author:   Josh Wainwright
 " Filename: file-operations.vim
 
@@ -15,13 +15,14 @@ function! SiblingFiles(A, L, P)
 endfunction
 
 function! RenameFile(name, bang)
-	if a:name == ""
-		let a:name = input('New file name: ', expand('%:p'), 'file')
+	let l:name = a:name
+	if l:name == ""
+		let l:name = input('New file name: ', expand('%:p'), 'file')
 	endif
 	let l:curfile = expand("%:p")
 	let l:curpath = expand("%:h") . "/"
 	let v:errmsg = ""
-	silent! exe "saveas" . a:bang . " " . fnameescape(l:curpath . a:name)
+	silent! exe "saveas" . a:bang . " " . fnameescape(l:curpath . l:name)
 	if v:errmsg =~# '^$\|^E329'
 		let l:oldfile = l:curfile
 		let l:curfile = expand("%:p")
