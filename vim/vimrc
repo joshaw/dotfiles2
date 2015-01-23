@@ -1,36 +1,38 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Wed 21 Jan 2015
+" Modified: Fri 23 Jan 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
-" Paths and Variables            {{{
+" Paths and Variables            {{{1
+"
+
 if has('unix')
 	let $VIMHOME=$HOME.'/.vim/'
 elseif has('win32')
 	let $VIMHOME=$HOME.'/vimfiles/'
 	let $PATH=$PATH.';C:/cygwin/bin/'
 endif
-" }}}
-" Vim-Plug Bundles               {{{
+
+" Vim-Plug Plugins               {{{1
+"
+
 let g:plug_threads = 6
 let g:plug_timeout = 20
 
 if executable('git')
 	call plug#begin($VIMHOME.'plugged')
 
-	" Appearance Utilities       {{{
+	" Appearance Utilities       {{{2
 	Plug 'ap/vim-buftabline'
 
-	" }}}
-	" Git Related                {{{
+	" Git Related                {{{2
 
 	"Git management from withing vim
 	Plug 'tpope/vim-fugitive'
 	"Gitk for vim
 	Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
-	" }}}
-	" Other                      {{{
+	" Other                      {{{2
 
 	if has('python')
 		"Snippet management
@@ -63,8 +65,7 @@ if executable('git')
 	"Rename multiple files using vim
 	Plug 'vim-scripts/renamer.vim', {'on' : 'Renamer' }
 
-	"}}}
-	" Filetype specific          {{{
+	" Filetype specific          {{{2
 
 	"Override detection of .md files to markdown
 	Plug 'tpope/vim-markdown', {'for': 'markdown'}
@@ -77,31 +78,31 @@ if executable('git')
 		Plug 'istib/vifm.vim'
 	endif
 	Plug 'Z1MM32M4N/vim-superman'
-	" }}}
 
+	" }}}
 	call plug#end()
 endif " executable(git)
 
-" }}} -------------------------------------------------------------------------
-" Plugin Settings                {{{
+" Plugin Settings                {{{1
+"
 
 filetype off
 
 """" UltiSnips Plugin
 set runtimepath^=$HOME/.vim/custom
-let g:UltiSnipsSnippetsDir        = "~/.vim/custom/mysnippets"
-let g:UltiSnipsSnippetDirectories =["UltiSnips","mysnippets"]
-let g:UltiSnipsEditSplit          = "vertical"
-let g:UltiSnipsEnableSnipMate     = 0
+let g:UltiSnipsSnippetsDir         =  "~/.vim/custom/mysnippets"
+let g:UltiSnipsSnippetDirectories  = ["UltiSnips","mysnippets"]
+let g:UltiSnipsEditSplit           =  "vertical"
+let g:UltiSnipsEnableSnipMate      =  0
 let g:UltiSnipsExpandTrigger       = "<c-j>"
 let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 
 """" Syntastic
-let g:syntastic_check_on_wq = 0
-let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_wq              = 0
+let g:syntastic_auto_loc_list            = 0
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_tex_checkers = ['chktex']
+let g:syntastic_tex_checkers             = ['chktex']
 
 """" Molokai Theme
 let g:molokai_original = 1
@@ -113,19 +114,15 @@ let g:vcm_direction = 'n'
 "let g:SuperTabCrMapping = 0 "Needed to allow delimitMate_expand_cr
 "let g:SuperTabDefaultCompletionType = "context"
 "let g:SuperTabContextDefaultCompletionType = "<c-n>"
-	" better key bindings for UltiSnipsExpandTrigger
-	let g:UltiSnipsExpandTrigger = "<tab>"
-	let g:UltiSnipsJumpForwardTrigger = "<tab>"
-	let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 """" delimitMate
 let delimitMate_jump_expansion = 0
-let delimitMate_expand_cr = 2
-let delimitMate_expand_space = 1
+let delimitMate_expand_cr      = 2
+let delimitMate_expand_space   = 1
 
 """ Clever F
-let g:clever_f_smart_case = 1
-let g:clever_f_mark_cursor = 1
+let g:clever_f_smart_case        = 1
+let g:clever_f_mark_cursor       = 1
 let g:clever_f_mark_cursor_color = 'Error'
 
 """ WhiteSpace
@@ -134,13 +131,17 @@ if $USERNAME == 'JoshWainwright'
 endif
 
 """ BufTabLine
-let g:buftabline_show = 1
-let g:buftabline_numbers = 1
+let g:buftabline_show       = 1
+let g:buftabline_numbers    = 1
 let g:buftabline_indicators = 1
 
-" }}}
-" Functions                      {{{
-function! MyFoldText() "         {{{
+" Functions                      {{{1
+"
+
+" MyFoldText {{{2
+"
+
+function! MyFoldText()
 	let line = getline(v:foldstart)
 
 	let nucolwidth = &fdc + &number * &numberwidth
@@ -175,15 +176,18 @@ function! s:Verbose(level, excmd)
         \ 'endtry|' .
         \ 'pedit '.temp.'|wincmd P|nnoremap <buffer> q :bd<CR>'
 endfunction " }}}
-" }}}
-" Settings                       {{{
+
+" Settings                       {{{1
+"
 
 filetype plugin on
 filetype indent on
 syntax on
 set ttyfast
 
-" Code Formatting                {{{
+" Code Formatting                {{{2
+"
+
 set autoindent " copy indent from current when starting new line
 set copyindent
 set encoding=utf-8
@@ -202,8 +206,9 @@ set wrap
 set textwidth=79
 set foldtext=MyFoldText()
 
-" }}}
-" Search                         {{{
+" Search                         {{{2
+"
+
 set hlsearch
 set ignorecase
 set infercase
@@ -212,8 +217,9 @@ set magic
 set matchtime=8
 set showmatch
 set smartcase
-"}}}
-" History, Backup and Undo Files {{{
+" History, Backup and Undo Files {{{2
+"
+
 set history=700
 set backup
 set writebackup
@@ -229,8 +235,9 @@ if !isdirectory(expand(&undodir))
     call mkdir(expand(&directory), "p")
 endif " }}}
 set viminfo^=!
-"}}}
-" Editor Setup                   {{{
+" Editor Setup                   {{{2
+"
+
 set autoread      " Auto read when a file changes from the outside
 set autowrite     " Auto write before make etc.
 set linebreak     " Don't break across words
@@ -251,12 +258,16 @@ set fillchars=vert:│
 set switchbuf=usetab " Method to use when switching buffers
 set scrolloff=5      " Number of lines to keep above and below cursor
 set virtualedit+=block
-"}}}
-" User Controls                  {{{
+
+" User Controls                  {{{2
+"
+
 set whichwrap+=<,>,h,l         " Keys that wrap onto next line
 set backspace=eol,start,indent " Allow backspacing over
-"}}}
-" UI                             {{{
+
+" UI                             {{{2
+"
+
 colorscheme molokaiV
 
 set synmaxcol=200   " Syntax highlight long lines
@@ -287,8 +298,9 @@ else
 endif
 set splitbelow
 set splitright
-"}}}
-" Command Prompt and status line {{{
+" Command Prompt and status line {{{2
+"
+
 set showcmd          " Show last command in last line of scree
 set ruler
 set laststatus=2     " Show a statusline in all windows
@@ -300,8 +312,9 @@ if exists("&wildignorecase")
 	set wildignorecase
 endif
 
-"}}}
-" GUI                            {{{
+" GUI                            {{{2
+"
+
 if has("gui_running")
 	" set guioptions+=P "allow visual selection to be accessed in system paste
 	set guioptions+=c "use console dialogues
@@ -322,8 +335,8 @@ augroup line_return
 		\ endif
 augroup END
 
-"}}}
-" External Prgs                  {{{
+" External Prgs                  {{{2
+"
 
 if has('win32') && executable('zsh')
 	set shell=C:/cygwin/bin/zsh.exe\ -i
@@ -341,10 +354,10 @@ set keywordprg=""
 set makeprg=make
 set complete=.,w,b,u,U,k,t
 set completeopt=menu,preview,longest
-"}}}
+" }}}2
 
-" }}}
-" FileTypes                      {{{
+" FileTypes                      {{{1
+"
 
 if has("autocmd") && exists("+omnifunc")
 autocmd Filetype *
@@ -382,13 +395,13 @@ augroup vimp
 	autocmd FileType mypass set colorcolumn=0
 augroup END
 
-" }}}
-" Keybindings                    {{{
+" Keybindings                    {{{1
+"
 
 nnoremap ; :
 nnoremap , ;
 
-map <F1> <Nop>
+map <F1> :<C-U>e ~/.dotfiles/bookmarks.md<cr>
 
 " Try using jk and kj as Escape in insert mode.
 inoremap jk <Esc>
@@ -470,8 +483,6 @@ augroup END
 " Save the current file and run the make program
 map <F9>   :make<Return>
 map <S-F9> :silent make<Return>
-map <F10>  :copen<Return>:cprevious<Return>
-map <F11>  :copen<Return>:cnext<Return>
 
 " Open the Tagbar sidebar
 nnoremap <silent> <F8> :TagbarToggle<CR>
@@ -533,8 +544,8 @@ nnoremap <A-Down> :silent! let &guifont = substitute(
  \ '\=eval(submatch(0)-1)',
  \ '')<CR><CR>
 
-" }}}
-" Abbreviations                  {{{
+" Abbreviations                  {{{1
+"
 
 cabbrev help vert help
 
@@ -567,8 +578,8 @@ iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \--------<CR>
                        \- None"
 
-" }}}
-" LDRA                           {{{
+" LDRA                           {{{1
+"
 
 augroup ldra
 	autocmd!
@@ -611,5 +622,10 @@ function! EditReport(monthly, ...)
 	endif
 endfunction
 
+if has("gui_running")
+	set lines=40
+	exe "set columns=" . (82+&numberwidth)
+endif
 " }}}
+
 " vim: fdm=marker
