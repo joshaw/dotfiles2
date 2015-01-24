@@ -69,8 +69,6 @@ if executable('git')
 
 	"Override detection of .md files to markdown
 	Plug 'tpope/vim-markdown', {'for': 'markdown'}
-	"Outline files for notes and bits of info.
-	Plug 'vimoutliner/vimoutliner', {'for': ['otl', 'votl'] }
 	"Decrypt, edit and then re-encrypt gpg stored files.
 	Plug 'jamessan/vim-gnupg'
 
