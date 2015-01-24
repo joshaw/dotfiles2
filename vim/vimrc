@@ -398,10 +398,14 @@ augroup END
 " Keybindings                    {{{1
 "
 
-nnoremap ; :
-nnoremap , ;
-
 map <F1> :<C-U>e ~/.dotfiles/bookmarks.md<cr>
+map <F2> :<C-U>e ~/Documents/Details/times.txt<cr>
+
+" Save the current file and run the make program
+map <F9>   :make<Return>
+map <S-F9> :silent make<Return>
+
+nnoremap <cr> gf
 
 " Try using jk and kj as Escape in insert mode.
 inoremap jk <Esc>
@@ -410,6 +414,24 @@ inoremap kj <Esc>
 " Center search result
 nnoremap n nzz
 nnoremap N Nzz
+
+nnoremap D dg_
+nnoremap Y yg_
+
+nnoremap Q :normal! n.<CR>
+
+" Re-indent whole file
+nnoremap g+ :call Preserve("normal! gg=G")<CR>
+
+" Split lines, oposite of join, J
+nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+
+" Don't change case when meaning to undo in visual mode
+vnoremap u <nop>
+vnoremap gu u
+
+nnoremap ; :
+nnoremap , ;
 
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
@@ -423,11 +445,12 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
-" Shift-leftmouse searches for the word clicked on without moving
-nnoremap <S-LeftMouse> <LeftMouse>:<C-U>let @/='\<'.expand("<cword>").'\>'<CR>:set hlsearch<CR>
+" Replace selected text
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
-nnoremap D dg_
-nnoremap Y yg_
+" Visual increment numbers
+vnoremap <c-a> :norm <c-v><c-a><cr>gv
+vnoremap <c-x> :norm <c-v><c-x><cr>gv
 
 " Jump to start and end of line in insert mode
 inoremap <C-a> <esc>I
@@ -435,78 +458,53 @@ inoremap <C-e> <esc>A
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
-nnoremap Q :normal! n.<CR>
-
-" Delete to black hole with X
-noremap X "_d
-noremap XX "_dd
-
-" Re-indent whole file
-nnoremap g+ :call Preserve("normal! gg=G")<CR>
-
 " Insert current filename
 inoremap <leader>fn <C-R>=expand("%:t")<CR>
 
 " List all buffers and quickly switch to selected
-nmap <leader>b :ls<CR>:buffer<Space>
+nnoremap <leader>b :ls<CR>:buffer<Space>
 
-map <leader>rc :e! $MYVIMRC<CR>
-map <leader>rd :e! $VIMHOME/plugin/display.vim<CR>
+nnoremap <leader>rc :e! $MYVIMRC<CR>
+nnoremap <leader>rd :e! $VIMHOME/plugin/display.vim<CR>
 augroup Reload_vimrc
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC | echo "vimrc is sourced"
 augroup END
 
-" Replace selected text
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
-
-" Split lines, oposite of join, J
-nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-
-" Visual increment numbers
-vnoremap <c-a> :norm <c-v><c-a><cr>gv
-vnoremap <c-x> :norm <c-v><c-x><cr>gv
-
-" Don't change case when meaning to undo in visual mode
-vnoremap u <nop>
-vnoremap gu u
-
 " Fast saving
-nmap <leader>w :w!<cr>
-cabbrev w!! w !sudo tee > /dev/null %
+nnoremap <leader>w :w!<cr>
 augroup Save
 	autocmd!
 	" au FocusLost * :silent! wall
 	au VimResized * :wincmd =
 augroup END
 
-" Save the current file and run the make program
-map <F9>   :make<Return>
-map <S-F9> :silent make<Return>
-
 " Open the Tagbar sidebar
 nnoremap <silent> <F8> :TagbarToggle<CR>
-
-" Unset highlighting of a search
-nmap <silent> <leader>q :nohlsearch<CR><Plug>(clever-f-reset)
 
 " Switch to Next and Previous buffer
 nmap <C-n> :bnext<CR>
 nmap <C-p> :bprev<CR>
 
-" Ranger
-nnoremap <leader>r :silent !ranger %:h<cr>:redraw!<cr>
-nnoremap <leader>R :silent !ranger<cr>:redraw!<cr>
+" Jump to end of pasted text
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
 
 " System clipboard copy and paste
 nmap <leader>v "+gh
 imap <leader>v <ESC>"+gpa
 nmap <leader>ay ggVG"+y
 
-" Jump to end of pasted text
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]
+" Unset highlighting of a search
+nmap <silent> <leader>q :nohlsearch<CR><Plug>(clever-f-reset)
+
+" Ranger
+nnoremap <leader>r :silent !ranger %:h<cr>:redraw!<cr>
+nnoremap <leader>R :silent !ranger<cr>:redraw!<cr>
+
+" Shift-leftmouse searches for the word clicked on without moving
+nnoremap <S-LeftMouse> <LeftMouse>:<C-U>let @/='\<'.expand("<cword>").'\>'<CR>:set hlsearch<CR>
 
 "           Scroll Wheel = Up/Down 4 lines
 "   Shift + Scroll Wheel = Up/Down 1 page
@@ -548,13 +546,12 @@ nnoremap <A-Down> :silent! let &guifont = substitute(
 "
 
 cabbrev help vert help
+cabbrev w!! w !sudo tee > /dev/null %
 
 abbrev <expr> dts strftime("%d/%m/%Y")
 abbrev <expr> dty strftime("%Y%m%d")
 abbrev <expr> dtyd strftime("%Y-%m-%d")
 abbrev <expr> dtl strftime("%c")
-
-iabbrev <expr> Cre: CreatedHeader()
 
 function! CreatedHeader()
 	return "Created:  TIMESTAMP\<CR>"
@@ -563,8 +560,8 @@ function! CreatedHeader()
 		\ ."Filename: " . expand('%:t')
 endfunction
 
+iabbrev <expr> Cre: CreatedHeader()
 iabbrev TST TIMESTAMP
-
 iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \=============<CR>
                        \Josh Wainwright<CR>
