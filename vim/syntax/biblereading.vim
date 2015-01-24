@@ -1,5 +1,5 @@
 " Created:  Thu 15 Jan 2015
-" Modified: Mon 19 Jan 2015
+" Modified: Sat 24 Jan 2015
 " Author:   Josh Wainwright
 " Filename: biblereading.vim
 
@@ -22,14 +22,14 @@ hi def link dayofmonth    Type
 hi def link yearnum       PreProc
 
 " Goto next unchecked line
-nmap <buffer> n gg/\[ \]<cr>:set nohls<cr>
+nnoremap <buffer> n gg/\[ \]<cr>:set nohls<cr>
 
 " Check line and move to next
-nmap <buffer> dd ^lrx
-nmap <buffer> <space> ^lrxn
+nnoremap <buffer> dd ^lrx
+nnoremap <buffer> <space> ^lrxn
 
 " Open the reading on the current line
-nmap <buffer> <CR> :call GotoReading()<cr>
+nnoremap <buffer> <CR> :call GotoReading()<cr>
 
 function! GotoReading()
 	let lineref = getline('.')
