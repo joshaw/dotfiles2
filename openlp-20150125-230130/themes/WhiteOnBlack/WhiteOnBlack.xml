@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<theme version="2.0">
+    <name>WhiteOnBlack</name>
+    <background type="solid">
+        <color>#ffffff</color>
+    </background>
+    <font type="main">
+        <name>Lucida Sans</name>
+        <color>#000000</color>
+        <size>66</size>
+        <bold>False</bold>
+        <italics>False</italics>
+        <line_adjustment>10</line_adjustment>
+        <location height="972" override="False" width="1900" x="10" y="0"/>
+        <shadow shadowColor="#000000" shadowSize="5">False</shadow>
+        <outline outlineColor="#000000" outlineSize="2">False</outline>
+    </font>
+    <font type="footer">
+        <name>Lucida Sans</name>
+        <color>#000000</color>
+        <size>18</size>
+        <bold>False</bold>
+        <italics>False</italics>
+        <line_adjustment>0</line_adjustment>
+        <location height="108" override="False" width="1900" x="10" y="972"/>
+        <shadow shadowColor="#000000" shadowSize="5">True</shadow>
+        <outline outlineColor="#000000" outlineSize="2">False</outline>
+    </font>
+    <display>
+        <horizontalAlign>2</horizontalAlign>
+        <verticalAlign>1</verticalAlign>
+        <slideTransition>False</slideTransition>
+    </display>
+</theme>
