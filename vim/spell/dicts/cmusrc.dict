@@ -28,14 +28,14 @@ FIXME
 fset
 green
 id3_default_charset
-lib_sort
 library
+lib_sort
 load
 mark
 NOTE
 output_plugin
-pl_sort
 playlist
+pl_sort
 queue
 red
 save

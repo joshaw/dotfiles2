@@ -41,6 +41,7 @@ DISPLAY
 DYNEXP
 ELSE
 ENDIF
+enthflow
 enth_mass
 enth_mass_liq
 enth_mass_vap
@@ -48,7 +49,6 @@ enth_mol
 enth_mol_liq
 enth_mol_sol
 enth_mol_vap
-enthflow
 entr_mol
 entr_mol_liq
 entr_mol_sol
@@ -66,10 +66,10 @@ flow_mass_vap
 flow_mol
 flow_mol_liq
 flow_mol_vap
+FLOWSHEET
 flow_vol
 flow_vol_liq
 flow_vol_vap
-FLOWSHEET
 for
 fraction
 FREE
@@ -93,8 +93,8 @@ IF
 INITIAL
 INPUT
 IS
-k_value
 keywords
+k_value
 LEFT
 length
 length_delta
@@ -162,9 +162,9 @@ subsections
 surf_tens
 temp_diff
 temp_drop
-temp_rise
 temperature
 temperature_abs
+temp_rise
 the
 THEN
 THERMO

@@ -1,4 +1,3 @@
-"from"
 a
 and
 as
@@ -11,6 +10,7 @@ enum
 extern
 float
 from
+"from"
 import
 include
 int

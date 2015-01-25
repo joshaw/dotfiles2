@@ -58,6 +58,7 @@ f$cvtime
 f$cvui
 f$device
 f$directory
+fdl
 f$edit
 f$element
 f$environment
@@ -70,10 +71,14 @@ f$getqui
 f$getsyi
 f$identifier
 f$integer
+FIXME
 f$length
 f$locate
+flo[wgraph]
 f$message
 f$mode
+fon[t]
+for[tran]
 f$parse
 f$pid
 f$privilege
@@ -86,11 +91,6 @@ f$trnlnm
 f$type
 f$user
 f$verify
-fdl
-FIXME
-flo[wgraph]
-fon[t]
-for[tran]
 ge
 gen[cat]
 gen[eral]

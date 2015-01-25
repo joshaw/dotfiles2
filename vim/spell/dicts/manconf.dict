@@ -1,12 +1,8 @@
+APROPOS
 _build
+COMPRESS_EXT
 _crunch
 _default
-_subdir
-_suffix
-_version
-_whatdb
-APROPOS
-COMPRESS_EXT
 EQN
 FHS
 FIXME
@@ -20,7 +16,11 @@ NOAUTOPATH
 NOCACHE
 NOTE
 NROFF
+_subdir
+_suffix
 TODO
 TROFF
+_version
+_whatdb
 WHATIS
 XXX

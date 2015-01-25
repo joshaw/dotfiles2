@@ -1,4 +1,3 @@
-\display
 abs
 acos
 acosh
@@ -30,6 +29,7 @@ diff
 difference
 dimen
 dimension
+\display
 div
 drop
 else

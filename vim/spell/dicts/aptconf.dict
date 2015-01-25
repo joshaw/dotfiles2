@@ -1,9 +1,8 @@
-(and
-(to
 '::'
 a
 all
 an
+(and
 apt.conf(5),
 are
 at
@@ -36,6 +35,7 @@ strings:
 than
 that
 the
+(to
 TODO
 toplevel
 treated

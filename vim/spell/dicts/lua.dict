@@ -1,17 +1,6 @@
-_ALERT
-_ENV
-_ERRORMESSAGE
-_G
-_INPUT
-_LOADED
-_OUTPUT
-_REQUIREDNAME
-_STDERR
-_STDIN
-_STDOUT
-_VERSION
 abs
 acos
+_ALERT
 and
 appendto
 ascii
@@ -33,7 +22,9 @@ deg
 dofile
 dostring
 else
+_ENV
 error
+_ERRORMESSAGE
 execute
 exit
 exp
@@ -45,6 +36,7 @@ foreach
 foreachi
 format
 frexp
+_G
 gcinfo
 getenv
 getfenv
@@ -58,9 +50,11 @@ globals
 goto
 gsub
 in
+_INPUT
 ipairs
 ldexp
 load
+_LOADED
 loadfile
 loadlib
 loadstring
@@ -78,6 +72,7 @@ nil
 not
 openfile
 or
+_OUTPUT
 outside
 pairs
 pcall
@@ -95,6 +90,7 @@ readfrom
 remove
 rename
 require
+_REQUIREDNAME
 respective
 return
 seek
@@ -111,6 +107,9 @@ settagmethod
 sin
 sort
 sqrt
+_STDERR
+_STDIN
+_STDOUT
 strbyte
 strchar
 strfind
@@ -131,6 +130,7 @@ tremove
 true
 type
 unpack
+_VERSION
 write
 writeto
 xpcall

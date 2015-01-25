@@ -85,8 +85,8 @@ True
 type
 useModMapMods
 virtual
-virtual_modifiers
 virtualModifier
+virtual_modifiers
 virtualMods
 weight
 whichModState

@@ -1,16 +1,3 @@
-_delete
-_div
-_exprseq
-_frame
-_in
-_index
-_invert
-_lazy_and
-_lazy_or
-_negate
-_next
-_quit
-_stmtseq
 abs
 AdaptiveMesh
 airyAi
@@ -166,6 +153,7 @@ debug
 degree
 degreevec
 delete
+_delete
 denom
 densematrix
 Density
@@ -180,6 +168,7 @@ discont
 DiscontinuitySearch
 DistantLight
 div
+_div
 divide
 do
 doc
@@ -215,6 +204,7 @@ export
 expose
 expr
 expr2text
+_exprseq
 external
 extnops
 extop
@@ -253,6 +243,7 @@ for
 fprint
 frac
 frame
+_frame
 Frames
 frandom
 fread
@@ -325,7 +316,9 @@ Implicit2d
 Implicit3d
 import
 in
+_in
 indets
+_index
 indexval
 Inequalities
 Inequality
@@ -341,6 +334,7 @@ interpolate
 InterpolationStyle
 intersect
 interval
+_invert
 invphi
 irreducible
 is
@@ -357,6 +351,8 @@ lambertW
 last
 lasterror
 Layout
+_lazy_and
+_lazy_or
 lcm
 lcoeff
 ldegree
@@ -435,9 +431,11 @@ multcoeffs
 MuPADCube
 name
 Name
+_negate
 new
 newDomain
 next
+_next
 nextprime
 NIL
 NoNL
@@ -539,6 +537,7 @@ protocol
 psi
 Q_
 quit
+_quit
 R_
 Radius
 RadiusFunction
@@ -621,6 +620,7 @@ sqrt
 StartingPoint
 StartRule
 StepLength
+_stmtseq
 strmatch
 strprint
 SubgridLineColor

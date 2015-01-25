@@ -16,7 +16,6 @@ break
 break_process
 byte
 c
-c_preprocess
 calc
 call_thru
 cancel_batch_requests
@@ -40,6 +39,7 @@ copy_file
 copy_tape
 count
 cpp
+c_preprocess
 create_data_object
 create_deleted_record_index
 create_dir
@@ -139,8 +139,8 @@ list_terminal_types
 list_users
 locate_files
 locate_large_files
-lock_type
 locked
+lock_type
 login
 logout
 longword

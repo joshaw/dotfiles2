@@ -280,9 +280,9 @@ raslasterror
 re_extract
 re_match
 re_parse
-re_split
 repeat
 replace
+re_split
 return
 rfctimezone
 runscript

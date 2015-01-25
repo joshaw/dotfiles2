@@ -1,4 +1,3 @@
-/^package/
 elseif
 FIXME
 FIXME:
@@ -7,6 +6,7 @@ match
 NOTE
 NOTE:
 package
+/^package/
 Pod
 screw
 TBD

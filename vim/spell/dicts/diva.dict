@@ -18,9 +18,9 @@ edgeb
 enc
 enclosing
 fig
-fig_count
 figa
 figb
+fig_count
 figure
 grounded
 ignore
@@ -32,8 +32,8 @@ lengthb
 limit
 message
 normalGrow
-not_over
 notch
+not_over
 notParallel
 one_net
 only_perp

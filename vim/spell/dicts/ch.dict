@@ -1,7 +1,7 @@
-__declspec(global)
-__declspec(local)
 array
 class
+__declspec(global)
+__declspec(local)
 delete
 foreach
 new

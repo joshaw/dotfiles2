@@ -1,4 +1,3 @@
-(no
 a
 according
 action
@@ -54,8 +53,8 @@ dec
 default
 define
 defining
-delay_key_write
 delayed
+delay_key_write
 delete
 desc
 describe
@@ -146,6 +145,7 @@ myisam
 MySQL
 natural
 no
+(no
 not
 null
 of

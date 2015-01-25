@@ -27,9 +27,9 @@ cascade
 case
 cast
 char
-char_length
 character
 character_length
+char_length
 check
 clob
 close

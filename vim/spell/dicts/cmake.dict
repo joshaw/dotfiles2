@@ -1,6 +1,5 @@
-"
-"\n"
 |
+"
 ABSTRACT_FILES
 are
 as:
@@ -8,6 +7,7 @@ BUILD_NAME
 cmake
 generated
 --help-command-list
+"\n"
 SOURCE_FILES
 SOURCE_FILES_REMOVE
 tr

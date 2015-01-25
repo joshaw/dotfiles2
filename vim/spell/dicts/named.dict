@@ -1,15 +1,11 @@
-...
 `{
-`acl'
-`controls'
-`key'
-`server'
-`update-policy'
+...
 }'
 0
 1
 A
 A6
+`acl'
 address
 algorithm
 allow-query
@@ -26,6 +22,7 @@ chaos
 check-names
 cleaning-interval
 CNAME
+`controls'
 coresize
 datasize
 deallocate-on-exit
@@ -51,6 +48,7 @@ in
 interface-interval
 ixfr-base
 key
+`key'
 keywords
 lame-ttl
 listen-on
@@ -81,6 +79,7 @@ rrset-order
 section
 sections
 serial-queries
+`server'
 severity
 size
 skipwhite
@@ -101,6 +100,7 @@ transfers-per-ns
 treat-cr-as-space
 true
 TXT
+`update-policy'
 update-policy
 use-id-pool
 version

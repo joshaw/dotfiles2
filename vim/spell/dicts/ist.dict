@@ -14,8 +14,8 @@ encap_suffix
 escape
 group_skip
 heading_prefix
-heading_suffix
 headings_flag
+heading_suffix
 indent_length
 indent_space
 item_0

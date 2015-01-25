@@ -1,5 +1,3 @@
-!if
-_for
 and
 andelse
 Array_Type
@@ -16,8 +14,10 @@ ERROR_BLOCK
 EXECUTE_ERROR_BLOCK
 EXIT_BLOCK
 for
+_for
 forever
 if
+!if
 Integer_Type
 loop
 not

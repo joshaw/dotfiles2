@@ -1,4 +1,3 @@
-"@\(format\|importClassesFrom\|importFrom\|importMethodsFrom\|import\|keywords\)"
 array
 attach
 break
@@ -12,6 +11,7 @@ else
 F
 FALSE
 for
+"@\(format\|importClassesFrom\|importFrom\|importMethodsFrom\|import\|keywords\|useDynLib\)"
 function
 if
 in
@@ -29,16 +29,16 @@ NA
 NA_character_
 NA_complex_
 NA_integer_
-NA_real_
 NaN
+NA_real_
 next
 NULL
 numeric
 pi
-R.version.string
 repeat
 require
 return
+R.version.string
 source
 T
 TRUE

@@ -11,8 +11,8 @@ atom
 atom_chars
 atom_codes
 atom_concat
-atom_length
 atomic
+atom_length
 bagof
 call
 catch
@@ -65,10 +65,10 @@ read_term
 repeat
 retract
 set_input
+setof
 set_output
 set_prolog_flag
 set_stream_position
-setof
 stream_property
 sub_atom
 throw
@@ -77,5 +77,5 @@ unify_with_occurs_check
 var
 write
 write_canonical
-write_term
 writeq
+write_term

@@ -35,8 +35,8 @@ folder-hook
 generic
 green
 group
-hdr_order
 hdrdefault
+hdr_order
 header
 iconv-hook
 ignore

@@ -82,8 +82,8 @@ if
 inkey$
 inp
 input
-input#
 input$
+input#
 instr
 int
 int64

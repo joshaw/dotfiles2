@@ -1,4 +1,3 @@
-(default)
 and
 andalso
 as
@@ -6,6 +5,7 @@ bool
 case
 char
 datatype
+(default)
 div
 else
 eqtype

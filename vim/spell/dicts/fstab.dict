@@ -137,8 +137,6 @@ nfs
 nfsd
 nilfs2
 no
-no_readahead
-no_unhashed_relocation
 noac
 noacl
 noalign
@@ -175,6 +173,7 @@ nonempty
 nonumtail
 noposix
 noquota
+no_readahead
 norecovery
 noreservation
 normal
@@ -190,6 +189,7 @@ notcp
 notreelog
 noudp
 nouid32
+no_unhashed_relocation
 nouser
 nouser_xattr
 novrs
@@ -266,8 +266,8 @@ supermount
 sw
 swap
 sync
-sys_immutable
 sysfs
+sys_immutable
 sysv
 sysvgroups
 t
@@ -292,10 +292,10 @@ usbfs
 use_ino
 usemp
 user
-user_subvol_rm_allowed
-user_xattr
 userfs
 users
+user_subvol_rm_allowed
+user_xattr
 usrquota
 utf8
 verbose

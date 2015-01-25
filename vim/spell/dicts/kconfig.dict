@@ -3,9 +3,9 @@ boolean
 choice
 comment
 config
+default
 def_bool
 def_tristate
-default
 endchoice
 endif
 endmenu

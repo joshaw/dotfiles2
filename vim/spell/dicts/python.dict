@@ -1,5 +1,3 @@
-__debug__
-__import__
 3.0
 a
 abs
@@ -36,6 +34,7 @@ coerce
 compile
 complex
 continue
+__debug__
 del
 delattr
 DeprecationWarning
@@ -81,6 +80,7 @@ highlighted.
 id
 if
 import
+__import__
 ImportError
 ImportWarning
 in
@@ -114,8 +114,8 @@ min
 NameError
 next
 None
-None,
 'None',
+None,
 nonlocal
 not
 NOTE

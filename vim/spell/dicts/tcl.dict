@@ -25,7 +25,7 @@ auto_execok
 auto_import
 auto_load
 auto_mkindex
-auto_mkindex_old
+auto_path
 auto_qualify
 auto_reset
 background
@@ -38,7 +38,6 @@ bool
 borderwidth
 break
 cascade
-case
 catch
 cd
 ceil
@@ -105,7 +104,6 @@ fconfigure
 fcopy
 file
 fileevent
-filename
 fill
 finally
 first
@@ -119,7 +117,6 @@ foreground
 forget
 format
 from
-geometry
 get
 gets
 glob
@@ -130,6 +127,7 @@ highlightbackground
 highlightcolor
 highlightthickness
 history
+http
 hypot
 if
 image
@@ -165,6 +163,7 @@ lindex
 linsert
 list
 llength
+lmap
 load
 log
 log10
@@ -183,16 +182,15 @@ min
 my
 names
 namespace
+next
 nextelement
+nextto
 no
 none
 off
 offvalue
 on
 onvalue
-oo::copy
-oo::define
-oo::objdefine
 open
 orient
 origin
@@ -218,6 +216,7 @@ rand
 range
 read
 real
+refchan
 regexp
 registry
 regsub
@@ -330,6 +329,7 @@ xscrollcommand
 xscrollincrement
 yes
 yield
+yieldto
 yposition
 yscrollcommand
 yscrollincrement

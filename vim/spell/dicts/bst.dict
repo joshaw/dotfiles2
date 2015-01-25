@@ -31,9 +31,9 @@ inbook
 incollection
 inproceedings
 institution
+INTEGERS
 int.to.chr$
 int.to.str$
-INTEGERS
 iskeyword=<args>
 ITERATE
 journal
@@ -46,8 +46,8 @@ missing$
 month
 newline$
 note
-num.names$
 number
+num.names$
 organization
 pages
 phdthesis

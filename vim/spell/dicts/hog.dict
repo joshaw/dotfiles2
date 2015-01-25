@@ -49,9 +49,9 @@ LOG_NDELAY
 LOG_NOTICE
 LOG_PERROR
 LOG_PID
+logto
 LOG_USER
 LOG_WARNING
-logto
 lsrr
 lsrre
 maxbytes

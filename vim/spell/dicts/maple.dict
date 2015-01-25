@@ -1,8 +1,7 @@
-$
-&^
-&mod
 @
 @@
+$
+&^
 {{{1
 9.5
 abs
@@ -282,8 +281,8 @@ disk
 dismantle
 dispersion
 display
-display_allGR
 display3d
+display_allGR
 displayGR
 distance
 DistDeg
@@ -471,11 +470,11 @@ geodesic_eqns
 geom3d
 geometry
 get_char
-get_compts
-get_rank
 getcoeff
+get_compts
 getform
 getlabel
+get_rank
 gfun
 GIbasis
 GIchrem
@@ -731,8 +730,8 @@ Lie_diff
 liesymm
 limit
 Limit
-lin_com
 linalg
+lin_com
 line
 LinearAlgebra
 LinearFunctionalSystems
@@ -803,6 +802,7 @@ mlog
 MmaTranslator
 mobius
 mod
+&mod
 MOD2
 modp
 modp1

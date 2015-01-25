@@ -90,8 +90,6 @@ BufferedLogs
 builtin
 CA_BASE64
 CA_CERT7_DB
-CA_DER
-CA_SECMOD
 CacheDefaultExpire
 CacheDirLength
 CacheDirLevels
@@ -119,6 +117,8 @@ CacheSize
 CacheStoreNoStore
 CacheStorePrivate
 CacheTimeMargin
+CA_DER
+CA_SECMOD
 CERT_BASE64
 CERT_DER
 CERT_KEY3_DB
@@ -403,6 +403,7 @@ ProxyErrorOverride
 ProxyIOBufferSize
 ProxyMaxForwards
 ProxyPass
+ProxyPassMatch
 ProxyPassReverse
 ProxyPassReverseCookieDomain
 ProxyPassReverseCookiePath

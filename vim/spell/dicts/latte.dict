@@ -1,13 +1,9 @@
-__FILE__
-__latte-version__
-_bal-tag
-_pre
-_tag
 add
 and
 append
 apply
 back
+_bal-tag
 caar
 cadr
 car
@@ -26,6 +22,7 @@ empty?
 equal?
 error
 explode
+__FILE__
 file-contents
 floor
 foreach
@@ -42,6 +39,7 @@ html
 if
 include
 lambda
+__latte-version__
 le?
 length
 less?
@@ -60,6 +58,7 @@ nth
 operator?
 or
 ordinary
+_pre
 process-output
 push-back
 push-front
@@ -85,6 +84,7 @@ string-lt?
 subseq
 substr
 subtract
+_tag
 unquote
 upcase
 useless

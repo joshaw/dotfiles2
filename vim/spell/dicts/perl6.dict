@@ -1,10 +1,7 @@
-"
-".
-"\\)\\%(\\k\\|[-']\\K\\@=\\)\\@!\""
-"syn
 .
 ."
-\"\\%(\\k\\|\\K\\@<=[-']\\)\\@<!\\%("
+"
+".
 {
 a
 after
@@ -31,6 +28,8 @@ items(s:keywords)
 keyword
 keyword"
 keywords
+"\\)\\%(\\k\\|[-']\\K\\@=\\)\\@!\""
+\"\\%(\\k\\|\\K\\@<=[-']\\)\\@<!\\%("
 left,
 match
 more
@@ -43,6 +42,7 @@ s:routines
 s:temp
 s:words
 s:words_space
+"syn
 that
 the
 to

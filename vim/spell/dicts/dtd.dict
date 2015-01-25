@@ -1,4 +1,3 @@
-(keywords).
 CDATA
 common
 dtdFunction.
@@ -10,6 +9,7 @@ IDREFS
 in
 is
 keywords
+(keywords).
 mark
 NMTOKEN
 NMTOKENS
