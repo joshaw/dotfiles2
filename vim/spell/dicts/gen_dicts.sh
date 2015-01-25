@@ -37,9 +37,8 @@ for i in ${pathtofiles}*; do
 	grep keyword $i |\
 		grep -v nextgroup |\
 		awk '{ $1=""; $2=""; $3=""; print}' |\
-		perl -pe 's/\s+/\n/g' |\
-		grep -v contained |\
-		grep -v '^$' |\
-		sort |\
+		sed -r -e 's/\s+/\n/g' |\
+		sed -e '/^$/d' -e '/contained/d' |\
+		sort -d |\
 		uniq > ~/.vim/spell/dicts/$(basename $i .vim).dict
 done
