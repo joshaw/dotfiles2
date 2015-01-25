@@ -47,7 +47,7 @@ if executable('git')
 	end
 	"Super tab completion
 	"Plug 'ervandew/supertab'
-	Plug 'ajh17/VimCompletesMe'
+	"Plug 'ajh17/VimCompletesMe'
 	"Closing of brackets, tags, quotes etc.
 	Plug 'Raimondi/delimitMate'
 	"Easy commenting/uncommenting of code.
@@ -279,8 +279,8 @@ set wrapmargin=0                     " margin from the right in which to break a
 set backspace=eol,start,indent       " specifies what <BS>, CTRL-W, etc. can do in Insert mode
 set formatoptions=tcrqln             " list of flags that tell how automatic formatting works
 silent! set formatoptions+=j         " list of flags that tell how automatic formatting works
-set complete=.,w,b,u,U,k,t           " specifies how Insert mode completion works for CTRL-N and CTRL-P
-set completeopt=menu,preview,longest " whether to use a popup menu for Insert mode completion
+set complete=.,w,b,u,k,t             " specifies how Insert mode completion works for CTRL-N and CTRL-P
+set completeopt=menu                 " whether to use a popup menu for Insert mode completion
 set infercase                        " adjust case of a keyword completion match
 set showmatch                        " when inserting a bracket, briefly jump to its match
 set matchtime=5                      " tenth of a second to show a match for 'showmatch'
@@ -426,6 +426,25 @@ map <F2> :<C-U>e ~/Documents/Details/times.txt<cr>
 " Save the current file and run the make program
 map <F9>   :make<Return>
 map <S-F9> :silent make<Return>
+
+function! Smart_TabComplete() " {{{
+	let line = getline('.')
+	let substr = strpart(line, -1, col('.')+1)
+	let substr = matchstr(substr, "[^ \t]*$")
+	if (strlen(substr)==0)
+		return "\<tab>"
+	endif
+	let has_period = match(substr, '\.') != -1
+	let has_slash = match(substr, '\/\|\\') != -1
+	if ( has_slash )
+		return "\<C-X>\<C-F>"
+	else
+		return "\<C-P>"
+	endif
+endfunction " }}}
+" Completion on tab
+inoremap <expr> <tab> Smart_TabComplete()
+inoremap <s-tab> <c-n>
 
 nnoremap <cr> gf
 
