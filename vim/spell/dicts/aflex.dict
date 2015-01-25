@@ -1,0 +1,14 @@
+BEGIN
+ECHO
+input
+output
+unput
+winput
+woutput
+wunput
+yyleng
+yyless
+yylook
+yymore
+yytext
+yywrap

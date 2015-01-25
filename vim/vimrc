@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Sat 24 Jan 2015
+" Modified: Sun 25 Jan 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -184,7 +184,6 @@ syntax on
 colorscheme molokaiV
 set encoding=utf-8 " character encoding used in Vim: "latin1", "utf-8"
 
-
 " 1 important {{{2
 
 " 2 moving around, searching and patterns {{{2
@@ -322,7 +321,7 @@ set directory=$VIMHOME/tmp/directory// " list of directories for the swap file
 set noswapfile                         " use a swap file for this buffer
 
 "21 command line editing {{{2
-set history=700                 " how many command lines are remembered 
+set history=700                 " how many command lines are remembered
 set wildmode=full               " specifies how command line completion works
 set wildignore=*.o,*~,*.pyc     " ignore case when completing file names
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.class
@@ -394,7 +393,8 @@ else
 endif
 augroup ft
 	autocmd!
-	au FileType * exe 'setl dict+='.fnameescape($VIMRUNTIME).'/syntax/'.&filetype.'.vim'
+	"au FileType * exe 'setl dict+='.fnameescape($VIMRUNTIME).'/syntax/'.&filetype.'.vim'
+	au Filetype * exe 'setl dict+=$VIMHOME/spell/dicts/'.&filetype.'.dict'
 	autocmd BufEnter,BufNew *.tex setl ft=tex | source ~/.vim/ftplugin/tex.vim
 	autocmd BufEnter,BufNew *.rout,*.Rout setl ft=r
 	autocmd BufEnter,BufNew *.md setl ft=markdown

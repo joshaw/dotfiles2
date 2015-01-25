@@ -1,0 +1,9 @@
+-bacc
+--blank-lines-after-ifdefs
+-ei
+FIXME
+-ip
+-nei
+NOTE
+TODO
+XXX
