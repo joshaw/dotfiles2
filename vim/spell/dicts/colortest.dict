@@ -1,0 +1,10 @@
+'.col1.'_on_'.col2
+col_'.col1.'_'.col2.'
+col_'.expand("<cword>").'
+col_'.expand("<cword>")."
+ctermfg='.expand("<cword>").'
+exec
+".expand("<cword>")
+guifg='.expand("<cword>")|
+keyword
+'syn

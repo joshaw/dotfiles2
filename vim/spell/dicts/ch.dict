@@ -1,0 +1,11 @@
+array
+class
+__declspec(global)
+__declspec(local)
+delete
+foreach
+new
+private
+public
+string_t
+this

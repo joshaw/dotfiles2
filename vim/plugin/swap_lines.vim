@@ -11,12 +11,12 @@ endfunction
 
 function! MoveVisualUp()
     call MoveLineOrVisualUp("'<", "'<,'>")
-    normal gv
+    normal! gv
 endfunction
 
 function! MoveVisualDown()
     call MoveLineOrVisualDown("'>", "'<,'>")
-    normal gv
+    normal! gv
 endfunction
 
 function! MoveLineOrVisualUp(line_getter, range)

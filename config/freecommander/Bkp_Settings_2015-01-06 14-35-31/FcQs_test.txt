@@ -1,0 +1,3 @@
+clients	h:\clients
+projects	h:\projects
+vimfiles	h:\vimfiles

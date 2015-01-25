@@ -1,0 +1,16 @@
+a:name
+'CATALOG')
+['CD_DA',
+'CD_ROM',
+'CD_ROM_XA'])
+'CD_TEXT')
+'COPY')
+'DATAFILE')
+'INDEX')
+'ISRC')
+'LANGUAGE')
+'LANGUAGE_MAP')
+'PRE_EMPHASIS')
+'PREGAP')
+'SILENCE')
+'TRACK')

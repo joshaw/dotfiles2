@@ -1,3 +1,12 @@
+" Created:  Wed 16 Apr 2014
+" Modified: Mon 12 Jan 2015
+" Author:   Josh Wainwright
+" Filename: dmenuOpen.vim
+
+if ! executable('dmenu')
+	finish
+endif
+
 " Strip the newline from the end of a string
 function! Chomp(str)
 	let str = substitute(a:str, ' ', '\\ ', 'g')
@@ -7,9 +16,11 @@ endfunction
 " Find a file and pass it to cmd
 function! DmenuOpen(cmd)
 
-	let test_git = system('git rev-parse --git-dir > /dev/null 2>&1 && echo 1 || echo 0')
+	if !exists("g:git_folder")
+		let g:git_folder = system('git rev-parse --git-dir > /dev/null 2>&1 && echo 1 || echo 0')
+	endif
 
-	if test_git
+	if g:git_folder
 		let command = "git ls-files"
 	elseif $USERNAME == 'jaw097'
 		let command = "git ls-files"
@@ -24,4 +35,4 @@ function! DmenuOpen(cmd)
 endfunction
 
 " map <c-t> :call DmenuOpen("tabe")<cr>
-map <c-f> :call DmenuOpen("e")<cr>
+noremap <c-f> :call DmenuOpen("e")<cr>

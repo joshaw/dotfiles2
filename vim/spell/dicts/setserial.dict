@@ -1,0 +1,14 @@
+autoconfig
+auto_irq
+baud_base
+divisor
+FIXME
+irq
+none
+NOTE
+port
+set_multiport
+skip_test
+TODO
+uart
+XXX
