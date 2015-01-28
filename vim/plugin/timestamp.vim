@@ -1,18 +1,17 @@
 " Created:  Thu 17 Apr 2014
-" Modified: Sat 03 Jan 2015
+" Modified: Wed 28 Jan 2015
 " Author:   Josh Wainwright
 " Filename: timestamp.vim
 "
 " auto-update last update if there's a update tag
 autocmd! BufWritePre * :call Timestamp()
-" cnoremap wq call Timestamp()<CR> :wq
 
 " to update timestamp when saving if its in the first few lines of a file
 function! Timestamp()
 
 	let l:winview = winsaveview()
 
-	let pat = '\v\C%(Modified\s*:\s*)\zs%(.*20\d{2}.*|TIMESTAMP)$|Created\s*:\s*\zsTIMESTAMP\ze$'
+	let pat = '\v\C%(Modified\s*:\s*)\zs%(.*20\d{2}|TIMESTAMP)$|Created\s*:\s*\zsTIMESTAMP\ze$'
 	let rep = strftime("%a %d %b %Y")
 
 	if line('$') > 2 * &modelines
@@ -26,8 +25,6 @@ function! Timestamp()
 
 endfunction
 
-" subst taken from timestamp.vim
-" {{{1 subst( start, end, pat, rep): substitute on range start - end.
 function! s:subst(start, end, pat, rep)
 	let lineno = a:start
 	while lineno <= a:end
@@ -43,4 +40,3 @@ function! s:subst(start, end, pat, rep)
 		let lineno = lineno + 1
 	endwhile
 endfunction
-" }}}1
