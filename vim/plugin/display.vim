@@ -1,5 +1,5 @@
 " Created:  Sat 18 Oct 2014
-" Modified: Fri 16 Jan 2015
+" Modified: Wed 28 Jan 2015
 " Author:   Josh Wainwright
 " Filename: display.vim
 
@@ -11,15 +11,16 @@
 function! Display_mode()
 	let g:DMODE = 1
 	colorscheme github
-	set guioptions+=mbr
 	if has("unix")
 		set guifont=Droid\ Sans\ Mono\ 10
 	else
 		set guifont=Consolas:h13:cANSI
 	endif
+	set guioptions+=mbr
 	set colorcolumn=0
 	set nolist
 	set norelativenumber
+	let g:statusline_store=&statusline
 	set statusline&
 endfunction
 
@@ -27,6 +28,7 @@ endfunction
 function! No_display_mode()
 	unlet g:DMODE
 	source $MYVIMRC
+	let &statusline=g:statusline_store
 endfunction
 
 " Toggle display mode.
