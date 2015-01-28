@@ -11,7 +11,7 @@
         <bold>False</bold>
         <italics>False</italics>
         <line_adjustment>15</line_adjustment>
-        <location height="972" override="True" width="1700" x="100" y="0"/>
+        <location height="972" override="True" width="1800" x="50" y="0"/>
         <shadow shadowColor="#000000" shadowSize="5">False</shadow>
         <outline outlineColor="#000000" outlineSize="2">False</outline>
     </font>
