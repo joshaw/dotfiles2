@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Sun 25 Jan 2015
+" Modified: Wed 28 Jan 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -428,7 +428,11 @@ map <F2> :<C-U>e ~/Documents/Details/times.txt<cr>
 map <F9>   :make<Return>
 map <S-F9> :silent make<Return>
 
-function! Smart_TabComplete() " {{{
+" Smart completion on tab " {{{
+function! Smart_TabComplete()
+	if pumvisible()
+		return "\<c-n>"
+	endif
 	let line = getline('.')
 	let substr = strpart(line, -1, col('.')+1)
 	let substr = matchstr(substr, "[^ \t]*$")
@@ -437,16 +441,16 @@ function! Smart_TabComplete() " {{{
 	endif
 	let has_period = match(substr, '\.') != -1
 	let has_slash = match(substr, '\/\|\\') != -1
-	if ( has_slash )
-		return "\<C-X>\<C-F>"
+	if (has_slash)
+		return "\<c-x>\<c-f>"
 	else
-		return "\<C-P>"
+		return "\<c-n>"
 	endif
 endfunction " }}}
-" Completion on tab
 inoremap <expr> <tab> Smart_TabComplete()
-inoremap <s-tab> <c-n>
+inoremap <s-tab> <c-p>
 
+" TODO gf timeout
 nnoremap <cr> gf
 
 " Try using jk and kj as Escape in insert mode.
