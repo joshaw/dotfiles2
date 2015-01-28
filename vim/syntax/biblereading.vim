@@ -1,5 +1,5 @@
 " Created:  Thu 15 Jan 2015
-" Modified: Sat 24 Jan 2015
+" Modified: Wed 28 Jan 2015
 " Author:   Josh Wainwright
 " Filename: biblereading.vim
 
@@ -75,4 +75,4 @@ function! GotoReading()
 endfunction
 
 " Goto next unchecked line when opening file
-normal n
+"normal n
