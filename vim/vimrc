@@ -402,7 +402,7 @@ augroup ft
 	autocmd BufEnter,BufNew README setl ft=markdown
 	autocmd BufEnter,BufNew *.bible setl ft=bible
 	autocmd BufEnter,BufNew three_year.txt setl ft=biblereading
-	autocmd BufEnter,BufNew times.txt setl ft=times
+	autocmd BufEnter,BufNew times.txt setl ft=times.conf
 	" Remove spaces at the end of header lines when starting new mail in mutt.
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
 	autocmd BufNewFile,BufRead *.mail setl filetype=mail
