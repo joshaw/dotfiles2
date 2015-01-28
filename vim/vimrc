@@ -350,6 +350,7 @@ set makeprg=make " program used for the ":make" command
 "24 system specific {{{2
 
 "25 language specific {{{2
+set isfname-==
 
 "26 multi-byte characters {{{2
 set encoding=utf-8 " character encoding used in Vim: "latin1", "utf-8"
