@@ -3,7 +3,7 @@
 ::
 subst r: c:\_in_out
 subst h: c:\home\JoshWainwright
-subst l: c:\home\JoshWainwright\Resources\TLPs
+subst l: c:\home\JoshWainwright\Resources
 
 ::
 :: Remove everythin inside the "tmp" directory {{{1
