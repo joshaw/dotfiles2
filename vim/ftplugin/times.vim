@@ -1,5 +1,5 @@
 " Created:  Sat 24 Jan 2015
-" Modified: Sat 24 Jan 2015
+" Modified: Mon 02 Feb 2015
 " Author:   Josh Wainwright
 " Filename: times.vim
 
@@ -13,12 +13,11 @@ function! Log_work_times()
 		let l:newline = strftime("%Y%m%d") . ", " . strftime("%H%M%S")
 		call append(line('$'), l:newline)
 	endif
-	write
 endfunction
 
 nnoremap <buffer> <cr> :<c-u>call Log_work_times()<cr>
 
 augroup log_work_times
 	au!
-	au BufReadPost times.txt call Log_work_times()
+	au BufReadPost,BufEnter,VimEnter times.txt call Log_work_times()
 augroup END
