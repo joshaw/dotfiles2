@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Fri 30 Jan 2015
+" Modified: Mon 02 Feb 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -320,7 +320,7 @@ set timeoutlen=300 " time in msec for 'timeout'
 "19 reading and writing files {{{2
 set modeline                        " enable using settings from modelines when reading a file
 set fileformats=unix,dos,mac        " list of file formats to look for when editing a file
-set noendofline                     " last line in the file has an end-of-line
+set endofline                       " last line in the file has an end-of-line
 set writebackup                     " write a backup file before overwriting a file
 set backup                          " write a backup file before overwriting a file
 set backupdir=$VIMHOME/tmp/backup// " list of directories to put backup files in
@@ -682,4 +682,4 @@ if has("gui_running")
 endif
 " }}}
 
-" vim: fdm=marker
+" vim: fdm=marker nowrap
