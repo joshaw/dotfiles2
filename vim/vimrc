@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Wed 28 Jan 2015
+" Modified: Fri 30 Jan 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -40,14 +40,10 @@ if executable('git')
 		Plug 'honza/vim-snippets', {'on' : 'UltiSnipsLoad'}
 		command! UltiSnipsLoad :
 	endif
-	Plug 'Shougo/unite.vim'
 	if !has('win32unix')
 		"Syntax checking for a wide range of languages
 		Plug 'scrooloose/syntastic'
 	end
-	"Super tab completion
-	"Plug 'ervandew/supertab'
-	"Plug 'ajh17/VimCompletesMe'
 	"Closing of brackets, tags, quotes etc.
 	Plug 'Raimondi/delimitMate'
 	"Easy commenting/uncommenting of code.
@@ -64,6 +60,7 @@ if executable('git')
 	Plug 'clever-f.vim'
 	"Rename multiple files using vim
 	Plug 'vim-scripts/renamer.vim', {'on' : 'Renamer' }
+	Plug 'pelodelfuego/vim-swoop'
 
 	" Filetype specific          {{{2
 
@@ -157,7 +154,6 @@ endfunction " }}}
 
 " Verbose {{{2
 "
-
 command! -range=999998 -nargs=1 -complete=command Verbose
       \ :exe s:Verbose(<count> == 999998 ? '' : <count>, <q-args>)
 
