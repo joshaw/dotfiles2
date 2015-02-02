@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <theme version="2.0">
-    <name>Readable</name>
+    <name>Centered</name>
     <background type="solid">
-        <color>#00007f</color>
+        <color>#ffffff</color>
     </background>
     <font type="main">
         <name>Lucida Sans</name>
-        <color>#f4f400</color>
-        <size>40</size>
+        <color>#000000</color>
+        <size>36</size>
         <bold>False</bold>
         <italics>False</italics>
         <line_adjustment>15</line_adjustment>
-        <location height="972" override="False" width="1800" x="50" y="0"/>
+        <location height="690" override="True" width="980" x="10" y="0"/>
         <shadow shadowColor="#000000" shadowSize="5">False</shadow>
         <outline outlineColor="#000000" outlineSize="2">False</outline>
     </font>
     <font type="footer">
         <name>Lucida Sans</name>
-        <color>#ffffff</color>
-        <size>18</size>
+        <color>#4c4c4c</color>
+        <size>14</size>
         <bold>False</bold>
         <italics>False</italics>
         <line_adjustment>0</line_adjustment>
@@ -27,7 +27,7 @@
         <outline outlineColor="#000000" outlineSize="2">False</outline>
     </font>
     <display>
-        <horizontalAlign>0</horizontalAlign>
+        <horizontalAlign>2</horizontalAlign>
         <verticalAlign>1</verticalAlign>
         <slideTransition>False</slideTransition>
     </display>

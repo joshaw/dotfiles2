@@ -7,18 +7,18 @@
     <font type="main">
         <name>Lucida Sans</name>
         <color>#000000</color>
-        <size>66</size>
+        <size>36</size>
         <bold>False</bold>
         <italics>False</italics>
         <line_adjustment>15</line_adjustment>
-        <location height="972" override="True" width="1700" x="100" y="0"/>
+        <location height="690" override="True" width="980" x="10" y="0"/>
         <shadow shadowColor="#000000" shadowSize="5">False</shadow>
         <outline outlineColor="#000000" outlineSize="2">False</outline>
     </font>
     <font type="footer">
         <name>Lucida Sans</name>
-        <color>#ffffff</color>
-        <size>18</size>
+        <color>#4c4c4c</color>
+        <size>14</size>
         <bold>False</bold>
         <italics>False</italics>
         <line_adjustment>0</line_adjustment>
