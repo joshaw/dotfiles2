@@ -28,13 +28,14 @@ InstrumentationStrategy:INSTR
 rm -r "$STARTMENU/Programs/$GENFOLDER"* 2> /dev/null || true
 find "$DESKTOPPUB" -maxdepth 1 -name "LDRA*" -delete -or -name "TB*" -delete
 
-for VERSION in $VERSIONS; do
+for LANG in lang_c lang_a lang_j; do
 
-	echo $VERSION
+	LANGUAGE=${langs[$LANG]}
+	echo $LANGUAGE
 
-	for LANGUAGE in $LANGUAGES; do
+	for VERSION in $(eval echo  "\${$LANG[@]}"); do
 
-		echo $LANGUAGE
+		echo -e "\t$VERSION"
 
 		SPECFOLDER="$GENFOLDER $LANGUAGE v$VERSION"
 		WORKINGDIR="$WORKAREA_DIR/$LANGUAGE/$VERSION/"
@@ -43,7 +44,7 @@ for VERSION in $VERSIONS; do
 
 		# LDRA Toolsuite Programs
 		for TBPROG in $PROGRAMS; do
-			echo -e "\t$TBPROG"
+			echo -e "\t\t$TBPROG"
 			LINKFILE="$DESKTOP/$SPECFOLDER/$TBPROG - $LANGUAGE"
 			TBFILE="$TOOLSUITE_DIR/$LANGUAGE/$VERSION/$TBPROG.exe"
 
@@ -54,7 +55,7 @@ for VERSION in $VERSIONS; do
 		# Configuration Options
 		mkdir -p "$DESKTOP/$SPECFOLDER/Configure"
 		for OPT in $CONFIGURES; do
-			echo -e "\t$OPT"
+			echo -e "\t\t$OPT"
 			OPTNAME=${OPT%:*}
 			OPTSET=${OPT#*:}
 

@@ -1,20 +1,31 @@
 #!/bin/bash
-set -e
+# Created:  Mon 02 Feb 2015
+# Modified: Mon 02 Feb 2015
+# Author:   Josh Wainwright
+# Filename: cleanwa.sh
+
+set -o nounset
+function echoerr() {
+	>$2 echo $@
+}
 
 source $(dirname $BASH_SOURCE)/settings.sh
 
 dryrun=true
 
-if [[ "x$1" == "x" ]]; then
+if [[ $# -eq 1 ]]; then
 	dryrun=false
 fi
 
 echo $dryrun
-for VERSION in $VERSIONS; do
-	echo $VERSION
+for LANG in lang_c lang_a lang_j; do
 
-	for LANGUAGE in $LANGUAGES; do
-		echo $LANGUAGE
+	LANGUAGE=${langs[$LANG]}
+	echo $LANGUAGE
+
+	for VERSION in $(eval echo  "\${$LANG[@]}"); do
+
+		echo -e "\t$VERSION"
 
 		WORKINGDIR="$WORKAREA_DIR/$LANGUAGE/$VERSION/"
 		cd $WORKINGDIR
@@ -23,7 +34,7 @@ for VERSION in $VERSIONS; do
 			find -maxdepth 1 -type d -not -name "." \
 				-and -not -name "Examples" )
 		for file in $filelist; do
-			du -sh $file | sed 's/^/\t/'
+			du -sh $file | sed 's/^/\t\t/'
 			if ! $dryrun; then
 				rm -r "$file"
 			fi
