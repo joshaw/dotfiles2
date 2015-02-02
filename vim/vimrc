@@ -175,6 +175,21 @@ function! s:Verbose(level, excmd)
         \ 'pedit '.temp.'|wincmd P|nnoremap <buffer> q :bd<CR>'
 endfunction " }}}
 
+" Oldfiles {{{2
+"
+function! s:Oldfiles()
+	Verbose oldfiles
+	0d
+	silent %s/\v\d+: //
+	setlocal nobuflisted
+	setlocal buftype=nofile
+	setlocal bufhidden=delete
+	setlocal noswapfile
+	setlocal nomodifiable
+	norm gg
+endfunction
+command! Oldfiles :call s:Oldfiles()
+
 " Settings                       {{{1
 "
 
