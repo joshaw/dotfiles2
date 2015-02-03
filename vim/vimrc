@@ -515,6 +515,12 @@ inoremap <C-e> <esc>A
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
+" Switch to other splits faster
+nnoremap <c-l> <c-w>l
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+
 " Insert current filename
 inoremap <leader>fn <C-R>=expand("%:t")<CR>
 
