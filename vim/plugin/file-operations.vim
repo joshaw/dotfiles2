@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Fri 23 Jan 2015
+" Modified: Tue 03 Feb 2015
 " Author:   Josh Wainwright
 " Filename: file-operations.vim
 
@@ -42,19 +42,16 @@ command! DeleteFile call delete(expand('%')) | bdelete!
 
 " Set the grepprg depending on context {{{1
 function! GrepString()
-	if !exists("g:git_folder")
-		let g:git_folder = system('git rev-parse --git-dir > /dev/null 2>&1 && echo 1 || echo 0')
-		let g:has_ag = executable('ag')
-		let g:has_ack = executable('ack')
-	endif
-	if g:git_folder
-		set grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color
-	elseif g:has_ag
-		set grepprg=ag\ --vimgrep\ --smart-case
-	elseif g:has_ack
-		set grepprg=ack\ -H\ --nogroup\ --nocolor\ --smart-case
+	if exists("b:git_dir") && b:git_dir != ''
+		setlocal grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color
+	elseif has('win32') && executable('pt')
+		setlocal grepprg=pt
+	elseif executable('ag')
+		setlocal grepprg=ag\ --vimgrep\ --smart-case
+	elseif executable('ack')
+		setlocal grepprg=ack\ -H\ --nogroup\ --nocolor\ --smart-case
 	else
-		set grepprg=grep\ --dereference-recursive\ --ignore-case\ --line-number\ --with-filename\ $*
+		setlocal grepprg=grep\ --dereference-recursive\ --ignore-case\ --line-number\ --with-filename\ $*
 	endif
 endfunction
 
