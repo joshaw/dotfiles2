@@ -200,7 +200,7 @@ set encoding=utf-8 " character encoding used in Vim: "latin1", "utf-8"
 " 2 moving around, searching and patterns {{{2
 set whichwrap+=<,>,h,l " list of flags specifying which commands wrap to another line
 set nostartofline      " many jump commands move the cursor to the first non-blank
-"set path+=../**        " list of directory names used for file searching
+set path=.,**          " list of directory names used for file searching
 set incsearch          " show match for partly typed search command
 set magic              " change the way backslashes are used in search patterns
 set ignorecase         " ignore case when using a search pattern
