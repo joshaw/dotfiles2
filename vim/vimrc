@@ -334,9 +334,9 @@ set noswapfile                         " use a swap file for this buffer
 "21 command line editing {{{2
 set history=700                 " how many command lines are remembered
 set wildmode=full               " specifies how command line completion works
-set wildignore=*.o,*~,*.pyc     " ignore case when completing file names
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.class
-silent! set wildignorecase      " ignore case when completing file names
+" set wildignore=*.o,*~,*.pyc     " ignore case when completing file names
+" set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.class
+" silent! set wildignorecase      " ignore case when completing file names
 set wildmenu                    " command-line completion shows a list of matches
 set cmdwinheight=3              " height of the command-line window
 set undofile                    " automatically save and restore undo history
