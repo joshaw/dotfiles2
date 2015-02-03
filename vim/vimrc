@@ -60,7 +60,7 @@ if executable('git')
 	Plug 'clever-f.vim'
 	"Rename multiple files using vim
 	Plug 'vim-scripts/renamer.vim', {'on' : 'Renamer' }
-	Plug 'pelodelfuego/vim-swoop'
+	Plug 'pelodelfuego/vim-swoop', {'on' : 'Swoop'}
 
 	" Filetype specific          {{{2
 
