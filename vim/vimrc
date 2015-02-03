@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Mon 02 Feb 2015
+" Modified: Tue 03 Feb 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -450,7 +450,6 @@ function! Smart_TabComplete()
 	if (strlen(substr)==0)
 		return "\<tab>"
 	endif
-	let has_period = match(substr, '\.') != -1
 	let has_slash = match(substr, '\/\|\\') != -1
 	if (has_slash)
 		return "\<c-x>\<c-f>"
@@ -461,7 +460,6 @@ endfunction " }}}
 inoremap <expr> <tab> Smart_TabComplete()
 inoremap <s-tab> <c-p>
 
-" TODO gf timeout
 nnoremap <cr> gf
 
 " Try using jk and kj as Escape in insert mode.
@@ -527,7 +525,7 @@ inoremap <leader>fn <C-R>=expand("%:t")<CR>
 " List all buffers and quickly switch to selected
 nnoremap <leader>b :ls<CR>:buffer<Space>
 
-nnoremap <leader>rc :e! $MYVIMRC<CR>
+nnoremap <leader>rc :e! $MYVIMRC<CR>:setlocal autochdir<cr>
 nnoremap <leader>rd :e! $VIMHOME/plugin/display.vim<CR>
 augroup Reload_vimrc
 	autocmd!
@@ -542,22 +540,15 @@ augroup Save
 	au VimResized * :wincmd =
 augroup END
 
-" Open the Tagbar sidebar
-nnoremap <silent> <F8> :TagbarToggle<CR>
-
-" Switch to Next and Previous buffer
-nmap <C-n> :bnext<CR>
-nmap <C-p> :bprev<CR>
-
 " Jump to end of pasted text
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
 " System clipboard copy and paste
-nmap <leader>v "+gh
-imap <leader>v <ESC>"+gpa
-nmap <leader>ay ggVG"+y
+nmap <leader>v "+gp
+imap <leader>v <esc>"+gpa
+nmap <leader>ay mhggVG"+y`hzz
 
 " Unset highlighting of a search
 nmap <silent> <leader>q :nohlsearch<CR><Plug>(clever-f-reset)
@@ -625,6 +616,10 @@ endfunction
 
 iabbrev <expr> Cre: CreatedHeader()
 iabbrev TST TIMESTAMP
+
+" LDRA                           {{{1
+"
+
 iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \=============<CR>
                        \Josh Wainwright<CR>
@@ -637,10 +632,6 @@ iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \Vacation<CR>
                        \--------<CR>
                        \- None"
-
-" LDRA                           {{{1
-"
-
 augroup ldra
 	autocmd!
 	autocmd BufEnter,BufNew *.tcf set ft=conf
@@ -656,7 +647,6 @@ nnoremap <S-F12> :EditReport!<cr>
 command! -nargs=* -bang EditReport :call EditReport('<bang>' == '!', <f-args>)
 function! EditReport(monthly, ...)
 	let prefix = ''
-
 	" a:0 (number of args) is >0 if a specific date is given
 	if a:0 > 0
 		let date = a:1
@@ -678,13 +668,14 @@ function! EditReport(monthly, ...)
 	elseif filereadable(expand(thisweek).'.txt')
 		exec "edit ".thisweek.".txt"
 	else
-		exec "edit ".thisweek . ".md | normal iWeeklyro"
+		exec "edit ".thisweek . ".md | normal iWeeklyr"
 	endif
 endfunction
 
-if has("gui_running")
+if has("gui_running") && !exists("g:vim_started")
 	set lines=40
 	exe "set columns=" . (82+&numberwidth)
+	let g:vim_started = 1
 endif
 " }}}
 
