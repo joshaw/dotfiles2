@@ -3,29 +3,42 @@
 " Author:   Josh Wainwright
 " Filename: dmenuOpen.vim
 
-" Find a file and pass it to cmd
-function! DmenuOpen(cmd)
+if ! executable('dmenu')
+	finish
+endif
 
-	if executable('dmenu')
-		let dmenu='dmenu'
-	elseif executable('slmenu')
-		let dmenu='slmenu'
-	else
-		echoerr "Something went wrong, can't find dmenu or slmenu."
+" Strip the newline from the end of a string
+function! s:clean_string(str)
+	let str = substitute(a:str, ' ', '\\ ', 'g')
+	let str = substitute(str, '\n$', '', '')
+	return substitute(str, '\r$', '', '')
+endfunction
+
+" Find a file and pass it to cmd
+function! DmenuOpen(cmd, ...)
+
+	if !executable('dmenu')
+		echoerr "Cannot find dmenu."
 		finish
 	endif
-	if exists("b:git_dir") && b:git_dir != ''
-		let command = "git ls-files"
-	elseif executable('lsall')
-		let command = "lsall"
-	elseif executable('ag')
-		let command = "ag --hidden -g \"\""
+
+	let l:global = a:0 > 0 ? a:1 : 0
+	let l:amhome = getcwd() == $HOME
+	if (l:global || l:amhome) && filereadable(glob("~/.files"))
+		let fname = system("dmenu -b -l 20 -p ". a:cmd . "< ~/.files")
 	else
-		finish
+		if exists("b:git_dir") && b:git_dir != ''
+			let command = "cd ". fnamemodify(b:git_dir, ":h") ."; git ls-files"
+		elseif executable('lsall')
+			let command = "lsall"
+		elseif executable('ag')
+			let command = "ag --hidden -g \"\""
+		else
+			finish
+		endif
+		let fname = system(command . " | dmenu -b -i -l 20 -p " . a:cmd)
 	endif
-	let tmpfile = tempname()
-	execute "silent !".command." | ".dmenu." -b -i -l 20 -p ".a:cmd . " > " . tmpfile
-	let fname = join(readfile(tmpfile), "\n")
+	let fname = s:clean_string(fname)
 	if empty(fname)
 		return
 	endif
@@ -33,4 +46,5 @@ function! DmenuOpen(cmd)
 endfunction
 
 " map <c-t> :call DmenuOpen("tabe")<cr>
-noremap <c-f> :call DmenuOpen("e")<cr>:redraw!<cr>
+noremap <c-f> :call DmenuOpen("e")<cr>
+noremap <c-b> :call DmenuOpen("e", 1)<cr>
