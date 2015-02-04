@@ -1,5 +1,5 @@
 " Created:  Tue 13 Jan 2015
-" Modified: Mon 19 Jan 2015
+" Modified: Wed 04 Feb 2015
 " Author:   Josh Wainwright
 " Filename: bible.vim
 
@@ -65,9 +65,11 @@ endfunction
 
 let s:showbreakstr = '\ \ \ \ \ \ \ \ '
 exe 'setlocal showbreak=' . s:showbreakstr
+setlocal tabstop=4
 setlocal highlight-=@:NonText
 setlocal highlight+=@:Normal
 setlocal nonumber
 setlocal norelativenumber
 setlocal nolist
 setlocal colorcolumn=0
+setlocal nocursorline
