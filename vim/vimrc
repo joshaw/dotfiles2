@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Tue 03 Feb 2015
+" Modified: Wed 04 Feb 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -534,11 +534,6 @@ augroup END
 
 " Fast saving
 nnoremap <leader>w :w!<cr>
-augroup Save
-	autocmd!
-	" au FocusLost * :silent! wall
-	au VimResized * :wincmd =
-augroup END
 
 " Jump to end of pasted text
 vnoremap <silent> y y`]
