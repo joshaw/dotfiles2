@@ -18,7 +18,7 @@ syn match faintwords  "Selah\."
 
 syn region quoted    start=+\v"+ end=+\v"+
 			\ contains=verseNum,chapterNum,nestquote,lordnames
-syn region nestquote start="\v(\"| )'" end="\v'(\s|$|[\"?,-;!])@="
+syn region nestquote start="\v(\"| |\t)'" end="\v'(\s|$|[\"?,-;!])@="
 			\ contains=verseNum,chapterNum,lordnames contained
 syn match number     "\v\d*,*\d"
 
