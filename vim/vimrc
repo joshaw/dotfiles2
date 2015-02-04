@@ -10,7 +10,7 @@ if has('unix')
 	let $VIMHOME=$HOME.'/.vim/'
 elseif has('win32')
 	let $VIMHOME=$HOME.'/vimfiles/'
-	let $PATH=$PATH.';C:/cygwin/bin/'
+	let $PATH=$PATH.';C:/cygwin/bin/;'.$HOME.'/Tools/'
 endif
 
 " Vim-Plug Plugins               {{{1
