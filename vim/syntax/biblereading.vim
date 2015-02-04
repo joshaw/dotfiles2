@@ -1,5 +1,5 @@
 " Created:  Thu 15 Jan 2015
-" Modified: Wed 28 Jan 2015
+" Modified: Wed 04 Feb 2015
 " Author:   Josh Wainwright
 " Filename: biblereading.vim
 
@@ -22,7 +22,7 @@ hi def link dayofmonth    Type
 hi def link yearnum       PreProc
 
 " Goto next unchecked line
-nnoremap <buffer> n gg/\[ \]<cr>:set nohls<cr>
+nmap <buffer> n gg/\[ \]<cr>:set nohls<cr>
 
 " Check line and move to next
 nnoremap <buffer> dd ^lrx
