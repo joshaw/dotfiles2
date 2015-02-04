@@ -23,13 +23,8 @@ function! DmenuOpen(cmd)
 	else
 		echoerr "Something went wrong, can't find dmenu or slmenu."
 		finish
-	if !exists("g:git_folder")
-		let g:git_folder = system('git rev-parse --git-dir > /dev/null 2>&1 && echo 1 || echo 0')
 	endif
-
-	if g:git_folder
-		let command = "git ls-files"
-	elseif $USERNAME == 'jaw097'
+	if exists("b:git_dir") && b:git_dir != ''
 		let command = "git ls-files"
 	else
 		let command = "ag -g \"\""
