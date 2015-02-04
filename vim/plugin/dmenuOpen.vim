@@ -16,6 +16,13 @@ endfunction
 " Find a file and pass it to cmd
 function! DmenuOpen(cmd)
 
+	if executable('dmenu')
+		let dmenu='dmenu'
+	elseif executable('slmenu')
+		let dmenu='slmenu'
+	else
+		echoerr "Something went wrong, can't find dmenu or slmenu."
+		finish
 	if !exists("g:git_folder")
 		let g:git_folder = system('git rev-parse --git-dir > /dev/null 2>&1 && echo 1 || echo 0')
 	endif
@@ -27,6 +34,9 @@ function! DmenuOpen(cmd)
 	else
 		let command = "ag -g \"\""
 	endif
+	let tmpfile = tempname()
+	execute "silent !".command." | ".dmenu." -b -i -l 20 -p ".a:cmd . " > " . tmpfile
+	let fname = join(readfile(tmpfile), "\n")
 	let fname = Chomp(system(command . " | dmenu -b -i -l 20 -p " . a:cmd))
 	if empty(fname)
 		return
