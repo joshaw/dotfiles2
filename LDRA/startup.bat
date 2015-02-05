@@ -1,7 +1,6 @@
 ::
 :: Map certain folders to drive letters. {{{1
 ::
-subst r: c:\_in_out
 subst h: c:\home\JoshWainwright
 subst l: c:\home\JoshWainwright\Resources
 
