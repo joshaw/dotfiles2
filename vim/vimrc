@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Wed 04 Feb 2015
+" Modified: Thu 05 Feb 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -411,7 +411,8 @@ augroup ft
 	autocmd BufEnter,BufNew *.rout,*.Rout setl ft=r
 	autocmd BufEnter,BufNew *.md setl ft=markdown
 	autocmd BufEnter,BufNew README setl ft=markdown
-	autocmd BufEnter,BufNew *.bible setl ft=bible
+	autocmd BufEnter,BufNew *.book setl ft=book
+	autocmd BufEnter,BufNew *.bible setl ft=book
 	autocmd BufEnter,BufNew three_year.txt setl ft=biblereading
 	autocmd BufEnter,BufNew times.txt setl ft=times.conf
 	" Remove spaces at the end of header lines when starting new mail in mutt.
