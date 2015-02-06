@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Tue 03 Feb 2015
+" Modified: Thu 05 Feb 2015
 " Author:   Josh Wainwright
 " Filename: file-operations.vim
 
@@ -43,7 +43,7 @@ command! DeleteFile call delete(expand('%')) | bdelete!
 " Set the grepprg depending on context {{{1
 function! GrepString()
 	if exists("b:git_dir") && b:git_dir != ''
-		setlocal grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color
+		setlocal grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color\ --ignore-case
 	elseif has('win32') && executable('pt')
 		setlocal grepprg=pt
 	elseif executable('ag')
