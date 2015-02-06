@@ -1,5 +1,5 @@
 " Created:  Tue 13 Jan 2015
-" Modified: Thu 05 Feb 2015
+" Modified: Fri 06 Feb 2015
 " Author:   Josh Wainwright
 " Filename: book.vim
 
@@ -41,33 +41,3 @@ hi def link chapter    Constant
 hi def link psalmnum   Constant
 hi def link chapterNum Type
 hi def link verseNum   Identifier
-
-setlocal indentexpr=BibleIndent()
-
-function! BibleIndent()
-	let line = getline(v:lnum)
-	let firstchar = line[:0]
-	let prevline = getline(v:lnum - 1)
-
-	if firstchar == "[" || firstchar == "#"
-		return 0
-	else
-		let indprev = indent(v:lnum - 1)
-		if indprev == 10 || prevline =~ '\v^\[.{3}\]'
-			return 10
-		elseif  line =~ '\v^\s*PSALM\s+\d+'
-			return 5
-		else
-			return 8
-		endif
-	endif
-endfunction
-
-let s:showbreakstr = '\ \ \ \ \ \ \ \ '
-exe 'setlocal showbreak=' . s:showbreakstr
-setlocal tabstop=4
-setlocal highlight-=@:NonText
-setlocal highlight+=@:Normal
-setlocal nolist
-setlocal colorcolumn=0
-setlocal nocursorline
