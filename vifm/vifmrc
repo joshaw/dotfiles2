@@ -79,7 +79,8 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 
 " :mark mark /full/directory/path [filename]
 
-mark b ~/bin/
+mark b ~/Bin/
+mark d ~/Documents/
 mark h ~/
 " }}}
 " Commands     {{{
@@ -284,7 +285,7 @@ nmap <f6> :move<cr>
 nmap <f7> :mkdir<space>
 nmap <f8> :delete<cr>
 
-map gh :cd ~<cr>
+map gh :cd ~/<cr>
 map gm :cd /media<cr>
 map gt :cd /tmp<cr>
 

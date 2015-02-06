@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Sat 24 Jan 2015
+" Modified: Fri 06 Feb 2015
 " Author:   Josh Wainwright
 " Filename: mail.vim
 
@@ -13,6 +13,10 @@ setlocal spell
 if getline(1) =~ "JAW Weekly Report"
 	%s/%dty%/\=strftime("%Y%m%d")/ge
 	%s/%dts%/\=strftime("%d\/%m\/%Y")/ge
+endif
+
+if executable('par')
+	set formatprg=par\ -w71qie
 endif
 
 " Remove all empty lines at the end of the file, insert a single empty line and 

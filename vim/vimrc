@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Thu 05 Feb 2015
+" Modified: Fri 06 Feb 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -15,25 +15,18 @@ endif
 
 " Vim-Plug Plugins               {{{1
 "
-
 let g:plug_threads = 6
 let g:plug_timeout = 20
 
 if executable('git')
 	call plug#begin($VIMHOME.'plugged')
 
-	" Appearance Utilities       {{{2
+	"Show buffers in tabline at top of window
 	Plug 'ap/vim-buftabline'
-
-	" Git Related                {{{2
-
 	"Git management from withing vim
 	Plug 'tpope/vim-fugitive'
 	"Gitk for vim
 	Plug 'gregsexton/gitv', {'on': 'Gitv'}
-
-	" Other                      {{{2
-
 	if has('python')
 		"Snippet management
 		Plug 'SirVer/ultisnips', {'on' : 'UltiSnipsLoad'}
@@ -60,21 +53,19 @@ if executable('git')
 	Plug 'clever-f.vim'
 	"Rename multiple files using vim
 	Plug 'vim-scripts/renamer.vim', {'on' : 'Renamer' }
-	Plug 'pelodelfuego/vim-swoop', {'on' : 'Swoop'}
-
-	" Filetype specific          {{{2
-
 	"Override detection of .md files to markdown
 	Plug 'tpope/vim-markdown', {'for': 'markdown'}
 	"Decrypt, edit and then re-encrypt gpg stored files.
 	Plug 'jamessan/vim-gnupg'
 
 	if executable('vifm')
+		"Documentation for vifm
 		Plug 'istib/vifm.vim'
 	endif
+	"View man pages with vim
 	Plug 'Z1MM32M4N/vim-superman'
+	Plug 'joshaw/vim-eunuch'
 
-	" }}}
 	call plug#end()
 endif " executable(git)
 
