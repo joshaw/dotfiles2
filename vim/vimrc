@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Fri 06 Feb 2015
+" Modified: Mon 09 Feb 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -63,8 +63,9 @@ if executable('git')
 		Plug 'istib/vifm.vim'
 	endif
 	"View man pages with vim
-	Plug 'Z1MM32M4N/vim-superman'
+	Plug 'Z1MM32M4N/vim-superman', {'on' : 'SuperMan'}
 	Plug 'joshaw/vim-eunuch'
+	Plug 'junegunn/vim-peekaboo'
 
 	call plug#end()
 endif " executable(git)
