@@ -9,6 +9,9 @@ config/dwb/default/cookies*
 config/dwb/default/custom_keys
 config/dwb/default/plugindb
 config/dwb/default/session
+config/ranger/bookmarks
+config/ranger/history
+config/ranger/tagged
 log
 mpd/
 mpdscribble/lastfm.journal
