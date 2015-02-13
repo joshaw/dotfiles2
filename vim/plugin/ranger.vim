@@ -1,3 +1,7 @@
+if ! executable("ranger")
+	finish
+endif
+
 function! RangerChooser()
 	let temp = tempname()
 	exec 'silent !ranger --choosefiles=' . shellescape(temp)
