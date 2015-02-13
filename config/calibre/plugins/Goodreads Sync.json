@@ -1,0 +1,119 @@
+{
+  "Goodreads": {
+    "devkeySecret": "AwXtlLJJquCXa2O0L9W6g6MjCoHXEMPZ1eZT6K0Wo", 
+    "displayRemoveMenu": true, 
+    "displayUpdateProgressMenu": false, 
+    "progressIsPercent": true, 
+    "reviewTextColumn": "", 
+    "dateReadColumn": "#dateread", 
+    "displaySyncMenu": true, 
+    "devkeyToken": "UxvtOM3ogQWjfgiCnMleA", 
+    "displayAddMenu": true, 
+    "updateISBN": "ALWAYS", 
+    "tagMappingColumn": "tags", 
+    "swapAuthor": false, 
+    "readingProgressColumn": "", 
+    "ratingColumn": ""
+  }, 
+  "Users": {
+    "Josh": {
+      "shelves": [
+        {
+          "add_review_text": false, 
+          "exclusive": true, 
+          "add_actions": [
+            {
+              "value": "today", 
+              "column": "#dateread", 
+              "action": "ADD"
+            }, 
+            {
+              "value": "yes", 
+              "column": "#read", 
+              "action": "ADD"
+            }
+          ], 
+          "name": "read", 
+          "add_rating": false, 
+          "active": true, 
+          "tagMappings": [], 
+          "book_count": "111", 
+          "sync_date_read": true, 
+          "sync_rating": false, 
+          "sync_actions": [
+            {
+              "value": "yes", 
+              "column": "#read", 
+              "action": "ADD"
+            }, 
+            {
+              "value": "read_at", 
+              "column": "#dateread", 
+              "action": "ADD"
+            }
+          ], 
+          "sync_review_text": false, 
+          "add_date_read": true
+        }, 
+        {
+          "add_review_text": false, 
+          "exclusive": true, 
+          "add_actions": [
+            {
+              "value": "CUR", 
+              "column": "#read", 
+              "action": "ADD"
+            }
+          ], 
+          "name": "currently-reading", 
+          "add_rating": false, 
+          "active": true, 
+          "tagMappings": [], 
+          "book_count": "3", 
+          "sync_date_read": false, 
+          "sync_rating": false, 
+          "sync_actions": [
+            {
+              "value": "CUR", 
+              "column": "#read", 
+              "action": "ADD"
+            }
+          ], 
+          "sync_review_text": false, 
+          "add_date_read": false
+        }, 
+        {
+          "add_review_text": false, 
+          "exclusive": true, 
+          "add_actions": [
+            {
+              "value": "no", 
+              "column": "#read", 
+              "action": "ADD"
+            }
+          ], 
+          "name": "to-read", 
+          "add_rating": false, 
+          "active": true, 
+          "tagMappings": [], 
+          "book_count": "58", 
+          "sync_date_read": false, 
+          "sync_rating": false, 
+          "sync_actions": [
+            {
+              "value": "no", 
+              "column": "#read", 
+              "action": "ADD"
+            }
+          ], 
+          "sync_review_text": false, 
+          "add_date_read": false
+        }
+      ], 
+      "userId": "35785249", 
+      "userSecret": "1SIc3zofZbYG5p9bdTgrTydZ310lJJVQGYnY338gJg", 
+      "userToken": "o7dwYSyTjnORJdgXgC1kRQ"
+    }
+  }, 
+  "SchemaVersion": 1.68
+}
