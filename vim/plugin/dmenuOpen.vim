@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Wed 04 Feb 2015
+" Modified: Thu 12 Feb 2015
 " Author:   Josh Wainwright
 " Filename: dmenuOpen.vim
 
@@ -43,6 +43,7 @@ function! DmenuOpen(cmd, ...)
 		return
 	endif
 	execute a:cmd . " " . fname
+	call histadd("cmd", a:cmd . " " . fname)
 endfunction
 
 " map <c-t> :call DmenuOpen("tabe")<cr>
