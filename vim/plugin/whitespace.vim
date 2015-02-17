@@ -1,50 +1,37 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Mon 12 Jan 2015
+" Modified: Mon 16 Feb 2015
 " Author:   Josh Wainwright
 " Filename: whitespace.vim
 "
 " Remove trailing spaces
-
-function! s:stripTrailing(force)
-	if !a:force
-		if exists('g:noStripWhitespace')
-			return
-		endif
-	endif
-
+function! s:stripTrailing() range
 	" Preparation: save last search, and cursor position.
 	let _s=@/
-	let l = line(".")
-	let c = col(".")
+	let w = winsaveview()
 	" Do the business:
-	%s/\s\+$//e
-	%s/\n\{3,}/\r\r/e
+	exe a:firstline.",".a:lastline."s/\\s\\+$//e"
+	exe a:firstline.",".(a:lastline-1)."s/\\n\\{3,}/\\r\\r/e"
+	TrimEndLines
 	" Clean up: restore previous search history, and cursor position
 	let @/=_s
-	call cursor(l, c)
+	call winrestview(w)
 endfunction
 
 " Remove empty line at the end of file
 function! TrimEndLines()
-	if exists('g:noStripWhitespace')
-		return
-	endif
-
-	let save_cursor = getpos(".")
-	:silent! %s#\($\n\s*\)\+\%$##
-	call setpos('.', save_cursor)
+	let w = winsaveview()
+	silent! %s#\($\n\s*\)\+\%$##
+	call winrestview(w)
 endfunction
 
-command! -nargs=0 -bang StripTrailing :call s:stripTrailing('<bang>' == '!')
+command! -range=% -nargs=0 StripTrailing :<line1>,<line2>call s:stripTrailing()
 command! TrimEndLines :call TrimEndLines()
 
 " Auto remove when saving
-augroup Clean
-	autocmd!
-	autocmd BufWritePre * StripTrailing
-	autocmd BufWritePre * TrimEndLines
-augroup END
-
-augroup Whitespace
-	autocmd FileType *vmail*,mail,markdown let b:noStripWhitespace=1
-augroup END
+if $HOSTNAME != "Newbury11"
+	augroup Clean
+		autocmd!
+		autocmd BufWritePre * StripTrailing
+		autocmd BufWritePre * TrimEndLines
+	augroup END
+endif
