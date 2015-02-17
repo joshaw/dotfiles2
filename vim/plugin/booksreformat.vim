@@ -22,7 +22,7 @@ function! BookReformatCmd()
 
 	" Remove empty timestamps
 	silent! %s/0101-01-01T00:00:00+00:00//
-	silent! %s/\d\zsT\d[^|]*$//
+	silent! %s/\d\zsT\d\d:\d\d:\d\d+\d\d:\d\d//g
 	
 	" Zero pad series index for sorting, sort, remove zero padding and remove 
 	" numbers with no series
@@ -32,7 +32,7 @@ function! BookReformatCmd()
 	silent! 2,$s/| , #1.0/| /
 
 	" Align all lines by pipe
-	exe "normal ggVG10gl|"
+	1,$EasyAlign *|
 
 	" Make header separator and title case header
 	1yank y
@@ -40,7 +40,7 @@ function! BookReformatCmd()
 	s/[^|]/-/g
 	1s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g
 
-	StripTrailing!
+	StripTrailing
 	1,$yank y
 	e!
 
@@ -53,5 +53,5 @@ function! BookReformatCmd()
 	1 | /^$/+1;/^$/-1d _
 	-1put y
 	1
-	setlocal nohlsearch
+	let @/ = ""
 endfunction
