@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Thu 12 Feb 2015
+" Modified: Mon 16 Feb 2015
 " Author:   Josh Wainwright
 " Filename: dmenuOpen.vim
 
@@ -24,8 +24,9 @@ function! DmenuOpen(cmd, ...)
 
 	let l:global = a:0 > 0 ? a:1 : 0
 	let l:amhome = getcwd() == $HOME
-	if (l:global || l:amhome) && filereadable(glob("~/.files"))
-		let fname = system("dmenu -b -l 20 -p ". a:cmd . "< ~/.files")
+	let l:filesfile = "~/.files"
+	if (l:global || l:amhome) && filereadable(glob(l:filesfile))
+		let fname = system("dmenu -b -l 20 -p ". a:cmd . "< ". l:filesfile)
 	else
 		if exists("b:git_dir") && b:git_dir != ''
 			let command = "cd ". fnamemodify(b:git_dir, ":h") ."; git ls-files"
