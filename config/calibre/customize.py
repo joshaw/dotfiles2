@@ -4,7 +4,7 @@
  
 # plugins
 # Installed plug-ins
-plugins = cPickle.loads('\x80\x02}q\x01(X\x0e\x00\x00\x00Goodreads Syncq\x02XJ\x00\x00\x00C:\\Users\\JoshWainwright\\AppData\\Roaming\\calibre\\plugins\\Goodreads Sync.zipX\t\x00\x00\x00Goodreadsq\x03XE\x00\x00\x00C:\\Users\\JoshWainwright\\AppData\\Roaming\\calibre\\plugins\\Goodreads.zipq\x04u.')
+plugins = cPickle.loads('\x80\x02}q\x01(X\x0f\x00\x00\x00Find Duplicatesq\x02XK\x00\x00\x00C:\\Users\\JoshWainwright\\AppData\\Roaming\\calibre\\plugins\\Find Duplicates.zipq\x03X\t\x00\x00\x00Goodreadsq\x04XE\x00\x00\x00C:\\Users\\JoshWainwright\\AppData\\Roaming\\calibre\\plugins\\Goodreads.zipX\x0e\x00\x00\x00Goodreads Syncq\x05XJ\x00\x00\x00C:\\Users\\JoshWainwright\\AppData\\Roaming\\calibre\\plugins\\Goodreads Sync.zipu.')
  
 # filetype mapping
 # Mapping for filetype plug-ins

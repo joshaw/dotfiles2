@@ -1,0 +1,14 @@
+{
+  "authorSoundexLength": 8, 
+  "includeLanguages": false, 
+  "searchType": "titleauthor", 
+  "titleMatch": "fuzzy", 
+  "showVariationBooks": true, 
+  "authorMatch": "fuzzy", 
+  "showAllGroups": true, 
+  "showTagAuthor": true, 
+  "sortGroupsByTitle": true, 
+  "titleSoundexLength": 6, 
+  "autoDeleteBinaryDups": false, 
+  "identifierType": "isbn"
+}

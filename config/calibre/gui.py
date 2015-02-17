@@ -104,7 +104,7 @@ send_to_device_template_history = cPickle.loads('\x80\x02]q\x01.')
  
 # main search history
 # Search history for the main GUI
-main_search_history = cPickle.loads('\x80\x02]q\x01.')
+main_search_history = cPickle.loads('\x80\x02]q\x01(X\x05\x00\x00\x00stormq\x02X\x05\x00\x00\x00pointq\x03X\x05\x00\x00\x00twiceq\x04X.\x00\x00\x00publisher:"=Corgi" or publisher:"=Corgi Books"q\x05X\x04\x00\x00\x00dustq\x06X\x05\x00\x00\x00robotq\x07X\x06\x00\x00\x00empireq\x08X\x07\x00\x00\x00scarletq\tX\x04\x00\x00\x00crocq\nX\x04\x00\x00\x00silkq\x0bX\x08\x00\x00\x00schemberq\x0ce.')
  
 # viewer search history
 # Search history for the ebook viewer

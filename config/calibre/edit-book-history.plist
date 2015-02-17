@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>lineedit_history_tweak_book_find_edit</key>
+	<array>
+		<string>(Chapter \d+)</string>
+		<string>_(Chapter \d+)_</string>
+		<string>_Chapter \d+_</string>
+		<string>(\w)&lt;/p&gt;
+
+  &lt;p class="calibre4"&gt;(\w)</string>
+		<string>\w&lt;/p&gt;
+
+  &lt;p class="calibre4"&gt;\w</string>
+		<string>\w&lt;/p&gt;</string>
+		<string>cover had been</string>
+		<string>… .</string>
+		<string>\. \. \.</string>
+		<string>. . .</string>
+		<string>which must have been used by the man he had</string>
+		<string>(\w)‟(\w)</string>
+		<string>\w‟\w</string>
+		<string>m‟s</string>
+		<string>u‟v</string>
+		<string>t‟s</string>
+		<string>&lt;b class="calibre3"&gt;ALEX RIDER SERIES &lt;/b&gt;&lt;/p&gt;
+&lt;p class="calibre2"&gt;&lt;b class="calibre3"&gt; &lt;/b&gt;&lt;/p&gt;
+&lt;p class="calibre2"&gt;&lt;b class="calibre3"&gt;SCORPIA RISING &lt;/b&gt;&lt;/p&gt;
+&lt;p class="calibre2"&gt;</string>
+		<string>&lt;/p&gt;
+&lt;p class="calibre2"/&gt;
+&lt;p class="calibre2"&gt;&lt;b class="calibre3"&gt;ALEX RIDER SERIES &lt;/b&gt;&lt;/p&gt;
+&lt;p class="calibre2"&gt;&lt;b class="calibre3"&gt; &lt;/b&gt;&lt;/p&gt;
+&lt;p class="calibre2"&gt;&lt;b class="calibre3"&gt;SCORPIA RISING &lt;/b&gt;&lt;/p&gt;
+&lt;p class="calibre2"&gt;</string>
+		<string>&lt;b class="calibre3"&gt;ALEX RIDER SERIES &lt;/b&gt;&lt;/p&gt;
+&lt;p class="calibre2"&gt;&lt;b class="calibre3"&gt; &lt;/b&gt;&lt;/p&gt;
+&lt;p class="calibre2"&gt;&lt;b class="calibre3"&gt;SCORPIA RISING &lt;/b&gt;&lt;/p&gt;</string>
+	</array>
+	<key>lineedit_history_tweak_book_replace_edit</key>
+	<array>
+		<string>\1 \2</string>
+		<string>\1'\2</string>
+		<string>u'v</string>
+		<string>t's</string>
+	</array>
+</dict>
+</plist>

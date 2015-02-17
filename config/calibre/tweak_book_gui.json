@@ -1,0 +1,186 @@
+{
+  "main_window_geometry": {
+    "__class__": "bytearray", 
+    "__value__": "AdnQywABAAAAAAAAAAAAAAAAB10AAAQNAAAACAAAAB4AAAdVAAAEBQAAAAAAAA=="
+  }, 
+  "rationalize-folders-geometry": {
+    "__class__": "bytearray", 
+    "__value__": "AdnQywABAAAAAAMiAAABQAAABDwAAALNAAADKgAAAV4AAAQ0AAACxQAAAAAAAA=="
+  }, 
+  "css-editor-state": {
+    "__class__": "bytearray", 
+    "__value__": "AAAA/wAAAAD9AAAAAAAAA8IAAAIVAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAUAGEAYwB0AGkAbwBuAF8AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAF8AYgBhAHIBAAAAvP////8AAAAAAAAAAA=="
+  }, 
+  "manage-fonts-splitter-state": {
+    "__class__": "bytearray", 
+    "__value__": "AAAA/wAAAAEAAAACAAABAAAAAL8BAAAABAEAAAABAA=="
+  }, 
+  "find-widget-state": {
+    "wrap": true, 
+    "where": "text", 
+    "mode": "regex", 
+    "dot_all": false, 
+    "direction": "down", 
+    "case_sensitive": false
+  }, 
+  "custom_colors_for_color_dialog": [
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ], 
+    [
+      255, 
+      255, 
+      255, 
+      255
+    ]
+  ], 
+  "filter-css-geometry": {
+    "__class__": "bytearray", 
+    "__value__": "AdnQywABAAAAAAMLAAAB6AAABHIAAAKcAAADEwAAAgYAAARqAAAClAAAAAAAAA=="
+  }, 
+  "xml-editor-state": {
+    "__class__": "bytearray", 
+    "__value__": "AAAA/wAAAAD9AAAAAAAAA8IAAAIVAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAUAGEAYwB0AGkAbwBuAF8AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAF8AYgBhAHIBAAAAvP////8AAAAAAAAAAA=="
+  }, 
+  "reports-ui-state": {}, 
+  "diff-dialog-geometry": {
+    "__class__": "bytearray", 
+    "__value__": "AdnQywABAAAAAAAIAAAAHgAABtcAAAOLAAAAEAAAADwAAAbPAAADgwAAAAAAAA=="
+  }, 
+  "recent-books": [
+    "C:\\home\\JoshWainwright\\Download\\E-Books\\J.R.R. Tolkien\\The Return of the King (279)\\The Return of the King - J.R.R. Tolkien.epub", 
+    "C:\\home\\JoshWainwright\\Download\\E-Books\\J.R.R. Tolkien\\The Two Towers (278)\\The Two Towers - J.R.R. Tolkien.epub", 
+    "C:\\home\\JoshWainwright\\Download\\E-Books\\J. R. R. Tolkien\\The Fellowship of the Ring (272)\\The Fellowship of the Ring - J. R. R. Tolkien.epub", 
+    "C:\\home\\JoshWainwright\\Download\\E-Books\\Anthony Horowitz\\Scorpia Rising (59)\\Scorpia Rising - Anthony Horowitz.epub", 
+    "C:\\home\\JoshWainwright\\Download\\E-Books\\Anthony Horowitz\\Crocodile Tears (58)\\Crocodile Tears - Anthony Horowitz.epub", 
+    "C:\\home\\JoshWainwright\\Download\\E-Books\\Anthony Horowitz\\The House of Silk_ A Sherlock Holme (276)\\The House of Silk_ A Sherlock H - Anthony Horowitz.epub"
+  ], 
+  "image-editor-state": {
+    "__class__": "bytearray", 
+    "__value__": "AAAA/wAAAAD9AAAAAAAAA8IAAAIVAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGEAYwB0AGkAbwBuAF8AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAACAAZQBkAGkAdAAtAGEAYwB0AGkAbwBuAHMALQBiAGEAcgEAAABS/////wAAAAAAAAAAAAAAHABpAG0AYQBnAGUAXwBpAG4AZgBvAF8AYgBhAHIBAAABNv////8AAAAAAAAAAA=="
+  }, 
+  "manage-fonts-geometry": {
+    "__class__": "bytearray", 
+    "__value__": "AdnQywABAAAAAAKaAAABigAABOIAAAL6AAACogAAAagAAATaAAAC8gAAAAAAAA=="
+  }, 
+  "remove_unused_classes": true, 
+  "text-editor-state": {
+    "__class__": "bytearray", 
+    "__value__": "AAAA/wAAAAD9AAAAAAAAA8IAAAIVAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAUAGEAYwB0AGkAbwBuAF8AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAF8AYgBhAHIBAAAAvP////8AAAAAAAAAAA=="
+  }, 
+  "folders_for_types": {
+    "text": "", 
+    "opf": "", 
+    "video": "video", 
+    "font": "fonts", 
+    "style": "styles", 
+    "toc": "", 
+    "image": "images", 
+    "audio": "audio"
+  }, 
+  "saved_seaches_state": {
+    "wrap": true, 
+    "direction": "down", 
+    "where": "current"
+  }, 
+  "check-book-splitter-state": {
+    "__class__": "bytearray", 
+    "__value__": "AAAA/wAAAAEAAAACAAAARgAAAEYAAAAABAEAAAABAA=="
+  }, 
+  "search-panel-visible": true, 
+  "main_window_state": {
+    "__class__": "bytearray", 
+    "__value__": "AAAA/wAAAAD9AAAABAAAAAAAAAEAAAACrPwCAAAABPsAAAAkAGYAaQBsAGUAcwAtAGIAcgBvAHcAcwBlAHIALQBkAG8AYwBrAQAAASYAAAKsAAAAWQD////7AAAAHgB0AG8AYwAtAHYAaQBlAHcAZQByAC0AZABvAGMAawAAAAAA/////wAAAFkA////+wAAACAAYwBoAGUAYwBrAHAAbwBpAG4AdABzAC0AZABvAGMAawAAAAAA/////wAAAIkA////+wAAACYAcwBhAHYAZQBkAC0AcwBlAGEAcgBjAGgAZQBzAC0AZABvAGMAawAAAAAA/////wAAAdMA////AAAAAQAAAoAAAAKs/AIAAAAC+wAAABgAcAByAGUAdgBpAGUAdwAtAGQAbwBjAGsBAAABJgAAAqwAAABAAP////sAAAAaAGwAaQB2AGUALQBjAHMAcwAtAGQAbwBjAGsAAAAAAP////8AAABZAP///wAAAAIAAAdOAAAA0/wBAAAAAfsAAAAeAGMAaABlAGMAawAtAGIAbwBvAGsALQBkAG8AYwBrAQAAAAAAAAdOAAAAkAD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAHABpAG4AcwBwAGUAYwB0AG8AcgAtAGQAbwBjAGsAAAAAAP////8AAAApAP///wAAA8IAAAKsAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGcAbABvAGIAYQBsAC0AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAC0AYgBhAHIBAAABOP////8AAAAAAAAAAAAAABYAcABsAHUAZwBpAG4AcwAtAGIAYQByAAAAAAD/////AAAAAAAAAAA="
+  }, 
+  "html-editor-state": {
+    "__class__": "bytearray", 
+    "__value__": "AAAA/wAAAAD9AAAAAAAAA8IAAAIVAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGEAYwB0AGkAbwBuAF8AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAF8AYgBhAHIBAAAAvP////8AAAAAAAAAAAAAAB4AaAB0AG0AbABfAGYAbwByAG0AYQB0AF8AYgBhAHIBAAABnv////8AAAAAAAAAAA=="
+  }
+}
