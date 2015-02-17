@@ -42,7 +42,7 @@ if executable('git')
 	"Easy commenting/uncommenting of code.
 	Plug 'tpope/vim-commentary'
 	"Simple alignment of lines
-	Plug 'tommcdo/vim-lion'
+	"Plug 'tommcdo/vim-lion'
 	"Multiple useful keybindings
 	Plug 'tpope/vim-unimpaired'
 	"Simple minimalist alternative to netrw
@@ -65,6 +65,7 @@ if executable('git')
 	"View man pages with vim
 	Plug 'Z1MM32M4N/vim-superman', {'on' : 'SuperMan'}
 	Plug 'joshaw/vim-eunuch'
+	Plug 'junegunn/vim-easy-align'
 
 	call plug#end()
 endif " executable(git)
@@ -457,6 +458,9 @@ nnoremap <cr> gf
 " Try using jk and kj as Escape in insert mode.
 inoremap jk <Esc>
 inoremap kj <Esc>
+
+" Align with easy align
+nmap gl <Plug>(EasyAlign)
 
 " Center search result
 nnoremap n nzz
