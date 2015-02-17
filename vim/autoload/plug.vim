@@ -73,7 +73,7 @@ let s:plug_tab = get(s:, 'plug_tab', -1)
 let s:plug_buf = get(s:, 'plug_buf', -1)
 let s:mac_gui = has('gui_macvim') && has('gui_running')
 let s:is_win = has('win32') || has('win64')
-let s:ruby = has('ruby') && has('patch-7.2.374')
+let s:ruby = has('ruby') && (v:version >= 703 || v:version == 702 && has('patch374'))
 let s:nvim = has('nvim') && !s:is_win
 let s:me = resolve(expand('<sfile>:p'))
 let s:base_spec = { 'branch': 'master', 'frozen': 0 }
@@ -327,9 +327,9 @@ function! s:reorg_rtp()
   let s:middle = get(s:, 'middle', &rtp)
   let rtps     = map(s:loaded_names(), 's:rtp(g:plugs[v:val])')
   let afters   = filter(map(copy(rtps), 'globpath(v:val, "after")'), 'isdirectory(v:val)')
-  let rtp      = join(map(rtps, 's:escrtp(v:val)'), ',')
+  let rtp      = join(map(rtps, 'escape(v:val, ",")'), ',')
                  \ . ','.s:middle.','
-                 \ . join(map(afters, 's:escrtp(v:val)'), ',')
+                 \ . join(map(afters, 'escape(v:val, ",")'), ',')
   let &rtp     = substitute(substitute(rtp, ',,*', ',', 'g'), '^,\|,$', '', 'g')
   let s:prtp   = &rtp
 
@@ -718,6 +718,15 @@ function! s:update_impl(pull, force, args) abort
     return
   endif
 
+  if !s:is_win && s:git_version_requirement(2, 3)
+    let s:git_terminal_prompt = exists('$GIT_TERMINAL_PROMPT') ? $GIT_TERMINAL_PROMPT : ''
+    let $GIT_TERMINAL_PROMPT = 0
+    for plug in values(todo)
+      let plug.uri = substitute(plug.uri,
+            \ '^https://git::@github\.com', 'https://github.com', '')
+    endfor
+  endif
+
   if !isdirectory(g:plug_home)
     try
       call mkdir(g:plug_home, 'p')
@@ -777,6 +786,9 @@ function! s:update_impl(pull, force, args) abort
 endfunction
 
 function! s:update_finish()
+  if exists('s:git_terminal_prompt')
+    let $GIT_TERMINAL_PROMPT = s:git_terminal_prompt
+  endif
   if s:switch_in()
     call s:do(s:update.pull, s:update.force, filter(copy(s:update.all), 'has_key(v:val, "do")'))
     call s:finish(s:update.pull)
