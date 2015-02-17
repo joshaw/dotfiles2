@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Thu 12 Feb 2015
+" Modified: Mon 16 Feb 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -111,11 +111,6 @@ let delimitMate_expand_space   = 1
 let g:clever_f_smart_case        = 1
 let g:clever_f_mark_cursor       = 1
 let g:clever_f_mark_cursor_color = 'Error'
-
-""" WhiteSpace
-if $USERNAME == 'JoshWainwright'
-	let g:noStripWhitespace = 1
-endif
 
 """ BufTabLine
 let g:buftabline_show       = 1
@@ -410,7 +405,6 @@ augroup ft
 	" Remove spaces at the end of header lines when starting new mail in mutt.
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
 	autocmd BufNewFile,BufRead *.mail setl filetype=mail
-	autocmd BufWritePre *.vim g:noStripWhitespace
 	autocmd Filetype netrw setlocal bufhidden=wipe
 augroup END
 
@@ -631,8 +625,8 @@ command! TBini :e C:\ProgramData\LDRA\TESTBED.ini
 nnoremap <F11> :<C-U>e ~/Documents/Details/ldra_learnt.md<cr>
 nnoremap <F12> :EditReport<cr>
 nnoremap <S-F12> :EditReport!<cr>
-command! -nargs=* -bang EditReport :call EditReport('<bang>' == '!', <f-args>)
-function! EditReport(monthly, ...)
+command! -nargs=* -bang EditReport :call EditReport('<bang>' == '!', 0, <f-args>)
+function! EditReport(monthly, retval, ...)
 	let prefix = ''
 	" a:0 (number of args) is >0 if a specific date is given
 	if a:0 > 0
@@ -651,11 +645,23 @@ function! EditReport(monthly, ...)
 	endif
 	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.prefix
 	if filereadable(expand(thisweek).'.md')
-		exec "edit ".thisweek.".md"
+		if a:retval
+			return thisweek.".md"
+		else
+			exec "edit ".thisweek.".md"
+		endif
 	elseif filereadable(expand(thisweek).'.txt')
-		exec "edit ".thisweek.".txt"
+		if a:retval
+			return thisweek.".txt"
+		else
+			exec "edit ".thisweek.".txt"
+		endif
 	else
-		exec "edit ".thisweek . ".md | normal iWeeklyr"
+		if a:retval
+			echoerr "Report file for ".thisweek." not found."
+		else
+			exec "edit ".thisweek . ".md | normal iWeeklyr"
+		endif
 	endif
 endfunction
 
