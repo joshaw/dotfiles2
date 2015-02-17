@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Mon 16 Feb 2015
+" Modified: Tue 17 Feb 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -43,6 +43,7 @@ if executable('git')
 	Plug 'tpope/vim-commentary'
 	"Simple alignment of lines
 	"Plug 'tommcdo/vim-lion'
+	Plug 'junegunn/vim-easy-align'
 	"Multiple useful keybindings
 	Plug 'tpope/vim-unimpaired'
 	"Simple minimalist alternative to netrw
@@ -53,10 +54,6 @@ if executable('git')
 	Plug 'clever-f.vim'
 	"Rename multiple files using vim
 	Plug 'vim-scripts/renamer.vim', {'on' : 'Renamer' }
-	"Override detection of .md files to markdown
-	Plug 'tpope/vim-markdown', {'for': 'markdown'}
-	"Decrypt, edit and then re-encrypt gpg stored files.
-	Plug 'jamessan/vim-gnupg'
 
 	if executable('vifm')
 		"Documentation for vifm
@@ -64,8 +61,14 @@ if executable('git')
 	endif
 	"View man pages with vim
 	Plug 'Z1MM32M4N/vim-superman', {'on' : 'SuperMan'}
+	" Simple file manipulation
 	Plug 'joshaw/vim-eunuch'
-	Plug 'junegunn/vim-easy-align'
+
+	"Filetypes
+	Plug 'm42e/trace32-practice.vim'
+	Plug 'tpope/vim-markdown', {'for': 'markdown'}
+	"Plug 'jamessan/vim-gnupg'
+	Plug 'tomtom/tgpg_vim'
 
 	call plug#end()
 endif " executable(git)
