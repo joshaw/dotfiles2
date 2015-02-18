@@ -1,31 +1,28 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Tue 17 Feb 2015
+" Modified: Wed 18 Feb 2015
 " Author:   Josh Wainwright
 " Filename: whitespace.vim
 "
 " Remove trailing spaces
 function! s:stripTrailing(firstl, lastl) range
-	" Preparation: save last search, and cursor position.
-	let _s=@/
-	let w = winsaveview()
-	" Do the business:
-	exe a:firstl.",".a:lastl."s/\\s\\+$//e"
-	exe a:firstl.",".(a:lastl-1)."s/\\n\\{3,}/\\r\\r/e"
-	TrimEndLines
-	" Clean up: restore previous search history, and cursor position
-	let @/=_s
-	call winrestview(w)
+	let save_cursor = getpos(".")
+	let old_query = getreg("/")
+	execute printf('%d,%ds/\s\+$//e', a:firstl, a:lastl)
+	execute printf('%d,%ds/\n\{3,}/\r\r/e', a:firstl, a:lastl-1)
+	call s:trimEndLines()
+	call setpos('.', save_cursor)
+	call setreg('/', old_query)
 endfunction
 
 " Remove empty line at the end of file
-function! TrimEndLines()
+function! s:trimEndLines()
 	let w = winsaveview()
 	silent! %s#\($\n\s*\)\+\%$##
 	call winrestview(w)
 endfunction
 
 command! -range=% -nargs=0 StripTrailing :call s:stripTrailing(<line1>,<line2>)
-command! TrimEndLines :call TrimEndLines()
+command! -nargs=0 TrimEndLines :call s:trimEndLines()
 
 " Auto remove when saving
 if $USERNAME != "JoshWainwright"
