@@ -1,7 +1,7 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Tue 17 Feb 2015
+" Modified: Wed 18 Feb 2015
 " Author:   Josh Wainwright
-" Filename: file-operations.vim
+" Filename: functions.vim
 
 " DiffOrig
 " View the difference between the buffer and the file the last time it was saved
