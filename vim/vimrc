@@ -238,7 +238,6 @@ set splitright       " a new window is put right of the current one
 set showtabline=1 " 0, 1 or 2; when to use a tab pages line
 
 " 8 terminal {{{2
-set ttyfast " terminal connection is fast
 set t_vb=
 
 " 9 using the mouse {{{2
