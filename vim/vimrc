@@ -61,8 +61,11 @@ if executable('git')
 	endif
 	"View man pages with vim
 	Plug 'Z1MM32M4N/vim-superman', {'on' : 'SuperMan'}
+
+	let g:plug_url_format = 'https://github.com/%s.git'
 	" Simple file manipulation
 	Plug 'joshaw/vim-eunuch'
+	unlet! g:plug_url_format
 
 	"Filetypes
 	Plug 'm42e/trace32-practice.vim'
