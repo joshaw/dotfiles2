@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Tue 17 Feb 2015
+" Modified: Wed 18 Feb 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -33,7 +33,7 @@ if executable('git')
 		Plug 'honza/vim-snippets', {'on' : 'UltiSnipsLoad'}
 		command! UltiSnipsLoad :
 	endif
-	if !has('win32unix')
+	if !has('win32unix') && $USER != 'joshwainwright'
 		"Syntax checking for a wide range of languages
 		Plug 'scrooloose/syntastic'
 	end
