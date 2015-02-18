@@ -270,6 +270,7 @@ endif
 set terse        " add 's' flag in 'shortmess' (don't show search message)
 set showcmd      " show (partial) command keys in the status line
 set ruler        " show cursor position below each window
+set nomore       " pause listings when the screen is full
 set novisualbell " use a visual bell instead of beeping
 set noerrorbells " ring the bell for error messages
 
@@ -316,7 +317,7 @@ set endofline                       " last line in the file has an end-of-line
 set writebackup                     " write a backup file before overwriting a file
 set backup                          " write a backup file before overwriting a file
 set backupdir=$VIMHOME/tmp/backup// " list of directories to put backup files in
-set autowrite                       " automatically write a file when leaving a modified buffer
+"set autowrite                       " automatically write a file when leaving a modified buffer
 set autoread                        " automatically read a file when it was modified outside of Vim
 
 "20 the swap file {{{2
@@ -428,8 +429,8 @@ map <F1> :<C-U>e ~/.dotfiles/bookmarks.md<cr>
 map <F2> :<C-U>e ~/Documents/Details/times.txt<cr>
 
 " Save the current file and run the make program
-map <F9>   :make<Return>
-map <S-F9> :silent make<Return>
+map <F9>   :w <bar> make<Return>
+map <S-F9> :w <bar> silent make<Return>
 
 " Smart completion on tab " {{{
 function! Smart_TabComplete()
