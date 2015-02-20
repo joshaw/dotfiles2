@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Wed 18 Feb 2015
+" Modified: Fri 20 Feb 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -428,8 +428,8 @@ map <F1> :<C-U>e ~/.dotfiles/bookmarks.md<cr>
 map <F2> :<C-U>e ~/Documents/Details/times.txt<cr>
 
 " Save the current file and run the make program
-map <F9>   :w <bar> make<Return>
-map <S-F9> :w <bar> silent make<Return>
+map <F9>   :w <bar> make<cr><cr>
+map <S-F9> :w <bar> silent make<cr>
 
 " Smart completion on tab " {{{
 function! Smart_TabComplete()
