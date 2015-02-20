@@ -69,7 +69,6 @@ if executable('git')
 
 	"Filetypes
 	Plug 'm42e/trace32-practice.vim'
-	Plug 'tpope/vim-markdown', {'for': 'markdown'}
 	"Plug 'jamessan/vim-gnupg'
 	Plug 'tomtom/tgpg_vim'
 
