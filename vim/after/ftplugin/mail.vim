@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Fri 20 Feb 2015
+" Modified: Mon 23 Feb 2015
 " Author:   Josh Wainwright
 " Filename: mail.vim
 
@@ -22,8 +22,9 @@ nnoremap <buffer> <leader>s :%s#\($\n\s*\)\+\%$##e<cr>Go<esc>:r ~/.signature2<cr
 
 nnoremap <buffer> <leader>S :r ~/.signature2<cr>
 
-function! Mail_Del_Empty_Quoted()
-  %s/\v^\>[ %|#>]*$//e
+function! MailFixFormating()
+  silent! %s/\v^\>[ %|#>]*$//e
+  silent! %s/\([^]> :]\)\ze\n>[> ]*[^> ]/\1 /g
   TrimEndLines
 endfunction
 
@@ -40,4 +41,4 @@ if getline(1) =~ "JAW Weekly Report"
 endif
 
 " On Start
-call Mail_Del_Empty_Quoted()
+call MailFixFormating()
