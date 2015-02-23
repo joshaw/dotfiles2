@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Wed 18 Feb 2015
+" Modified: Mon 23 Feb 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
@@ -24,3 +24,14 @@ endfunction
 
 " map <C-g> :grep<space><space>.<left><left>
 nnoremap <C-g> :call GrepString()<cr>:grep<space><space>.<left><left>
+
+" Search and Replace through all buffers
+function! BufGrep(search)
+	echo a:search
+	cclose
+	call setqflist([])
+	silent! exe "bufdo vimgrepadd " . a:search . " %"
+	copen
+endfunction
+
+command! -nargs=1 BufGrep :call BufGrep(<f-args>)
