@@ -1,5 +1,5 @@
 " Created:  Tue 13 Jan 2015
-" Modified: Fri 06 Feb 2015
+" Modified: Mon 23 Feb 2015
 " Author:   Josh Wainwright
 " Filename: book.vim
 
@@ -14,7 +14,7 @@ syn sync fromstart
 
 syn keyword lordnames LORD
 syn match lordnames   "I AM"
-syn match faintwords  "Selah\."
+syn match faintwords  "Selah\.\?"
 
 syn region quoted    start=+\v"+ end=+\v."+
 			\ contains=verseNum,chapterNum,nestquote,lordnames
