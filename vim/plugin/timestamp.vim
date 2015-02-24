@@ -1,5 +1,5 @@
 " Created:  Thu 17 Apr 2014
-" Modified: Wed 28 Jan 2015
+" Modified: Tue 24 Feb 2015
 " Author:   Josh Wainwright
 " Filename: timestamp.vim
 "
@@ -11,7 +11,7 @@ function! Timestamp()
 
 	let l:winview = winsaveview()
 
-	let pat = '\v\C%(Modified\s*:\s*)\zs%(.*20\d{2}|TIMESTAMP)$|Created\s*:\s*\zsTIMESTAMP\ze$'
+	let pat = '\v\C%(Modified\s*:\s*)\zs%(.*20\d{2}|TIMESTAMP)\ze|Created\s*:\s*\zsTIMESTAMP\ze$'
 	let rep = strftime("%a %d %b %Y")
 
 	if line('$') > 2 * &modelines
