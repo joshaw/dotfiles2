@@ -43,7 +43,8 @@ if executable('git')
 	Plug 'tpope/vim-commentary'
 	"Simple alignment of lines
 	"Plug 'tommcdo/vim-lion'
-	Plug 'junegunn/vim-easy-align'
+	"Plug 'junegunn/vim-easy-align'
+	Plug 'godlygeek/tabular'
 	"Multiple useful keybindings
 	Plug 'tpope/vim-unimpaired'
 	"Simple minimalist alternative to netrw
