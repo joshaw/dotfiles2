@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Fri 20 Feb 2015
+" Modified: Tue 24 Feb 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -676,6 +676,11 @@ if has("gui_running") && !exists("g:vim_started")
 	exe "set columns=" . (82+&numberwidth)
 	let g:vim_started = 1
 endif
+
+augroup Save
+	autocmd!
+	au VimResized * :wincmd =
+augroup END
 " }}}
 
 " vim: fdm=marker nowrap
