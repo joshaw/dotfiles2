@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Tue 24 Feb 2015
+" Modified: Thu 26 Feb 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -628,7 +628,7 @@ augroup END
 
 command! TBini :e C:\ProgramData\LDRA\TESTBED.ini
 
-nnoremap <F11> :<C-U>e ~/Documents/Details/ldra_learnt.md<cr>
+nnoremap <F11> :<C-U>e ~/Documents/Details/ldra-learnt.md<cr>
 nnoremap <F12> :EditReport<cr>
 nnoremap <S-F12> :EditReport!<cr>
 command! -nargs=* -bang EditReport :call EditReport('<bang>' == '!', 0, <f-args>)
