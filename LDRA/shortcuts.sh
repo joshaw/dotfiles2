@@ -26,9 +26,10 @@ InstrumentationStrategy:INSTR
 
 # Remove any old Start Menu and Desktop Entries
 rm -r "$STARTMENU/Programs/$GENFOLDER"* 2> /dev/null || true
-find "$DESKTOPPUB" -maxdepth 1 -name "LDRA*" -delete -or -name "TB*" -delete
+find "$DESKTOPPUB" -maxdepth 1 -name "LDRA *" -delete -or -name "TB*" -delete
 
 for LANG in lang_c lang_a lang_j; do
+	break
 
 	LANGUAGE=${langs[$LANG]}
 	echo $LANGUAGE
@@ -83,6 +84,22 @@ for LANG in lang_c lang_a lang_j; do
 		cp -r "$DESKTOP/$SPECFOLDER" "$STARTMENU/Programs/"
 
 	done
+done
+
+sapath="/cygdrive/c/Program Files (x86)/LDRA/"
+saprogs="$(find "$sapath" -mindepth 1 -maxdepth 1 -type d | grep -E "LDRA[cru]")"
+
+find "$sapath" -mindepth 1 -maxdepth 1 -print0 | while read -d $'\0' folder
+do
+	! [[ "$folder" =~ LDRA[cru] ]] && continue
+	satype=$(basename "$folder")
+	tmp=${satype#LDRA}
+	savarient=${tmp%%_*}
+	tmp=${tmp#*_}
+	echo $tmp
+	salang=${tmp%_*}
+	saver=${tmp##*_}
+	printf "%s : %s : %s : %s : %s\n" "$folder" "$satype" "$savarient" "$salang" "$saver"
 done
 
 rm "$STARTMENU/LDRA"* 2> /dev/null || true

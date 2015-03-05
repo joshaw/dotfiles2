@@ -1,10 +1,10 @@
 " Created:  Fri 06 Feb 2015
-" Modified: Fri 06 Feb 2015
+" Modified: Mon 02 Mar 2015
 " Author:   Josh Wainwright
 " Filename: book.vim
 
 let b:bible = 0
-if match(getline(1), "###") == 0
+if getline(1) =~ "###"
 	let b:bible = 1
 endif
 setlocal indentexpr=BibleIndent()

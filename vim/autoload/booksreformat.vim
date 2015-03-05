@@ -32,7 +32,7 @@ function! booksreformat#BookReformatCmd()
 	silent! 2,$s/| , #1.0/| /
 
 	" Align all lines by pipe
-	1,$EasyAlign *|
+	1,$Tabularize /|
 
 	" Make header separator and title case header
 	1yank y
