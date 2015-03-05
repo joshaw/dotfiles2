@@ -11,7 +11,5 @@ lang_j=(946)
 
 declare -A langs=(["lang_c"]="C_C++" ["lang_a"]="Ada" ["lang_j"]="Java")
 
-standalone=("unit" "cover" "rules")
-
 WORKAREA_DIR=/cygdrive/c/LDRA_Workarea
 TOOLSUITE_DIR=/cygdrive/c/LDRA_Toolsuite
