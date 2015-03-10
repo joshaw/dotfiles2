@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Thu 26 Feb 2015
+" Modified: Tue 10 Mar 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -210,7 +210,7 @@ set cmdheight=1      " number of lines used for the command-line
 set lazyredraw       " don't redraw while executing macros
 set list             " show <Tab> as ^I and end-of-line as $
 set listchars=tab:·\ ,trail:▸,nbsp:#,extends:»,precedes:« " list of strings used for list mode
-augroup trailing " {{{
+augroup vimrc_trailing " {{{
 	au!
 	au InsertEnter * :set listchars-=trail:▸
 	au InsertLeave * :set listchars+=trail:▸
@@ -371,7 +371,7 @@ if !isdirectory(expand(&undodir))
 endif " }}}
 
 " go to last cursor position when opening files
-augroup line_return
+augroup vimrc_line_return
 	au!
 	autocmd BufReadPost *
 		\ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -396,7 +396,7 @@ if has('win32') || has('win32unix')
 else
 	let dictfile="/usr/share/dict/words"
 endif
-augroup ft
+augroup vimrc_ft
 	autocmd!
 	"au FileType * exe 'setl dict+='.fnameescape($VIMRUNTIME).'/syntax/'.&filetype.'.vim'
 	au Filetype * exe 'setl dict+=$VIMHOME/spell/dicts/'.&filetype.'.dict'
@@ -414,7 +414,7 @@ augroup ft
 	autocmd Filetype netrw setlocal bufhidden=wipe
 augroup END
 
-augroup vimp
+augroup vimrc_vimp
 	autocmd!
 	autocmd BufEnter pass.gpg set ft=mypass
 	autocmd FileType mypass set conceallevel=2
@@ -529,7 +529,7 @@ nnoremap <leader>b :ls<CR>:buffer<Space>
 
 nnoremap <leader>rc :e! $MYVIMRC<CR>:setlocal autochdir<cr>
 nnoremap <leader>rd :e! $VIMHOME/plugin/display.vim<CR>
-augroup Reload_vimrc
+augroup vimrc_reload
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC | echo "vimrc is sourced"
 augroup END
@@ -625,7 +625,7 @@ iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \Vacation<CR>
                        \--------<CR>
                        \- None"
-augroup ldra
+augroup vimrc_ldra
 	autocmd!
 	autocmd BufEnter,BufNew *.tcf set ft=conf
 	autocmd BufEnter,BufNew *.tct set ft=conf
@@ -683,7 +683,7 @@ if has("gui_running") && !exists("g:vim_started")
 	let g:vim_started = 1
 endif
 
-augroup Save
+augroup vimrc_save
 	autocmd!
 	au VimResized * :wincmd =
 augroup END
