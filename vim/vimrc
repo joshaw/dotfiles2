@@ -454,6 +454,12 @@ inoremap <expr> <tab> Smart_TabComplete()
 inoremap <s-tab> <c-p>
 
 nnoremap <cr> gf
+nnoremap <leader><cr> :e <cfile><cr>
+augroup vimrc_cr
+	autocmd!
+	autocmd CmdwinEnter * nnoremap <CR> <CR>
+	autocmd BufReadPost quickfix nnoremap <CR> <CR>
+augroup END
 
 " Try using jk and kj as Escape in insert mode.
 inoremap jk <Esc>
