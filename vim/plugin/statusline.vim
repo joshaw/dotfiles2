@@ -33,10 +33,9 @@ endfunc
 call statusline#colour()
 
 let s:stl= ""
-let s:stl.="%1*%n"                               " buffer number
-let s:stl.="%1*\ %{statusline#mode()} %9* "      " mode (changes color)
+let s:stl.="%1* %{statusline#mode()} %9* "       " mode (changes color)
 let s:stl.="%5*%<%{(expand('%')==''?'':expand('%:p:h'))}" " file path
-let s:stl.="\\%9*%t "                            " file name
+let s:stl.="/%9*%t "                             " file name
 let s:stl.="%(%7*[%M] %)%9*"                     " modified flag
 
 let s:stl.="%="                                  " right-align
@@ -44,7 +43,7 @@ let s:stl.="%="                                  " right-align
 let s:stl.="%(%{(&spell!=0?'[s]':'')}%)"         " spell check flag
 let s:stl.="%(%{(&ro!=0?'[ro]':'')}%)"           " readonly flag
 let s:stl.="%(%{(&bin!=0?'[b]':'')}%) "          " binary flag
-let s:stl.="%(%8*%{&filetype} %9*%)"             " file type
+let s:stl.="%(%8*%{&filetype} %)%9*"             " file type
 let s:stl.="%(%{(&ff=='unix'?'u':'d')}%)"        " file format
 let s:stl.="%(%{(&fenc=='utf-8'?'8':&fenc)} |%)" " file encoding
 let s:stl.="%3.c:"                               " column number
