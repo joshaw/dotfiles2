@@ -1,5 +1,5 @@
 " Created:  Tue 13 Jan 2015
-" Modified: Mon 23 Feb 2015
+" Modified: Tue 10 Mar 2015
 " Author:   Josh Wainwright
 " Filename: book.vim
 
@@ -23,7 +23,7 @@ syn region nestquote start="\v(^|\"| |\t)\zs'" end="\v'($|\s|[\"?,-;!])@="
 syn match number     "\v\d*,*\d"
 
 syn match hashStart  "\v^#+"
-syn match chapter    "\v(^# *)@<=[A-Z][A-Za-z].*$"
+syn match chapter    "\v(^# *)@<=[A-Z0-9][A-Za-z].*$"
 syn match title      "\v(^## *)@<=[A-Z][A-Za-z].*$"
 syn match psalmnum   "\v^ {5}PSALM\s+\d+"
 syn match chapterNum "\v^\[[ 0-9]+\] "
