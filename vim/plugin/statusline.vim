@@ -1,31 +1,19 @@
 set ls=2 " Always show status line
 let g:last_mode=""
 
-" hi StatusLine guibg=#3b3a32 guifg=#F8F8F2 guisp=#F8F8F2 gui=NONE ctermfg=230 ctermbg=237 cterm=NONE
-hi StatusLine guifg=#F8F8F2 guibg=#383830 guisp=#F8F8F2 gui=NONE ctermfg=230 ctermbg=237 cterm=NONE
-
 let g:status_normal   = 'guifg=#000000 guibg=#7dcc7d ctermfg=0   ctermbg=2'
 let g:status_insert   = 'guifg=#ffffff guibg=#ff0000 ctermfg=15  ctermbg=9'
 let g:status_replace  = 'guifg=#ffff00 guibg=#5b7fbb ctermfg=190 ctermbg=67'
 let g:status_visual   = 'guifg=#ffffff guibg=#810085 ctermfg=15  ctermbg=53'
-let g:status_modified = 'guifg=#ffffff guibg=#ff00ff ctermfg=15  ctermbg=5'
-let g:status_fname    = 'guifg=#75715E guibg=#383830 ctermfg=59  ctermbg=237'
-let g:status_line     = 'guifg=#ff00ff guibg=#383830 ctermfg=207 ctermbg=237'
-let g:status_lines    = 'guifg=#cc6633 guibg=#383830 ctermfg=208 ctermbg=237'
-let g:status_default  = 'guifg=#f8f8f2 guibg=#383830 ctermfg=230 ctermbg=237'
 
 " Set up the colors for the status bar
 function! statusline#colour()
 	" Basic color presets
-	exec 'hi User1 '.g:status_normal
-	exec 'hi User2 '.g:status_replace
-	exec 'hi User3 '.g:status_insert
-	exec 'hi User4 '.g:status_visual
-	exec 'hi User5 '.g:status_fname
-	exec 'hi User6 '.g:status_modified
-	exec 'hi User7 '.g:status_line
-	exec 'hi User8 '.g:status_lines
-	exec 'hi User9 '.g:status_default
+	hi link User5 Comment
+	hi link User6 Operator
+	hi link User7 Operator
+	hi link User8 Identifier
+	hi link User9 Normal
 endfunc
 
 function! statusline#mode()
