@@ -32,10 +32,22 @@ endfunc
 
 call statusline#colour()
 
+function! statusline#filepath()
+	if expand('%') == ''
+		return ''
+	else
+		let l:home = escape($HOME, '\')
+		let l:curfile = expand('%:p:h')
+		let l:curfile = substitute(l:curfile, l:home, '~', '')
+		let l:curfile = substitute(l:curfile, '\\', '/', 'g')
+		return l:curfile . '/'
+	endif
+endfunction
+
 let s:stl= ""
 let s:stl.="%1* %{statusline#mode()} %9* "       " mode (changes color)
-let s:stl.="%5*%<%{(expand('%')==''?'':expand('%:p:h'))}" " file path
-let s:stl.="/%9*%t "                             " file name
+let s:stl.="%5*%<%{statusline#filepath()}"       " file path
+let s:stl.="%9*%t "                              " file name
 let s:stl.="%(%7*[%M] %)%9*"                     " modified flag
 
 let s:stl.="%="                                  " right-align
