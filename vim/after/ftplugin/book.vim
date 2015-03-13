@@ -1,5 +1,5 @@
 " Created:  Fri 06 Feb 2015
-" Modified: Mon 02 Mar 2015
+" Modified: Fri 13 Mar 2015
 " Author:   Josh Wainwright
 " Filename: book.vim
 
@@ -7,9 +7,9 @@ let b:bible = 0
 if getline(1) =~ "###"
 	let b:bible = 1
 endif
-setlocal indentexpr=BibleIndent()
+setlocal indentexpr=BookIndent()
 
-function! BibleIndent()
+function! BookIndent()
 	if ! b:bible
 		return
 	endif
@@ -37,9 +37,11 @@ setlocal tabstop=4
 setlocal highlight-=@:NonText
 setlocal highlight+=@:Normal
 setlocal nolist
-setlocal colorcolumn=0
+setlocal colorcolumn=+1
 setlocal nocursorline
 setlocal textwidth=65
+setlocal formatoptions+=a
+setlocal scrolloff=999
 
 if executable('par')
 	setlocal formatprg=par\ -w65j
