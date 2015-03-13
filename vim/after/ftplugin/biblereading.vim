@@ -4,7 +4,12 @@
 " Filename: biblereading.vim
 
 " Goto next unchecked line
-nmap <buffer> n gg/\[ \]<cr>:set nohls<cr>
+nmap <buffer> n :call BR_NextReading()<cr>
+
+function! BR_NextReading()
+	1
+	call search("^\[ ", 'W')
+endfunction
 
 " Check line and move to next
 nnoremap <buffer> dd ^lrx
