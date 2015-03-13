@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Tue 10 Mar 2015
+" Modified: Fri 13 Mar 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -168,14 +168,15 @@ endfunction " }}}
 "
 function! s:Oldfiles()
 	Verbose oldfiles
-	0d
+	0delete _
 	silent %s/\v\d+: //
 	setlocal nobuflisted
 	setlocal buftype=nofile
 	setlocal bufhidden=delete
 	setlocal noswapfile
 	setlocal nomodifiable
-	norm gg
+	normal gg
+	nnoremap <buffer> <cr> :let f=expand('<cfile>') \| pclose \| exe 'e 'f<cr>
 endfunction
 command! Oldfiles :call s:Oldfiles()
 
