@@ -22,6 +22,7 @@ spacefm/session*
 vifm/Trash/
 vifm/vifminfo
 vifm/vimfiles
+vim/autoload/plug.vim
 vim/autoload/plug.vim.old
 vim/bundle/
 vim/plugged/
