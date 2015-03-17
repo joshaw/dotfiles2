@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Fri 13 Mar 2015
+" Modified: Tue 17 Mar 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -44,12 +44,10 @@ if executable('git')
 		Plug 'scrooloose/syntastic'
 	end
 	"Closing of brackets, tags, quotes etc.
-	Plug 'Raimondi/delimitMate'
+	"Plug 'Raimondi/delimitMate'
 	"Easy commenting/uncommenting of code.
 	Plug 'tpope/vim-commentary'
 	"Simple alignment of lines
-	"Plug 'tommcdo/vim-lion'
-	"Plug 'junegunn/vim-easy-align'
 	Plug 'godlygeek/tabular'
 	"Multiple useful keybindings
 	Plug 'tpope/vim-unimpaired'
