@@ -1,5 +1,5 @@
 " Created:  Tue 13 Jan 2015
-" Modified: Tue 10 Mar 2015
+" Modified: Tue 17 Mar 2015
 " Author:   Josh Wainwright
 " Filename: book.vim
 
@@ -17,9 +17,9 @@ syn match lordnames   "I AM"
 syn match faintwords  "Selah\.\?"
 
 syn region quoted    start=+\v"+ end=+\v."+
-			\ contains=verseNum,chapterNum,nestquote,lordnames
+			\ contains=verseNum,chapterNum,nestquote,lordnames,appostrophe
 syn region nestquote start="\v(^|\"| |\t)\zs'" end="\v'($|\s|[\"?,-;!])@="
-			\ contains=verseNum,chapterNum,lordnames contained
+			\ contains=verseNum,chapterNum,lordnames,appostrophe contained
 syn match number     "\v\d*,*\d"
 
 syn match hashStart  "\v^#+"
@@ -28,6 +28,12 @@ syn match title      "\v(^## *)@<=[A-Z][A-Za-z].*$"
 syn match psalmnum   "\v^ {5}PSALM\s+\d+"
 syn match chapterNum "\v^\[[ 0-9]+\] "
 syn match verseNum   "\v(^\[[ 0-9]+\] +)@8<=[0-9]+"
+
+if has('conceal')
+	setlocal conceallevel=2
+	setlocal concealcursor=nc
+	syn match appostrophe "\vs'\zss" contained conceal
+endif
 
 hi def link lordnames Todo
 hi def link faintwords Comment
