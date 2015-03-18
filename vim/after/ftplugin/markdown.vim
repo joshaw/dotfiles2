@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Tue 17 Feb 2015
+" Modified: Tue 17 Mar 2015
 " Author:   Josh Wainwright
 " Filename: markdown.vim
 
@@ -7,9 +7,6 @@ exe 'setlocal dict+='.dictfile
 
 "Automatic formating of paragraphs whenever text is inserted
 setlocal formatoptions=tcqwan21
-
-"Don't strip spaces and newlines when saving
-let b:noStripWhitespace=1
 
 setlocal makeprg=md.sh\ %
 
@@ -29,4 +26,22 @@ function! FormatTable()
 	exe tabhead."s/[^|]/-/g"
 
 	call winrestview(w)
+endfunction
+
+nnoremap <buffer> <cr> :call Goto_file_num()<cr>
+function! Goto_file_num()
+	" If the cursor is past the first space and the line starts with a digit
+	let curr = getline('.') + 0
+	if curr > 0 && stridx(getline('.'), " ")+1 > col('.')
+
+		" Match item heading
+		"       1 Something
+		"       -----------
+		" Or toc entry
+		"       1. Something
+		call search('\v^'.curr.'.*\n---|^'.curr.'\. ', "ws")
+		normal zt
+	else
+		silent! normal gf
+	endif
 endfunction
