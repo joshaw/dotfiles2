@@ -1,5 +1,5 @@
 --exclude= # Created  : Thu 17 Apr 2014 02:33 pm
---exclude= # Modified : Thu 24 Jul 2014 04:13 PM
+--exclude= # Modified : Tue 17 Mar 2015 04:13 PM
 
 --langdef=markdown
 --langmap=markdown:.md
@@ -34,3 +34,21 @@
 --regex-latex=/\\ref[[:space:]]*\{([^}]+)\}/\1/r,ref/
 --regex-latex=/\\pageref[[:space:]]*\{([^}]+)\}/\1/p,pagere
 --regex-latex=/^\\input\{([^}]+)\}/Input: \1/
+
+--exclude=.git
+--exclude=.svn
+--exclude=.hg
+--exclude=bundle
+--exclude=min
+--exclude=\*.swp
+--exclude=\*.bak
+--exclude=\*.pyc
+--exclude=\*.class
+--exclude=\*.sln
+--exclude=\*.cache
+--exclude=\*.dll
+--exclude=\*.pdb
+--exclude=tags
+--exclude=cscope.\*
+--exclude=\*.tar.\*
+--exclude=tmp
