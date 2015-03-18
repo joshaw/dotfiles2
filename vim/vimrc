@@ -458,6 +458,11 @@ endfunction " }}}
 inoremap <expr> <tab> Smart_TabComplete()
 inoremap <s-tab> <c-p>
 
+" Delete a buffer without affecting the split windows.
+nnoremap <leader>d :bd \| bd #<cr>
+
+" Jump to file under cursor with cr, leader cr edits a non existing file
+" Ensure quickfix and cmd windows still behave
 nnoremap <cr> gf
 nnoremap <leader><cr> :e <cfile><cr>
 augroup vimrc_cr
