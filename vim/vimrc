@@ -13,14 +13,14 @@ elseif has('win32')
 	let $PATH=$PATH.';C:/cygwin/bin/;'.$HOME.'/Tools/'
 endif
 
-if empty(glob('~/.vim/autoload/plug.vim'))
+" Vim-Plug Plugins               {{{1
+"
+
+if empty(glob($VIMHOME.'autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
-
-" Vim-Plug Plugins               {{{1
-"
 let g:plug_threads = 6
 let g:plug_timeout = 20
 
@@ -476,7 +476,7 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 
 " Align with easy align
-nmap gl <Plug>(EasyAlign)
+vnoremap gl :Tabularize /
 
 " Center search result
 nnoremap n nzz
