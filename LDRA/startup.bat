@@ -12,22 +12,6 @@ del /q %tmpdir%\*
 for /d %%x in (%tmpdir%\*) do @rd /s /q ^"%%x^"
 mkdir %tmpdir%\jaw
 
-::
-:: Set flags in Testbed.ini {{{1
-::
-set TBINI="C:\LDRA_Toolsuite\C_C++\946\TBini.exe"
-for %%x in (
-	"C/C++ LDRA Testbed"
-	"Ada95 LDRA Testbed"
-	) do (
-	%TBINI% -Section=%%x SHOW_CMTOOL_MENU=TRUE
-	%TBINI% -Section=%%x CM_TOOL_SELECTED=Git
-
-	%TBINI% -Section=%%x REDIRECT_MAILTO=TRUE
-
-	%TBINI% -Section=%%x TBBROWSE_HTML_FONT_SIZE=2
-)
-
 start C:\home\JoshWainwright\Tools\TextEditorAnywhere\TextEditorAnywhere.exe
 
 ::
@@ -45,6 +29,22 @@ FOR /F "skip=1" %%D IN ('wmic path win32_localtime get dayofweek') DO (
 )
 :next
 if "%dow%" GEQ "6" GOTO:eof
+
+::
+:: Set flags in Testbed.ini {{{1
+::
+set TBINI="C:\LDRA_Toolsuite\C_C++\946\TBini.exe"
+for %%x in (
+	"C/C++ LDRA Testbed"
+	"Ada95 LDRA Testbed"
+	) do (
+	%TBINI% -Section=%%x SHOW_CMTOOL_MENU=TRUE
+	%TBINI% -Section=%%x CM_TOOL_SELECTED=Git
+
+	%TBINI% -Section=%%x REDIRECT_MAILTO=TRUE
+
+	%TBINI% -Section=%%x TBBROWSE_HTML_FONT_SIZE=2
+)
 
 ::
 :: Run vim to log times {{{1
