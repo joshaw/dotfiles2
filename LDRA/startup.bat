@@ -28,7 +28,7 @@ for %%x in (
 	%TBINI% -Section=%%x TBBROWSE_HTML_FONT_SIZE=2
 )
 
-start "C:\home\JoshWainwright\Tools\TextEditorAnywhere\TextEditorAnywhere.exe"
+start C:\home\JoshWainwright\Tools\TextEditorAnywhere\TextEditorAnywhere.exe
 
 ::
 :: Is weekday? {{{1
