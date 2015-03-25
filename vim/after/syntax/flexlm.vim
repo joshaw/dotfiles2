@@ -1,5 +1,5 @@
 " Created:  Tue 24 Mar 2015
-" Modified: Tue 24 Mar 2015
+" Modified: Wed 25 Mar 2015
 " Author:   Josh Wainwright
 " Filename: flexlm.vim
 
@@ -21,13 +21,13 @@ syn keyword flexlmStatement SERVER DAEMON USE_SERVER VENDOR
 syn keyword flexlmStatement FEATURE INCREMENT PACKAGE skipwhite nextgroup=flexlmToken
 syn region  flexlmToken     start="\S" end="\s" skipwhite nextgroup=flexlmDaemon
 syn region  flexlmDaemon    start="\S" end="\s" skipwhite nextgroup=flexlmVer
-syn region  flexlmVer       start="\S" end="\s" skipwhite nextgroup=flexlmDate,flexlmComps
-syn region  flexlmDate      start="\S" end="\s" skipwhite nextgroup=flexlmCount,flexlmComps
-syn region  flexlmCount     start="\S" end="\s" skipwhite nextgroup=flexlmStuff,flexlmComps
+syn region  flexlmVer       start="\S" end="\s" skipwhite nextgroup=flexlmDate,flexlmComps,flexlmStuff
+syn region  flexlmDate      start="\S" end="\s" skipwhite nextgroup=flexlmCount,flexlmComps,flexlmStuff
+syn region  flexlmCount     start="\S" end="\s" skipwhite nextgroup=flexlmStuff,flexlmComps,flexlmStuff
 syn keyword flexlmComps     COMPONENTS nextgroup=flexlmStuff
-syn region  flexlmStuff     start="\S" end="$" contains=flexlmComponent,flexlmChksum
-syn match   flexlmComponent "\v\s\S{-}[:=]"
-syn match   flexlmChksum    "\v(\x{4}( | \\\n\t)){14}\x{4}"
+syn region  flexlmStuff     start="\S" end="$" contains=flexlmComponent,flexlmOption
+syn match   flexlmComponent "\v(\s|\")\zs\S*:"
+syn match   flexlmOption    "\v\s\S*\="
 
 syn region  flexlmComment   start=/#/ end=/$/
 
@@ -50,7 +50,7 @@ if version >= 508 || !exists("did_flexlm_syntax_inits")
   HiLink flexlmStuff     Type
   HiLink flexlmComps     Boolean
   HiLink flexlmComponent Include
-  HiLink flexlmChksum    Boolean
+  HiLink flexlmOption    Boolean
 
   delcommand HiLink
 endif
