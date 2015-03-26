@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Tue 17 Mar 2015
+" Modified: Thu 26 Mar 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -365,6 +365,7 @@ set encoding=utf-8 " character encoding used in Vim: "latin1", "utf-8"
 "27 various {{{2
 set virtualedit+=block " when to use virtual editing: "block", "insert" and/or "all"
 set viminfo^=!         " list that specifies what to write in the viminfo file
+set viminfo+=n$HOME/.viminfo
 
 " Make those folders if they don't already exist. " {{{
 if !isdirectory(expand(&undodir))
