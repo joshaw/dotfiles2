@@ -35,14 +35,12 @@ if executable('git')
 	Plug 'gregsexton/gitv', {'on': 'Gitv'}
 	if has('python')
 		"Snippet management
-		Plug 'SirVer/ultisnips', {'on' : 'UltiSnipsLoad'}
-		Plug 'honza/vim-snippets', {'on' : 'UltiSnipsLoad'}
+		Plug 'SirVer/ultisnips'
+		Plug 'honza/vim-snippets'
 		command! UltiSnipsLoad :
 	endif
-	if !has('win32unix') && $USER != 'joshwainwright'
-		"Syntax checking for a wide range of languages
-		Plug 'scrooloose/syntastic'
-	end
+	"Syntax checking for a wide range of languages
+	Plug 'scrooloose/syntastic'
 	"Closing of brackets, tags, quotes etc.
 	"Plug 'Raimondi/delimitMate'
 	"Easy commenting/uncommenting of code.
