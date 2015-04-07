@@ -26,6 +26,7 @@ function! statusline#mode()
 	elseif mode ==# "v"  | exec 'hi User1 '.g:status_visual  | return "VISUAL"
 	elseif mode ==# "V"  | exec 'hi User1 '.g:status_visual  | return "V-LINE"
 	elseif mode ==# "" | exec 'hi User1 '.g:status_visual  | return "V-BLOCK"
+	elseif mode ==# "t"  | exec 'hi User1 '.g:status_replace | return "TERM"
 	else                 | return l:mode
 	endif
 endfunc
