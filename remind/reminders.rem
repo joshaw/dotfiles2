@@ -1,0 +1,6 @@
+include /home/JoshWainwright/.remind/seasons.rem
+include /home/JoshWainwright/.remind/ukhols.rem
+
+REM Thu MSG Write weekly report.%
+REM Fri MSG Windows Updates on BLEAK.%
+REM Mon Tue Wed Thu Fri MSG Server Checks on VALID7.%

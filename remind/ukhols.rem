@@ -1,0 +1,49 @@
+OMIT 01 Jan MSG New Year's Day (Bank Holiday)%
+REM Mon 1 May MSG May Day (Bank Holiday)%
+REM Mon 1 Jun -7 MSG Spring Bank Holiday (Whitsun)%
+REM Mon 1 Sep -7 MSG Summer Bank Holiday%
+
+OMIT 25 Dec MSG Christmas Day%
+# Boxing Day is the first weekday after Christmas
+REM Mon Tue Wed Thu Fri 26 Dec MSG Boxing Day (Bank Holiday)%
+
+# Easter stuff
+SET easter EASTERDATE(YEAR(TODAY()))
+OMIT [TRIGGER(easter-2)] MSG Good Friday (Bank Holiday)%
+REM [TRIGGER(easter)] MSG Easter Sunday%
+OMIT [TRIGGER(easter+1)] MSG Easter Monday (Bank Holiday)%
+
+# Mother's Day is defined as the 4th Sunday of Lent. Lent begins on
+# Ash Wednesday (easter-46), so the 4th Sunday is easter-21
+REM [TRIGGER(easter-21)] MSG Mother's Day%
+
+# other annual dates or holidays I want to be reminded of:
+REM 25 Jan MSG Burns Night%
+REM 14 Feb MSG Valentine's Day%
+REM 01 Mar MSG St. David's Day%
+REM 17 Mar MSG St. Patrick's Day%
+REM 21 Apr MSG The Queen's Birthday (her actual birthday)%
+REM 23 Apr MSG St. George's Day%
+REM 08 May MSG VE Day%
+REM Sun 15 Jun MSG Father's Day%
+REM 31 Oct MSG Halloween%
+REM 05 Nov MSG Bonfire Night%
+REM 11 Nov MSG Rememberance Day%
+REM 30 Nov MSG St. Andrew's Day%
+
+# Western European Summer Time definitions. I'm not sure what the
+# algorithm is for deciding these, so these are the mandated dates
+# through to 2011. See the wikipedia page for details:
+# http://en.wikipedia.org/wiki/Western_European_Summer_Time
+REM 25 Mar 2007 British Summer Time begins (clocks go forward 1 hour)%
+REM 28 Oct 2007 British Summer Time ends (clocks go back 1 hour)%
+REM 30 Mar 2008 British Summer Time begins (clocks go forward 1 hour)%
+REM 26 Oct 2008 British Summer Time ends (clocks go back 1 hour)%
+REM 29 Mar 2009 British Summer Time begins (clocks go forward 1 hour)%
+REM 25 Oct 2009 British Summer Time ends (clocks go back 1 hour)%
+REM 28 Mar 2010 British Summer Time begins (clocks go forward 1 hour)%
+REM 31 Oct 2010 British Summer Time ends (clocks go back 1 hour)%
+REM 27 Mar 2011 British Summer Time begins (clocks go forward 1 hour)%
+REM 30 Oct 2011 British Summer Time ends (clocks go back 1 hour)%
+
+REM Sun 8 Nov MSG Remembrance Sunday
