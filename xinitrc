@@ -13,7 +13,8 @@
 
 export ZSH_SHLVL_INIT=$((SHLVL))
 
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+# [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+xrdb ~/.Xresources
 
 setxkbmap gb
 setxkbmap -option caps:escape
