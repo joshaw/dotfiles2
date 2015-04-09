@@ -10,7 +10,7 @@ Work
 
 LDRA
 ----
-C:\ProgramData\LDRA\TESTBED.INI
+C:/ProgramData/LDRA/TESTBED.INI
 ~/Documents/Forms/LDRA-info/Server-Daily-Actions.md
 ~/Documents/Forms/LDRA-info/config-files.md
 
@@ -18,6 +18,7 @@ Other
 -----
 ~/Documents/Details/Expences.md
 ~/Documents/Details/books.md
+~/Documents/Details/books-read.md
 ~/Documents/Details/cars-driven.md
 ~/Documents/Details/fuel.md
 ~/Documents/Details/optical-prescriptions.md
@@ -26,7 +27,7 @@ Other
 
 <!--
 Created:  Thu 22 Jan 2015
-Modified: Wed 25 Mar 2015
+Modified: Wed 08 Apr 2015
 Author:   Josh Wainwright
 Filename: bookmarks.md
 -->
