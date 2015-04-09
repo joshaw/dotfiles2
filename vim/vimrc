@@ -306,7 +306,6 @@ set preserveindent " preserve kind of whitespace when changing indent
 
 "16 folding {{{2
 set foldtext=MyFoldText() " expression used to display the text of a closed fold
-set foldopen=all          " specifies for which commands a fold will be opened
 set foldminlines=0        " minimum number of screen lines for a fold to be closed
 set foldmethod=marker     " folding type: "manual", "indent", "expr", "marker" or "syntax"
 
