@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Thu 26 Mar 2015
+" Modified: Thu 09 Apr 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -404,19 +404,20 @@ else
 endif
 augroup vimrc_ft
 	autocmd!
-	"au FileType * exe 'setl dict+='.fnameescape($VIMRUNTIME).'/syntax/'.&filetype.'.vim'
-	au Filetype * exe 'setl dict+=$VIMHOME/spell/dicts/'.&filetype.'.dict'
-	autocmd BufEnter,BufNew *.tex setl ft=tex | source ~/.vim/ftplugin/tex.vim
-	autocmd BufEnter,BufNew *.rout,*.Rout setl ft=r
-	autocmd BufEnter,BufNew *.md setl ft=markdown
-	autocmd BufEnter,BufNew README setl ft=markdown
-	autocmd BufEnter,BufNew *.book setl ft=book
-	autocmd BufEnter,BufNew *.bible setl ft=book
-	autocmd BufEnter,BufNew three_year.txt setl ft=biblereading
-	autocmd BufEnter,BufNew times.txt setl ft=times.conf
+	"au FileType * exe 'setlocal dict+='.fnameescape($VIMRUNTIME).'/syntax/'.&filetype.'.vim'
+	au Filetype * exe 'setlocal dict+=$VIMHOME/spell/dicts/'.&filetype.'.dict'
+	autocmd BufEnter,BufNew *.tex setlocal ft=tex
+	autocmd BufEnter,BufNew *.rout,*.Rout setlocal ft=r
+	autocmd BufEnter,BufNew *.md setlocal ft=markdown
+	autocmd BufEnter,BufNew README setlocal ft=markdown
+	autocmd Filetype markdown syn match markdownOrderedListMarker "\%(\t\| \{0,4}\)\<\%(\d\+\|\a\)\.\%(\s\+\S\)\@=" contained
+	autocmd BufEnter,BufNew *.book setlocal ft=book
+	autocmd BufEnter,BufNew *.bible setlocal ft=book
+	autocmd BufEnter,BufNew three_year.txt setlocal ft=biblereading
+	autocmd BufEnter,BufNew times.txt setlocal ft=times.conf
 	" Remove spaces at the end of header lines when starting new mail in mutt.
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
-	autocmd BufNewFile,BufRead *.mail setl filetype=mail
+	autocmd BufNewFile,BufRead *.mail setlocal filetype=mail
 	autocmd Filetype netrw setlocal bufhidden=wipe
 augroup END
 
@@ -645,7 +646,7 @@ augroup vimrc_ldra
 	autocmd!
 	autocmd BufEnter,BufNew *.tcf set ft=conf
 	autocmd BufEnter,BufNew *.tct set ft=conf
-	autocmd BufEnter,BufNew */WeeklyReports/201* setl ft=markdown
+	autocmd BufEnter,BufNew */WeeklyReports/201* setlocal ft=markdown
 augroup END
 
 command! TBini :e C:\ProgramData\LDRA\TESTBED.ini
