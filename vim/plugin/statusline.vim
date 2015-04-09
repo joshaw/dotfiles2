@@ -1,3 +1,8 @@
+" Created:  Wed 16 Apr 2014
+" Modified: Thu 09 Apr 2015
+" Author:   Josh Wainwright
+" Filename: statusline.vim
+
 set ls=2 " Always show status line
 let g:last_mode=""
 
