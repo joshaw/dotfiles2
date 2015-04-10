@@ -22,7 +22,6 @@ REM 25 Jan MSG Burns Night%
 REM 14 Feb MSG Valentine's Day%
 REM 01 Mar MSG St. David's Day%
 REM 17 Mar MSG St. Patrick's Day%
-REM 21 Apr MSG The Queen's Birthday (her actual birthday)%
 REM 23 Apr MSG St. George's Day%
 REM 08 May MSG VE Day%
 REM Sun 15 Jun MSG Father's Day%
@@ -35,15 +34,12 @@ REM 30 Nov MSG St. Andrew's Day%
 # algorithm is for deciding these, so these are the mandated dates
 # through to 2011. See the wikipedia page for details:
 # http://en.wikipedia.org/wiki/Western_European_Summer_Time
-REM 25 Mar 2007 British Summer Time begins (clocks go forward 1 hour)%
-REM 28 Oct 2007 British Summer Time ends (clocks go back 1 hour)%
-REM 30 Mar 2008 British Summer Time begins (clocks go forward 1 hour)%
-REM 26 Oct 2008 British Summer Time ends (clocks go back 1 hour)%
-REM 29 Mar 2009 British Summer Time begins (clocks go forward 1 hour)%
-REM 25 Oct 2009 British Summer Time ends (clocks go back 1 hour)%
-REM 28 Mar 2010 British Summer Time begins (clocks go forward 1 hour)%
-REM 31 Oct 2010 British Summer Time ends (clocks go back 1 hour)%
-REM 27 Mar 2011 British Summer Time begins (clocks go forward 1 hour)%
-REM 30 Oct 2011 British Summer Time ends (clocks go back 1 hour)%
+REM 27 Mar 2016 British Summer Time begins (clocks go forward 1 hour)%
+REM 30 Oct 2016 British Summer Time ends (clocks go back 1 hour)%
+REM 26 Mar 2017 British Summer Time begins (clocks go forward 1 hour)%
+REM 29 Oct 2017 British Summer Time ends (clocks go back 1 hour)%
+REM 25 Mar 2018 British Summer Time begins (clocks go forward 1 hour)%
+REM 28 Oct 2018 British Summer Time ends (clocks go back 1 hour)%
+REM 28 Oct 2018 Research dates for further clock changes.%
 
 REM Sun 8 Nov MSG Remembrance Sunday

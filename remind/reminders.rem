@@ -4,3 +4,8 @@ include /home/JoshWainwright/.remind/ukhols.rem
 REM Thu MSG Write weekly report.%
 REM Fri MSG Windows Updates on BLEAK.%
 REM Mon Tue Wed Thu Fri MSG Server Checks on VALID7.%
+
+REM Mon Tue Wed Thu Fri 20 MSG Pay Day.%
+REM Mon Tue Wed Thu Fri 22 MSG Payment in - Berkley Drive.%
+REM Mon Tue Wed Thu Fri 27 MSG Rent today.%
+REM Mon Tue Wed Thu Fri 12 MSG Car payment today.%
