@@ -15,6 +15,12 @@ endif
 
 " Vim-Plug Plugins               {{{1
 "
+
+if empty(glob($VIMHOME.'autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
 let g:plug_threads = 6
 let g:plug_timeout = 20
 
@@ -29,21 +35,18 @@ if executable('git')
 	Plug 'gregsexton/gitv', {'on': 'Gitv'}
 	if has('python')
 		"Snippet management
-		Plug 'SirVer/ultisnips', {'on' : 'UltiSnipsLoad'}
-		Plug 'honza/vim-snippets', {'on' : 'UltiSnipsLoad'}
+		Plug 'SirVer/ultisnips'
+		Plug 'honza/vim-snippets'
 		command! UltiSnipsLoad :
 	endif
-	if !has('win32unix') && $USER != 'joshwainwright'
-		"Syntax checking for a wide range of languages
-		Plug 'scrooloose/syntastic'
-	end
+	"Syntax checking for a wide range of languages
+	Plug 'scrooloose/syntastic'
 	"Closing of brackets, tags, quotes etc.
-	Plug 'Raimondi/delimitMate'
+	"Plug 'Raimondi/delimitMate'
 	"Easy commenting/uncommenting of code.
 	Plug 'tpope/vim-commentary'
 	"Simple alignment of lines
-	"Plug 'tommcdo/vim-lion'
-	Plug 'junegunn/vim-easy-align'
+	Plug 'godlygeek/tabular'
 	"Multiple useful keybindings
 	Plug 'tpope/vim-unimpaired'
 	"Simple minimalist alternative to netrw
@@ -69,7 +72,6 @@ if executable('git')
 
 	"Filetypes
 	Plug 'm42e/trace32-practice.vim'
-	Plug 'tpope/vim-markdown', {'for': 'markdown'}
 	"Plug 'jamessan/vim-gnupg'
 	Plug 'tomtom/tgpg_vim'
 
@@ -168,14 +170,15 @@ endfunction " }}}
 "
 function! s:Oldfiles()
 	Verbose oldfiles
-	0d
+	0delete _
 	silent %s/\v\d+: //
 	setlocal nobuflisted
 	setlocal buftype=nofile
 	setlocal bufhidden=delete
 	setlocal noswapfile
 	setlocal nomodifiable
-	norm gg
+	normal gg
+	nnoremap <buffer> <cr> :let f=expand('<cfile>') \| pclose \| exe 'e 'f<cr>
 endfunction
 command! Oldfiles :call s:Oldfiles()
 
@@ -185,17 +188,13 @@ command! Oldfiles :call s:Oldfiles()
 filetype plugin on
 filetype indent on
 syntax on
-augroup colourscheme
-	au!
-	au VimEnter * colorscheme molokaiV
-	au VimEnter * hi! link ColorColumn CursorLine
-augroup END
+colorscheme molokaiV
 set encoding=utf-8 " character encoding used in Vim: "latin1", "utf-8"
 
 " 1 important {{{2
 
 " 2 moving around, searching and patterns {{{2
-set whichwrap+=<,>,h,l " list of flags specifying which commands wrap to another line
+set whichwrap=b,s,h,l,<,>,[,] " list of flags specifying which commands wrap to another line
 set nostartofline      " many jump commands move the cursor to the first non-blank
 set path=.,**          " list of directory names used for file searching
 set incsearch          " show match for partly typed search command
@@ -214,7 +213,7 @@ set cmdheight=1      " number of lines used for the command-line
 set lazyredraw       " don't redraw while executing macros
 set list             " show <Tab> as ^I and end-of-line as $
 set listchars=tab:·\ ,trail:▸,nbsp:#,extends:»,precedes:« " list of strings used for list mode
-augroup trailing " {{{
+augroup vimrc_trailing " {{{
 	au!
 	au InsertEnter * :set listchars-=trail:▸
 	au InsertLeave * :set listchars+=trail:▸
@@ -229,6 +228,7 @@ set hlsearch           " highlight all matches for the last used search pattern
 set cursorline         " highlight the screen line of the cursor
 if exists("&colorcolumn")
 	set colorcolumn=+1 " columns to highlight
+	hi! link ColorColumn CursorLine
 else
 	:mat ErrorMsg '\%81v.\+'
 endif
@@ -270,19 +270,20 @@ endif
 "11 printing {{{2
 
 "12 messages and info {{{2
-set terse        " add 's' flag in 'shortmess' (don't show search message)
-set showcmd      " show (partial) command keys in the status line
-set ruler        " show cursor position below each window
-set nomore       " pause listings when the screen is full
-set novisualbell " use a visual bell instead of beeping
-set noerrorbells " ring the bell for error messages
+set shortmess=aoOstT  " list of flags to make messages shorter
+silent! set shortmess+=c
+set showcmd           " show (partial) command keys in the status line
+set ruler             " show cursor position below each window
+set nomore            " pause listings when the screen is full
+set novisualbell      " use a visual bell instead of beeping
+set noerrorbells      " ring the bell for error messages
 
 "13 selecting text {{{2
 
 "14 editing text {{{2
 set textwidth=79                     " line length above which to break a line
 set wrapmargin=0                     " margin from the right in which to break a line
-set backspace=eol,start,indent       " specifies what <BS>, CTRL-W, etc. can do in Insert mode
+set backspace=indent,eol,start       " specifies what <BS>, CTRL-W, etc. can do in Insert mode
 set formatoptions=tcrqln             " list of flags that tell how automatic formatting works
 silent! set formatoptions+=j         " list of flags that tell how automatic formatting works
 set complete=.,w,b,u,k,t             " specifies how Insert mode completion works for CTRL-N and CTRL-P
@@ -290,13 +291,13 @@ set completeopt=menu                 " whether to use a popup menu for Insert mo
 set infercase                        " adjust case of a keyword completion match
 set showmatch                        " when inserting a bracket, briefly jump to its match
 set matchtime=5                      " tenth of a second to show a match for 'showmatch'
-set matchpairs+=<:>                  " list of pairs that match for the "%" command
 
 "15 tabs and indenting {{{2
 set tabstop=4      " number of spaces a <Tab> in the text stands for
 set shiftwidth=4   " number of spaces used for each step of (auto)indent
 set smarttab       " a <Tab> in an indent inserts 'shiftwidth' spaces
 set softtabstop=0  " if non-zero, number of spaces to insert for a <Tab>
+set shiftround     " round to 'shiftwidth' for "<<" and ">>"
 set noexpandtab    " expand <Tab> to spaces in Insert mode
 set autoindent     " automatically set the indent of a new line
 set smartindent    " do clever autoindenting
@@ -365,6 +366,7 @@ set encoding=utf-8 " character encoding used in Vim: "latin1", "utf-8"
 "27 various {{{2
 set virtualedit+=block " when to use virtual editing: "block", "insert" and/or "all"
 set viminfo^=!         " list that specifies what to write in the viminfo file
+set viminfo+=n$HOME/.viminfo
 
 " Make those folders if they don't already exist. " {{{
 if !isdirectory(expand(&undodir))
@@ -374,7 +376,7 @@ if !isdirectory(expand(&undodir))
 endif " }}}
 
 " go to last cursor position when opening files
-augroup line_return
+augroup vimrc_line_return
 	au!
 	autocmd BufReadPost *
 		\ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -399,25 +401,26 @@ if has('win32') || has('win32unix')
 else
 	let dictfile="/usr/share/dict/words"
 endif
-augroup ft
+augroup vimrc_ft
 	autocmd!
-	"au FileType * exe 'setl dict+='.fnameescape($VIMRUNTIME).'/syntax/'.&filetype.'.vim'
-	au Filetype * exe 'setl dict+=$VIMHOME/spell/dicts/'.&filetype.'.dict'
-	autocmd BufEnter,BufNew *.tex setl ft=tex | source ~/.vim/ftplugin/tex.vim
-	autocmd BufEnter,BufNew *.rout,*.Rout setl ft=r
-	autocmd BufEnter,BufNew *.md setl ft=markdown
-	autocmd BufEnter,BufNew README setl ft=markdown
-	autocmd BufEnter,BufNew *.book setl ft=book
-	autocmd BufEnter,BufNew *.bible setl ft=book
-	autocmd BufEnter,BufNew three_year.txt setl ft=biblereading
-	autocmd BufEnter,BufNew times.txt setl ft=times.conf
+	"au FileType * exe 'setlocal dict+='.fnameescape($VIMRUNTIME).'/syntax/'.&filetype.'.vim'
+	au Filetype * exe 'setlocal dict+=$VIMHOME/spell/dicts/'.&filetype.'.dict'
+	autocmd BufEnter,BufNew *.tex setlocal ft=tex
+	autocmd BufEnter,BufNew *.rout,*.Rout setlocal ft=r
+	autocmd BufEnter,BufNew *.md setlocal ft=markdown
+	autocmd BufEnter,BufNew README setlocal ft=markdown
+	autocmd Filetype markdown syn match markdownOrderedListMarker "\%(\t\| \{0,4}\)\<\%(\d\+\|\a\)\.\%(\s\+\S\)\@=" contained
+	autocmd BufEnter,BufNew *.book setlocal ft=book
+	autocmd BufEnter,BufNew *.bible setlocal ft=book
+	autocmd BufEnter,BufNew three_year.txt setlocal ft=biblereading
+	autocmd BufEnter,BufNew times.txt setlocal ft=times.conf
 	" Remove spaces at the end of header lines when starting new mail in mutt.
 	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
-	autocmd BufNewFile,BufRead *.mail setl filetype=mail
+	autocmd BufNewFile,BufRead *.mail setlocal filetype=mail
 	autocmd Filetype netrw setlocal bufhidden=wipe
 augroup END
 
-augroup vimp
+augroup vimrc_vimp
 	autocmd!
 	autocmd BufEnter pass.gpg set ft=mypass
 	autocmd FileType mypass set conceallevel=2
@@ -432,8 +435,8 @@ map <F1> :<C-U>e ~/.dotfiles/bookmarks.md<cr>
 map <F2> :<C-U>e ~/Documents/Details/times.txt<cr>
 
 " Save the current file and run the make program
-map <F9>   :w <bar> make<Return>
-map <S-F9> :w <bar> silent make<Return>
+map <F9>   :w <bar> make<cr><cr>
+map <S-F9> :w <bar> silent make<cr>
 
 " Smart completion on tab " {{{
 function! Smart_TabComplete()
@@ -441,7 +444,7 @@ function! Smart_TabComplete()
 		return "\<c-n>"
 	endif
 	let line = getline('.')
-	let substr = strpart(line, -1, col('.')+1)
+	let substr = strpart(line, -1, col('.'))
 	let substr = matchstr(substr, "[^ \t]*$")
 	if (strlen(substr)==0)
 		return "\<tab>"
@@ -456,14 +459,25 @@ endfunction " }}}
 inoremap <expr> <tab> Smart_TabComplete()
 inoremap <s-tab> <c-p>
 
+" Delete a buffer without affecting the split windows.
+nnoremap <leader>d :bd \| bd #<cr>
+
+" Jump to file under cursor with cr, leader cr edits a non existing file
+" Ensure quickfix and cmd windows still behave
 nnoremap <cr> gf
+nnoremap <leader><cr> :e <cfile><cr>
+augroup vimrc_cr
+	autocmd!
+	autocmd CmdwinEnter * nnoremap <CR> <CR>
+	autocmd BufReadPost quickfix nnoremap <CR> <CR>
+augroup END
 
 " Try using jk and kj as Escape in insert mode.
 inoremap jk <Esc>
 inoremap kj <Esc>
 
 " Align with easy align
-nmap gl <Plug>(EasyAlign)
+vnoremap gl :Tabularize /
 
 " Center search result
 nnoremap n nzz
@@ -499,6 +513,11 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
+nnoremap <silent> <C-Up>   :move-2<CR>==
+nnoremap <silent> <C-Down> :move+<CR>==
+xnoremap <silent> <C-Up>   :move-2<CR>gv=gv
+xnoremap <silent> <C-Down> :move'>+<CR>gv=gv
+
 " Replace selected text
 vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
@@ -526,7 +545,7 @@ nnoremap <leader>b :ls<CR>:buffer<Space>
 
 nnoremap <leader>rc :e! $MYVIMRC<CR>:setlocal autochdir<cr>
 nnoremap <leader>rd :e! $VIMHOME/plugin/display.vim<CR>
-augroup Reload_vimrc
+augroup vimrc_reload
 	autocmd!
 	autocmd BufWritePost $MYVIMRC source $MYVIMRC | echo "vimrc is sourced"
 augroup END
@@ -622,16 +641,16 @@ iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \Vacation<CR>
                        \--------<CR>
                        \- None"
-augroup ldra
+augroup vimrc_ldra
 	autocmd!
 	autocmd BufEnter,BufNew *.tcf set ft=conf
 	autocmd BufEnter,BufNew *.tct set ft=conf
-	autocmd BufEnter,BufNew */WeeklyReports/201* setl ft=markdown
+	autocmd BufEnter,BufNew */WeeklyReports/201* setlocal ft=markdown
 augroup END
 
 command! TBini :e C:\ProgramData\LDRA\TESTBED.ini
 
-nnoremap <F11> :<C-U>e ~/Documents/Details/ldra_learnt.md<cr>
+nnoremap <F11> :<C-U>e ~/Documents/Details/ldra-learnt.md<cr>
 nnoremap <F12> :EditReport<cr>
 nnoremap <S-F12> :EditReport!<cr>
 command! -nargs=* -bang EditReport :call EditReport('<bang>' == '!', 0, <f-args>)
@@ -679,6 +698,11 @@ if has("gui_running") && !exists("g:vim_started")
 	exe "set columns=" . (82+&numberwidth)
 	let g:vim_started = 1
 endif
+
+augroup vimrc_save
+	autocmd!
+	au VimResized * :wincmd =
+augroup END
 " }}}
 
 " vim: fdm=marker nowrap
