@@ -550,7 +550,9 @@ nnoremap <leader>rc :e! $MYVIMRC<CR>:setlocal autochdir<cr>
 nnoremap <leader>rd :e! $VIMHOME/plugin/display.vim<CR>
 augroup vimrc_reload
 	autocmd!
-	autocmd BufWritePost $MYVIMRC source $MYVIMRC | echo "vimrc is sourced"
+	autocmd BufWritePost $MYVIMRC source $MYVIMRC
+				\ | echo "vimrc is sourced"
+				\ | doautocmd colourscheme VimEnter %
 augroup END
 
 " Fast saving
