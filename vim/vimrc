@@ -63,11 +63,11 @@ if executable('git')
 		Plug 'istib/vifm.vim'
 	endif
 	"View man pages with vim
-	Plug 'Z1MM32M4N/vim-superman', {'on' : 'SuperMan'}
 
 	let g:plug_url_format = 'https://github.com/%s.git'
 	" Simple file manipulation
 	Plug 'joshaw/vim-eunuch'
+	Plug 'joshaw/vim-superman', {'on' : 'SuperMan'}
 	unlet! g:plug_url_format
 
 	"Filetypes
@@ -127,10 +127,7 @@ let g:buftabline_indicators = 1
 
 " Functions                      {{{1
 "
-
 " MyFoldText {{{2
-"
-
 function! MyFoldText()
 	let line = getline(v:foldstart)
 
@@ -145,42 +142,7 @@ function! MyFoldText()
 	let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
 	let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
 	return line . repeat(" ",fillcharcount) . foldedlinecount . ' '
-endfunction " }}}
-
-" Verbose {{{2
-"
-command! -range=999998 -nargs=1 -complete=command Verbose
-      \ :exe s:Verbose(<count> == 999998 ? '' : <count>, <q-args>)
-
-function! s:Verbose(level, excmd)
-  let temp = tempname()
-  let verbosefile = &verbosefile
-  call writefile([':'.a:level.'Verbose '.a:excmd], temp, 'b')
-  return
-        \ 'try|' .
-        \ 'let &verbosefile = '.string(temp).'|' .
-        \ 'silent '.a:level.'verbose exe '.string(a:excmd).'|' .
-        \ 'finally|' .
-        \ 'let &verbosefile = '.string(verbosefile).'|' .
-        \ 'endtry|' .
-        \ 'pedit '.temp.'|wincmd P|nnoremap <buffer> q :bd<CR>'
-endfunction " }}}
-
-" Oldfiles {{{2
-"
-function! s:Oldfiles()
-	Verbose oldfiles
-	0delete _
-	silent %s/\v\d+: //
-	setlocal nobuflisted
-	setlocal buftype=nofile
-	setlocal bufhidden=delete
-	setlocal noswapfile
-	setlocal nomodifiable
-	normal gg
-	nnoremap <buffer> <cr> :let f=expand('<cfile>') \| pclose \| exe 'e 'f<cr>
 endfunction
-command! Oldfiles :call s:Oldfiles()
 
 " Settings                       {{{1
 "
