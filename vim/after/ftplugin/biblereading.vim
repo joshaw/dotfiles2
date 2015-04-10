@@ -1,5 +1,5 @@
 " Created:  Fri 06 Feb 2015
-" Modified: Fri 13 Mar 2015
+" Modified: Fri 10 Apr 2015
 " Author:   Josh Wainwright
 " Filename: biblereading.vim
 
@@ -13,7 +13,7 @@ endfunction
 
 " Check line and move to next
 nnoremap <buffer> dd ^lrx
-nnoremap <buffer> <space> ^lrxn
+nnoremap <buffer> <space> ^lrx:call BR_NextReading()<cr>
 
 " Open the reading on the current line
 nnoremap <buffer> <CR> :call BR_GotoReading()<cr>
@@ -44,8 +44,8 @@ function! BR_GotoReading()
 	endif
 
 	let bibfile = "~/Documents/Church/NIV.bible"
-	let bufnum=bufnr(expand(bibfile))
-	let winnum=bufwinnr(bufnum)
+	let bufnum = bufnr(expand(bibfile))
+	let winnum = bufwinnr(bufnum)
 	if winnum == -1
 		" Make new split as usual
 		exe "vsplit " . bibfile
@@ -55,12 +55,12 @@ function! BR_GotoReading()
 	endif
 
 	let booksearch = "\\v^# ".book
-	exe "silent! /".booksearch
+	call search(booksearch, "cw")
 
 	call clearmatches()
 	let numsearch = "\\v^\\[ *(".rangestr.")\\]"
 	call matchadd("User1", numsearch)
-	exe "silent! /".numsearch
+	call search(numsearch, "cw")
 
 endfunction
 
