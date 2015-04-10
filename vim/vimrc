@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Thu 09 Apr 2015
+" Modified: Fri 10 Apr 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -188,7 +188,11 @@ command! Oldfiles :call s:Oldfiles()
 filetype plugin on
 filetype indent on
 syntax on
-colorscheme molokaiV
+augroup colourscheme
+	au!
+	au VimEnter * colorscheme molokaiV
+	au VimEnter,Colorscheme * hi! link ColorColumn CursorLine
+augroup END
 set encoding=utf-8 " character encoding used in Vim: "latin1", "utf-8"
 
 " 1 important {{{2
@@ -228,7 +232,6 @@ set hlsearch           " highlight all matches for the last used search pattern
 set cursorline         " highlight the screen line of the cursor
 if exists("&colorcolumn")
 	set colorcolumn=+1 " columns to highlight
-	hi! link ColorColumn CursorLine
 else
 	:mat ErrorMsg '\%81v.\+'
 endif
