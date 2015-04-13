@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Fri 10 Apr 2015
+" Modified: Mon 13 Apr 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -155,6 +155,7 @@ augroup colourscheme
 	au VimEnter * colorscheme molokaiV
 	au VimEnter,Colorscheme * hi! link ColorColumn CursorLine
 augroup END
+doautocmd colourscheme VimEnter %
 set encoding=utf-8 " character encoding used in Vim: "latin1", "utf-8"
 
 " 1 important {{{2
