@@ -12,6 +12,7 @@ config/dwb/default/session
 config/ranger/bookmarks
 config/ranger/history
 config/ranger/tagged
+config/ranger/colorschemes/__pycache__/
 log
 mpd/
 mpdscribble/lastfm.journal
