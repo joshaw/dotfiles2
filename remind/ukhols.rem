@@ -1,3 +1,8 @@
+# Created:  Thu 9 Apr 2015
+# Modified: Tue 14 Apr 2015
+# Author:   Josh Wainwright
+# Filename: ukhols.rem
+
 OMIT 01 Jan MSG New Year's Day (Bank Holiday)%
 REM Mon 1 May MSG May Day (Bank Holiday)%
 REM Mon 1 Jun -7 MSG Spring Bank Holiday (Whitsun)%

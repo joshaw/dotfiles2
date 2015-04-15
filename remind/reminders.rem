@@ -1,3 +1,10 @@
+# Created:  Thu 9 Apr 2015
+# Modified: Tue 14 Apr 2015
+# Author:   Josh Wainwright
+# Filename: reminders.rem
+
+REM [trigger(realtoday())] CAL #######
+
 include /home/JoshWainwright/.remind/seasons.rem
 include /home/JoshWainwright/.remind/ukhols.rem
 
@@ -9,3 +16,5 @@ REM Mon Tue Wed Thu Fri 20 MSG Pay Day.%
 REM Mon Tue Wed Thu Fri 22 MSG Payment in - Berkley Drive.%
 REM Mon Tue Wed Thu Fri 27 MSG Rent today.%
 REM Mon Tue Wed Thu Fri 12 MSG Car payment today.%
+
+REM [trigger(realtoday())] CAL #######
