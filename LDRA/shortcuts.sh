@@ -26,12 +26,12 @@ InstrumentationStrategy:INSTR
 ")
 
 # Remove any old Start Menu and Desktop Entries
-mv "$STARTMENU/Programs/*Assembler*" /tmp
+cp -r "$STARTMENU"/Programs/LDRA*Assembler* /tmp
 
-rm -r "$STARTMENU/Programs/LDRA"* 2> /dev/null || true
-find "$DESKTOPPUB" -maxdepth 1 -name "LDRA*" -delete -or -name "TB*" -delete
+rm -fr "$STARTMENU"/Programs/LDRA*
+find $DESKTOPPUB -maxdepth 1 -name "LDRA*" -delete -or -name "TB*" -delete
 
-mv "/tmp/*Assembler*" "$STARTMENU/Programs/"
+mv "/tmp/LDRA*Assembler*" "$STARTMENU/Programs/"
 
 for LANG in lang_c lang_a lang_j; do
 
@@ -44,7 +44,7 @@ for LANG in lang_c lang_a lang_j; do
 
 		SPECFOLDER="$GENFOLDER $LANGUAGE v$VERSION"
 		WORKINGDIR="$WORKAREA_DIR/$LANGUAGE/$VERSION/"
-		rm -r "$DESKTOP/$SPECFOLDER"
+		rm -fr "$DESKTOP/$SPECFOLDER"
 		mkdir -p "$DESKTOP/$SPECFOLDER"
 
 		# LDRA Toolsuite Programs
@@ -101,6 +101,7 @@ do
 	tmp=${tmp#*_}
 	LANGUAGE=${tmp%_*}
 	VERSION=${tmp##*_}
+	VERSION=v${VERSION//./}
 
 	printf "\n%s\n" "$satype"
 
@@ -109,7 +110,7 @@ do
 	LINKFILE="$DESKTOP/$SPECFOLDER/$LANGUAGE $VARIENT $VERSION"
 	TBFILE="${sapath}${satype}/LDRA${VARIENT}.exe"
 
-	rm -r "$DESKTOP/$SPECFOLDER"
+	rm -fr "$DESKTOP/$SPECFOLDER"
 	mkdir -p "$DESKTOP/$SPECFOLDER"
 
 	mkshortcut -n "$LINKFILE" -w "$WORKINGDIR" "$TBFILE"
@@ -147,5 +148,5 @@ do
 done
 
 # Remove lone files in start menu
-rm "$STARTMENU/LDRA"* 2> /dev/null || true
-rm "$STARTMENU/TB"* 2> /dev/null || true
+rm -f "$STARTMENU/LDRA"*
+rm -f "$STARTMENU/TB"*
