@@ -349,15 +349,7 @@ else
 	let dictfile="/usr/share/dict/words"
 endif
 
-augroup vimrc_vimp
-	autocmd!
-	autocmd BufEnter pass.gpg set ft=mypass
-	autocmd FileType mypass set conceallevel=2
-	autocmd FileType mypass :syntax region hideup Conceal start='|' end='$'
-	autocmd FileType mypass set colorcolumn=0
-augroup END
-
-" Keybindings                    {{{1
+" Keymappings                    {{{1
 "
 
 map <F1> :<C-U>e ~/.dotfiles/bookmarks.md<cr>
@@ -435,12 +427,15 @@ vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy/<C-R><C-R>=substitute(
   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>N
 vnoremap <silent> # :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>N
+
+nnoremap * *N
+nnoremap # #N
 
 nnoremap <silent> <C-Up>   :move-2<CR>
 nnoremap <silent> <C-Down> :move+<CR>
