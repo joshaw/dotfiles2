@@ -125,24 +125,6 @@ let g:buftabline_show       = 1
 let g:buftabline_numbers    = 1
 let g:buftabline_indicators = 1
 
-" Functions                      {{{1
-"
-" MyFoldText {{{2
-function! MyFoldText()
-	let line = getline(v:foldstart)
-
-	let nucolwidth = &fdc + &number * &numberwidth
-	let windowwidth = winwidth(0) - nucolwidth - 3
-	let foldedlinecount = v:foldend - v:foldstart
-
-	" expand tabs into spaces
-	let onetab = strpart('          ', 0, &tabstop)
-	let line = substitute(line, '\t', onetab, 'g')
-
-	let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-	let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-	return line . repeat(" ",fillcharcount) . foldedlinecount . ' '
-endfunction
 
 " Settings                       {{{1
 "
@@ -271,7 +253,6 @@ set copyindent     " copy whitespace for indenting from previous line
 set preserveindent " preserve kind of whitespace when changing indent
 
 "16 folding {{{2
-set foldtext=MyFoldText() " expression used to display the text of a closed fold
 set foldminlines=0        " minimum number of screen lines for a fold to be closed
 set foldmethod=marker     " folding type: "manual", "indent", "expr", "marker" or "syntax"
 
