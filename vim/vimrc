@@ -591,12 +591,6 @@ iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \Vacation<CR>
                        \--------<CR>
                        \- None"
-augroup vimrc_ldra
-	autocmd!
-	autocmd BufEnter,BufNew *.tcf set ft=conf
-	autocmd BufEnter,BufNew *.tct set ft=conf
-	autocmd BufEnter,BufNew */WeeklyReports/201* setlocal ft=markdown
-augroup END
 
 command! TBini :e C:\ProgramData\LDRA\TESTBED.ini
 
