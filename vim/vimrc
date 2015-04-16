@@ -605,23 +605,23 @@ nnoremap <F12> :EditReport<cr>
 nnoremap <S-F12> :EditReport!<cr>
 command! -nargs=* -bang EditReport :call EditReport('<bang>' == '!', 0, <f-args>)
 function! EditReport(monthly, retval, ...)
-	let prefix = ''
+	let suffix = ''
 	" a:0 (number of args) is >0 if a specific date is given
 	if a:0 > 0
 		let date = a:1
 		if a:monthly
-			let prefix = 'MonthlyJAW'
+			let suffix = 'MonthlyJAW'
 		endif
 	" Otherwise get the relevant current date
 	else
 		if a:monthly
 			let date = system("echo -n `date '+%Y%m'`")
-			let prefix = 'MonthlyJAW'
+			let suffix = 'MonthlyJAW'
 		else
 			let date = system("echo -n `date -d Fri '+%Y%m%d'`")
 		endif
 	endif
-	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.prefix
+	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.suffix
 	if filereadable(expand(thisweek).'.md')
 		if a:retval
 			return thisweek.".md"
