@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Mon 13 Apr 2015
+" Modified: Thu 16 Apr 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -35,9 +35,9 @@ if executable('git')
 	Plug 'gregsexton/gitv', {'on': 'Gitv'}
 	if has('python')
 		"Snippet management
-		Plug 'SirVer/ultisnips'
-		Plug 'honza/vim-snippets'
-		command! UltiSnipsLoad :
+		" Plug 'SirVer/ultisnips'
+		" Plug 'honza/vim-snippets'
+		" command! UltiSnipsLoad :
 	endif
 	"Syntax checking for a wide range of languages
 	Plug 'scrooloose/syntastic'
@@ -398,7 +398,7 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 
 " Align with easy align
-vnoremap gl :Tabularize /
+xnoremap gl :Tabularize /
 
 " Center search result
 nnoremap n nzz
@@ -416,19 +416,19 @@ nnoremap g+ :call Preserve("normal! gg=G")<CR>
 nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 
 " Don't change case when meaning to undo in visual mode
-vnoremap u <nop>
-vnoremap gu u
+xnoremap u <nop>
+xnoremap gu u
 
 nnoremap ; :
 nnoremap , ;
 
 " Search for selected text, forwards or backwards.
-vnoremap <silent> * :<C-U>
+xnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy/<C-R><C-R>=substitute(
   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>N
-vnoremap <silent> # :<C-U>
+xnoremap <silent> # :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
@@ -443,11 +443,11 @@ xnoremap <silent> <C-Up>   :move-2<CR>gv
 xnoremap <silent> <C-Down> :move'>+<CR>gv
 
 " Replace selected text
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
+xnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 " Visual increment numbers
-vnoremap <c-a> :norm <c-v><c-a><cr>gv
-vnoremap <c-x> :norm <c-v><c-x><cr>gv
+xnoremap <c-a> :norm <c-v><c-a><cr>gv
+xnoremap <c-x> :norm <c-v><c-x><cr>gv
 
 " Jump to start and end of line in insert mode
 inoremap <C-a> <esc>I
@@ -480,8 +480,8 @@ augroup END
 nnoremap <leader>w :w!<cr>
 
 " Jump to end of pasted text
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
+xnoremap <silent> y y`]
+xnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
 " System clipboard copy and paste
