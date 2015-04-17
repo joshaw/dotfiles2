@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Mon 13 Apr 2015
+" Modified: Thu 16 Apr 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -35,9 +35,9 @@ if executable('git')
 	Plug 'gregsexton/gitv', {'on': 'Gitv'}
 	if has('python')
 		"Snippet management
-		Plug 'SirVer/ultisnips'
-		Plug 'honza/vim-snippets'
-		command! UltiSnipsLoad :
+		" Plug 'SirVer/ultisnips'
+		" Plug 'honza/vim-snippets'
+		" command! UltiSnipsLoad :
 	endif
 	"Syntax checking for a wide range of languages
 	Plug 'scrooloose/syntastic'
@@ -125,24 +125,6 @@ let g:buftabline_show       = 1
 let g:buftabline_numbers    = 1
 let g:buftabline_indicators = 1
 
-" Functions                      {{{1
-"
-" MyFoldText {{{2
-function! MyFoldText()
-	let line = getline(v:foldstart)
-
-	let nucolwidth = &fdc + &number * &numberwidth
-	let windowwidth = winwidth(0) - nucolwidth - 3
-	let foldedlinecount = v:foldend - v:foldstart
-
-	" expand tabs into spaces
-	let onetab = strpart('          ', 0, &tabstop)
-	let line = substitute(line, '\t', onetab, 'g')
-
-	let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-	let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-	return line . repeat(" ",fillcharcount) . foldedlinecount . ' '
-endfunction
 
 " Settings                       {{{1
 "
@@ -271,7 +253,6 @@ set copyindent     " copy whitespace for indenting from previous line
 set preserveindent " preserve kind of whitespace when changing indent
 
 "16 folding {{{2
-set foldtext=MyFoldText() " expression used to display the text of a closed fold
 set foldminlines=0        " minimum number of screen lines for a fold to be closed
 set foldmethod=marker     " folding type: "manual", "indent", "expr", "marker" or "syntax"
 
@@ -368,15 +349,7 @@ else
 	let dictfile="/usr/share/dict/words"
 endif
 
-augroup vimrc_vimp
-	autocmd!
-	autocmd BufEnter pass.gpg set ft=mypass
-	autocmd FileType mypass set conceallevel=2
-	autocmd FileType mypass :syntax region hideup Conceal start='|' end='$'
-	autocmd FileType mypass set colorcolumn=0
-augroup END
-
-" Keybindings                    {{{1
+" Keymappings                    {{{1
 "
 
 map <F1> :<C-U>e ~/.dotfiles/bookmarks.md<cr>
@@ -425,7 +398,7 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 
 " Align with easy align
-vnoremap gl :Tabularize /
+xnoremap gl :Tabularize /
 
 " Center search result
 nnoremap n nzz
@@ -443,23 +416,26 @@ nnoremap g+ :call Preserve("normal! gg=G")<CR>
 nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 
 " Don't change case when meaning to undo in visual mode
-vnoremap u <nop>
-vnoremap gu u
+xnoremap u <nop>
+xnoremap gu u
 
 nnoremap ; :
 nnoremap , ;
 
 " Search for selected text, forwards or backwards.
-vnoremap <silent> * :<C-U>
+xnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy/<C-R><C-R>=substitute(
   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-vnoremap <silent> # :<C-U>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>N
+xnoremap <silent> # :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>N
+
+nnoremap * *N
+nnoremap # #N
 
 nnoremap <silent> <C-Up>   :move-2<CR>
 nnoremap <silent> <C-Down> :move+<CR>
@@ -467,11 +443,11 @@ xnoremap <silent> <C-Up>   :move-2<CR>gv
 xnoremap <silent> <C-Down> :move'>+<CR>gv
 
 " Replace selected text
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
+xnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 " Visual increment numbers
-vnoremap <c-a> :norm <c-v><c-a><cr>gv
-vnoremap <c-x> :norm <c-v><c-x><cr>gv
+xnoremap <c-a> :norm <c-v><c-a><cr>gv
+xnoremap <c-x> :norm <c-v><c-x><cr>gv
 
 " Jump to start and end of line in insert mode
 inoremap <C-a> <esc>I
@@ -504,8 +480,8 @@ augroup END
 nnoremap <leader>w :w!<cr>
 
 " Jump to end of pasted text
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
+xnoremap <silent> y y`]
+xnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
 " System clipboard copy and paste
@@ -591,12 +567,6 @@ iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \Vacation<CR>
                        \--------<CR>
                        \- None"
-augroup vimrc_ldra
-	autocmd!
-	autocmd BufEnter,BufNew *.tcf set ft=conf
-	autocmd BufEnter,BufNew *.tct set ft=conf
-	autocmd BufEnter,BufNew */WeeklyReports/201* setlocal ft=markdown
-augroup END
 
 command! TBini :e C:\ProgramData\LDRA\TESTBED.ini
 
@@ -605,23 +575,23 @@ nnoremap <F12> :EditReport<cr>
 nnoremap <S-F12> :EditReport!<cr>
 command! -nargs=* -bang EditReport :call EditReport('<bang>' == '!', 0, <f-args>)
 function! EditReport(monthly, retval, ...)
-	let prefix = ''
+	let suffix = ''
 	" a:0 (number of args) is >0 if a specific date is given
 	if a:0 > 0
 		let date = a:1
 		if a:monthly
-			let prefix = 'MonthlyJAW'
+			let suffix = 'MonthlyJAW'
 		endif
 	" Otherwise get the relevant current date
 	else
 		if a:monthly
 			let date = system("echo -n `date '+%Y%m'`")
-			let prefix = 'MonthlyJAW'
+			let suffix = 'MonthlyJAW'
 		else
 			let date = system("echo -n `date -d Fri '+%Y%m%d'`")
 		endif
 	endif
-	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.prefix
+	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.suffix
 	if filereadable(expand(thisweek).'.md')
 		if a:retval
 			return thisweek.".md"

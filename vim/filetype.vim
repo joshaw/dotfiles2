@@ -22,8 +22,17 @@ augroup filetypedetect
 	autocmd BufEnter,BufNew three-year.txt setlocal ft=biblereading
 	autocmd BufEnter,BufNew times.txt setlocal ft=times.conf
 	" Remove spaces at the end of header lines when starting new mail in mutt.
-	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
-	autocmd BufNewFile,BufRead *.mail setlocal filetype=mail
+	autocmd BufEnter,BufNew /tmp/*/mutt* :1,/^$/s/\s\+$//
+	autocmd BufEnter,BufNew *.mail setlocal filetype=mail
+	autocmd BufEnter,BufNew *.tcf setlocal filetype=conf
+	autocmd BufEnter,BufNew *.tct setlocal filetype=conf
 	autocmd Filetype netrw setlocal bufhidden=wipe
+augroup END
 
+augroup vimp
+	autocmd!
+	autocmd BufEnter pass.gpg setlocal ft=mypass.conf
+				\ | setlocal conceallevel=2
+				\ | syntax region hideup Conceal start='|' end='$'
+				\ | setlocal colorcolumn=0
 augroup END

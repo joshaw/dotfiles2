@@ -1,4 +1,4 @@
-function! booksreformat#BookReformatCmd()
+function! BookReformatCmd()
 	setlocal textwidth=0
 	setlocal fo=
 	let tmp   = input("Calibre export: ", "C:/tmp/jaw/Books.csv", "file")
