@@ -1,5 +1,5 @@
 " Created:  Fri 06 Feb 2015
-" Modified: Fri 10 Apr 2015
+" Modified: Tue 21 Apr 2015
 " Author:   Josh Wainwright
 " Filename: biblereading.vim
 
@@ -54,7 +54,7 @@ function! BR_GotoReading()
 		exe winnum . "wincmd w"
 	endif
 
-	let booksearch = "\\v^# ".book
+	let booksearch = "\\v^### ".book
 	call search(booksearch, "cw")
 
 	call clearmatches()
