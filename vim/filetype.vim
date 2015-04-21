@@ -26,6 +26,7 @@ augroup filetypedetect
 	autocmd BufEnter,BufNew *.mail setlocal filetype=mail
 	autocmd BufEnter,BufNew *.tcf setlocal filetype=conf
 	autocmd BufEnter,BufNew *.tct setlocal filetype=conf
+	autocmd BufEnter,BufNew *.gnu setlocal filetype=gnuplot
 	autocmd Filetype netrw setlocal bufhidden=wipe
 augroup END
 
