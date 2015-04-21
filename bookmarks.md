@@ -6,7 +6,7 @@ Work
 ~/Documents/Details/ldra-learnt.md
 ~/Clients/client-visits.md
 ~/Documents/Forms/details.md
-~/Documents/Details/times.txt
+~/Documents/Details/times/times.txt
 
 LDRA
 ----
@@ -27,7 +27,7 @@ Other
 
 <!--
 Created:  Thu 22 Jan 2015
-Modified: Wed 08 Apr 2015
+Modified: Mon 20 Apr 2015
 Author:   Josh Wainwright
 Filename: bookmarks.md
 -->
