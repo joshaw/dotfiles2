@@ -353,7 +353,7 @@ endif
 "
 
 map <F1> :<C-U>e ~/.dotfiles/bookmarks.md<cr>
-map <F2> :<C-U>e ~/Documents/Details/times.txt<cr>
+map <F2> :<C-U>e ~/Documents/Details/times/times.txt<cr>
 
 " Save the current file and run the make program
 map <F9>   :w <bar> make<cr><cr>
