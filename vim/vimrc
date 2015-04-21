@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Thu 16 Apr 2015
+" Modified: Tue 21 Apr 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -626,6 +626,8 @@ function! EditReport(monthly, retval, ...)
 		endif
 	endif
 endfunction
+
+command! FormatWikiEntry :Tabularize /\(\( \|^\)\zs|\)\|\^
 
 if has("gui_running") && !exists("g:vim_started")
 	set lines=40
