@@ -531,6 +531,20 @@ nnoremap <A-Down> :silent! let &guifont = substitute(
  \ '\=eval(submatch(0)-1)',
  \ '')<CR><CR>
 
+" Objects                        {{{2
+
+" Line object
+vnoremap il :<c-u>normal! 0vg_<cr>
+vnoremap al :<c-u>normal! 0v$<cr>
+omap il :normal vil<cr>
+omap al :normal val<cr>
+
+" Whole file object
+vnoremap if :<c-u>normal! gg0VG<cr>
+vnoremap af :<c-u>normal! gg0VG<cr>
+omap if :normal vif<cr>
+omap af :normal vaf<cr>
+
 " Abbreviations                  {{{1
 "
 
