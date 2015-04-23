@@ -27,6 +27,7 @@ let g:plug_timeout = 20
 if executable('git')
 	call plug#begin($VIMHOME.'plugged')
 
+	let g:plug_url_format = 'https://git@github.com/%s.git'
 	"Show buffers in tabline at top of window
 	Plug 'ap/vim-buftabline'
 	"Git management from withing vim
@@ -35,8 +36,8 @@ if executable('git')
 	Plug 'gregsexton/gitv', {'on': 'Gitv'}
 	if has('python')
 		"Snippet management
-		" Plug 'SirVer/ultisnips'
-		" Plug 'honza/vim-snippets'
+		"Plug 'SirVer/ultisnips'
+		"Plug 'honza/vim-snippets'
 		" command! UltiSnipsLoad :
 	endif
 	"Syntax checking for a wide range of languages
@@ -55,25 +56,22 @@ if executable('git')
 	Plug 'nishigori/increment-activator'
 	"Make f (forward) and t (to) better
 	Plug 'clever-f.vim'
-	"Rename multiple files using vim
-	Plug 'vim-scripts/renamer.vim', {'on' : 'Renamer' }
 
 	if executable('vifm')
 		"Documentation for vifm
 		Plug 'istib/vifm.vim'
 	endif
-	"View man pages with vim
 
-	let g:plug_url_format = 'https://github.com/%s.git'
 	" Simple file manipulation
 	Plug 'joshaw/vim-eunuch'
+	"View man pages with vim
 	Plug 'joshaw/vim-superman', {'on' : 'SuperMan'}
-	unlet! g:plug_url_format
 
 	"Filetypes
 	Plug 'm42e/trace32-practice.vim'
 	"Plug 'jamessan/vim-gnupg'
 	Plug 'tomtom/tgpg_vim'
+	Plug 'terryma/vim-multiple-cursors'
 
 	call plug#end()
 endif " executable(git)
