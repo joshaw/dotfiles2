@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Tue 21 Apr 2015
+" Modified: Wed 22 Apr 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -122,7 +122,6 @@ let g:clever_f_mark_cursor_color = 'Error'
 let g:buftabline_show       = 1
 let g:buftabline_numbers    = 1
 let g:buftabline_indicators = 1
-
 
 " Settings                       {{{1
 "
@@ -444,8 +443,8 @@ xnoremap <silent> <C-Down> :move'>+<CR>gv
 xnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 " Visual increment numbers
-xnoremap <c-a> :norm <c-v><c-a><cr>gv
-xnoremap <c-x> :norm <c-v><c-x><cr>gv
+xnoremap <c-a> :call BlockIncr(1)<cr>gv
+xnoremap <c-x> :call BlockIncr(-1)<cr>gv
 
 " Jump to start and end of line in insert mode
 inoremap <C-a> <esc>I

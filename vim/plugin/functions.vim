@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Fri 10 Apr 2015
+" Modified: Tue 21 Apr 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
@@ -60,6 +60,19 @@ function! Sum() range
 	call append(line("'>"), string(s:sum))
 endfunction
 command! -range -nargs=0 -bar Sum call Sum()
+
+" BlockIncr {{{1
+" Increment a blockwise selection
+function! BlockIncr(num) range
+	let l:old = @/
+	try
+		'<,'>s/\v%V-?\d+/\=(submatch(0) + a:num)/
+		call histdel('/', -1)
+	catch /E486/
+	endtry
+
+	let @/ = l:old
+endfunction
 
 " Verbose {{{1
 command! -range=999998 -nargs=1 -complete=command Verbose
