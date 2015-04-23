@@ -160,12 +160,12 @@ set cmdheight=1      " number of lines used for the command-line
 set lazyredraw       " don't redraw while executing macros
 set list             " show <Tab> as ^I and end-of-line as $
 set listchars=tab:·\ ,trail:▸,nbsp:#,extends:»,precedes:« " list of strings used for list mode
+silent! set listchars+=space:·
 augroup vimrc_trailing " {{{
 	au!
 	au InsertEnter * :set listchars-=trail:▸
 	au InsertLeave * :set listchars+=trail:▸
 augroup END " }}}
-"set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set number                 " show the line number for each line
 silent! set relativenumber " show the relative line number for each line
 
