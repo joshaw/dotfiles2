@@ -1,5 +1,5 @@
 " Created:  Sat 18 Oct 2014
-" Modified: Wed 28 Jan 2015
+" Modified: Fri 24 Apr 2015
 " Author:   Josh Wainwright
 " Filename: display.vim
 
@@ -10,7 +10,7 @@
 " Define the settings that will be changed when entering display mode.
 function! Display_mode()
 	let g:DMODE = 1
-	colorscheme github
+	colorscheme simplon
 	if has("unix")
 		set guifont=Droid\ Sans\ Mono\ 10
 	else
