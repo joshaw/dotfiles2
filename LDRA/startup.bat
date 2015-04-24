@@ -49,7 +49,7 @@ for %%x in (
 ::
 :: Run vim to log times {{{1
 ::
-"C:\Program Files (x86)\vim\vim74\gvim.exe" "C:\home\JoshWainwright\Documents\Details\times.txt"
+"C:\Program Files (x86)\vim\vim74\gvim.exe" "C:\home\JoshWainwright\Documents\Details\times\times.txt"
 ::
 :: Start Skype otherwise it won't start as the tmp files have been deleted {{{1
 ::
