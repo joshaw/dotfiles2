@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Wed 22 Apr 2015
+" Modified: Mon 27 Apr 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -41,7 +41,7 @@ if executable('git')
 		" command! UltiSnipsLoad :
 	endif
 	"Syntax checking for a wide range of languages
-	Plug 'scrooloose/syntastic'
+	"Plug 'scrooloose/syntastic'
 	"Closing of brackets, tags, quotes etc.
 	"Plug 'Raimondi/delimitMate'
 	"Easy commenting/uncommenting of code.
@@ -96,22 +96,6 @@ let g:syntastic_check_on_wq              = 0
 let g:syntastic_auto_loc_list            = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_tex_checkers             = ['chktex']
-
-"""" Molokai Theme
-let g:molokai_original = 1
-
-""" VimCompletesMe
-let g:vcm_direction = 'n'
-
-""" Supertab
-"let g:SuperTabCrMapping = 0 "Needed to allow delimitMate_expand_cr
-"let g:SuperTabDefaultCompletionType = "context"
-"let g:SuperTabContextDefaultCompletionType = "<c-n>"
-
-"""" delimitMate
-let delimitMate_jump_expansion = 0
-let delimitMate_expand_cr      = 2
-let delimitMate_expand_space   = 1
 
 """ Clever F
 let g:clever_f_smart_case        = 1
