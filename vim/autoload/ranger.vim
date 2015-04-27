@@ -1,8 +1,4 @@
-if ! executable("ranger")
-	finish
-endif
-
-function! RangerChooser()
+function! ranger#RangerChooser()
 	let temp = tempname()
 	exec 'silent !ranger --choosefiles=' . shellescape(temp)
 	if !filereadable(temp)
@@ -24,6 +20,3 @@ function! RangerChooser()
 	endfor
 	redraw!
 endfunction
-
-command! RangerChooser :call RangerChooser()
-nnoremap <leader>r :<C-U>RangerChooser<CR>

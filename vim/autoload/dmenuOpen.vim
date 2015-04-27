@@ -1,11 +1,7 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Mon 16 Feb 2015
+" Modified: Sun 26 Apr 2015
 " Author:   Josh Wainwright
 " Filename: dmenuOpen.vim
-
-if ! executable('dmenu')
-	finish
-endif
 
 " Strip the newline from the end of a string
 function! s:clean_string(str)
@@ -15,12 +11,7 @@ function! s:clean_string(str)
 endfunction
 
 " Find a file and pass it to cmd
-function! DmenuOpen(cmd, ...)
-
-	if !executable('dmenu')
-		echoerr "Cannot find dmenu."
-		finish
-	endif
+function! dmenuOpen#DmenuOpen(cmd, ...)
 
 	let l:global = a:0 > 0 ? a:1 : 0
 	let l:amhome = getcwd() == $HOME
@@ -46,7 +37,3 @@ function! DmenuOpen(cmd, ...)
 	execute a:cmd . " " . fname
 	call histadd("cmd", a:cmd . " " . fname)
 endfunction
-
-" map <c-t> :call DmenuOpen("tabe")<cr>
-noremap <c-f> :call DmenuOpen("e")<cr>
-noremap <c-b> :call DmenuOpen("e", 1)<cr>

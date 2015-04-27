@@ -1,15 +1,11 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Tue 21 Apr 2015
+" Modified: Mon 27 Apr 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
-" DiffOrig {{{1
-" View the difference between the buffer and the file the last time it was saved
-command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
-
 " GrepString {{{1
 " Set the grepprg depending on context
-function! GrepString()
+function! functions#GrepString()
 	if exists("b:git_dir") && b:git_dir != ''
 		setlocal grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color\ --ignore-case
 	elseif executable('ag')
@@ -21,23 +17,19 @@ function! GrepString()
 	endif
 endfunction
 
-" map <C-g> :grep<space><space>.<left><left>
-nnoremap <C-g> :call GrepString()<cr>:grep<space><space>.<left><left>
-
 " BufGrep {{{1
 " Search and Replace through all buffers
-function! BufGrep(search)
+function! functions#BufGrep(search)
 	echo a:search
 	cclose
 	call setqflist([])
 	silent! exe "bufdo vimgrepadd " . a:search . " %"
 	copen
 endfunction
-command! -nargs=1 BufGrep :call BufGrep(<f-args>)
 
 " Sum {{{1
 " Sum a visual selection of numbers
-function! Sum() range
+function! functions#Sum() range
 	let s:reg_save = getreg('"')
 	let s:regtype_save = getregtype('"')
 	let s:cb_save = &clipboard
@@ -59,7 +51,6 @@ function! Sum() range
 	echo "sum: " . string(s:sum)
 	call append(line("'>"), string(s:sum))
 endfunction
-command! -range -nargs=0 -bar Sum call Sum()
 
 " BlockIncr {{{1
 " Increment a blockwise selection
@@ -75,10 +66,7 @@ function! BlockIncr(num) range
 endfunction
 
 " Verbose {{{1
-command! -range=999998 -nargs=1 -complete=command Verbose
-      \ :exe s:Verbose(<count> == 999998 ? '' : <count>, <q-args>)
-
-function! s:Verbose(level, excmd)
+function! functions#Verbose(level, excmd)
   let temp = tempname()
   let verbosefile = &verbosefile
   call writefile([':'.a:level.'Verbose '.a:excmd], temp, 'b')
@@ -93,8 +81,7 @@ function! s:Verbose(level, excmd)
 endfunction
 
 " Oldfiles {{{1
-"
-function! s:Oldfiles()
+function! functions#Oldfiles()
 	Verbose oldfiles
 	0delete _
 	silent %s/\v\d+: //
@@ -106,4 +93,3 @@ function! s:Oldfiles()
 	normal gg
 	nnoremap <buffer> <cr> :let f=expand('<cfile>') \| pclose \| exe 'e 'f<cr>
 endfunction
-command! Oldfiles :call s:Oldfiles()

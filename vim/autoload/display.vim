@@ -1,5 +1,5 @@
 " Created:  Sat 18 Oct 2014
-" Modified: Fri 24 Apr 2015
+" Modified: Sun 26 Apr 2015
 " Author:   Josh Wainwright
 " Filename: display.vim
 
@@ -8,7 +8,7 @@
 " keybinding and the state is saved across restarts if &viminfo includes !.
 
 " Define the settings that will be changed when entering display mode.
-function! Display_mode()
+function! s:display_mode()
 	let g:DMODE = 1
 	colorscheme simplon
 	if has("unix")
@@ -25,30 +25,24 @@ function! Display_mode()
 endfunction
 
 " Switch back to normal mode by re-sourcing the vimrc file.
-function! No_display_mode()
+function! s:no_display_mode()
 	unlet g:DMODE
 	source $MYVIMRC
 	let &statusline=g:statusline_store
 endfunction
 
 " Toggle display mode.
-function! Switch_display_mode()
+function! display#Switch_display_mode()
 	if exists("g:DMODE")
-		call No_display_mode()
+		call s:no_display_mode()
 	else
-		call Display_mode()
+		call s:display_mode()
 	endif
 endfunction
 
 " When starting, check to see if DMODE exists from a previous session.
-function! Display_mode_start()
+function! display#Display_mode_start()
 	if exists("g:DMODE")
-		call Display_mode()
+		call s:display_mode()
 	endif
 endfunction
-
-augroup DisplayMode
-	autocmd VimEnter,BufEnter * call Display_mode_start()
-augroup END
-
-nnoremap <silent> <F5> :<C-u>call Switch_display_mode()<CR>
