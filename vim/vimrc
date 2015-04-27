@@ -383,50 +383,7 @@ iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \- None"
 
 command! TBini :e C:\ProgramData\LDRA\TESTBED.ini
-
 nnoremap <F11> :<C-U>e ~/Documents/Details/ldra-learnt.md<cr>
-nnoremap <F12> :EditReport<cr>
-nnoremap <S-F12> :EditReport!<cr>
-command! -nargs=* -bang EditReport :call EditReport('<bang>' == '!', 0, <f-args>)
-function! EditReport(monthly, retval, ...)
-	let suffix = ''
-	" a:0 (number of args) is >0 if a specific date is given
-	if a:0 > 0
-		let date = a:1
-		if a:monthly
-			let suffix = 'MonthlyJAW'
-		endif
-	" Otherwise get the relevant current date
-	else
-		if a:monthly
-			let date = system("echo -n `date '+%Y%m'`")
-			let suffix = 'MonthlyJAW'
-		else
-			let date = system("echo -n `date -d Fri '+%Y%m%d'`")
-		endif
-	endif
-	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.suffix
-	if filereadable(expand(thisweek).'.md')
-		if a:retval
-			return thisweek.".md"
-		else
-			exec "edit ".thisweek.".md"
-		endif
-	elseif filereadable(expand(thisweek).'.txt')
-		if a:retval
-			return thisweek.".txt"
-		else
-			exec "edit ".thisweek.".txt"
-		endif
-	else
-		if a:retval
-			echoerr "Report file for ".thisweek." not found."
-		else
-			exec "edit ".thisweek . ".md | normal iWeeklyr"
-		endif
-	endif
-endfunction
-
 command! FormatWikiEntry :Tabularize /\(\( \|^\)\zs|\)\|\^
 
 if has("gui_running") && !exists("g:vim_started")

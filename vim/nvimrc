@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Fri 10 Apr 2015
+" Modified: Mon 27 Apr 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -27,6 +27,7 @@ let g:plug_timeout = 20
 if executable('git')
 	call plug#begin($VIMHOME.'plugged')
 
+	let g:plug_url_format = 'https://git@github.com/%s.git'
 	"Show buffers in tabline at top of window
 	Plug 'ap/vim-buftabline'
 	"Git management from withing vim
@@ -35,12 +36,12 @@ if executable('git')
 	Plug 'gregsexton/gitv', {'on': 'Gitv'}
 	if has('python')
 		"Snippet management
-		Plug 'SirVer/ultisnips'
-		Plug 'honza/vim-snippets'
-		command! UltiSnipsLoad :
+		"Plug 'SirVer/ultisnips'
+		"Plug 'honza/vim-snippets'
+		" command! UltiSnipsLoad :
 	endif
 	"Syntax checking for a wide range of languages
-	Plug 'scrooloose/syntastic'
+	"Plug 'scrooloose/syntastic'
 	"Closing of brackets, tags, quotes etc.
 	"Plug 'Raimondi/delimitMate'
 	"Easy commenting/uncommenting of code.
@@ -55,25 +56,22 @@ if executable('git')
 	Plug 'nishigori/increment-activator'
 	"Make f (forward) and t (to) better
 	Plug 'clever-f.vim'
-	"Rename multiple files using vim
-	Plug 'vim-scripts/renamer.vim', {'on' : 'Renamer' }
 
 	if executable('vifm')
 		"Documentation for vifm
 		Plug 'istib/vifm.vim'
 	endif
-	"View man pages with vim
-	Plug 'Z1MM32M4N/vim-superman', {'on' : 'SuperMan'}
 
-	let g:plug_url_format = 'https://github.com/%s.git'
 	" Simple file manipulation
 	Plug 'joshaw/vim-eunuch'
-	unlet! g:plug_url_format
+	"View man pages with vim
+	Plug 'joshaw/vim-superman', {'on' : 'SuperMan'}
 
 	"Filetypes
 	Plug 'm42e/trace32-practice.vim'
 	"Plug 'jamessan/vim-gnupg'
 	Plug 'tomtom/tgpg_vim'
+	Plug 'terryma/vim-multiple-cursors'
 
 	call plug#end()
 endif " executable(git)
@@ -99,22 +97,6 @@ let g:syntastic_auto_loc_list            = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_tex_checkers             = ['chktex']
 
-"""" Molokai Theme
-let g:molokai_original = 1
-
-""" VimCompletesMe
-let g:vcm_direction = 'n'
-
-""" Supertab
-"let g:SuperTabCrMapping = 0 "Needed to allow delimitMate_expand_cr
-"let g:SuperTabDefaultCompletionType = "context"
-"let g:SuperTabContextDefaultCompletionType = "<c-n>"
-
-"""" delimitMate
-let delimitMate_jump_expansion = 0
-let delimitMate_expand_cr      = 2
-let delimitMate_expand_space   = 1
-
 """ Clever F
 let g:clever_f_smart_case        = 1
 let g:clever_f_mark_cursor       = 1
@@ -124,63 +106,6 @@ let g:clever_f_mark_cursor_color = 'Error'
 let g:buftabline_show       = 1
 let g:buftabline_numbers    = 1
 let g:buftabline_indicators = 1
-
-" Functions                      {{{1
-"
-
-" MyFoldText {{{2
-"
-
-function! MyFoldText()
-	let line = getline(v:foldstart)
-
-	let nucolwidth = &fdc + &number * &numberwidth
-	let windowwidth = winwidth(0) - nucolwidth - 3
-	let foldedlinecount = v:foldend - v:foldstart
-
-	" expand tabs into spaces
-	let onetab = strpart('          ', 0, &tabstop)
-	let line = substitute(line, '\t', onetab, 'g')
-
-	let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-	let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-	return line . repeat(" ",fillcharcount) . foldedlinecount . ' '
-endfunction " }}}
-
-" Verbose {{{2
-"
-command! -range=999998 -nargs=1 -complete=command Verbose
-      \ :exe s:Verbose(<count> == 999998 ? '' : <count>, <q-args>)
-
-function! s:Verbose(level, excmd)
-  let temp = tempname()
-  let verbosefile = &verbosefile
-  call writefile([':'.a:level.'Verbose '.a:excmd], temp, 'b')
-  return
-        \ 'try|' .
-        \ 'let &verbosefile = '.string(temp).'|' .
-        \ 'silent '.a:level.'verbose exe '.string(a:excmd).'|' .
-        \ 'finally|' .
-        \ 'let &verbosefile = '.string(verbosefile).'|' .
-        \ 'endtry|' .
-        \ 'pedit '.temp.'|wincmd P|nnoremap <buffer> q :bd<CR>'
-endfunction " }}}
-
-" Oldfiles {{{2
-"
-function! s:Oldfiles()
-	Verbose oldfiles
-	0delete _
-	silent %s/\v\d+: //
-	setlocal nobuflisted
-	setlocal buftype=nofile
-	setlocal bufhidden=delete
-	setlocal noswapfile
-	setlocal nomodifiable
-	normal gg
-	nnoremap <buffer> <cr> :let f=expand('<cfile>') \| pclose \| exe 'e 'f<cr>
-endfunction
-command! Oldfiles :call s:Oldfiles()
 
 " Settings                       {{{1
 "
@@ -193,6 +118,7 @@ augroup colourscheme
 	au VimEnter * colorscheme molokaiV
 	au VimEnter,Colorscheme * hi! link ColorColumn CursorLine
 augroup END
+doautocmd colourscheme VimEnter %
 set encoding=utf-8 " character encoding used in Vim: "latin1", "utf-8"
 
 " 1 important {{{2
@@ -217,12 +143,12 @@ set cmdheight=1      " number of lines used for the command-line
 set lazyredraw       " don't redraw while executing macros
 set list             " show <Tab> as ^I and end-of-line as $
 set listchars=tab:·\ ,trail:▸,nbsp:#,extends:»,precedes:« " list of strings used for list mode
+silent! set listchars+=space:·
 augroup vimrc_trailing " {{{
 	au!
 	au InsertEnter * :set listchars-=trail:▸
 	au InsertLeave * :set listchars+=trail:▸
 augroup END " }}}
-"set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set number                 " show the line number for each line
 silent! set relativenumber " show the relative line number for each line
 
@@ -308,7 +234,6 @@ set copyindent     " copy whitespace for indenting from previous line
 set preserveindent " preserve kind of whitespace when changing indent
 
 "16 folding {{{2
-set foldtext=MyFoldText() " expression used to display the text of a closed fold
 set foldminlines=0        " minimum number of screen lines for a fold to be closed
 set foldmethod=marker     " folding type: "manual", "indent", "expr", "marker" or "syntax"
 
@@ -404,209 +329,21 @@ if has('win32') || has('win32unix')
 else
 	let dictfile="/usr/share/dict/words"
 endif
-augroup vimrc_ft
-	autocmd!
-	"au FileType * exe 'setlocal dict+='.fnameescape($VIMRUNTIME).'/syntax/'.&filetype.'.vim'
-	au Filetype * exe 'setlocal dict+=$VIMHOME/spell/dicts/'.&filetype.'.dict'
-	autocmd BufEnter,BufNew *.tex setlocal ft=tex
-	autocmd BufEnter,BufNew *.rout,*.Rout setlocal ft=r
-	autocmd BufEnter,BufNew *.md setlocal ft=markdown
-	autocmd BufEnter,BufNew README setlocal ft=markdown
-	autocmd Filetype markdown syn match markdownOrderedListMarker "\%(\t\| \{0,4}\)\<\%(\d\+\|\a\)\.\%(\s\+\S\)\@=" contained
-	autocmd BufEnter,BufNew *.book setlocal ft=book
-	autocmd BufEnter,BufNew *.bible setlocal ft=book
-	autocmd BufEnter,BufNew three_year.txt setlocal ft=biblereading
-	autocmd BufEnter,BufNew times.txt setlocal ft=times.conf
-	" Remove spaces at the end of header lines when starting new mail in mutt.
-	autocmd BufReadPost /tmp/*/mutt* :1,/^$/s/\s\+$//
-	autocmd BufNewFile,BufRead *.mail setlocal filetype=mail
-	autocmd Filetype netrw setlocal bufhidden=wipe
-augroup END
 
-augroup vimrc_vimp
-	autocmd!
-	autocmd BufEnter pass.gpg set ft=mypass
-	autocmd FileType mypass set conceallevel=2
-	autocmd FileType mypass :syntax region hideup Conceal start='|' end='$'
-	autocmd FileType mypass set colorcolumn=0
-augroup END
 
-" Keybindings                    {{{1
-"
+" Objects                        {{{2
 
-map <F1> :<C-U>e ~/.dotfiles/bookmarks.md<cr>
-map <F2> :<C-U>e ~/Documents/Details/times.txt<cr>
+" Line object
+vnoremap il :<c-u>normal! 0vg_<cr>
+vnoremap al :<c-u>normal! 0v$<cr>
+omap il :normal vil<cr>
+omap al :normal val<cr>
 
-" Save the current file and run the make program
-map <F9>   :w <bar> make<cr><cr>
-map <S-F9> :w <bar> silent make<cr>
-
-" Smart completion on tab " {{{
-function! Smart_TabComplete()
-	if pumvisible()
-		return "\<c-n>"
-	endif
-	let line = getline('.')
-	let substr = strpart(line, -1, col('.'))
-	let substr = matchstr(substr, "[^ \t]*$")
-	if (strlen(substr)==0)
-		return "\<tab>"
-	endif
-	let has_slash = match(substr, '\/\|\\') != -1
-	if (has_slash)
-		return "\<c-x>\<c-f>"
-	else
-		return "\<c-n>"
-	endif
-endfunction " }}}
-inoremap <expr> <tab> Smart_TabComplete()
-inoremap <s-tab> <c-p>
-
-" Delete a buffer without affecting the split windows.
-nnoremap <leader>d :bd \| bd #<cr>
-
-" Jump to file under cursor with cr, leader cr edits a non existing file
-" Ensure quickfix and cmd windows still behave
-nnoremap <cr> gf
-nnoremap <leader><cr> :e <cfile><cr>
-augroup vimrc_cr
-	autocmd!
-	autocmd CmdwinEnter * nnoremap <CR> <CR>
-	autocmd BufReadPost quickfix nnoremap <CR> <CR>
-augroup END
-
-" Try using jk and kj as Escape in insert mode.
-inoremap jk <Esc>
-inoremap kj <Esc>
-
-" Align with easy align
-vnoremap gl :Tabularize /
-
-" Center search result
-nnoremap n nzz
-nnoremap N Nzz
-
-nnoremap D dg_
-nnoremap Y yg_
-
-nnoremap Q :normal! n.<CR>
-
-" Re-indent whole file
-nnoremap g+ :call Preserve("normal! gg=G")<CR>
-
-" Split lines, oposite of join, J
-nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-
-" Don't change case when meaning to undo in visual mode
-vnoremap u <nop>
-vnoremap gu u
-
-nnoremap ; :
-nnoremap , ;
-
-" Search for selected text, forwards or backwards.
-vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-
-nnoremap <silent> <C-Up>   :move-2<CR>==
-nnoremap <silent> <C-Down> :move+<CR>==
-xnoremap <silent> <C-Up>   :move-2<CR>gv=gv
-xnoremap <silent> <C-Down> :move'>+<CR>gv=gv
-
-" Replace selected text
-vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
-
-" Visual increment numbers
-vnoremap <c-a> :norm <c-v><c-a><cr>gv
-vnoremap <c-x> :norm <c-v><c-x><cr>gv
-
-" Jump to start and end of line in insert mode
-inoremap <C-a> <esc>I
-inoremap <C-e> <esc>A
-cnoremap <c-a> <home>
-cnoremap <c-e> <end>
-
-" Switch to other splits faster
-nnoremap <c-l> <c-w>l
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-
-" Insert current filename
-inoremap <leader>fn <C-R>=expand("%:t")<CR>
-
-" List all buffers and quickly switch to selected
-nnoremap <leader>b :ls<CR>:buffer<Space>
-
-nnoremap <leader>rc :e! $MYVIMRC<CR>:setlocal autochdir<cr>
-nnoremap <leader>rd :e! $VIMHOME/plugin/display.vim<CR>
-augroup vimrc_reload
-	autocmd!
-	autocmd BufWritePost $MYVIMRC source $MYVIMRC | echo "vimrc is sourced"
-augroup END
-
-" Fast saving
-nnoremap <leader>w :w!<cr>
-
-" Jump to end of pasted text
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]
-
-" System clipboard copy and paste
-nmap <leader>v "+gp
-imap <leader>v <esc>"+gpa
-nmap <leader>ay mhggVG"+y`hzz
-
-" Unset highlighting of a search
-nmap <silent> <leader>q :nohlsearch<CR><Plug>(clever-f-reset)
-
-" Shift-leftmouse searches for the word clicked on without moving
-nnoremap <S-LeftMouse> <LeftMouse>:<C-U>let @/='\<'.expand("<cword>").'\>'<CR>:set hlsearch<CR>
-
-"           Scroll Wheel = Up/Down 4 lines
-"   Shift + Scroll Wheel = Up/Down 1 page
-" Control + Scroll Wheel = Up/Down 1/2 page
-noremap  <ScrollWheelUp>    6<C-Y>
-noremap  <ScrollWheelDown>  6<C-E>
-noremap  <S-ScrollWheelUp>   <C-Y>
-noremap  <S-ScrollWheelDown> <C-E>
-noremap  <C-ScrollWheelUp>   <C-U>
-noremap  <C-ScrollWheelDown> <C-D>
-inoremap <ScrollWheelUp>     <C-O>4<C-Y>
-inoremap <ScrollWheelDown>   <C-O>4<C-E>
-inoremap <S-ScrollWheelUp>   <C-O><C-Y>
-inoremap <S-ScrollWheelDown> <C-O><C-E>
-inoremap <C-ScrollWheelUp>   <C-O><C-U>
-inoremap <C-ScrollWheelDown> <C-O><C-D>
-map      <MiddleMouse>       <LeftMouse>
-imap     <MiddleMouse>       <LeftMouse>
-map      <2-MiddleMouse>     <LeftMouse>
-imap     <2-MiddleMouse>     <LeftMouse>
-map      <3-MiddleMouse>     <LeftMouse>
-imap     <3-MiddleMouse>     <LeftMouse>
-map      <4-MiddleMouse>     <LeftMouse>
-imap     <4-MiddleMouse>     <LeftMouse>
-
-" Increase and decrease font size in gui using Alt-Up and Alt-Down
-nnoremap <A-Up> :silent! let &guifont = substitute(
- \ &guifont,
- \ ':h\zs\d\+',
- \ '\=eval(submatch(0)+1)',
- \ '')<CR><CR>
-nnoremap <A-Down> :silent! let &guifont = substitute(
- \ &guifont,
- \ ':h\zs\d\+',
- \ '\=eval(submatch(0)-1)',
- \ '')<CR><CR>
+" Whole file object
+vnoremap if :<c-u>normal! gg0VG<cr>
+vnoremap af :<c-u>normal! gg0VG<cr>
+omap if :normal vif<cr>
+omap af :normal vaf<cr>
 
 " Abbreviations                  {{{1
 "
@@ -644,57 +381,10 @@ iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \Vacation<CR>
                        \--------<CR>
                        \- None"
-augroup vimrc_ldra
-	autocmd!
-	autocmd BufEnter,BufNew *.tcf set ft=conf
-	autocmd BufEnter,BufNew *.tct set ft=conf
-	autocmd BufEnter,BufNew */WeeklyReports/201* setlocal ft=markdown
-augroup END
 
 command! TBini :e C:\ProgramData\LDRA\TESTBED.ini
-
 nnoremap <F11> :<C-U>e ~/Documents/Details/ldra-learnt.md<cr>
-nnoremap <F12> :EditReport<cr>
-nnoremap <S-F12> :EditReport!<cr>
-command! -nargs=* -bang EditReport :call EditReport('<bang>' == '!', 0, <f-args>)
-function! EditReport(monthly, retval, ...)
-	let prefix = ''
-	" a:0 (number of args) is >0 if a specific date is given
-	if a:0 > 0
-		let date = a:1
-		if a:monthly
-			let prefix = 'MonthlyJAW'
-		endif
-	" Otherwise get the relevant current date
-	else
-		if a:monthly
-			let date = system("echo -n `date '+%Y%m'`")
-			let prefix = 'MonthlyJAW'
-		else
-			let date = system("echo -n `date -d Fri '+%Y%m%d'`")
-		endif
-	endif
-	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.prefix
-	if filereadable(expand(thisweek).'.md')
-		if a:retval
-			return thisweek.".md"
-		else
-			exec "edit ".thisweek.".md"
-		endif
-	elseif filereadable(expand(thisweek).'.txt')
-		if a:retval
-			return thisweek.".txt"
-		else
-			exec "edit ".thisweek.".txt"
-		endif
-	else
-		if a:retval
-			echoerr "Report file for ".thisweek." not found."
-		else
-			exec "edit ".thisweek . ".md | normal iWeeklyr"
-		endif
-	endif
-endfunction
+command! FormatWikiEntry :Tabularize /\(\( \|^\)\zs|\)\|\^
 
 if has("gui_running") && !exists("g:vim_started")
 	set lines=40
