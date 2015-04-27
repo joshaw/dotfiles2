@@ -54,7 +54,7 @@ endfunction
 
 " BlockIncr {{{1
 " Increment a blockwise selection
-function! BlockIncr(num) range
+function! functions#BlockIncr(num) range
 	let l:old = @/
 	try
 		'<,'>s/\v%V-?\d+/\=(submatch(0) + a:num)/
