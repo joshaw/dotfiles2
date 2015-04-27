@@ -60,3 +60,4 @@ highlight WildMenu cterm=underline,reverse ctermfg=white ctermbg=black
 highlight CmdLine cterm=none ctermfg=white ctermbg=black
 highlight ErrorMsg cterm=none ctermfg=red ctermbg=black
 highlight Border cterm=none ctermfg=black ctermbg=white
+highlight JobLine cterm=bold,reverse ctermfg=black ctermbg=white
