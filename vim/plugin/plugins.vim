@@ -78,3 +78,7 @@ command! -range=999998 -nargs=1 -complete=command Verbose
 "
 " Oldfiles
 command! -nargs=0 Oldfiles :call functions#Oldfiles()
+
+"
+" IPtables
+command! IPtables :call functions#Iptables()
