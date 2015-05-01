@@ -8,13 +8,6 @@
 command! BookReformatCmd call booksreformat#BookReformatCmd()
 
 "
-" Ranger
-if executable("ranger")
-	command! RangerChooser :call ranger#RangerChooser()
-	nnoremap <leader>r :<C-U>RangerChooser<CR>
-endif
-
-"
 " Timestamp
 autocmd! BufWritePre * :call timestamp#Timestamp()
 
