@@ -3,17 +3,23 @@
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
-" Keymappings
-"
+" Function Keys {{{1
 
 map <F1> :<C-U>e ~/.dotfiles/bookmarks.md<cr>
 map <F2> :<C-U>e ~/Documents/Details/times/times.txt<cr>
+
+" Switch to display mode
+nnoremap <silent> <F5> :<C-u>call display#Switch_display_mode()<CR>
 
 " Save the current file and run the make program
 map <F9>   :w <bar> make<cr><cr>
 map <S-F9> :w <bar> silent make<cr>
 
-" Smart completion on tab " {{{
+" Edit weekly reports
+nnoremap <F12> :EditReport<cr>
+nnoremap <S-F12> :EditReport!<cr>
+
+" Smart completion on tab {{{
 function! Smart_TabComplete()
 	if pumvisible()
 		return "\<c-n>"
@@ -34,9 +40,6 @@ endfunction " }}}
 inoremap <expr> <tab> Smart_TabComplete()
 inoremap <s-tab> <c-p>
 
-" Delete a buffer without affecting the split windows.
-nnoremap <leader>d :bd \| bd #<cr>
-
 " Jump to file under cursor with cr, leader cr edits a non existing file
 " Ensure quickfix and cmd windows still behave
 nnoremap <cr> gf
@@ -46,6 +49,8 @@ augroup vimrc_cr
 	autocmd CmdwinEnter * nnoremap <CR> <CR>
 	autocmd BufReadPost quickfix nnoremap <CR> <CR>
 augroup END
+
+" Letters {{{1
 
 " Try using jk and kj as Escape in insert mode.
 inoremap jk <Esc>
@@ -58,6 +63,7 @@ xnoremap gl :Tabularize /
 nnoremap n nzz
 nnoremap N Nzz
 
+" D and Y behave like C
 nnoremap D dg_
 nnoremap Y yg_
 
@@ -72,6 +78,16 @@ nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 " Don't change case when meaning to undo in visual mode
 xnoremap u <nop>
 xnoremap gu u
+
+" Jump to end of pasted text
+xnoremap <silent> y y`]
+xnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
+" Auto_highlight
+nnoremap z/ :if autohighlight#AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
+
+" Symbols {{{1
 
 nnoremap ; :
 nnoremap , ;
@@ -91,6 +107,8 @@ xnoremap <silent> # :<C-U>
 nnoremap * *N
 nnoremap # #N
 
+" Control Keys {{{1
+
 nnoremap <silent> <C-Up>   :move-2<CR>
 nnoremap <silent> <C-Down> :move+<CR>
 xnoremap <silent> <C-Up>   :move-2<CR>gv
@@ -98,6 +116,13 @@ xnoremap <silent> <C-Down> :move'>+<CR>gv
 
 " Replace selected text
 xnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
+
+" Dmenu Open
+if ! executable('dmenu')
+	" map <c-t> :call DmenuOpen("tabe")<cr>
+	noremap <c-f> :call dmenuOpen#DmenuOpen("e")<cr>
+	noremap <c-b> :call dmenuOpen#DmenuOpen("e", 1)<cr>
+endif
 
 " Visual increment numbers
 xnoremap <c-a> :call functions#BlockIncr(1)<cr>gv
@@ -118,6 +143,9 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
+"
+" Leaders {{{1
+
 " Insert current filename
 inoremap <leader>fn <C-R>=expand("%:t")<CR>
 
@@ -135,11 +163,6 @@ augroup END
 
 " Fast saving
 nnoremap <leader>w :w!<cr>
-
-" Jump to end of pasted text
-xnoremap <silent> y y`]
-xnoremap <silent> p p`]
-nnoremap <silent> p p`]
 
 " System clipboard copy and paste
 nmap <leader>v "+gp
@@ -175,6 +198,8 @@ map      <3-MiddleMouse>     <LeftMouse>
 imap     <3-MiddleMouse>     <LeftMouse>
 map      <4-MiddleMouse>     <LeftMouse>
 imap     <4-MiddleMouse>     <LeftMouse>
+
+" Alt Keys {{{1
 
 " Increase and decrease font size in gui using Alt-Up and Alt-Down
 nnoremap <A-Up> :silent! let &guifont = substitute(

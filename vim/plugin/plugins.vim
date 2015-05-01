@@ -1,5 +1,5 @@
 " Created:  Sun 26 Apr 2015
-" Modified: Mon 27 Apr 2015
+" Modified: Thu 30 Apr 2015
 " Author:   Josh Wainwright
 " Filename: plugins.vim
 
@@ -31,8 +31,6 @@ augroup DisplayMode
 	autocmd VimEnter * call display#Display_mode_start()
 augroup END
 
-nnoremap <silent> <F5> :<C-u>call display#Switch_display_mode()<CR>
-
 "
 " Super Retab
 command! -nargs=? -range=% Space2Tab call super_retab#IndentConvert(<line1>,<line2>,0,<q-args>)
@@ -40,22 +38,8 @@ command! -nargs=? -range=% Tab2Space call super_retab#IndentConvert(<line1>,<lin
 command! -nargs=? -range=% RetabIndent call super_retab#IndentConvert(<line1>,<line2>,&et,<q-args>)
 
 "
-" Dmenu Open
-if ! executable('dmenu')
-	" map <c-t> :call DmenuOpen("tabe")<cr>
-	noremap <c-f> :call dmenuOpen#DmenuOpen("e")<cr>
-	noremap <c-b> :call dmenuOpen#DmenuOpen("e", 1)<cr>
-endif
-
-"
 " Weekly Report
 command! -nargs=* -bang EditReport :call weeklyr#EditReport('<bang>' == '!', 0, <f-args>)
-nnoremap <F12> :EditReport<cr>
-nnoremap <S-F12> :EditReport!<cr>
-
-"
-" Auto_highlight
-nnoremap z/ :if autohighlight#AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 
 "
 " DiffOrig
