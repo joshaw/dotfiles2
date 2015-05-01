@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Mon 27 Apr 2015
+" Modified: Fri 01 May 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -398,4 +398,10 @@ augroup vimrc_save
 augroup END
 " }}}
 
+" Keybindings
+"         ~/.vim/plugins/keybindings.vim
+"         ~\vimfiles\plugin\keybindings.vim
+" Functions
+"         ~/.vim/autoload/functions.vim
+"         ~\vimfiles\autoload\functions.vim
 " vim: fdm=marker nowrap
