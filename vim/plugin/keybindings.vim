@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Mon 27 Apr 2015
+" Modified: Fri 01 May 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -142,6 +142,11 @@ nnoremap <c-l> <c-w>l
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
+
+" Quick save and exit
+inoremap <c-s> <c-O>:update<cr>
+nnoremap <c-s> :update<cr>
+nnoremap <c-Q> :q<cr>
 
 "
 " Leaders {{{1
