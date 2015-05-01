@@ -42,8 +42,6 @@ if executable('git')
 	endif
 	"Syntax checking for a wide range of languages
 	"Plug 'scrooloose/syntastic'
-	"Closing of brackets, tags, quotes etc.
-	"Plug 'Raimondi/delimitMate'
 	"Easy commenting/uncommenting of code.
 	Plug 'tpope/vim-commentary'
 	"Simple alignment of lines
@@ -56,6 +54,8 @@ if executable('git')
 	Plug 'nishigori/increment-activator'
 	"Make f (forward) and t (to) better
 	Plug 'clever-f.vim'
+	"Code structure overview
+	Plug 'majutsushi/tagbar'
 
 	if executable('vifm')
 		"Documentation for vifm
