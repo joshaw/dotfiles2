@@ -45,7 +45,7 @@ function! booksreformat#BookReformatCmd()
 	e!
 
 	" Insert into books file
-	let books = "~/Documents/Details/books.md"
+	let books = "~/Documents/Details/books/books.md"
 	exe "e ".books
 
 	" Starting from the top, delete everything between the next two empty 

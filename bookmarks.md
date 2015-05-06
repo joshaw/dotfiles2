@@ -17,8 +17,8 @@ C:/ProgramData/LDRA/TESTBED.INI
 Other
 -----
 ~/Documents/Details/Expences.md
-~/Documents/Details/books.md
-~/Documents/Details/books-read.md
+~/Documents/Details/books/books.md
+~/Documents/Details/books/books-read.md
 ~/Documents/Details/cars-driven.md
 ~/Documents/Details/fuel.md
 ~/Documents/Details/optical-prescriptions.md
@@ -27,7 +27,7 @@ Other
 
 <!--
 Created:  Thu 22 Jan 2015
-Modified: Mon 20 Apr 2015
+Modified: Sun 03 May 2015
 Author:   Josh Wainwright
 Filename: bookmarks.md
 -->
