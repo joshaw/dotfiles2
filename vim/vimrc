@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Fri 01 May 2015
+" Modified: Fri 08 May 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -78,8 +78,6 @@ endif " executable(git)
 
 " Plugin Settings                {{{1
 "
-
-filetype off
 
 """" UltiSnips Plugin
 set runtimepath^=$HOME/.vim/custom
@@ -294,6 +292,7 @@ set encoding=utf-8 " character encoding used in Vim: "latin1", "utf-8"
 "27 various {{{2
 set virtualedit+=block " when to use virtual editing: "block", "insert" and/or "all"
 set viminfo^=!         " list that specifies what to write in the viminfo file
+set viminfo+='2000
 set viminfo+=n$HOME/.viminfo
 
 " Make those folders if they don't already exist. " {{{
