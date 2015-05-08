@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Tue 17 Mar 2015
+" Modified: Fri 08 May 2015
 " Author:   Josh Wainwright
 " Filename: markdown.vim
 
@@ -34,14 +34,19 @@ function! Goto_file_num()
 	let curr = getline('.') + 0
 	if curr > 0 && stridx(getline('.'), " ")+1 > col('.')
 
-		" Match item heading
-		"       1 Something
-		"       -----------
-		" Or toc entry
-		"       1. Something
+		" Match item heading: 1 Something
+		"                     -----------
+		" Or toc entry:       1. Something
 		call search('\v^'.curr.'.*\n---|^'.curr.'\. ', "ws")
 		normal zt
 	else
 		silent! normal gf
 	endif
 endfunction
+
+" Markdown headings
+nnoremap <leader>1 m`yypVr=``
+nnoremap <leader>2 m`yypVr-``
+nnoremap <leader>3 m`^i### <esc>``4l
+nnoremap <leader>4 m`^i#### <esc>``5l
+nnoremap <leader>5 m`^i##### <esc>``6l
