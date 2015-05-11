@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Mon 02 Mar 2015
+" Modified: Fri 08 May 2015
 " Author:   Josh Wainwright
 " Filename: mail.vim
 
@@ -35,7 +35,7 @@ if getline(1) =~ "JAW Weekly Report"
 	%s/%dts%/\=strftime("%d\/%m\/%Y")/ge
 	if ! search("=============")
 		call append(line('$'), ["",""])
-		exec "$r ".EditReport(0,1)
+		exec "$r ".weeklyr#EditReport(0,1)
 		/-=-=-=/,$normal gwG
 	endif
 endif
