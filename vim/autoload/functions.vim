@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Fri 01 May 2015
+" Modified: Wed 13 May 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
@@ -95,22 +95,19 @@ function! functions#Oldfiles()
 endfunction
 
 " iptables {{{1
-function! functions#Iptables()
-	silent setlocal filetype=sh
-	silent! %s/\v(.*: )(.* times?)/\2  \1/
-	silent! %s/: \?$//
-	silent! %s/ (.*$//
-	silent! %s/times\? *//
-	silent! %sort! n
-	while line('$') > 1
-		let s:lastnum = substitute(getline('$'), " .*$", "", "")
-		if s:lastnum < 15
-			$delete _
-		else
-			break
-		endif
-	endwhile
-	silent! %s/\v^(\d+) (.*)$/\2 #\1/
-	silent! %s#^#/sbin/iptables -I INPUT [] -s #
-	silent! %s/\v (#\d+)$/ -j DROP \1/
+function! functions#IPtablesSort()
+	silent setlocal filetype=ipfilter
+	1
+	call search('^\[.\{-}:.\{-}\]')
+	mark a
+	$
+	call search('DROP', 'b')
+	mark b
+	'a;'bs/^\v(\[\d+:\d+]) (-A.*DROP *)$/\2\1/
+	'a;'b!sort -Vu
+	$
+	call search('DROP', 'b')
+	mark b
+	'a;'bs/^\v(-A.*DROP) (\[\d+:\d+\])$/\2 \1 /
+	delmarks a b
 endfunction
