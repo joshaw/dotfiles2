@@ -1,5 +1,5 @@
 " Created:  Sun 26 Apr 2015
-" Modified: Wed 13 May 2015
+" Modified: Mon 18 May 2015
 " Author:   Josh Wainwright
 " Filename: plugins.vim
 
@@ -52,7 +52,7 @@ command! -nargs=1 BufGrep :call functions#BufGrep(<f-args>)
 
 "
 " Sum
-command! -range -nargs=0 -bar Sum call function#Sum()
+command! -range -nargs=0 -bar Sum call functions#Sum()
 
 "
 " Verbose
