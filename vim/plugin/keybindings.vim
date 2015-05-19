@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Fri 01 May 2015
+" Modified: Mon 18 May 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -205,6 +205,17 @@ map      <4-MiddleMouse>     <LeftMouse>
 imap     <4-MiddleMouse>     <LeftMouse>
 
 " Alt Keys {{{1
+
+if has('nvim')
+	tnoremap <A-h> <C-\><C-n><C-w>h
+	tnoremap <A-j> <C-\><C-n><C-w>j
+	tnoremap <A-k> <C-\><C-n><C-w>k
+	tnoremap <A-l> <C-\><C-n><C-w>l
+	nnoremap <A-h> <C-w>h
+	nnoremap <A-j> <C-w>j
+	nnoremap <A-k> <C-w>k
+	nnoremap <A-l> <C-w>l
+endif
 
 " Increase and decrease font size in gui using Alt-Up and Alt-Down
 nnoremap <A-Up> :silent! let &guifont = substitute(
