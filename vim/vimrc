@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Wed 13 May 2015
+" Modified: Tue 19 May 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -56,6 +56,7 @@ if executable('git')
 	Plug 'clever-f.vim'
 	"Code structure overview
 	Plug 'majutsushi/tagbar'
+	Plug 'sjl/gundo.vim'
 
 	if executable('vifm')
 		"Documentation for vifm
@@ -130,12 +131,13 @@ set magic              " change the way backslashes are used in search patterns
 set ignorecase         " ignore case when using a search pattern
 set smartcase          " override 'ignorecase' when pattern has upper case characters
 
-" 4 displaying text {{{2
-
 " 3 tags {{{2
+
+" 4 displaying text {{{2
 set scrolloff=5      " minimal number of columns to keep left and right of the cursor
 set wrap             " margin from the right in which to break a line
 set linebreak        " wrap long lines at a character in 'breakat'
+set display=lastline,uhex " show lastline even if it doesn't fit
 set fillchars=vert:│ " characters to use for the status line, folds and filler lines
 set cmdheight=1      " number of lines used for the command-line
 set lazyredraw       " don't redraw while executing macros
@@ -217,6 +219,7 @@ set completeopt=menu                 " whether to use a popup menu for Insert mo
 set infercase                        " adjust case of a keyword completion match
 set showmatch                        " when inserting a bracket, briefly jump to its match
 set matchtime=5                      " tenth of a second to show a match for 'showmatch'
+set nrformats=hex                    " number formats recognized for CTRL-A and CTRL-X commands
 
 "15 tabs and indenting {{{2
 set tabstop=4      " number of spaces a <Tab> in the text stands for
