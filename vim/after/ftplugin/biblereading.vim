@@ -1,5 +1,5 @@
 " Created:  Fri 06 Feb 2015
-" Modified: Tue 21 Apr 2015
+" Modified: Wed 20 May 2015
 " Author:   Josh Wainwright
 " Filename: biblereading.vim
 
@@ -26,14 +26,15 @@ function! BR_GotoReading()
 
 	" For cases like 2Tim, make the regex match 2.*Tim
 	if book =~ '\v^\d.+'
-		let book = book[:0].".*".book[1:]
+		let book = book[:0] . "*" . book[1:]
 	endif
+	let book = "*" . book . "*"
 
-	" Turn multiple chapters into OR pattern
+	" Turn multiple chapters into OR pattern, eg 4,6,8
 	let nums = join(numbers, "|")
 	let nums = substitute(nums, ",", "", "g")
 
-	" Is the passage a range of chapters, like 23-25
+	" Turn range of chapters into OR pattern, eg 23-25
 	let rangestr = matchstr(nums, '\v\d+-\d+')
 	if rangestr == ""
 		let rangestr = nums
@@ -43,19 +44,23 @@ function! BR_GotoReading()
 		let rangestr = join(range, "|")
 	endif
 
-	let bibfile = "~/Documents/Church/NIV.bible"
-	let bufnum = bufnr(expand(bibfile))
-	let winnum = bufwinnr(bufnum)
+	" let bibfile = "~/Documents/Church/NIV.bible"
+	let bibfile = glob('~/Documents/Church/esv/' . book ,0,0)
+	" let bufnum = bufnr(expand(bibfile))
+	" let winnum = bufwinnr(bufnum)
+	let winnum = -1
+	windo if &ft == "book" | let winnum = bufwinnr("%") | endif
 	if winnum == -1
 		" Make new split as usual
 		exe "vsplit " . bibfile
 	else
 		" Jump to existing split
 		exe winnum . "wincmd w"
+		exe "edit " bibfile
 	endif
 
-	let booksearch = "\\v^### ".book
-	call search(booksearch, "cw")
+	" let booksearch = "\\v^### ".book
+	" call search(booksearch, "cw")
 
 	call clearmatches()
 	let numsearch = "\\v^\\[ *(".rangestr.")\\]"
