@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Wed 13 May 2015
+" Modified: Thu 21 May 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -16,11 +16,6 @@ endif
 " Vim-Plug Plugins               {{{1
 "
 
-if empty(glob($VIMHOME.'autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
-endif
 let g:plug_threads = 6
 let g:plug_timeout = 20
 
@@ -34,16 +29,14 @@ if executable('git')
 	Plug 'tpope/vim-fugitive'
 	"Gitk for vim
 	Plug 'gregsexton/gitv', {'on': 'Gitv'}
-	if has('python')
-		"Snippet management
-		"Plug 'SirVer/ultisnips'
-		"Plug 'honza/vim-snippets'
-		" command! UltiSnipsLoad :
-	endif
+	" if has('python')
+	" 	"Snippet management
+	" 	Plug 'SirVer/ultisnips'
+	" 	Plug 'honza/vim-snippets'
+	" 	 command! UltiSnipsLoad :
+	" endif
 	"Syntax checking for a wide range of languages
 	"Plug 'scrooloose/syntastic'
-	"Closing of brackets, tags, quotes etc.
-	"Plug 'Raimondi/delimitMate'
 	"Easy commenting/uncommenting of code.
 	Plug 'tpope/vim-commentary'
 	"Simple alignment of lines
@@ -56,12 +49,9 @@ if executable('git')
 	Plug 'nishigori/increment-activator'
 	"Make f (forward) and t (to) better
 	Plug 'clever-f.vim'
-
-	if executable('vifm')
-		"Documentation for vifm
-		Plug 'istib/vifm.vim'
-	endif
-
+	"Code structure overview
+	Plug 'majutsushi/tagbar'
+	Plug 'sjl/gundo.vim'
 	" Simple file manipulation
 	Plug 'joshaw/vim-eunuch'
 	"View man pages with vim
@@ -78,8 +68,6 @@ endif " executable(git)
 
 " Plugin Settings                {{{1
 "
-
-filetype off
 
 """" UltiSnips Plugin
 set runtimepath^=$HOME/.vim/custom
@@ -132,12 +120,13 @@ set magic              " change the way backslashes are used in search patterns
 set ignorecase         " ignore case when using a search pattern
 set smartcase          " override 'ignorecase' when pattern has upper case characters
 
-" 4 displaying text {{{2
-
 " 3 tags {{{2
+
+" 4 displaying text {{{2
 set scrolloff=5      " minimal number of columns to keep left and right of the cursor
 set wrap             " margin from the right in which to break a line
 set linebreak        " wrap long lines at a character in 'breakat'
+set display=lastline,uhex " show lastline even if it doesn't fit
 set fillchars=vert:│ " characters to use for the status line, folds and filler lines
 set cmdheight=1      " number of lines used for the command-line
 set lazyredraw       " don't redraw while executing macros
@@ -182,7 +171,8 @@ set mousehide " hide the mouse pointer while typing
 if has('win32') || has('win32unix')
 	set guifont=Consolas:h11:cANSI " list of font names to be used in the GUI
 else
-	set guifont=Droid\ Sans\ Mono\ 10
+	set guifont=Droid\ Sans\ Mono\ 10,DeJaVu\ Sans\ Mono\ 10
+	set guifont=
 endif
 if has("gui_running")
 	" set guioptions+=P "allow visual selection to be accessed in system paste
@@ -219,6 +209,7 @@ set completeopt=menu                 " whether to use a popup menu for Insert mo
 set infercase                        " adjust case of a keyword completion match
 set showmatch                        " when inserting a bracket, briefly jump to its match
 set matchtime=5                      " tenth of a second to show a match for 'showmatch'
+set nrformats=hex                    " number formats recognized for CTRL-A and CTRL-X commands
 
 "15 tabs and indenting {{{2
 set tabstop=4      " number of spaces a <Tab> in the text stands for
@@ -293,14 +284,8 @@ set encoding=utf-8 " character encoding used in Vim: "latin1", "utf-8"
 "27 various {{{2
 set virtualedit+=block " when to use virtual editing: "block", "insert" and/or "all"
 set viminfo^=!         " list that specifies what to write in the viminfo file
+set viminfo+='2000
 set viminfo+=n$HOME/.viminfo
-
-" Make those folders if they don't already exist. " {{{
-if !isdirectory(expand(&undodir))
-    call mkdir(expand(&undodir), "p")
-    call mkdir(expand(&backupdir), "p")
-    call mkdir(expand(&directory), "p")
-endif " }}}
 
 " go to last cursor position when opening files
 augroup vimrc_line_return
@@ -396,4 +381,10 @@ augroup vimrc_save
 augroup END
 " }}}
 
+" Keybindings
+"         ~/.vim/plugins/keybindings.vim
+"         ~\vimfiles\plugin\keybindings.vim
+" Functions
+"         ~/.vim/autoload/functions.vim
+"         ~\vimfiles\autoload\functions.vim
 " vim: fdm=marker nowrap

@@ -1,5 +1,5 @@
 " Created:  Sat 18 Oct 2014
-" Modified: Sun 26 Apr 2015
+" Modified: Wed 20 May 2015
 " Author:   Josh Wainwright
 " Filename: display.vim
 
@@ -11,11 +11,6 @@
 function! s:display_mode()
 	let g:DMODE = 1
 	colorscheme simplon
-	if has("unix")
-		set guifont=Droid\ Sans\ Mono\ 10
-	else
-		set guifont=Consolas:h13:cANSI
-	endif
 	set guioptions+=mbr
 	set colorcolumn=0
 	set nolist

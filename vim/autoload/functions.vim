@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Wed 13 May 2015
+" Modified: Thu 21 May 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
@@ -71,13 +71,13 @@ function! functions#Verbose(level, excmd)
   let verbosefile = &verbosefile
   call writefile([':'.a:level.'Verbose '.a:excmd], temp, 'b')
   return
-        \ 'try|' .
-        \ 'let &verbosefile = '.string(temp).'|' .
-        \ 'silent '.a:level.'verbose exe '.string(a:excmd).'|' .
-        \ 'finally|' .
-        \ 'let &verbosefile = '.string(verbosefile).'|' .
-        \ 'endtry|' .
-        \ 'pedit '.temp.'|wincmd P|nnoremap <buffer> q :bd<CR>'
+		\ 'try|' .
+		\ 'let &verbosefile = '.string(temp).'|' .
+		\ 'silent '.a:level.'verbose exe '.string(a:excmd).'|' .
+		\ 'finally|' .
+		\ 'let &verbosefile = '.string(verbosefile).'|' .
+		\ 'endtry|' .
+		\ 'pedit '.temp.'|wincmd P|nnoremap <buffer> q :bd<CR>'
 endfunction
 
 " Oldfiles {{{1
@@ -110,4 +110,18 @@ function! functions#IPtablesSort()
 	mark b
 	'a;'bs/^\v(-A.*DROP) (\[\d+:\d+\])$/\2 \1 /
 	delmarks a b
+endfunction
+
+" FirstTimeRun()
+function! functions#FirstTimeRun()
+	" Install vim-plug
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+	" Make folders if they don't already exist.
+	if !isdirectory(expand(&undodir))
+		call mkdir(expand(&undodir), "p")
+		call mkdir(expand(&backupdir), "p")
+		call mkdir(expand(&directory), "p")
+	endif
 endfunction

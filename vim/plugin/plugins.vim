@@ -1,5 +1,5 @@
 " Created:  Sun 26 Apr 2015
-" Modified: Mon 18 May 2015
+" Modified: Thu 21 May 2015
 " Author:   Josh Wainwright
 " Filename: plugins.vim
 
@@ -66,3 +66,7 @@ command! -nargs=0 Oldfiles :call functions#Oldfiles()
 "
 " IPtables
 command! IPtablesSort :call functions#IPtablesSort()
+
+"
+" FirstTimeRun
+command! FirstTimeRun :call functions#FirstTimeRun()

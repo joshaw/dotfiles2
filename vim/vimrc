@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Tue 19 May 2015
+" Modified: Tue 26 May 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -16,11 +16,9 @@ endif
 " Vim-Plug Plugins               {{{1
 "
 
-if empty(glob($VIMHOME.'autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+command! InstallPlug silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
-endif
+
 let g:plug_threads = 6
 let g:plug_timeout = 20
 
@@ -34,12 +32,12 @@ if executable('git')
 	Plug 'tpope/vim-fugitive'
 	"Gitk for vim
 	Plug 'gregsexton/gitv', {'on': 'Gitv'}
-	if has('python')
-		"Snippet management
-		"Plug 'SirVer/ultisnips'
-		"Plug 'honza/vim-snippets'
-		" command! UltiSnipsLoad :
-	endif
+	" if has('python')
+	" 	"Snippet management
+	" 	Plug 'SirVer/ultisnips'
+	" 	Plug 'honza/vim-snippets'
+	" 	 command! UltiSnipsLoad :
+	" endif
 	"Syntax checking for a wide range of languages
 	"Plug 'scrooloose/syntastic'
 	"Easy commenting/uncommenting of code.
@@ -57,12 +55,6 @@ if executable('git')
 	"Code structure overview
 	Plug 'majutsushi/tagbar'
 	Plug 'sjl/gundo.vim'
-
-	if executable('vifm')
-		"Documentation for vifm
-		Plug 'istib/vifm.vim'
-	endif
-
 	" Simple file manipulation
 	Plug 'joshaw/vim-eunuch'
 	"View man pages with vim
@@ -182,7 +174,8 @@ set mousehide " hide the mouse pointer while typing
 if has('win32') || has('win32unix')
 	set guifont=Consolas:h11:cANSI " list of font names to be used in the GUI
 else
-	set guifont=Droid\ Sans\ Mono\ 10
+	set guifont=Droid\ Sans\ Mono\ 10,DeJaVu\ Sans\ Mono\ 10
+	set guifont=
 endif
 if has("gui_running")
 	" set guioptions+=P "allow visual selection to be accessed in system paste
@@ -297,13 +290,6 @@ set viminfo^=!         " list that specifies what to write in the viminfo file
 set viminfo+='2000
 set viminfo+=n$HOME/.viminfo
 
-" Make those folders if they don't already exist. " {{{
-if !isdirectory(expand(&undodir))
-    call mkdir(expand(&undodir), "p")
-    call mkdir(expand(&backupdir), "p")
-    call mkdir(expand(&directory), "p")
-endif " }}}
-
 " go to last cursor position when opening files
 augroup vimrc_line_return
 	au!
@@ -330,7 +316,6 @@ if has('win32') || has('win32unix')
 else
 	let dictfile="/usr/share/dict/words"
 endif
-
 
 " Objects                        {{{2
 
