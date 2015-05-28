@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Mon 18 May 2015
+" Modified: Tue 26 May 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -49,6 +49,10 @@ augroup vimrc_cr
 	autocmd CmdwinEnter * nnoremap <CR> <CR>
 	autocmd BufReadPost quickfix nnoremap <CR> <CR>
 augroup END
+
+" Jump to start/end of file
+nnoremap <s-home> gg
+nnoremap <s-end> G
 
 " Letters {{{1
 
