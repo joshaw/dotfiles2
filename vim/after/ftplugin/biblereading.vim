@@ -1,5 +1,5 @@
 " Created:  Fri 06 Feb 2015
-" Modified: Wed 20 May 2015
+" Modified: Tue 26 May 2015
 " Author:   Josh Wainwright
 " Filename: biblereading.vim
 
@@ -45,7 +45,7 @@ function! BR_GotoReading()
 	endif
 
 	" let bibfile = "~/Documents/Church/NIV.bible"
-	let bibfile = glob('~/Documents/Church/esv/' . book ,0,0)
+	let bibfile = glob('~/Documents/Church/niv/' . book ,0,0)
 	" let bufnum = bufnr(expand(bibfile))
 	" let winnum = bufwinnr(bufnum)
 	let winnum = -1
