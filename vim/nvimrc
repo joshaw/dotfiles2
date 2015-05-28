@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Thu 21 May 2015
+" Modified: Tue 26 May 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -383,7 +383,7 @@ augroup END
 
 " Keybindings
 "         ~/.vim/plugins/keybindings.vim
-"         ~\vimfiles\plugin\keybindings.vim
+"         ~\\vimfiles\\plugin\\keybindings.vim
 " Functions
 "         ~/.vim/autoload/functions.vim
 "         ~\vimfiles\autoload\functions.vim

@@ -386,7 +386,7 @@ augroup END
 
 " Keybindings
 "         ~/.vim/plugins/keybindings.vim
-"         ~\vimfiles\plugin\keybindings.vim
+"         ~\\vimfiles\\plugin\\keybindings.vim
 " Functions
 "         ~/.vim/autoload/functions.vim
 "         ~\vimfiles\autoload\functions.vim
