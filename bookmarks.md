@@ -26,10 +26,11 @@ Other
 ~/Documents/Details/optical-prescriptions.md
 ~/Documents/Church/three-year.txt
 ~/Documents/Church/NIV.bible
+~/Documents/Details/holidays/
 
 <!--
 Created:  Thu 22 Jan 2015
-Modified: Thu 14 May 2015
+Modified: Thu 28 May 2015
 Author:   Josh Wainwright
 Filename: bookmarks.md
 -->
