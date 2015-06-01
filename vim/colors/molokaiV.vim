@@ -94,7 +94,7 @@ hi Repeat guifg=#F92672 guibg=NONE guisp=NONE gui=bold ctermfg=197 ctermbg=NONE 
 hi Directory guifg=#A6E22E guibg=NONE guisp=NONE gui=bold ctermfg=112 ctermbg=NONE cterm=bold
 hi Structure guifg=#66D9EF guibg=NONE guisp=NONE gui=NONE ctermfg=81 ctermbg=NONE cterm=NONE
 hi Macro guifg=#C4BE89 guibg=NONE guisp=NONE gui=italic ctermfg=186 ctermbg=NONE cterm=NONE
-hi Underlined guifg=#808080 guibg=NONE guisp=NONE gui=underline ctermfg=8 ctermbg=NONE cterm=underline
+hi Underlined guifg=#75715E guibg=NONE guisp=NONE gui=underline ctermfg=101 ctermbg=NONE cterm=underline
 hi DiffAdd guifg=NONE guibg=#13354A guisp=#13354A gui=NONE ctermfg=NONE ctermbg=23 cterm=NONE
 "hi TabLine -- no settings --
 hi cursorim guifg=#000000 guibg=#837e91 guisp=#837e91 gui=NONE ctermfg=NONE ctermbg=246 cterm=NONE
