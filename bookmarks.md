@@ -19,18 +19,18 @@ C:/ProgramData/LDRA/TESTBED.INI
 Other
 -----
 ~/Documents/Details/Expences.md
+~/Documents/Details/books/books-all.md
 ~/Documents/Details/books/books.md
-~/Documents/Details/books/books-read.md
 ~/Documents/Details/cars-driven.md
-~/Documents/Details/fuel.md
+~/Documents/Details/fuel/fuel.md
 ~/Documents/Details/optical-prescriptions.md
 ~/Documents/Church/three-year.txt
 ~/Documents/Church/NIV.bible
-~/Documents/Details/holidays/
+~/Documents/Details/holidays/index.md
 
 <!--
 Created:  Thu 22 Jan 2015
-Modified: Thu 28 May 2015
+Modified: Tue 02 Jun 2015
 Author:   Josh Wainwright
 Filename: bookmarks.md
 -->
