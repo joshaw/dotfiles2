@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Tue 02 Jun 2015
+" Modified: Thu 04 Jun 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -58,8 +58,6 @@ if executable('git')
 	Plug 'joshaw/vim-eunuch'
 	"View man pages with vim
 	Plug 'joshaw/vim-superman', {'on' : 'SuperMan'}
-	Plug 'terryma/vim-multiple-cursors'
-	Plug 'vimwiki/vimwiki'
 
 	"Filetypes
 	Plug 'm42e/trace32-practice.vim'
