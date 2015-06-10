@@ -26,6 +26,7 @@ vifm/vimfiles
 vim/autoload/plug.vim
 vim/autoload/plug.vim.old
 vim/bundle/
+vim/custom/spell/*
 vim/plugged/
 vim/undodir/
 vim/tmp/
