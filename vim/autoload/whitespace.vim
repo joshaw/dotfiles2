@@ -1,10 +1,13 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Sun 26 Apr 2015
+" Modified: Wed 10 Jun 2015
 " Author:   Josh Wainwright
 " Filename: whitespace.vim
 "
 " Remove trailing spaces
 function! whitespace#StripTrailing(firstl, lastl) range
+	if &ft == 'markdown' || &ft == 'dat'
+		return
+	endif
 	let save_cursor = getpos(".")
 	let old_query = getreg("/")
 	execute printf('%d,%ds/\s\+$//e', a:firstl, a:lastl)
