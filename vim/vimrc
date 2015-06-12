@@ -6,10 +6,9 @@
 " Paths and Variables            {{{1
 "
 
-if has('unix')
-	let $VIMHOME=$HOME.'/.vim/'
-elseif has('win32')
-	let $VIMHOME=$HOME.'/vimfiles/'
+let g:vimhome = '~/.vim/'
+if has('win32')
+	let g:vimhome = $HOME.'/vimfiles/'
 	let $PATH=$PATH.';C:/cygwin/bin/;'.$HOME.'/Tools/'
 endif
 
@@ -236,12 +235,14 @@ set fileformats=unix,dos,mac        " list of file formats to look for when edit
 set endofline                       " last line in the file has an end-of-line
 set writebackup                     " write a backup file before overwriting a file
 set backup                          " write a backup file before overwriting a file
-set backupdir=$VIMHOME/tmp/backup// " list of directories to put backup files in
+" list of directories to put backup files in
+exe 'set backupdir='.g:vimhome.'tmp/backup//'
 "set autowrite                       " automatically write a file when leaving a modified buffer
 set autoread                        " automatically read a file when it was modified outside of Vim
 
 "20 the swap file {{{2
-set directory=$VIMHOME/tmp/directory// " list of directories for the swap file
+" list of directories for the swap file
+exe 'set directory='.g:vimhome.'/tmp/directory//'
 set noswapfile                         " use a swap file for this buffer
 
 "21 command line editing {{{2
@@ -253,7 +254,8 @@ set wildmode=full               " specifies how command line completion works
 set wildmenu                    " command-line completion shows a list of matches
 set cmdwinheight=3              " height of the command-line window
 set undofile                    " automatically save and restore undo history
-set undodir=$VIMHOME/tmp/undo// " list of directories for undo files
+" list of directories for undo files
+exe 'set undodir='.g:vimhome.'/tmp/undo//'
 
 "22 executing external commands {{{2
 if has('win32') && executable('zsh')
