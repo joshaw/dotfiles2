@@ -1,14 +1,14 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Wed 13 May 2015
+" Modified: Wed 10 Jun 2015
 " Author:   Josh Wainwright
 " Filename: markdown.vim
 
 exe 'setlocal dict+='.dictfile
 
-"Automatic formating of paragraphs whenever text is inserted
+" Automatic formating of paragraphs whenever text is inserted
 setlocal formatoptions=tcqwan1
 
-setlocal makeprg=md.sh\ %
+setlocal makeprg=md.py\ %
 
 function! FormatTable()
 	let w = winsaveview()
