@@ -91,4 +91,3 @@ endfunction
 
 command! KeyCountPrint :call s:keycountprint()
 command! KeyCountEdit :call s:keycountedit()
-command! KeyCountWrite :call s:keycountwrite()
