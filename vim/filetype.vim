@@ -1,5 +1,5 @@
 " Created:  Thu 07 Aug 2014
-" Modified: Tue 02 Jun 2015
+" Modified: Thu 11 Jun 2015
 " Author:   Josh Wainwright
 " Filename: filetype.vim
 
@@ -12,20 +12,21 @@ augroup filetypedetect
 				\ if search("^SERVER ", "n") > 0 && search("^VENDOR ", "n") > 0 |
 				\     setfiletype flexlm |
 				\ endif
-	autocmd BufEnter,BufNew *.tex setf tex
-	autocmd BufEnter,BufNew *.rout,*.Rout setf r
-	autocmd BufEnter,BufNew *.md setf markdown
-	autocmd BufEnter,BufNew README setf markdown
-	autocmd BufEnter,BufNew *.book setf book
-	autocmd BufEnter,BufNew *.bible setf book
-	autocmd BufEnter,BufNew three-year.txt setf biblereading
-	autocmd BufEnter,BufNew times.txt setf times.conf
+	autocmd BufRead,BufNewFile *.tex setf tex
+	autocmd BufRead,BufNewFile *.rout,*.Rout setf r
+	autocmd BufRead,BufNewFile *.md setf markdown
+	autocmd BufRead,BufNewFile README setf markdown
+	autocmd BufRead,BufNewFile *.book setf book
+	autocmd BufRead,BufNewFile *.bible setf book
+	autocmd BufRead,BufNewFile three-year.txt setf biblereading
+	autocmd BufRead,BufNewFile times.txt setf times.conf
 	" Remove spaces at the end of header lines when starting new mail in mutt.
-	autocmd BufEnter,BufNew /tmp/*/mutt* :1,/^$/s/\s\+$//
-	autocmd BufEnter,BufNew *.mail setf mail
-	autocmd BufEnter,BufNew *.tcf setf conf
-	autocmd BufEnter,BufNew *.tct setf conf
-	autocmd BufEnter,BufNew *.gnu setf gnuplot
+	autocmd BufRead,BufNewFile /tmp/*/mutt* :1,/^$/s/\s\+$//
+	autocmd BufRead,BufNewFile *.mail setf mail
+	autocmd BufRead,BufNewFile *.tcf setf conf
+	autocmd BufRead,BufNewFile *.tct setf conf
+	autocmd BufRead,BufNewFile *.gnu setf gnuplot
+	autocmd BufRead,BufNewFile *.cmm set filetype=practice
 augroup END
 
 augroup filetypesettings
