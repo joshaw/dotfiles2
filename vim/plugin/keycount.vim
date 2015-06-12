@@ -25,6 +25,10 @@ function! s:keycountinit()
 endfunction
 
 function! s:keycountwrite()
+	if !exists('g:VimKeyCountLetters') || g:VimKeyCount == 0
+		return
+	endif
+	
 	let l:today = strftime('%Y%m%d')
 	let l:lastline = readfile(g:KeyCountFile)[-1]
 	let l:last = split(l:lastline, '|')
@@ -51,16 +55,16 @@ function! s:keycountwrite()
 endfunction
 
 function! s:keycountincrement(char)
-	let g:VimKeyCount += 1
+	silent! let g:VimKeyCount += 1
 	let l:low = tolower(a:char)
 	if l:low =~? '\a\|\d'
-		let g:VimKeyCountLetters[l:low] += 1
+		silent! let g:VimKeyCountLetters[l:low] += 1
 	elseif a:char == ' '
-		let g:VimKeyCountLetters['~space'] += 1
+		silent! let g:VimKeyCountLetters['~space'] += 1
 	elseif a:char =~? '\t'
-		let g:VimKeyCountLetters['~tab'] += 1
+		silent! let g:VimKeyCountLetters['~tab'] += 1
 	else
-		let g:VimKeyCountLetters['~punc'] += 1
+		silent! let g:VimKeyCountLetters['~punc'] += 1
 	endif
 endfunction
 
