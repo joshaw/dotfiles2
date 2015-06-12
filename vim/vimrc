@@ -54,8 +54,6 @@ if executable('git')
 	"Code structure overview
 	Plug 'majutsushi/tagbar'
 	Plug 'sjl/gundo.vim'
-	" Simple file manipulation
-	Plug 'joshaw/vim-eunuch'
 	"View man pages with vim
 	Plug 'joshaw/vim-superman', {'on' : 'SuperMan'}
 
