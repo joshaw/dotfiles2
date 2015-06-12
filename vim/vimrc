@@ -58,7 +58,6 @@ if executable('git')
 	Plug 'joshaw/vim-superman', {'on' : 'SuperMan'}
 
 	"Filetypes
-	Plug 'm42e/trace32-practice.vim'
 	"Plug 'jamessan/vim-gnupg'
 	Plug 'tomtom/tgpg_vim'
 
