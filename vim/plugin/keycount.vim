@@ -1,5 +1,5 @@
 " Created:  Thu 04 Jun 2015
-" Modified: Fri 05 Jun 2015
+" Modified: Fri 12 Jun 2015
 " Author:   Josh Wainwright
 " Filename: keycount.vim
 
@@ -73,20 +73,33 @@ function! s:keycountedit()
 endfunction
 
 function! s:keycountprint()
-	let l:totaltmp = split(readfile(g:KeyCountFile)[-1], '|')[1] + g:VimKeyCount
+	let l:lsplit = split(readfile(g:KeyCountFile)[-1], '|')
+	let l:totaltmp = l:lsplit[1] + g:VimKeyCount
 
 	let l:width = max([strlen(l:totaltmp), 3])
-	let l:newline = printf('%' . l:width . 'S', 'tot')
-	let l:newline1 = l:totaltmp
+	let l:keys = printf('%' . l:width . 'S', 'tot')
+	let l:values = l:totaltmp
+	let l:alphkeys = ''
+	let l:alphvalues = ''
 
+	let l:n = 1
 	for i in sort(items(g:VimKeyCountLetters))
-		let l:width = max([strlen(i[0]), strlen(i[1])])
-		let l:newline = l:newline . '|' . printf('%'.l:width.'S', i[0])
-		let l:newline1 = l:newline1 . '|' . printf('%'.l:width.'S', i[1])
+		let l:n += 1
+		let l:letcnt = i[1] + l:lsplit[n]
+		let l:width = max([strlen(i[0]), strlen(l:letcnt)])
+		if i[0][0] =~ '\a'
+			let l:alphkeys = l:alphkeys . '|' . printf('%'.l:width.'S', i[0])
+			let l:alphvalues = l:alphvalues . '|' . printf('%'.l:width.'S', l:letcnt)
+		else
+			let l:keys = l:keys . '|' . printf('%'.l:width.'S', i[0])
+			let l:values = l:values . '|' . printf('%'.l:width.'S', l:letcnt)
+		endif
 	endfor
 
-	echo l:newline
-	echo l:newline1
+	echo l:keys
+	echo l:values
+	echo l:alphkeys
+	echo l:alphvalues
 endfunction
 
 command! KeyCountPrint :call s:keycountprint()
