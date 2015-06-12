@@ -341,9 +341,9 @@ abbrev <expr> dtl strftime("%c")
 
 function! CreatedHeader()
 	return "Created:  TIMESTAMP\<CR>"
-		\ ."Modified: TIMESTAMP\<CR>"
-		\ ."Author:   Josh Wainwright\<CR>"
-		\ ."Filename: " . expand('%:t')
+	    \ ."Modified: TIMESTAMP\<CR>"
+	    \ ."Author:   Josh Wainwright\<CR>"
+	    \ ."Filename: " . expand('%:t')
 endfunction
 
 iabbrev <expr> Cre: CreatedHeader()
@@ -355,7 +355,7 @@ iabbrev TST TIMESTAMP
 iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \=============<CR>
                        \Josh Wainwright<CR>
-                       \Week ending " . system("date -d Fri '+%d/%m/%Y'") . "<CR>
+                       \Week ending " . DateOnFri('/') . "<CR>
                        \- <CR>
                        \<CR>
                        \Customer Site Visits<CR>

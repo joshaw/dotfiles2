@@ -1,7 +1,19 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Mon 27 Apr 2015
+" Modified: Fri 12 Jun 2015
 " Author:   Josh Wainwright
 " Filename: weeklyr.vim
+
+function! DateOnFri(sep)
+python << EOP
+import vim, datetime as dt
+t = dt.date.today()
+f = t + dt.timedelta((4 - t.weekday()) % 7)
+sep = vim.eval('a:sep')
+f = str(f.strftime('%Y{0}%m{0}%d'.format(sep)))
+vim.command('let date = \'%s\'' % f)
+EOP
+return date
+endfunction
 
 function! weeklyr#EditReport(monthly, retval, ...)
 	let suffix = ''
@@ -14,10 +26,11 @@ function! weeklyr#EditReport(monthly, retval, ...)
 	" Otherwise get the relevant current date
 	else
 		if a:monthly
-			let date = system("echo -n `date '+%Y%m'`")
+			let date = strftime("%Y%m")
 			let suffix = 'MonthlyJAW'
 		else
-			let date = system("echo -n `date -d Fri '+%Y%m%d'`")
+			"let date = system("echo -n `date -d Fri '+%Y%m%d'`")
+			let date = DateOnFri('')
 		endif
 	endif
 	let thisweek = '$HOME/Documents/Forms/WeeklyReports/'.date.suffix
