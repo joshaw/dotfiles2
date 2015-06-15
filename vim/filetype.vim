@@ -1,5 +1,5 @@
 " Created:  Thu 07 Aug 2014
-" Modified: Thu 11 Jun 2015
+" Modified: Mon 15 Jun 2015
 " Author:   Josh Wainwright
 " Filename: filetype.vim
 
@@ -32,6 +32,7 @@ augroup END
 augroup filetypesettings
 	autocmd!
 	autocmd Filetype python setlocal expandtab
+	autocmd Filetype python setlocal keywordprg=pydoc
 	"au FileType * exe 'setlocal dict+='.fnameescape($VIMRUNTIME).'/syntax/'.&filetype.'.vim'
 	autocmd Filetype * exe 'setlocal dict+=$VIMHOME/spell/dicts/'.&filetype.'.dict'
 	autocmd Filetype markdown syn match markdownOrderedListMarker "\%(\t\| \{0,4}\)\<\%(\d\+\|\a\)\.\%(\s\+\S\)\@=" contained
