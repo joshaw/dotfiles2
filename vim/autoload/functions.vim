@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Wed 10 Jun 2015
+" Modified: Mon 15 Jun 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
@@ -45,11 +45,12 @@ function! functions#Sum() range
 		if s:n == ''
 			continue
 		endif
-		echo '[ ' . s:n . ' ]'
+		if s:n != 0
+			echon s:n . ', '
+		endif
 		let s:sum = s:sum + str2float(s:n)
 	endfor
-	echo "sum: " . string(s:sum)
-	call append(line("'>"), string(s:sum))
+	echon " = " . string(s:sum)
 endfunction
 
 " BlockIncr {{{1
