@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Fri 08 May 2015
+" Modified: Mon 15 Jun 2015
 " Author:   Josh Wainwright
 " Filename: mail.vim
 
@@ -32,7 +32,7 @@ endfunction
 " Replace timestamps and append report file to end of message
 if getline(1) =~ "JAW Weekly Report"
 	%s/%dty%/\=strftime("%Y%m%d")/ge
-	%s/%dts%/\=strftime("%d\/%m\/%Y")/ge
+	%s/%dtyd%/\=strftime("%Y-%m-&d")/ge
 	if ! search("=============")
 		call append(line('$'), ["",""])
 		exec "$r ".weeklyr#EditReport(0,1)
