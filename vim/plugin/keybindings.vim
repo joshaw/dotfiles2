@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Tue 26 May 2015
+" Modified: Fri 12 Jun 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -93,6 +93,7 @@ nnoremap z/ :if autohighlight#AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 
 " Symbols {{{1
 
+nnoremap - :Dirvish %:p:h<cr>
 nnoremap ; :
 nnoremap , ;
 
