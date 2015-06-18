@@ -189,6 +189,7 @@ set shortmess=aoOstT  " list of flags to make messages shorter
 silent! set shortmess+=c
 set showcmd           " show (partial) command keys in the status line
 set ruler             " show cursor position below each window
+exe 'set verbosefile='.g:vimhome . 'errors.log'
 set nomore            " pause listings when the screen is full
 set novisualbell      " use a visual bell instead of beeping
 set noerrorbells      " ring the bell for error messages
