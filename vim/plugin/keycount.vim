@@ -17,7 +17,7 @@ let g:KeyCountLetters = {
 augroup keycount
 	au!
 	au InsertCharPre * call s:keycountincrement(v:char)
-	au BufReadPost * call s:keycountinit()
+	au Filetype * call s:keycountinit()
 	au VimLeave * call s:keycountwrite()
 augroup END
 
