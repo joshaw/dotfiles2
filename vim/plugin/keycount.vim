@@ -1,5 +1,5 @@
 " Created:  Thu 04 Jun 2015
-" Modified: Mon 15 Jun 2015
+" Modified: Thu 18 Jun 2015
 " Author:   Josh Wainwright
 " Filename: keycount.vim
 
@@ -73,7 +73,7 @@ function! KeycountwriteFT()
 		let index = 10
 		while index < len(ftline)
 			let line = ftline[index]
-			if line =~ ftype . '.*'
+			if line[0:len(ftype)-1] ==? ftype
 				let l:last = split(line, '|')
 				let l:newnum = l:last[1] + g:KeyCountFileTypes[&ft]['total']
 				call remove(g:KeyCountFileTypes[&ft],  'total')
@@ -89,11 +89,11 @@ function! KeycountwriteFT()
 				break
 			endif
 
-			if line =~# 'Date.*'
+			if line[0:3] ==# 'Date'
 				let l:i = 10
 				while l:i < len(ftline)
 					if ftline[l:i][0:8] ==# 'Filetype '
-						let newft = ftype . ' ' . repeat('|0', 40)
+						let newft = ftype . repeat('|0', 40)
 						let ftline = insert(ftline, newft, l:i+2)
 						let index = l:i
 						break
@@ -109,20 +109,20 @@ endfunction
 
 function! s:keycountincrement(char)
 	let g:KeyCount += 1
-	silent! let g:KeyCountFileTypes[&ft]['total'] += 1
+	let g:KeyCountFileTypes[&ft]['total'] += 1
 	let l:low = tolower(a:char)
 	if l:low =~? '\a\|\d'
 		let g:KeyCountLetters[l:low] += 1
-		silent! let g:KeyCountFileTypes[&ft][l:low] += 1
+		let g:KeyCountFileTypes[&ft][l:low] += 1
 	elseif a:char == ' '
 		let g:KeyCountLetters['~space'] += 1
-		silent! let g:KeyCountFileTypes[&ft]['~space'] += 1
+		let g:KeyCountFileTypes[&ft]['~space'] += 1
 	elseif a:char =~? '\t'
 		let g:KeyCountLetters['~tab'] += 1
-		silent! let g:KeyCountFileTypes[&ft]['~tab'] += 1
+		let g:KeyCountFileTypes[&ft]['~tab'] += 1
 	else
 		let g:KeyCountLetters['~punc'] += 1
-		silent! let g:KeyCountFileTypes[&ft]['~punc'] += 1
+		let g:KeyCountFileTypes[&ft]['~punc'] += 1
 	endif
 endfunction
 
