@@ -1,5 +1,5 @@
 " Created:  Thu 04 Jun 2015
-" Modified: Thu 18 Jun 2015
+" Modified: Fri 19 Jun 2015
 " Author:   Josh Wainwright
 " Filename: keycount.vim
 
@@ -17,13 +17,14 @@ let g:KeyCountLetters = {
 augroup keycount
 	au!
 	au InsertCharPre * call s:keycountincrement(v:char)
-	au Filetype * call s:keycountinit()
+	au Filetype,VimEnter * call s:keycountinit()
 	au VimLeave * call s:keycountwrite()
 augroup END
 
 function! s:keycountinit()
-	if &ft != '' && !has_key(g:KeyCountFileTypes, &ft)
-		let g:KeyCountFileTypes[&ft] = { 'total': 0,
+	let ftype = &ft == ''? 'none': &ft
+	if !has_key(g:KeyCountFileTypes, ftype)
+		let g:KeyCountFileTypes[ftype] = { 'total': 0,
 					\ 'a':0, 'b':0, 'c':0, 'd':0, 'e':0, 'f':0, 'g':0,
 					\ 'h':0, 'i':0, 'j':0, 'k':0, 'l':0, 'm':0, 'n':0,
 					\ 'o':0, 'p':0, 'q':0, 'r':0, 's':0, 't':0, 'u':0,
@@ -38,7 +39,7 @@ function! s:keycountwrite()
 		return
 	endif
 
-	let kccontents = KeycountwriteFT()
+	let kccontents = s:keycountwriteFT()
 	
 	let l:today = strftime('%Y%m%d')
 	let l:last = split(kccontents[-1], '|')
@@ -64,23 +65,20 @@ function! s:keycountwrite()
 	call writefile(kccontents, g:KeyCountFile)
 endfunction
 
-function! KeycountwriteFT()
+function! s:keycountwriteFT()
 	let ftline = readfile(g:KeyCountFile)
-	if &ft == '' || !has_key(g:KeyCountFileTypes, &ft)
-		return ftline
-	endif
 	for ftype in keys(g:KeyCountFileTypes)
 		let index = 10
 		while index < len(ftline)
 			let line = ftline[index]
 			if line[0:len(ftype)-1] ==? ftype
 				let l:last = split(line, '|')
-				let l:newnum = l:last[1] + g:KeyCountFileTypes[&ft]['total']
-				call remove(g:KeyCountFileTypes[&ft],  'total')
+				let l:newnum = l:last[1] + g:KeyCountFileTypes[ftype]['total']
+				call remove(g:KeyCountFileTypes[ftype],  'total')
 				let l:newline = ftype . '|' . l:newnum
 				" Element 0=ft, 1=total, 2..=letter
 				let l:i = 2
-				for p in sort(items(g:KeyCountFileTypes[&ft]))
+				for p in sort(items(g:KeyCountFileTypes[ftype]))
 					let l:cnt = l:last[l:i] + p[1]
 					let l:newline .= '|' . l:cnt
 					let l:i += 1
@@ -108,21 +106,22 @@ function! KeycountwriteFT()
 endfunction
 
 function! s:keycountincrement(char)
+	let ftype = &ft == ''? 'none': &ft
 	let g:KeyCount += 1
-	let g:KeyCountFileTypes[&ft]['total'] += 1
+	let g:KeyCountFileTypes[ftype]['total'] += 1
 	let l:low = tolower(a:char)
 	if l:low =~? '\a\|\d'
 		let g:KeyCountLetters[l:low] += 1
-		let g:KeyCountFileTypes[&ft][l:low] += 1
+		let g:KeyCountFileTypes[ftype][l:low] += 1
 	elseif a:char == ' '
 		let g:KeyCountLetters['~space'] += 1
-		let g:KeyCountFileTypes[&ft]['~space'] += 1
+		let g:KeyCountFileTypes[ftype]['~space'] += 1
 	elseif a:char =~? '\t'
 		let g:KeyCountLetters['~tab'] += 1
-		let g:KeyCountFileTypes[&ft]['~tab'] += 1
+		let g:KeyCountFileTypes[ftype]['~tab'] += 1
 	else
 		let g:KeyCountLetters['~punc'] += 1
-		let g:KeyCountFileTypes[&ft]['~punc'] += 1
+		let g:KeyCountFileTypes[ftype]['~punc'] += 1
 	endif
 endfunction
 
