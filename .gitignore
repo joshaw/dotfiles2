@@ -4,6 +4,7 @@
 *.pid
 .git/
 .netrwhist
+bash/history
 config/dwb/default/*history
 config/dwb/default/cookies*
 config/dwb/default/custom_keys
