@@ -1,5 +1,5 @@
 " Created:  Thu 04 Jun 2015
-" Modified: Fri 19 Jun 2015
+" Modified: Mon 22 Jun 2015
 " Author:   Josh Wainwright
 " Filename: keycount.vim
 
@@ -68,6 +68,9 @@ endfunction
 function! s:keycountwriteFT()
 	let ftline = readfile(g:KeyCountFile)
 	for ftype in keys(g:KeyCountFileTypes)
+		if g:KeyCountFileTypes[ftype]['total'] == 0
+			return ftline
+		endif
 		let index = 10
 		while index < len(ftline)
 			let line = ftline[index]
