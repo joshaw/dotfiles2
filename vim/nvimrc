@@ -1,26 +1,28 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Tue 26 May 2015
+" Modified: Mon 22 Jun 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
 " Paths and Variables            {{{1
 "
 
-if has('unix')
-	let $VIMHOME=$HOME.'/.vim/'
-elseif has('win32')
-	let $VIMHOME=$HOME.'/vimfiles/'
+let g:vimhome = '~/.vim/'
+if has('win32')
+	let g:vimhome = $HOME.'/vimfiles/'
 	let $PATH=$PATH.';C:/cygwin/bin/;'.$HOME.'/Tools/'
 endif
 
 " Vim-Plug Plugins               {{{1
 "
+command! InstallPlug silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 let g:plug_threads = 6
 let g:plug_timeout = 20
 
-if executable('git')
-	call plug#begin($VIMHOME.'plugged')
+"let g:use_vim_plug = 1
+if executable('git') && exists('g:use_vim_plug')
+	call plug#begin(g:vimhome.'plugged')
 
 	let g:plug_url_format = 'https://git@github.com/%s.git'
 	"Show buffers in tabline at top of window
@@ -36,7 +38,7 @@ if executable('git')
 	" 	 command! UltiSnipsLoad :
 	" endif
 	"Syntax checking for a wide range of languages
-	"Plug 'scrooloose/syntastic'
+	Plug 'scrooloose/syntastic', {'on': 'SyntasticCheck'}
 	"Easy commenting/uncommenting of code.
 	Plug 'tpope/vim-commentary'
 	"Simple alignment of lines
@@ -44,27 +46,31 @@ if executable('git')
 	"Multiple useful keybindings
 	Plug 'tpope/vim-unimpaired'
 	"Simple minimalist alternative to netrw
-	Plug 'jeetsukumaran/vim-filebeagle'
+	Plug 'justinmk/vim-dirvish'
 	"Allow incrementing true/false values etc.
 	Plug 'nishigori/increment-activator'
 	"Make f (forward) and t (to) better
 	Plug 'clever-f.vim'
 	"Code structure overview
-	Plug 'majutsushi/tagbar'
-	Plug 'sjl/gundo.vim'
-	" Simple file manipulation
-	Plug 'joshaw/vim-eunuch'
-	"View man pages with vim
-	Plug 'joshaw/vim-superman', {'on' : 'SuperMan'}
+	Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
 	"Filetypes
-	Plug 'm42e/trace32-practice.vim'
 	"Plug 'jamessan/vim-gnupg'
 	Plug 'tomtom/tgpg_vim'
-	Plug 'terryma/vim-multiple-cursors'
 
 	call plug#end()
 endif " executable(git)
+
+function! s:lod(path)
+	exe 'set rtp+=' . g:vimhome . 'plugged/' . a:path
+	exe 'source ' . g:vimhome . 'plugged/' . a:path . '/plugin/*.vim'
+endfunction
+
+call s:lod('vim-dirvish')
+call s:lod('vim-buftabline')
+call s:lod('tabular')
+"call s:lod('vim-unimpaired')
+call s:lod('tgpg_vim')
 
 " Plugin Settings                {{{1
 "
@@ -192,6 +198,7 @@ set shortmess=aoOstT  " list of flags to make messages shorter
 silent! set shortmess+=c
 set showcmd           " show (partial) command keys in the status line
 set ruler             " show cursor position below each window
+exe 'set verbosefile='.g:vimhome . 'errors.log'
 set nomore            " pause listings when the screen is full
 set novisualbell      " use a visual bell instead of beeping
 set noerrorbells      " ring the bell for error messages
@@ -238,12 +245,14 @@ set fileformats=unix,dos,mac        " list of file formats to look for when edit
 set endofline                       " last line in the file has an end-of-line
 set writebackup                     " write a backup file before overwriting a file
 set backup                          " write a backup file before overwriting a file
-set backupdir=$VIMHOME/tmp/backup// " list of directories to put backup files in
+" list of directories to put backup files in
+exe 'set backupdir='.g:vimhome.'tmp/backup//'
 "set autowrite                       " automatically write a file when leaving a modified buffer
 set autoread                        " automatically read a file when it was modified outside of Vim
 
 "20 the swap file {{{2
-set directory=$VIMHOME/tmp/directory// " list of directories for the swap file
+" list of directories for the swap file
+exe 'set directory='.g:vimhome.'/tmp/directory//'
 set noswapfile                         " use a swap file for this buffer
 
 "21 command line editing {{{2
@@ -255,7 +264,8 @@ set wildmode=full               " specifies how command line completion works
 set wildmenu                    " command-line completion shows a list of matches
 set cmdwinheight=3              " height of the command-line window
 set undofile                    " automatically save and restore undo history
-set undodir=$VIMHOME/tmp/undo// " list of directories for undo files
+" list of directories for undo files
+exe 'set undodir='.g:vimhome.'/tmp/undo//'
 
 "22 executing external commands {{{2
 if has('win32') && executable('zsh')
@@ -341,9 +351,9 @@ abbrev <expr> dtl strftime("%c")
 
 function! CreatedHeader()
 	return "Created:  TIMESTAMP\<CR>"
-		\ ."Modified: TIMESTAMP\<CR>"
-		\ ."Author:   Josh Wainwright\<CR>"
-		\ ."Filename: " . expand('%:t')
+	    \ ."Modified: TIMESTAMP\<CR>"
+	    \ ."Author:   Josh Wainwright\<CR>"
+	    \ ."Filename: " . expand('%:t')
 endfunction
 
 iabbrev <expr> Cre: CreatedHeader()
@@ -355,7 +365,7 @@ iabbrev TST TIMESTAMP
 iabbrev <expr> Weeklyr "Weekly Report<CR>
                        \=============<CR>
                        \Josh Wainwright<CR>
-                       \Week ending " . system("date -d Fri '+%d/%m/%Y'") . "<CR>
+                       \Week ending " . DateOnFri('/') . "<CR>
                        \- <CR>
                        \<CR>
                        \Customer Site Visits<CR>
@@ -382,7 +392,7 @@ augroup END
 " }}}
 
 " Keybindings
-"         ~/.vim/plugins/keybindings.vim
+"         ~/.vim/plugin/keybindings.vim
 "         ~\\vimfiles\\plugin\\keybindings.vim
 " Functions
 "         ~/.vim/autoload/functions.vim

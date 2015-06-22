@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Thu 04 Jun 2015
+" Modified: Mon 22 Jun 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -20,8 +20,9 @@ command! InstallPlug silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 let g:plug_threads = 6
 let g:plug_timeout = 20
 
-if executable('git')
-	call plug#begin($VIMHOME.'plugged')
+"let g:use_vim_plug = 1
+if executable('git') && exists('g:use_vim_plug')
+	call plug#begin(g:vimhome.'plugged')
 
 	let g:plug_url_format = 'https://git@github.com/%s.git'
 	"Show buffers in tabline at top of window
@@ -37,7 +38,7 @@ if executable('git')
 	" 	 command! UltiSnipsLoad :
 	" endif
 	"Syntax checking for a wide range of languages
-	Plug 'scrooloose/syntastic'
+	Plug 'scrooloose/syntastic', {'on': 'SyntasticCheck'}
 	"Easy commenting/uncommenting of code.
 	Plug 'tpope/vim-commentary'
 	"Simple alignment of lines
@@ -51,10 +52,7 @@ if executable('git')
 	"Make f (forward) and t (to) better
 	Plug 'clever-f.vim'
 	"Code structure overview
-	Plug 'majutsushi/tagbar'
-	Plug 'sjl/gundo.vim'
-	"View man pages with vim
-	Plug 'joshaw/vim-superman', {'on' : 'SuperMan'}
+	Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
 	"Filetypes
 	"Plug 'jamessan/vim-gnupg'
@@ -62,6 +60,17 @@ if executable('git')
 
 	call plug#end()
 endif " executable(git)
+
+function! s:lod(path)
+	exe 'set rtp+=' . g:vimhome . 'plugged/' . a:path
+	exe 'source ' . g:vimhome . 'plugged/' . a:path . '/plugin/*.vim'
+endfunction
+
+call s:lod('vim-dirvish')
+call s:lod('vim-buftabline')
+call s:lod('tabular')
+"call s:lod('vim-unimpaired')
+call s:lod('tgpg_vim')
 
 " Plugin Settings                {{{1
 "
