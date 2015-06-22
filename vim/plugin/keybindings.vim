@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Fri 12 Jun 2015
+" Modified: Mon 22 Jun 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -56,30 +56,30 @@ nnoremap <s-end> G
 
 " Letters {{{1
 
-" Try using jk and kj as Escape in insert mode.
-inoremap jk <Esc>
-inoremap kj <Esc>
+" Change some options (Taken from unimpaired.vim - TPope)
+nnoremap cow :set wrap!<CR>
+nnoremap col :set list!<CR>
+nnoremap coc :set cursorcolumn!<CR>
+nnoremap cou :set cursorline!<CR>
+nnoremap [<space> :-1 put _<cr>j
+nnoremap ]<space> :put _<cr>k
+nnoremap ]b :bnext<CR>
+nnoremap [b :bprevious<CR>
+
+" Re-indent whole file
+nnoremap g+ :call Preserve("normal! gg=G")<CR>
 
 " Align with easy align
 xnoremap gl :Tabularize /
+
+" Try using jk and kj as Escape in insert mode.
+inoremap jk <Esc>
+inoremap kj <Esc>
 
 " Center search result
 nnoremap n nzz
 nnoremap N Nzz
 
-" D and Y behave like C
-nnoremap D dg_
-nnoremap Y yg_
-
-nnoremap Q :normal! n.<CR>
-
-" Re-indent whole file
-nnoremap g+ :call Preserve("normal! gg=G")<CR>
-
-" Split lines, oposite of join, J
-nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-
-" Don't change case when meaning to undo in visual mode
 xnoremap u <nop>
 xnoremap gu u
 
@@ -91,6 +91,16 @@ nnoremap <silent> p p`]
 " Auto_highlight
 nnoremap z/ :if autohighlight#AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 
+" D and Y behave like C
+nnoremap D dg_
+nnoremap Y yg_
+
+nnoremap Q :normal! n.<CR>
+
+" Split lines, oposite of join, J
+nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
+
+" Don't change case when meaning to undo in visual mode
 " Symbols {{{1
 
 nnoremap - :Dirvish %:p:h<cr>
