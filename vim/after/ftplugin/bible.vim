@@ -1,18 +1,11 @@
 " Created:  Fri 06 Feb 2015
-" Modified: Tue 21 Apr 2015
+" Modified: Tue 23 Jun 2015
 " Author:   Josh Wainwright
-" Filename: book.vim
+" Filename: bible.vim
 
-let b:bible = 0
-if getline(1) =~ "BIBLE"
-	let b:bible = 1
-endif
-setlocal indentexpr=BookIndent()
+setlocal indentexpr=BibleIndent()
 
-function! BookIndent()
-	if ! b:bible
-		return
-	endif
+function! BibleIndent()
 	let line = getline(v:lnum)
 	let firstchar = line[:0]
 	let prevline = getline(v:lnum - 1)

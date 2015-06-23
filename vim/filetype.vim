@@ -1,5 +1,5 @@
 " Created:  Thu 07 Aug 2014
-" Modified: Mon 15 Jun 2015
+" Modified: Tue 23 Jun 2015
 " Author:   Josh Wainwright
 " Filename: filetype.vim
 
@@ -16,8 +16,7 @@ augroup filetypedetect
 	autocmd BufRead,BufNewFile *.rout,*.Rout setf r
 	autocmd BufRead,BufNewFile *.md setf markdown
 	autocmd BufRead,BufNewFile README setf markdown
-	autocmd BufRead,BufNewFile *.book setf book
-	autocmd BufRead,BufNewFile *.bible setf book
+	autocmd BufRead,BufNewFile *.bible setf bible
 	autocmd BufRead,BufNewFile three-year.txt setf biblereading
 	autocmd BufRead,BufNewFile times.txt setf times.conf
 	" Remove spaces at the end of header lines when starting new mail in mutt.
