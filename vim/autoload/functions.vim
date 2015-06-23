@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Mon 15 Jun 2015
+" Modified: Tue 23 Jun 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
@@ -40,15 +40,16 @@ function! functions#Sum() range
 	let &clipboard = s:cb_save
 
 	let s:sum = 0
-	for s:n in split(s:selection, '\D')
-		let s:n = substitute(s:n, '\v[^0-9]*\ze([0-9]|$)', '', "")
+	for s:n in split(s:selection, '[^0-9.-]')
+		let s:n = substitute(s:n, '\v^[^0-9]*\ze([0-9]|$)', '', "")
 		if s:n == ''
 			continue
 		endif
-		if s:n != 0
-			echon s:n . ', '
+		let s:num = str2float(s:n)
+		if s:num != 0
+			echon string(s:num) . ', '
+			let s:sum = s:sum + s:num
 		endif
-		let s:sum = s:sum + str2float(s:n)
 	endfor
 	echon " = " . string(s:sum)
 endfunction
