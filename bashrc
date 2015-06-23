@@ -62,6 +62,8 @@ bind 'set colored-stats on'
 bind 'set visible-stats on'
 source ~/.bash/dircolours
 
+complete -A directory cd
+
 export LANG=en_GB.UTF-8
 
 declare -a JUMPLIST=($PWD)
