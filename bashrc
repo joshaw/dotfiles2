@@ -26,22 +26,22 @@ shopt -s histappend
 shopt -s nocaseglob
 
 ## Prompt
-RED=$'\e[0;31m'
-CYAN=$'\e[0;36m'
-GREEN=$'\e[0;32m'
-NC=$'\e[0m'
-PS1='\n${CYAN}\w\n${STATUS}'
-
 set_prompt() {
 	lastcmd=$?
-	str=$(printf "%${SHLVL}s")
-	shl=${str// />}
+	P_RED='\[\e[0;31m\]'
+	P_CYAN='\[\e[0;36m\]'
+	P_GREEN='\[\e[0;32m\]'
+	P_NC='\[\e[0m\]'
+
+	PS1="\n${P_CYAN}\w\n"
 	if [ $lastcmd -eq 0 ]; then
-		STATUS=${GREEN}
+		PS1+=${P_GREEN}
 	else
-		STATUS=${RED}
+		PS1+=${P_RED}
 	fi
-	STATUS+="${shl}${NC} "
+	str=$(printf "%${SHLVL}s")
+	PS1+="${str// />}"
+	PS1+="${P_NC} "
 }
 PROMPT_COMMAND='set_prompt'
 
