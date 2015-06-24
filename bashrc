@@ -14,6 +14,7 @@ alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ll -a'
 source ~/.zsh/aliases.zsh
+source ~/.zsh/git.zsh
 
 ## Options
 shopt -s autocd
@@ -63,6 +64,8 @@ bind 'set visible-stats on'
 source ~/.bash/dircolours
 
 complete -A directory cd
+complete -C "sed -e 's/^\(\S*\)\s.*$/\1/' .cdbookmarks" cdb
+complete -A file -X '!*.md' md.py
 
 export LANG=en_GB.UTF-8
 
