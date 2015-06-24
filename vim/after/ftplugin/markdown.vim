@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Wed 10 Jun 2015
+" Modified: Wed 24 Jun 2015
 " Author:   Josh Wainwright
 " Filename: markdown.vim
 
@@ -7,6 +7,7 @@ exe 'setlocal dict+='.dictfile
 
 " Automatic formating of paragraphs whenever text is inserted
 setlocal formatoptions=tcqwan1
+setlocal nosmartindent
 
 setlocal makeprg=md.py\ %
 
