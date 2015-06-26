@@ -61,11 +61,25 @@ bind 'set menu-complete-display-prefix on'
 bind 'set show-all-if-unmodified on'
 bind 'set colored-stats on'
 bind 'set visible-stats on'
+bind 'set page-completions off'
 source ~/.bash/dircolours
 
-complete -A directory cd
+shopt -s extglob progcomp
+complete -A directory cd rmdir
 complete -C "sed -e 's/^\(\S*\)\s.*$/\1/' .cdbookmarks" cdb
 complete -A file -X '!*.md' md.py
+complete -A command -A alias -A builtin -A function sudo
+complete -d pushd
+complete -A stopped -P '"%' -S '"' bg
+complete -j -P '"%' -S '"' fg jobs disown
+complete -v readonly unset
+complete -A setopt set
+complete -A shopt shopt
+complete -A helptopic help
+complete -a unalias
+complete -A binding bind
+complete -c command type which
+complete -b builtin
 
 export LANG=en_GB.UTF-8
 
