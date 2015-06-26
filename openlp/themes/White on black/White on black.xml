@@ -5,9 +5,9 @@
         <color>#ffffff</color>
     </background>
     <font type="main">
-        <name>Lucida Sans</name>
+        <name>Segoe UI</name>
         <color>#000000</color>
-        <size>36</size>
+        <size>38</size>
         <bold>False</bold>
         <italics>False</italics>
         <line_adjustment>15</line_adjustment>
