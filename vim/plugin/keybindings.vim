@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Mon 22 Jun 2015
+" Modified: Fri 26 Jun 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -103,7 +103,21 @@ nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 " Don't change case when meaning to undo in visual mode
 " Symbols {{{1
 
-nnoremap - :Dirvish %:p:h<cr>
+function! Dirvishfindcur()
+	let curfname = expand('%')
+	Dirvish %:p:h
+	let l:nothidden = 1
+	while l:nothidden
+		if search(curfname)
+			normal zt
+			return
+		else
+			let l:nothidden = 0
+			silent normal gh
+		endif
+	endwhile
+endfunction
+nnoremap - :call Dirvishfindcur()<CR>
 nnoremap ; :
 nnoremap , ;
 
