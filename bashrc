@@ -103,23 +103,27 @@ function jumplist-echo {
 }
 
 function jumplist-backward {
+	printf "%b" "\033[2A\033[K"
 	if [ $JUMP_POS -gt 0 ]; then
 		JUMP_POS=$((JUMP_POS-1))
 		builtin cd ${JUMPLIST[$JUMP_POS]}
-		echo $PWD
 	fi
+	printf "%b" "${PWD/$HOME/\~}"
 }
 
 function jumplist-forward {
+	printf "%b" "\033[2A\033[K"
 	if [ $JUMP_POS -lt $((${#JUMPLIST[@]}-1)) ]; then
 		JUMP_POS=$((JUMP_POS+1))
 		builtin cd ${JUMPLIST[$JUMP_POS]}
 	fi
+	printf "%b" "${PWD/$HOME/\~}"
 }
 
 function cd {
 	builtin cd "$@" > /dev/null
 	jumplist-add $PWD
+	ls -Al
 }
 
 bind -x '"\C-O":jumplist-backward'
