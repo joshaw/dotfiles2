@@ -1,5 +1,5 @@
 # Created:  Fri 26 Jun 2015
-# Modified: Fri 26 Jun 2015
+# Modified: Mon 29 Jun 2015
 # Author:   Josh Wainwright
 # Filename: completion.bash
 
@@ -19,7 +19,7 @@ complete -A shopt shopt
 complete -A stopped -P '"%' -S '"' bg
 complete -A variable readonly unset
 complete -C "sed -e 's/^\(\S*\)\s.*$/\1/' .cdbookmarks" cdb
-complete -F _make_complete make
+complete -F _make_complete -A file make
 complete -W "h v l d u x i r s a R" -P "-" amr
 
 export CDPATH=.:~:$HOME/Documents/Details
