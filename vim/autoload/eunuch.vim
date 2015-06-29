@@ -1,5 +1,5 @@
 " Created:  Fri 12 Jun 2015
-" Modified: Fri 12 Jun 2015
+" Modified: Mon 29 Jun 2015
 " Author:   Josh Wainwright
 " Filename: eunuch.vim
 
@@ -77,6 +77,13 @@ function! eunuch#Grep(bang,args,prg) abort
 		let &l:grepformat = grepformat
 		let &shellpipe = shellpipe
 	endtry
+endfunction
+
+function! eunuch#Mkdir(bang, args)
+	call mkdir(empty(a:args) ? expand('%:h') : a:args, empty(a:bang) ? '' : 'p')
+	if empty(a:args)
+		silent keepalt execute 'file' expand('%')
+	endif
 endfunction
 
 function! eunuch#MaxLine()

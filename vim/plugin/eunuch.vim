@@ -11,6 +11,7 @@ command! -bar -bang RemoveFile :call eunuch#RemoveFile(<q-bang>, <q-args>)
 command! -bar -nargs=? -bang -complete=file MoveFile :call eunuch#MoveFile(<q-bang>, <q-args>)
 command! -bar -bang -complete=file -nargs=+ Find   :call eunuch#Grep(<q-bang>, <q-args>, 'find')
 command! -bar -bang -complete=file -nargs=+ Locate :call eunuch#Grep(<q-bang>, <q-args>, 'locate')
+command! -bar -bang -nargs=? -complete=dir Mkdir :call eunuch#Mkdir(<q-bang>, <q-args>)
 command! MaxLine call eunuch#MaxLine()
 
 augroup shebang_chmod
