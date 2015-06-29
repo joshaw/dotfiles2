@@ -53,7 +53,7 @@ export HISTFILESIZE=3000
 
 bind 'set colored-stats on'
 bind 'set page-completions off'
-source ~/.bash/dircolours.bash
+source ~/.bash/colours.bash
 
 source ~/.bash/completion.bash
 
