@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Tue 23 Jun 2015
+" Modified: Tue 30 Jun 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
@@ -114,7 +114,7 @@ function! functions#IPtablesSort()
 	delmarks a b
 endfunction
 
-" FirstTimeRun()
+" FirstTimeRun {{{1
 function! functions#FirstTimeRun()
 	" Install vim-plug
 	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -127,3 +127,26 @@ function! functions#FirstTimeRun()
 		call mkdir(expand(&directory), "p")
 	endif
 endfunction
+
+" Toggle Comment {{{1
+function! functions#toggleComment(ft)
+	let dict = {
+			\ 'c': '//',
+			\ 'cpp': '//',
+			\ 'dosbatch': '::',
+			\ 'haskell': '--',
+			\ 'java': '//',
+			\ 'mail': '>',
+			\ 'make': '#',
+			\ 'markdown': '<!--',
+			\ 'perl': '#',
+			\ 'python': '#',
+			\ 'ruby': '#',
+			\ 'tex': '%',
+			\ 'vim': '"',
+			\ }
+	if has_key(dict, a:ft)
+		let c = dict[a:ft]
+		exe "s@^@".c." @ | s@^".c." ".c." @@e"
+	endif
+endfun
