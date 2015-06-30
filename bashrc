@@ -32,9 +32,10 @@ set_prompt() {
 	P_RED='\[\e[0;31m\]'
 	P_CYAN='\[\e[0;36m\]'
 	P_GREEN='\[\e[0;32m\]'
+	P_GREY='\[\e[0;33m\]'
 	P_NC='\[\e[0m\]'
 
-	PS1="\n${P_CYAN}\w\n"
+	PS1="\n${P_CYAN}\w  ${P_GREY}\j\n"
 	if [ $lastcmd -eq 0 ]; then
 		PS1+=${P_GREEN}
 	else
