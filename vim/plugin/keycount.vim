@@ -1,5 +1,5 @@
 " Created:  Thu 04 Jun 2015
-" Modified: Mon 22 Jun 2015
+" Modified: Tue 30 Jun 2015
 " Author:   Josh Wainwright
 " Filename: keycount.vim
 
@@ -22,15 +22,16 @@ augroup keycount
 augroup END
 
 function! s:keycountinit()
-	let ftype = &ft == ''? 'none': &ft
-	if !has_key(g:KeyCountFileTypes, ftype)
-		let g:KeyCountFileTypes[ftype] = { 'total': 0,
+	let b:ftype = &ft == ''? 'none': &ft
+	if !has_key(g:KeyCountFileTypes, b:ftype)
+		let g:KeyCountFileTypes[b:ftype] = { 'total': 0,
 					\ 'a':0, 'b':0, 'c':0, 'd':0, 'e':0, 'f':0, 'g':0,
 					\ 'h':0, 'i':0, 'j':0, 'k':0, 'l':0, 'm':0, 'n':0,
 					\ 'o':0, 'p':0, 'q':0, 'r':0, 's':0, 't':0, 'u':0,
 					\ 'v':0, 'w':0, 'x':0, 'y':0, 'z':0,
 					\ '1':0, '2':0, '3':0, '4':0, '5':0, '6':0, '7':0,
 					\ '8':0, '9':0, '0':0, '~tab':0, '~space':0, '~punc':0 }
+		let g:KeyCountFileTypes['none'] = deepcopy(g:KeyCountFileTypes[b:ftype])
 	endif
 endfunction
 
@@ -109,22 +110,22 @@ function! s:keycountwriteFT()
 endfunction
 
 function! s:keycountincrement(char)
-	let ftype = &ft == ''? 'none': &ft
+	let b:ftype = &ft == ''? 'none': &ft
 	let g:KeyCount += 1
-	let g:KeyCountFileTypes[ftype]['total'] += 1
+	let g:KeyCountFileTypes[b:ftype]['total'] += 1
 	let l:low = tolower(a:char)
 	if l:low =~? '\a\|\d'
 		let g:KeyCountLetters[l:low] += 1
-		let g:KeyCountFileTypes[ftype][l:low] += 1
+		let g:KeyCountFileTypes[b:ftype][l:low] += 1
 	elseif a:char == ' '
 		let g:KeyCountLetters['~space'] += 1
-		let g:KeyCountFileTypes[ftype]['~space'] += 1
+		let g:KeyCountFileTypes[b:ftype]['~space'] += 1
 	elseif a:char =~? '\t'
 		let g:KeyCountLetters['~tab'] += 1
-		let g:KeyCountFileTypes[ftype]['~tab'] += 1
+		let g:KeyCountFileTypes[b:ftype]['~tab'] += 1
 	else
 		let g:KeyCountLetters['~punc'] += 1
-		let g:KeyCountFileTypes[ftype]['~punc'] += 1
+		let g:KeyCountFileTypes[b:ftype]['~punc'] += 1
 	endif
 endfunction
 
