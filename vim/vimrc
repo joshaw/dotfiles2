@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Mon 22 Jun 2015
+" Modified: Mon 29 Jun 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -74,6 +74,12 @@ call s:lod('tgpg_vim')
 
 " Plugin Settings                {{{1
 "
+
+"""" Builtin Plugins
+let loaded_netrwPlugin = 1
+let loaded_rrhelper = 1
+let loaded_vimballPlugin = 1
+let loaded_getscriptPlugin = 1
 
 """" UltiSnips Plugin
 set runtimepath^=$HOME/.vim/custom
