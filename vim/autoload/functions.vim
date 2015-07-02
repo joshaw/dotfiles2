@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Tue 30 Jun 2015
+" Modified: Thu 02 Jul 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
@@ -134,6 +134,7 @@ function! functions#toggleComment(ft)
 			\ 'c': '//',
 			\ 'cpp': '//',
 			\ 'dosbatch': '::',
+			\ 'gnuplot': '#',
 			\ 'haskell': '--',
 			\ 'java': '//',
 			\ 'mail': '>',
