@@ -1,5 +1,5 @@
 " Created:  Fri 06 Feb 2015
-" Modified: Tue 26 May 2015
+" Modified: Thu 02 Jul 2015
 " Author:   Josh Wainwright
 " Filename: biblereading.vim
 
@@ -49,10 +49,10 @@ function! BR_GotoReading()
 	" let bufnum = bufnr(expand(bibfile))
 	" let winnum = bufwinnr(bufnum)
 	let winnum = -1
-	windo if &ft == "book" | let winnum = bufwinnr("%") | endif
+	windo if &ft == "bible" | let winnum = bufwinnr("%") | endif
 	if winnum == -1
-		" Make new split as usual
-		exe "vsplit " . bibfile
+		" Make new split as usual with the right width
+		exe winwidth(0)-40."vsplit " . bibfile
 	else
 		" Jump to existing split
 		exe winnum . "wincmd w"
