@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Fri 26 Jun 2015
+" Modified: Thu 02 Jul 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -79,6 +79,29 @@ inoremap kj <Esc>
 " Center search result
 nnoremap n nzz
 nnoremap N Nzz
+
+" Make nN behave like ;, when jumping {{{2
+function! SmartFEnable()
+  nnoremap n ;
+  nnoremap N ,
+endfun
+
+" Make nN behave normally
+function! SmartFDisable()
+  nnoremap n nzz
+  nnoremap N Nzz
+endfun
+
+" Make jumping enable smart nN
+nnoremap <silent> f :call SmartFEnable()<Cr>f
+nnoremap <silent> F :call SmartFEnable()<Cr>F
+nnoremap <silent> t :call SmartFEnable()<Cr>t
+nnoremap <silent> T :call SmartFEnable()<Cr>T
+
+" Make searching return nN to normal
+noremap <silent> / :call SmartFDisable()<Cr>/
+noremap <silent> ? :call SmartFDisable()<Cr>?
+" }}}
 
 xnoremap u <nop>
 xnoremap gu u
