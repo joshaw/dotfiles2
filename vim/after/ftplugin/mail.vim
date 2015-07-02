@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Mon 15 Jun 2015
+" Modified: Wed 01 Jul 2015
 " Author:   Josh Wainwright
 " Filename: mail.vim
 
@@ -30,15 +30,19 @@ endfunction
 
 " LDRA Specific
 " Replace timestamps and append report file to end of message
-if getline(1) =~ "JAW Weekly Report"
-	%s/%dty%/\=strftime("%Y%m%d")/ge
-	%s/%dtyd%/\=strftime("%Y-%m-&d")/ge
-	if ! search("=============")
-		call append(line('$'), ["",""])
-		exec "$r ".weeklyr#EditReport(0,1)
-		/-=-=-=/,$normal gwG
+if search('ldra', 'cn') > 0
+	silent! %s/%dty%/\=strftime("%Y%m%d")/ge
+	silent! %s/%dtyd%/\=strftime("%Y-%m-%d")/ge
+
+	if search('weekly report', 'cn')
+		if ! search('=============', 'cn')
+			call append(line('$'), [""])
+			exec "$r ".weeklyr#EditReport(0,1)
+			/Weekly Report/,$normal gwG
+		endif
 	endif
 endif
 
 " On Start
-call MailFixFormating()
+Tab2Space
+" call MailFixFormating()
