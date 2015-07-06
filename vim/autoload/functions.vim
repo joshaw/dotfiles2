@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Thu 02 Jul 2015
+" Modified: Mon 06 Jul 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
@@ -145,6 +145,7 @@ function! functions#toggleComment(ft)
 			\ 'ruby': '#',
 			\ 'tex': '%',
 			\ 'vim': '"',
+			\ 'zsh': '#',
 			\ }
 	if has_key(dict, a:ft)
 		let c = dict[a:ft]
