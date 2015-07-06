@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Thu 02 Jul 2015
+" Modified: Mon 06 Jul 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -365,6 +365,8 @@ endfunction
 iabbrev <expr> Cre: CreatedHeader()
 iabbrev TST TIMESTAMP
 
+iabbrev Copyr Copyright: 2015, LDRA Ltd.
+
 " LDRA                           {{{1
 "
 
@@ -397,5 +399,8 @@ endif
 "         ~\\vimfiles\\plugin\\keybindings.vim
 " Functions
 "         ~/.vim/autoload/functions.vim
-"         ~\vimfiles\autoload\functions.vim
+"         ~\\vimfiles\\autoload\\functions.vim
+" Plugins
+"         ~/.vim/plugin/plugins.vim
+"         ~\\vimfiles\\plugin\\plugins.vim
 " vim: fdm=marker nowrap
