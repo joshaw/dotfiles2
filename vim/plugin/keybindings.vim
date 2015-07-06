@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Thu 02 Jul 2015
+" Modified: Mon 06 Jul 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -68,6 +68,10 @@ nnoremap [b :bprevious<CR>
 
 " Re-indent whole file
 nnoremap g+ :call Preserve("normal! gg=G")<CR>
+
+" Toggle Comment
+nnoremap <silent> gcc :call functions#toggleComment(&ft)<CR>
+xnoremap <silent> gc :call functions#toggleComment(&ft)<cr>
 
 " Align with easy align
 xnoremap gl :Tabularize /
@@ -162,6 +166,10 @@ nnoremap # #N
 " N/P File in dir
 nnoremap ]f :call functions#nextFileInDir(1)<cr>
 nnoremap [f :call functions#nextFileInDir(-1)<cr>
+
+" Quick Fix List
+nnoremap ]q :cnext<cr>
+nnoremap [q :cprevious<cr>
 
 " Control Keys {{{1
 

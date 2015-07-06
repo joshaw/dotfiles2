@@ -1,5 +1,5 @@
 " Created:  Sun 26 Apr 2015
-" Modified: Tue 30 Jun 2015
+" Modified: Mon 06 Jul 2015
 " Author:   Josh Wainwright
 " Filename: plugins.vim
 
@@ -70,8 +70,3 @@ command! IPtablesSort :call functions#IPtablesSort()
 "
 " FirstTimeRun
 command! FirstTimeRun :call functions#FirstTimeRun()
-
-"
-" Toggle Comment
-nnoremap <silent> gcc :call functions#toggleComment(&ft)<CR>
-xnoremap <silent> gc :call functions#toggleComment(&ft)<cr>
