@@ -159,6 +159,10 @@ xnoremap <silent> # :<C-U>
 nnoremap * *N
 nnoremap # #N
 
+" N/P File in dir
+nnoremap ]f :call functions#nextFileInDir(1)<cr>
+nnoremap [f :call functions#nextFileInDir(-1)<cr>
+
 " Control Keys {{{1
 
 nnoremap <silent> <C-Up>   :move-2<CR>

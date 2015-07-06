@@ -151,3 +151,14 @@ function! functions#toggleComment(ft)
 		exe "s@^@".c." @ | s@^".c." ".c." @@e"
 	endif
 endfun
+
+" N/P file in dir {{{1
+function! functions#nextFileInDir(direction)
+	let files = glob(expand('%:p:h') . '/*', 0, 1)
+	let tot = len(files)
+	if tot > 0
+		let index = index(files, expand('%:p'))
+		let newfname = files[(index + a:direction) % tot]
+		exe 'edit' newfname
+	endif
+endfunction
