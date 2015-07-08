@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Mon 06 Jul 2015
+" Modified: Tue 07 Jul 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -61,10 +61,10 @@ nnoremap cow :set wrap!<CR>
 nnoremap col :set list!<CR>
 nnoremap coc :set cursorcolumn!<CR>
 nnoremap cou :set cursorline!<CR>
-nnoremap [<space> :-1 put _<cr>j
-nnoremap ]<space> :put _<cr>k
-nnoremap ]b :bnext<CR>
-nnoremap [b :bprevious<CR>
+nnoremap <silent> [<space> :-1 put _<cr>j
+nnoremap <silent> ]<space> :put _<cr>k
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [b :bprevious<CR>
 
 " Re-indent whole file
 nnoremap g+ :call Preserve("normal! gg=G")<CR>
@@ -127,7 +127,6 @@ nnoremap Q :normal! n.<CR>
 " Split lines, oposite of join, J
 nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 
-" Don't change case when meaning to undo in visual mode
 " Symbols {{{1
 
 function! Dirvishfindcur()
