@@ -1,15 +1,15 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Thu 09 Apr 2015
+" Modified: Mon 06 Jul 2015
 " Author:   Josh Wainwright
 " Filename: statusline.vim
 
 set ls=2 " Always show status line
 let g:last_mode=""
 
-let g:status_normal   = 'guifg=#000000 guibg=#7dcc7d ctermfg=0   ctermbg=2'
-let g:status_insert   = 'guifg=#ffffff guibg=#ff0000 ctermfg=15  ctermbg=9'
-let g:status_replace  = 'guifg=#ffff00 guibg=#5b7fbb ctermfg=190 ctermbg=67'
-let g:status_visual   = 'guifg=#ffffff guibg=#810085 ctermfg=15  ctermbg=53'
+let g:status_normal  = 'guifg=#000000 guibg=#7dcc7d ctermfg=0   ctermbg=2'
+let g:status_insert  = 'guifg=#ffffff guibg=#ff0000 ctermfg=15  ctermbg=9'
+let g:status_replace = 'guifg=#ffff00 guibg=#5b7fbb ctermfg=190 ctermbg=67'
+let g:status_visual  = 'guifg=#ffffff guibg=#810085 ctermfg=15  ctermbg=53'
 
 " Set up the colors for the status bar
 function! statusline#colour()
@@ -20,6 +20,7 @@ function! statusline#colour()
 	hi link User8 Identifier
 	hi link User9 Normal
 endfunc
+call statusline#colour()
 
 function! statusline#mode()
 	redraw
@@ -35,8 +36,6 @@ function! statusline#mode()
 	else                 | return l:mode
 	endif
 endfunc
-
-call statusline#colour()
 
 function! statusline#filepath()
 	if expand('%') == ''
