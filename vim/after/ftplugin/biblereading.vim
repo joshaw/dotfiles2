@@ -1,5 +1,5 @@
 " Created:  Fri 06 Feb 2015
-" Modified: Thu 02 Jul 2015
+" Modified: Tue 07 Jul 2015
 " Author:   Josh Wainwright
 " Filename: biblereading.vim
 
@@ -56,7 +56,9 @@ function! BR_GotoReading()
 	else
 		" Jump to existing split
 		exe winnum . "wincmd w"
-		exe "edit " bibfile
+		if !expand('%') == bibfile
+			exe "edit " bibfile
+		endif
 	endif
 
 	" let booksearch = "\\v^### ".book
