@@ -1,11 +1,15 @@
 " Created:  Thu 17 Apr 2014
-" Modified: Sun 26 Apr 2015
+" Modified: Wed 08 Jul 2015
 " Author:   Josh Wainwright
 " Filename: timestamp.vim
 "
 
-" to update timestamp when saving if its in the first few lines of a file
+" Update timestamp if found in the first few lines of a file.
+" Triggered on file read but not set as modified.
 function! timestamp#Timestamp()
+	if &readonly
+		return
+	endif
 	let l:winview = winsaveview()
 
 	let pat = '\v\C%(Modified\s*:\s*)\zs%(.*20\d{2}|TIMESTAMP)\ze|Created\s*:\s*\zsTIMESTAMP\ze$'
@@ -18,6 +22,7 @@ function! timestamp#Timestamp()
 		call s:subst(1, line('$'), pat, rep)
 	endif
 
+	setlocal nomodified
 	call winrestview(l:winview)
 endfunction
 
@@ -29,7 +34,6 @@ function! s:subst(start, end, pat, rep)
 			let newline = substitute( curline, a:pat, a:rep, '' )
 			if( newline != curline )
 				" Only substitute if we made a change
-				"silent! undojoin
 				keepjumps call setline(lineno, newline)
 			endif
 		endif
