@@ -21,21 +21,25 @@ nnoremap <S-F12> :EditReport!<cr>
 
 " Smart completion on tab {{{
 function! Smart_TabComplete()
+	" Check for existing completion menu
 	if pumvisible()
 		return "\<c-n>"
 	endif
-	let line = getline('.')
-	let substr = strpart(line, -1, col('.'))
-	let substr = matchstr(substr, "[^ \t]*$")
+
+	" Check for start of line, or just whitespace
+	let linestart = strpart(getline('.'), -1, col('.'))
+	let substr = matchstr(linestart, "[^ \t]*$")
 	if (strlen(substr)==0)
 		return "\<tab>"
 	endif
+	" Check for filenames
 	let has_slash = match(substr, '\/\|\\') != -1
 	if (has_slash)
 		return "\<c-x>\<c-f>"
-	else
-		return "\<c-n>"
 	endif
+
+	" Otherwise, default completion
+	return "\<c-n>"
 endfunction " }}}
 inoremap <expr> <tab> Smart_TabComplete()
 inoremap <s-tab> <c-p>

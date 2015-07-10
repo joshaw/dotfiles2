@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Mon 06 Jul 2015
+" Modified: Thu 09 Jul 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
@@ -131,6 +131,7 @@ endfunction
 " Toggle Comment {{{1
 function! functions#toggleComment(ft)
 	let dict = {
+			\ 'bash': '#',
 			\ 'c': '//',
 			\ 'cpp': '//',
 			\ 'dosbatch': '::',
@@ -143,6 +144,7 @@ function! functions#toggleComment(ft)
 			\ 'perl': '#',
 			\ 'python': '#',
 			\ 'ruby': '#',
+			\ 'sh': '#',
 			\ 'tex': '%',
 			\ 'vim': '"',
 			\ 'zsh': '#',
@@ -150,6 +152,8 @@ function! functions#toggleComment(ft)
 	if has_key(dict, a:ft)
 		let c = dict[a:ft]
 		exe "s@^@".c." @ | s@^".c." ".c." @@e"
+		call histdel('search', -1)
+		call histdel('search', -1)
 	endif
 endfun
 
@@ -159,7 +163,6 @@ function! functions#nextFileInDir(direction)
 	let tot = len(files)
 	if tot > 0
 		let index = index(files, expand('%:p'))
-		let newfname = files[(index + a:direction) % tot]
-		exe 'edit' newfname
+		exe 'edit' files[(index + a:direction) % tot]
 	endif
 endfunction

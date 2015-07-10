@@ -1,5 +1,5 @@
 " Created:  Tue 24 Mar 2015
-" Modified: Wed 25 Mar 2015
+" Modified: Thu 09 Jul 2015
 " Author:   Josh Wainwright
 " Filename: flexlm.vim
 
@@ -13,9 +13,6 @@ endif
 " Syntax is case INsensitive
 syn case ignore
 
-
-" Main statements
-"===============================================
 syn keyword flexlmStatement SERVER DAEMON USE_SERVER VENDOR
 
 syn keyword flexlmStatement FEATURE INCREMENT PACKAGE skipwhite nextgroup=flexlmToken

@@ -39,16 +39,10 @@ if executable('git') && exists('g:use_vim_plug')
 	" endif
 	"Syntax checking for a wide range of languages
 	Plug 'scrooloose/syntastic', {'on': 'SyntasticCheck'}
-	"Easy commenting/uncommenting of code.
-	Plug 'tpope/vim-commentary'
 	"Simple alignment of lines
 	Plug 'godlygeek/tabular'
-	"Multiple useful keybindings
-	Plug 'tpope/vim-unimpaired'
 	"Simple minimalist alternative to netrw
 	Plug 'justinmk/vim-dirvish'
-	"Allow incrementing true/false values etc.
-	Plug 'nishigori/increment-activator'
 	"Make f (forward) and t (to) better
 	Plug 'clever-f.vim'
 	"Code structure overview
@@ -69,7 +63,6 @@ endfunction
 call s:lod('vim-dirvish')
 call s:lod('vim-buftabline')
 call s:lod('tabular')
-"call s:lod('vim-unimpaired')
 call s:lod('tgpg_vim')
 
 " Plugin Settings                {{{1
