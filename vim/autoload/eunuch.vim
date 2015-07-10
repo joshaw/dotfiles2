@@ -1,17 +1,7 @@
 " Created:  Fri 12 Jun 2015
-" Modified: Mon 29 Jun 2015
+" Modified: Thu 09 Jul 2015
 " Author:   Josh Wainwright
 " Filename: eunuch.vim
-
-function! s:fnameescape(string) abort
-	if exists('*fnameescape')
-		return fnameescape(a:string)
-	elseif a:string ==# '-'
-		return '\-'
-	else
-		return substitute(escape(a:string," \t\n*?[{`$\\%#'\"|!<"),'^[+>]','\\&','')
-	endif
-endfunction
 
 function! s:separator()
 	return !exists('+shellslash') || &shellslash ? '/' : '\\'
@@ -42,14 +32,14 @@ function! eunuch#MoveFile(bang, args)
 	endif
 	let s:dst = substitute(simplify(s:dst), '^\.\'.s:separator(), '', '')
 	if !a:bang && filereadable(s:dst)
-		exe 'keepalt saveas '.s:fnameescape(s:dst)
+		exe 'keepalt saveas '.fnameescape(s:dst)
 	elseif rename(s:src, s:dst)
 		echoerr 'Failed to rename "'.s:src.'" to "'.s:dst.'"'
 	else
 		setlocal modified
-		exe 'keepalt saveas! '.s:fnameescape(s:dst)
+		exe 'keepalt saveas! '.fnameescape(s:dst)
 		if s:src !=# expand('%:p')
-			execute 'bwipe '.s:fnameescape(s:src)
+			execute 'bwipe '.fnameescape(s:src)
 		endif
 	endif
 	unlet s:src
