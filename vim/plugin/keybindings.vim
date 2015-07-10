@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Thu 09 Jul 2015
+" Modified: Fri 10 Jul 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -96,26 +96,26 @@ nnoremap n nzz
 nnoremap N Nzz
 
 " Make nN behave like ;, when jumping {{{2
-function! SmartFEnable()
-  nnoremap n ;
-  nnoremap N ,
+function! Multiff()
+  nnoremap <silent> n :call multif#multif(g:fchar, 1, 0)<cr>
+  nnoremap <silent> N :call multif#multif(g:fchar, 0, 0)<cr>
 endfun
 
 " Make nN behave normally
-function! SmartFDisable()
+function! Multifs()
   nnoremap n nzz
   nnoremap N Nzz
 endfun
 
 " Make jumping enable smart nN
-nnoremap <silent> f :call SmartFEnable()<Cr>f
-nnoremap <silent> F :call SmartFEnable()<Cr>F
-nnoremap <silent> t :call SmartFEnable()<Cr>t
-nnoremap <silent> T :call SmartFEnable()<Cr>T
+nnoremap <silent> f :call Multiff()<Cr>:call multif#multif(getchar(), 1, 0)<cr>
+nnoremap <silent> F :call Multiff()<Cr>:call multif#multif(getchar(), 0, 0)<cr>
+nnoremap <silent> t :call Multiff()<Cr>:call multif#multif(getchar(), 1, 1)<cr>
+nnoremap <silent> T :call Multiff()<Cr>:call multif#multif(getchar(), 0, 1)<cr>
 
 " Make searching return nN to normal
-noremap <silent> / :call SmartFDisable()<Cr>/
-noremap <silent> ? :call SmartFDisable()<Cr>?
+noremap <silent> / :call Multifs()<Cr>/
+noremap <silent> ? :call Multifs()<Cr>?
 " }}}
 
 xnoremap u <nop>
