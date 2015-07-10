@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Mon 22 Jun 2015
+" Modified: Wed 08 Jul 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -107,6 +107,7 @@ let g:buftabline_indicators = 1
 filetype plugin on
 filetype indent on
 syntax on
+let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 augroup colourscheme
 	au!
 	au VimEnter * colorscheme molokaiV
