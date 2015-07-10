@@ -1,5 +1,5 @@
 " Created:  Sun 26 Apr 2015
-" Modified: Wed 08 Jul 2015
+" Modified: Thu 09 Jul 2015
 " Author:   Josh Wainwright
 " Filename: plugins.vim
 
@@ -70,3 +70,8 @@ command! IPtablesSort :call functions#IPtablesSort()
 "
 " FirstTimeRun
 command! FirstTimeRun :call functions#FirstTimeRun()
+
+"
+" Incremental
+nnoremap <silent> <c-a> :call incremental#incremental(expand('<cword>'), 1)<cr>
+nnoremap <silent> <c-x> :call incremental#incremental(expand('<cword>'), -1)<cr>
