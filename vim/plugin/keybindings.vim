@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Tue 07 Jul 2015
+" Modified: Thu 09 Jul 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -32,6 +32,13 @@ function! Smart_TabComplete()
 	if (strlen(substr)==0)
 		return "\<tab>"
 	endif
+
+	" Check for abbreviations
+	let cword = split(linestart)[-1]
+	if maparg(cword, 'i', 1) != ''
+		return "\<c-]>"
+	endif
+
 	" Check for filenames
 	let has_slash = match(substr, '\/\|\\') != -1
 	if (has_slash)
