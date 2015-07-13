@@ -1,5 +1,5 @@
-" Created:  TIMESTAMP
-" Modified: TIMESTAMP
+" Created:  Fri 10 Jul 2015
+" Modified: Mon 13 Jul 2015
 " Author:   Josh Wainwright
 " Filename: multi-f.vim
 
@@ -20,6 +20,6 @@ function! multif#multif(char, direction, till)
 			let fin = 'l'
 		endif
 	endif
-	call search(c, flags, stopl, 5)
+	call search('\V'.c, flags, stopl, 5)
 	silent! exe "normal!" fin
 endfunction
