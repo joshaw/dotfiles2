@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Thu 09 Jul 2015
+" Modified: Mon 13 Jul 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -20,7 +20,7 @@ command! InstallPlug silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 let g:plug_threads = 6
 let g:plug_timeout = 20
 
-"let g:use_vim_plug = 1
+" let g:use_vim_plug = 1
 if executable('git') && exists('g:use_vim_plug')
 	call plug#begin(g:vimhome.'plugged')
 
@@ -43,8 +43,6 @@ if executable('git') && exists('g:use_vim_plug')
 	Plug 'godlygeek/tabular'
 	"Simple minimalist alternative to netrw
 	Plug 'justinmk/vim-dirvish'
-	"Make f (forward) and t (to) better
-	Plug 'clever-f.vim'
 	"Code structure overview
 	Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
@@ -89,11 +87,6 @@ let g:syntastic_check_on_wq              = 0
 let g:syntastic_auto_loc_list            = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_tex_checkers             = ['chktex']
-
-""" Clever F
-let g:clever_f_smart_case        = 1
-let g:clever_f_mark_cursor       = 1
-let g:clever_f_mark_cursor_color = 'Error'
 
 """ BufTabLine
 let g:buftabline_show       = 1
