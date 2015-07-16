@@ -33,7 +33,7 @@ if "%dow%" GEQ "6" GOTO:eof
 ::
 :: Set flags in Testbed.ini {{{1
 ::
-set TBINI="C:\LDRA_Toolsuite\C_C++\946\TBini.exe"
+set TBINI="C:\LDRA_Toolsuite\C_C++\950\TBini.exe"
 for %%x in (
 	"C/C++ LDRA Testbed"
 	"Ada95 LDRA Testbed"
@@ -44,6 +44,7 @@ for %%x in (
 	%TBINI% -Section=%%x REDIRECT_MAILTO=TRUE
 
 	%TBINI% -Section=%%x TBBROWSE_HTML_FONT_SIZE=2
+	%TBINI% -Section=%%x TBRUN_COLOURED_GUI=TRUE
 )
 
 ::
