@@ -72,6 +72,7 @@ nnoremap cow :set wrap!<CR>
 nnoremap col :set list!<CR>
 nnoremap coc :set cursorcolumn!<CR>
 nnoremap cou :set cursorline!<CR>
+nnoremap cos :set spell!<CR>
 nnoremap <silent> [<space> :-1 put _<cr>j
 nnoremap <silent> ]<space> :put _<cr>k
 nnoremap <silent> ]b :bnext<CR>
