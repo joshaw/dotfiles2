@@ -1,5 +1,5 @@
 " Created:  Sun 26 Apr 2015
-" Modified: Thu 09 Jul 2015
+" Modified: Tue 14 Jul 2015
 " Author:   Josh Wainwright
 " Filename: plugins.vim
 
@@ -75,3 +75,8 @@ command! FirstTimeRun :call functions#FirstTimeRun()
 " Incremental
 nnoremap <silent> <c-a> :call incremental#incremental(expand('<cword>'), 1)<cr>
 nnoremap <silent> <c-x> :call incremental#incremental(expand('<cword>'), -1)<cr>
+
+"
+" Surroundings
+nnoremap <silent> ys :call surroundings#surroundings(0)<cr>
+xnoremap <silent> S :call surroundings#surroundings(visualmode() ==# 'v'? 1: 2)<cr>
