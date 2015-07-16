@@ -261,12 +261,13 @@ set undofile                    " automatically save and restore undo history
 exe 'set undodir='.g:vimhome.'/tmp/undo//'
 
 "22 executing external commands {{{2
-if has('win32') && executable('zsh')
-	set shell=C:/cygwin/bin/zsh.exe\ -i " name of the shell program used for external commands
-	set shellcmdflag=-c                 " argument for 'shell' to execute a command
-elseif has('win32')
-	set shell=C:/cygwin/bin/bash
-	set shellcmdflag=--login\ -c
+if has('win32')
+" 	set shell=C:/cygwin/bin/bash
+" 	set shellcmdflag=--login\ -c\ 'cd\ $PWD'\ -c
+" 	set shellxquote=\"
+
+	let &shell='C:/cygwin/bin/bash.exe --rcfile c:/cygwin/home/' . $USERNAME . '/.bashrc ' . '-i '
+	set shellcmdflag=-c
 	set shellxquote=\"
 else
 	set shell=sh
