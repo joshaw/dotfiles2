@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Mon 13 Jul 2015
+" Modified: Tue 14 Jul 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -334,6 +334,12 @@ omap af :normal vaf<cr>
 
 " Abbreviations                  {{{1
 "
+function! s:snipfunc(name, ...)
+	let repl = join(a:000, ' ')
+	exe "iabbrev <buffer> ".a:name."# ".repl
+endfunction
+
+command! -nargs=+ Snip :call s:snipfunc(<f-args>)
 
 cabbrev help vert help
 cabbrev w!! w !sudo tee > /dev/null %

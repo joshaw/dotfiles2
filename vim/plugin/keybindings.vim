@@ -35,8 +35,8 @@ function! Smart_TabComplete()
 
 	" Check for abbreviations
 	let cword = split(linestart)[-1]
-	if maparg(cword, 'i', 1) != ''
-		return "\<c-]>"
+	if maparg(cword.'#', 'i', 1) != ''
+		return "#\<c-]>"
 	endif
 
 	" Check for filenames
