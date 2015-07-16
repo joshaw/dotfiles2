@@ -1,12 +1,12 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Thu 09 Jul 2015
+" Modified: Tue 14 Jul 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
 " GrepString {{{1
 " Set the grepprg depending on context
 function! functions#GrepString()
-	if exists("b:git_dir") && b:git_dir != ''
+	if exists("b:git_dir") && b:git_dir != '' || isdirectory('.git') || isdirectory('../.git')
 		setlocal grepprg=git\ --no-pager\ grep\ -H\ -n\ --no-color\ --ignore-case
 	elseif executable('ag')
 		setlocal grepprg=ag\ --vimgrep\ --smart-case
