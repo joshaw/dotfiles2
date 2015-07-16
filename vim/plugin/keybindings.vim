@@ -141,20 +141,29 @@ nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 " Symbols {{{1
 
 function! Dirvishfindcur()
-	let curfname = expand('%')
+	if isdirectory(expand('%:p'))
+		let curfname = expand('%:s#^.*/\(.*/\)#\1#')
+	else
+		let curfname = expand('%:t')
+	endif
 	Dirvish %:p:h
-	let l:nothidden = 1
-	while l:nothidden
-		if search(curfname)
-			normal zt
-			return
-		else
-			let l:nothidden = 0
-			silent normal gh
+	if ! search(curfname)
+		silent normal gh
+		if ! search(curfname)
+			normal! gg
 		endif
-	endwhile
+	endif
 endfunction
 nnoremap - :call Dirvishfindcur()<CR>
+
+augroup my_dirvish_events
+	au!
+	au User DirvishEnter let b:dirvish.showhidden = 1
+	au User DirvishEnter nmap <buffer> l <Plug>(dirvish_visitTarget)
+	au User DirvishEnter nmap <buffer> h <Plug>(dirvish_focusOnParent)
+	au User DirvishEnter nmap <buffer> <expr> N feedkeys(':e ' . bufname("%"))
+augroup END
+
 nnoremap ; :
 nnoremap , ;
 
