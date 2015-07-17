@@ -57,6 +57,7 @@ let s:stl.="%(%7*[%M] %)%9*"                     " modified flag
 
 let s:stl.="%="                                  " right-align
 
+let s:stl.="%(%{(&paste!=0?'[p]':'')}%)"         " spell check flag
 let s:stl.="%(%{(&spell!=0?'[s]':'')}%)"         " spell check flag
 let s:stl.="%(%{(&ro!=0?'[ro]':'')}%)"           " readonly flag
 let s:stl.="%(%{(&bin!=0?'[b]':'')}%) "          " binary flag
