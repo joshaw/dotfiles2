@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Mon 06 Jul 2015
+" Modified: Fri 17 Jul 2015
 " Author:   Josh Wainwright
 " Filename: statusline.vim
 
@@ -11,18 +11,28 @@ let g:status_insert  = 'guifg=#ffffff guibg=#ff0000 ctermfg=15  ctermbg=9'
 let g:status_replace = 'guifg=#ffff00 guibg=#5b7fbb ctermfg=190 ctermbg=67'
 let g:status_visual  = 'guifg=#ffffff guibg=#810085 ctermfg=15  ctermbg=53'
 
+function! s:statuslineconvert(n, orig)
+	if has("gui_running")
+		let p = 'gui'
+	else
+		let p = 'cterm'
+	endif
+		exec 'hi User'.a:n p.'fg='.synIDattr(synIDtrans(hlID(a:orig)), 'fg')
+					\ p.'bg='.synIDattr(synIDtrans(hlID('ColorColumn')), 'bg')
+endfunction
+
 " Set up the colors for the status bar
 function! statusline#colour()
 	" Basic color presets
-	hi link User5 Comment
-	hi link User6 Operator
-	hi link User7 Operator
-	hi link User8 Identifier
-	hi link User9 Normal
+	call s:statuslineconvert(5, 'Comment')
+	call s:statuslineconvert(6, 'Operator')
+	call s:statuslineconvert(7, 'Operator')
+	call s:statuslineconvert(8, 'Identifier')
+	call s:statuslineconvert(9, 'Normal')
 endfunc
-call statusline#colour()
 
 function! statusline#mode()
+	call statusline#colour()
 	redraw
 	let l:mode = mode()
 
@@ -62,7 +72,7 @@ let s:stl.="%(%{(&spell!=0?'[s]':'')}%)"         " spell check flag
 let s:stl.="%(%{(&ro!=0?'[ro]':'')}%)"           " readonly flag
 let s:stl.="%(%{(&bin!=0?'[b]':'')}%) "          " binary flag
 let s:stl.="%(%8*%{&filetype} %)%9*"             " file type
-let s:stl.="%(%{(&ff=='unix'?'u':'d')}%)"        " file format
+let s:stl.="%(%{(&ff=='unix'?'u':&ff)}%)"        " file format
 let s:stl.="%(%{(&fenc=='utf-8'?'8':&fenc)} |%)" " file encoding
 let s:stl.="%3.c:"                               " column number
 let s:stl.="%7*%3.l%8*/%-2.L\ "                  " line number / total lines
@@ -70,7 +80,7 @@ let s:stl.="%3.p%% "                             " percentage done
 
 augroup statusline
 	" whenever the color scheme changes re-apply the colors
-	au ColorScheme * call statusline#colour()
+	au ColorScheme,VimEnter * call statusline#mode()
 
 	au WinEnter,BufEnter *
 				\ call setwinvar(0, "&statusline", s:stl)
