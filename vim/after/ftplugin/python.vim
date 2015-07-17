@@ -1,10 +1,10 @@
 " Created:  Thu 09 Jul 2015
-" Modified: Tue 14 Jul 2015
+" Modified: Fri 17 Jul 2015
 " Author:   Josh Wainwright
 " Filename: python.vim
 
-autocmd Filetype python setlocal expandtab
-autocmd Filetype python setlocal keywordprg=pydoc
+setlocal expandtab
+setlocal keywordprg=pydoc
 
 Snip def # start function<esc>odef<esc>o# end function<esc>ka
 Snip im import
