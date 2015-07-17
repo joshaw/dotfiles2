@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Tue 14 Jul 2015
+" Modified: Thu 16 Jul 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -14,14 +14,14 @@ endif
 
 " Vim-Plug Plugins               {{{1
 "
-command! InstallPlug silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-let g:plug_threads = 6
-let g:plug_timeout = 20
 
 " let g:use_vim_plug = 1
 if executable('git') && exists('g:use_vim_plug')
+	let g:plug_threads = 6
+	let g:plug_timeout = 20
+	command! InstallPlug silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 	call plug#begin(g:vimhome.'plugged')
 
 	let g:plug_url_format = 'https://git@github.com/%s.git'

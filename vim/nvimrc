@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Wed 08 Jul 2015
+" Modified: Tue 14 Jul 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -20,7 +20,7 @@ command! InstallPlug silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 let g:plug_threads = 6
 let g:plug_timeout = 20
 
-"let g:use_vim_plug = 1
+" let g:use_vim_plug = 1
 if executable('git') && exists('g:use_vim_plug')
 	call plug#begin(g:vimhome.'plugged')
 
@@ -39,18 +39,10 @@ if executable('git') && exists('g:use_vim_plug')
 	" endif
 	"Syntax checking for a wide range of languages
 	Plug 'scrooloose/syntastic', {'on': 'SyntasticCheck'}
-	"Easy commenting/uncommenting of code.
-	Plug 'tpope/vim-commentary'
 	"Simple alignment of lines
 	Plug 'godlygeek/tabular'
-	"Multiple useful keybindings
-	Plug 'tpope/vim-unimpaired'
 	"Simple minimalist alternative to netrw
 	Plug 'justinmk/vim-dirvish'
-	"Allow incrementing true/false values etc.
-	Plug 'nishigori/increment-activator'
-	"Make f (forward) and t (to) better
-	Plug 'clever-f.vim'
 	"Code structure overview
 	Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
@@ -69,11 +61,16 @@ endfunction
 call s:lod('vim-dirvish')
 call s:lod('vim-buftabline')
 call s:lod('tabular')
-"call s:lod('vim-unimpaired')
 call s:lod('tgpg_vim')
 
 " Plugin Settings                {{{1
 "
+
+"""" Builtin Plugins
+let loaded_netrwPlugin = 1
+let loaded_rrhelper = 1
+let loaded_vimballPlugin = 1
+let loaded_getscriptPlugin = 1
 
 """" UltiSnips Plugin
 set runtimepath^=$HOME/.vim/custom
@@ -90,11 +87,6 @@ let g:syntastic_check_on_wq              = 0
 let g:syntastic_auto_loc_list            = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_tex_checkers             = ['chktex']
-
-""" Clever F
-let g:clever_f_smart_case        = 1
-let g:clever_f_mark_cursor       = 1
-let g:clever_f_mark_cursor_color = 'Error'
 
 """ BufTabLine
 let g:buftabline_show       = 1
@@ -269,12 +261,13 @@ set undofile                    " automatically save and restore undo history
 exe 'set undodir='.g:vimhome.'/tmp/undo//'
 
 "22 executing external commands {{{2
-if has('win32') && executable('zsh')
-	set shell=C:/cygwin/bin/zsh.exe\ -i " name of the shell program used for external commands
-	set shellcmdflag=-c                 " argument for 'shell' to execute a command
-elseif has('win32')
-	set shell=C:/cygwin/bin/bash
-	set shellcmdflag=--login\ -c
+if has('win32')
+" 	set shell=C:/cygwin/bin/bash
+" 	set shellcmdflag=--login\ -c\ 'cd\ $PWD'\ -c
+" 	set shellxquote=\"
+
+	let &shell='C:/cygwin/bin/bash.exe --rcfile c:/cygwin/home/' . $USERNAME . '/.bashrc ' . '-i '
+	set shellcmdflag=-c
 	set shellxquote=\"
 else
 	set shell=sh
@@ -341,6 +334,12 @@ omap af :normal vaf<cr>
 
 " Abbreviations                  {{{1
 "
+function! s:snipfunc(name, ...)
+	let repl = join(a:000, ' ')
+	exe "iabbrev <buffer> ".a:name."# ".repl
+endfunction
+
+command! -nargs=+ Snip :call s:snipfunc(<f-args>)
 
 cabbrev help vert help
 cabbrev w!! w !sudo tee > /dev/null %
@@ -359,6 +358,8 @@ endfunction
 
 iabbrev <expr> Cre: CreatedHeader()
 iabbrev TST TIMESTAMP
+
+iabbrev Copyr Copyright: 2015, LDRA Ltd.
 
 " LDRA                           {{{1
 "
@@ -385,11 +386,6 @@ if has("gui_running") && !exists("g:vim_started")
 	exe "set columns=" . (82+&numberwidth)
 	let g:vim_started = 1
 endif
-
-augroup vimrc_save
-	autocmd!
-	au VimResized * :wincmd =
-augroup END
 " }}}
 
 " Keybindings
@@ -397,5 +393,8 @@ augroup END
 "         ~\\vimfiles\\plugin\\keybindings.vim
 " Functions
 "         ~/.vim/autoload/functions.vim
-"         ~\vimfiles\autoload\functions.vim
+"         ~\\vimfiles\\autoload\\functions.vim
+" Plugins
+"         ~/.vim/plugin/plugins.vim
+"         ~\\vimfiles\\plugin\\plugins.vim
 " vim: fdm=marker nowrap
