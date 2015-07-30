@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Mon 27 Jul 2015
+" Modified: Wed 29 Jul 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -71,6 +71,7 @@ let loaded_netrwPlugin = 1
 let loaded_rrhelper = 1
 let loaded_vimballPlugin = 1
 let loaded_getscriptPlugin = 1
+let loaded_logipat = 1
 
 """" UltiSnips Plugin
 set runtimepath^=$HOME/.vim/custom
