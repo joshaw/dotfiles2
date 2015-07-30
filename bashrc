@@ -98,9 +98,8 @@ function jumplist-forward {
 }
 
 function cd {
-	builtin cd "$@" > /dev/null
+	builtin cd "$@" > /dev/null && ls -Al
 	jumplist-add $PWD
-	ls -Al
 }
 
 bind -x '"\C-O":jumplist-backward'
