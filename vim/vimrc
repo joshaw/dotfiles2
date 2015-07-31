@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Wed 29 Jul 2015
+" Modified: Fri 31 Jul 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -31,12 +31,6 @@ if executable('git') && exists('g:use_vim_plug')
 	Plug 'tpope/vim-fugitive'
 	"Gitk for vim
 	Plug 'gregsexton/gitv', {'on': 'Gitv'}
-	" if has('python')
-	" 	"Snippet management
-	" 	Plug 'SirVer/ultisnips'
-	" 	Plug 'honza/vim-snippets'
-	" 	 command! UltiSnipsLoad :
-	" endif
 	"Syntax checking for a wide range of languages
 	Plug 'scrooloose/syntastic', {'on': 'SyntasticCheck'}
 	"Simple alignment of lines
@@ -72,16 +66,6 @@ let loaded_rrhelper = 1
 let loaded_vimballPlugin = 1
 let loaded_getscriptPlugin = 1
 let loaded_logipat = 1
-
-"""" UltiSnips Plugin
-set runtimepath^=$HOME/.vim/custom
-let g:UltiSnipsSnippetsDir         =  "~/.vim/custom/mysnippets"
-let g:UltiSnipsSnippetDirectories  = ["UltiSnips","mysnippets"]
-let g:UltiSnipsEditSplit           =  "vertical"
-let g:UltiSnipsEnableSnipMate      =  0
-let g:UltiSnipsExpandTrigger       = "<c-j>"
-let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 
 """" Syntastic
 let g:syntastic_check_on_wq              = 0
