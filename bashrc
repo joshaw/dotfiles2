@@ -15,6 +15,7 @@ alias ll='ls -l'
 alias la='ll -a'
 source ~/.zsh/aliases.zsh
 source ~/.zsh/git.zsh
+source ~/.bash/ldra.bash
 
 ## Options
 shopt -s autocd
