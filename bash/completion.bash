@@ -1,5 +1,5 @@
 # Created:  Fri 26 Jun 2015
-# Modified: Mon 06 Jul 2015
+# Modified: Thu 30 Jul 2015
 # Author:   Josh Wainwright
 # Filename: completion.bash
 
@@ -32,7 +32,7 @@ bind 'set menu-complete-display-prefix on'
 bind 'set show-all-if-unmodified on'
 
 _make_complete() {
-	files=$(find -maxdepth 1 -iname "makefile" -o -iname "*.mak")
+	local files=$(find -maxdepth 1 -iname "makefile" -o -iname "*.mak")
 	local list=$(grep -E "^[a-zA-Z][a-zA-Z0-9]*:" ${files} | sed 's/:.*//')
 	local cur=${COMP_WORDS[COMP_CWORD]}
 	COMPREPLY=( $(compgen -W "$list" -- $cur) )
