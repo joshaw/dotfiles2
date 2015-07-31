@@ -1,5 +1,5 @@
 " Created:  Thu 07 Aug 2014
-" Modified: Tue 14 Jul 2015
+" Modified: Fri 31 Jul 2015
 " Author:   Josh Wainwright
 " Filename: filetype.vim
 
@@ -22,8 +22,7 @@ augroup filetypedetect
 	" Remove spaces at the end of header lines when starting new mail in mutt.
 	autocmd BufRead,BufNewFile /tmp/*/mutt* :1,/^$/s/\s\+$//
 	autocmd BufRead,BufNewFile *.mail setf mail
-	autocmd BufRead,BufNewFile *.tcf setf conf
-	autocmd BufRead,BufNewFile *.tct setf conf
+	autocmd BufRead,BufNewFile *.tcf,*.tct setf tcf
 	autocmd BufRead,BufNewFile *.gnu setf gnuplot
 	autocmd BufRead,BufNewFile *.cmm set filetype=practice
 augroup END
