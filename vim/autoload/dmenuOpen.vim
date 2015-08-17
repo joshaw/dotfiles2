@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Sun 26 Apr 2015
+" Modified: Mon 03 Aug 2015
 " Author:   Josh Wainwright
 " Filename: dmenuOpen.vim
 
@@ -22,16 +22,17 @@ function! dmenuOpen#DmenuOpen(cmd, ...)
 		if exists("b:git_dir") && b:git_dir != ''
 			let command = "cd ". fnamemodify(b:git_dir, ":h") ."; git ls-files"
 		elseif executable('lsall')
-			let command = "lsall"
+			let command = "lsall -n"
 		elseif executable('ag')
-			let command = "ag --hidden -g \"\""
+			let command = "ag --hidden -g \\\"\\\""
 		else
 			finish
 		endif
 		let fname = system(command . " | dmenu -b -i -l 20 -p " . a:cmd)
 	endif
 	let fname = s:clean_string(fname)
-	if empty(fname)
+	if empty(fname) || !filereadable(glob(fname))
+		echo "No file selected"
 		return
 	endif
 	execute a:cmd . " " . fname
