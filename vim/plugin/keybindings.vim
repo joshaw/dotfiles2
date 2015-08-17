@@ -9,7 +9,8 @@ map <F1> :<C-U>e ~/.dotfiles/bookmarks.md<cr>
 map <F2> :<C-U>e ~/Documents/Details/times/times.txt<cr>
 
 " Switch to display mode
-nnoremap <silent> <F5> :<C-u>call display#Switch_display_mode()<CR>
+nnoremap <silent> <F5> :<C-u>DisplayMode<CR>
+nnoremap <silent> <F6> :<C-u>ReadingMode<CR>
 
 " Save the current file and run the make program
 map <F9>   :w <bar> make<cr><cr>

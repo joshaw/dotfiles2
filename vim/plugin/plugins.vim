@@ -1,5 +1,5 @@
 " Created:  Sun 26 Apr 2015
-" Modified: Tue 14 Jul 2015
+" Modified: Tue 04 Aug 2015
 " Author:   Josh Wainwright
 " Filename: plugins.vim
 
@@ -27,6 +27,8 @@ endif
 
 "
 " DisplayMode
+command! -nargs=0 ReadingMode call display#Reading_mode_toggle()
+command! -nargs=0 DisplayMode call display#Display_mode_toggle()
 augroup DisplayMode
 	autocmd VimEnter * call display#Display_mode_start()
 augroup END
