@@ -11,7 +11,7 @@ endif
 
 " we define it here so that included files can test for it
 if !exists("main_syntax")
-   let main_syntax='practice'
+   let main_syntax='tcf'
 endif
 
 syn case ignore

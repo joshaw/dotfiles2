@@ -1,5 +1,5 @@
 " Created:  Thu 07 Aug 2014
-" Modified: Fri 31 Jul 2015
+" Modified: Mon 17 Aug 2015
 " Author:   Josh Wainwright
 " Filename: filetype.vim
 
@@ -23,6 +23,11 @@ augroup filetypedetect
 	autocmd BufRead,BufNewFile /tmp/*/mutt* :1,/^$/s/\s\+$//
 	autocmd BufRead,BufNewFile *.mail setf mail
 	autocmd BufRead,BufNewFile *.tcf,*.tct setf tcf
+	autocmd BufRead,BufNewFile *vals.dat setf vals
+	autocmd BufRead,BufNewFile *tbend.dat setf tbend
+	autocmd BufRead,BufNewFile *[sS]ysearch.dat setf sysearch
+	autocmd BufRead,BufNewFile *[sS]ysppvar.dat setf sysppvar
+	autocmd BufRead,BufNewFile *[mM]etpen.dat setf metpen
 	autocmd BufRead,BufNewFile *.gnu setf gnuplot
 	autocmd BufRead,BufNewFile *.cmm set filetype=practice
 augroup END
