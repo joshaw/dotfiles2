@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Fri 31 Jul 2015
+" Modified: Tue 04 Aug 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -61,11 +61,11 @@ call s:lod('tgpg_vim')
 "
 
 """" Builtin Plugins
-let loaded_netrwPlugin = 1
-let loaded_rrhelper = 1
-let loaded_vimballPlugin = 1
+let loaded_netrwPlugin     = 1
+let loaded_rrhelper        = 1
+let loaded_vimballPlugin   = 1
 let loaded_getscriptPlugin = 1
-let loaded_logipat = 1
+let loaded_logipat         = 1
 
 """" Syntastic
 let g:syntastic_check_on_wq              = 0

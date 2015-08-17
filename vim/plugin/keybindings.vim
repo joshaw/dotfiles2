@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Fri 10 Jul 2015
+" Modified: Tue 04 Aug 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -158,12 +158,11 @@ function! Dirvishfindcur()
 	endif
 endfunction
 nnoremap - :call Dirvishfindcur()<CR>
+" nnoremap - :Dirvish<cr>
 
 augroup my_dirvish_events
 	au!
 	au User DirvishEnter let b:dirvish.showhidden = 1
-	au User DirvishEnter nmap <buffer> l <Plug>(dirvish_visitTarget)
-	au User DirvishEnter nmap <buffer> h <Plug>(dirvish_focusOnParent)
 	au User DirvishEnter nmap <buffer> <expr> N feedkeys(':e ' . bufname("%"))
 augroup END
 
@@ -204,7 +203,7 @@ xnoremap <silent> <C-Down> :move'>+<CR>gv
 xnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 " Dmenu Open
-if ! executable('dmenu')
+if executable('dmenu')
 	" map <c-t> :call DmenuOpen("tabe")<cr>
 	noremap <c-f> :call dmenuOpen#DmenuOpen("e")<cr>
 	noremap <c-b> :call dmenuOpen#DmenuOpen("e", 1)<cr>
