@@ -10,12 +10,12 @@ export EDITOR=vim
 export PAGER=less
 
 ## Aliases
-alias ls='ls --color=auto'
-alias ll='ls -l'
-alias la='ll -a'
 source ~/.zsh/aliases.zsh
 source ~/.zsh/git.zsh
 source ~/.bash/ldra.bash
+alias ls='ls --color=auto'
+alias ll='ls -Gghmn --time-style=+"" --group-directories-first'
+alias la='ll -A'
 
 ## Options
 shopt -s autocd
@@ -99,7 +99,7 @@ function jumplist-forward {
 }
 
 function cd {
-	builtin cd "$@" > /dev/null && ls -Al
+	builtin cd "$@" > /dev/null && ll
 	jumplist-add $PWD
 }
 
