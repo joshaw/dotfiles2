@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Fri 17 Jul 2015
+" Modified: Tue 18 Aug 2015
 " Author:   Josh Wainwright
 " Filename: statusline.vim
 
@@ -33,18 +33,17 @@ endfunc
 
 function! statusline#mode()
 	call statusline#colour()
-	redraw
 	let l:mode = mode()
 
-	if     mode ==# "n"  | exec 'hi User1 '.g:status_normal  | return "NORMAL"
-	elseif mode ==# "i"  | exec 'hi User1 '.g:status_insert  | return "INSERT"
-	elseif mode ==# "R"  | exec 'hi User1 '.g:status_replace | return "REPLACE"
-	elseif mode ==# "v"  | exec 'hi User1 '.g:status_visual  | return "VISUAL"
-	elseif mode ==# "V"  | exec 'hi User1 '.g:status_visual  | return "V-LINE"
-	elseif mode ==# "" | exec 'hi User1 '.g:status_visual  | return "V-BLOCK"
-	elseif mode ==# "t"  | exec 'hi User1 '.g:status_replace | return "TERM"
-	else                 | return l:mode
+	if     l:mode ==# "n"  | exec 'hi User1 '.g:status_normal
+	elseif l:mode ==# "i"  | exec 'hi User1 '.g:status_insert
+	elseif l:mode ==# "R"  | exec 'hi User1 '.g:status_replace
+	elseif l:mode ==# "v"  | exec 'hi User1 '.g:status_visual
+	elseif l:mode ==# "V"  | exec 'hi User1 '.g:status_visual
+	elseif l:mode ==# "" | exec 'hi User1 '.g:status_visual | let l:mode = '^'
+	elseif l:mode ==# "t"  | exec 'hi User1 '.g:status_replace
 	endif
+	return l:mode
 endfunc
 
 function! statusline#filepath()
@@ -59,6 +58,22 @@ function! statusline#filepath()
 	endif
 endfunction
 
+function! statusline#optflags()
+	let flags = ''
+	let flags.=(&paste != 0 ? 'p' : '')
+	let flags.=(&spell != 0 ? 's' : '')
+" 	let flags.=(&wrap != 0 ? 'w' : '')
+	let flags.=(&bin != 0 ? 'b' : '')
+	let flags.=(&ro != 0 ? ' ro' : '')
+	if flags ==# ' ro'
+		let flags = 'ro'
+	endif
+	if len(flags) > 0
+		let flags= '['.flags.']'
+	endif
+	return flags
+endfunction
+
 let s:stl= ""
 let s:stl.="%1* %{statusline#mode()} %9* "       " mode (changes color)
 let s:stl.="%5*%<%{statusline#filepath()}"       " file path
@@ -67,11 +82,9 @@ let s:stl.="%(%7*[%M] %)%9*"                     " modified flag
 
 let s:stl.="%="                                  " right-align
 
-let s:stl.="%(%{(&paste!=0?'[p]':'')}%)"         " spell check flag
-let s:stl.="%(%{(&spell!=0?'[s]':'')}%)"         " spell check flag
-let s:stl.="%(%{(&ro!=0?'[ro]':'')}%)"           " readonly flag
-let s:stl.="%(%{(&bin!=0?'[b]':'')}%) "          " binary flag
-let s:stl.="%(%8*%{&filetype} %)%9*"             " file type
+let s:stl.="%7*%{(exists('g:status_var') ? g:status_var : '')}%9*"
+let s:stl.="%(%{statusline#optflags()}%) "       " option flags
+let s:stl.="%8*%(%{&filetype} %)%9*"             " file type
 let s:stl.="%(%{(&ff=='unix'?'u':&ff)}%)"        " file format
 let s:stl.="%(%{(&fenc=='utf-8'?'8':&fenc)} |%)" " file encoding
 let s:stl.="%3.c:"                               " column number
