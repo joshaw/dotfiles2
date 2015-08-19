@@ -1,5 +1,5 @@
 # Created:  Fri 26 Jun 2015
-# Modified: Thu 30 Jul 2015
+# Modified: Wed 19 Aug 2015
 # Author:   Josh Wainwright
 # Filename: completion.bash
 
@@ -13,8 +13,10 @@ complete -A command man
 complete -A directory cd rmdir pushd
 complete -A file -X '!*.md' md.py
 complete -A file -X '!*.gnu' gnuplot gnuplot.exe
+complete -A file -X '!*.py' python python3
 complete -A helptopic help
 complete -A job -P '"%' -S '"' fg jobs disown
+complete -A file -A directory mount umount
 complete -A setopt set
 complete -A shopt shopt
 complete -A stopped -P '"%' -S '"' bg
