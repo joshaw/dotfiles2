@@ -98,29 +98,6 @@ inoremap kj <Esc>
 nnoremap n nzz
 nnoremap N Nzz
 
-" Make nN behave like ;, when jumping {{{2
-function! Multiff()
-  nnoremap <silent> n :call multif#multif(g:fchar, 1, 0)<cr>
-  nnoremap <silent> N :call multif#multif(g:fchar, 0, 0)<cr>
-endfun
-
-" Make nN behave normally
-function! Multifs()
-  nnoremap n nzz
-  nnoremap N Nzz
-endfun
-
-" Make jumping enable smart nN
-nnoremap <silent> f :call Multiff()<Cr>:call multif#multif(getchar(), 1, 0)<cr>
-nnoremap <silent> F :call Multiff()<Cr>:call multif#multif(getchar(), 0, 0)<cr>
-nnoremap <silent> t :call Multiff()<Cr>:call multif#multif(getchar(), 1, 1)<cr>
-nnoremap <silent> T :call Multiff()<Cr>:call multif#multif(getchar(), 0, 1)<cr>
-
-" Make searching return nN to normal
-noremap <silent> / :call Multifs()<Cr>/
-noremap <silent> ? :call Multifs()<Cr>?
-" }}}
-
 xnoremap u <nop>
 xnoremap gu u
 
