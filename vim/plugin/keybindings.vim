@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Tue 04 Aug 2015
+" Modified: Mon 17 Aug 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -146,20 +146,37 @@ augroup END
 nnoremap ; :
 nnoremap , ;
 
-" Search for selected text, forwards or backwards.
-xnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>N
-xnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>N
+function! Get_visual_selection()
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  return join(lines, "\n")
+endfunction
 
-nnoremap * *N
-nnoremap # #N
+function! StarSearch(type, cword)
+	let winsave = winsaveview()
+	redir => tmpvar
+	exe 'silent %s/'.a:cword.'//gnc'
+	redir END
+	let g:status_var = matchstr(tmpvar, '\d\+')
+
+	call winrestview(winsave)
+	call setreg('/', a:cword)
+	if a:type ==# 'star'
+		normal! *N
+	elseif a:type ==# 'hash'
+		normal! #N
+	endif
+	set hlsearch
+	redraw
+endfunction
+
+nnoremap <silent> * :call StarSearch('star', '\<'.expand('<cword>').'\>')<cr>
+nnoremap <silent> # :call StarSearch('hash', '\<'.expand('<cword>').'\>')<cr>
+xnoremap <silent> * :<c-u>call StarSearch('star', Get_visual_selection())<cr>
+xnoremap <silent> # :<c-u>call StarSearch('hash', Get_visual_selection())<cr>
 
 " N/P File in dir
 nnoremap ]f :call functions#nextFileInDir(1)<cr>
@@ -237,7 +254,7 @@ imap <leader>v <esc>"+gpa
 nmap <leader>ay mhggVG"+y`hzz
 
 " Unset highlighting of a search
-nmap <silent> <leader>q :nohlsearch<CR><Plug>(clever-f-reset)
+nnoremap <silent> <leader>q :nohlsearch<CR>:let g:status_var=''<cr>
 
 " Shift-leftmouse searches for the word clicked on without moving
 nnoremap <S-LeftMouse> <LeftMouse>:<C-U>let @/='\<'.expand("<cword>").'\>'<CR>:set hlsearch<CR>
