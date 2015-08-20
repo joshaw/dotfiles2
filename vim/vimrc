@@ -1,5 +1,5 @@
 " Created:  Tue 12 Aug 2014
-" Modified: Tue 04 Aug 2015
+" Modified: Thu 20 Aug 2015
 " Author:   Josh Wainwright
 " Filename: vimrc
 
@@ -7,8 +7,10 @@
 "
 
 let g:vimhome = '~/.vim/'
+let $VIMHOME = '~/.vim/'
 if has('win32')
 	let g:vimhome = $HOME.'/vimfiles/'
+	let $VIMHOME = $HOME.'/vimfiles/'
 	let $PATH=$PATH.';C:/cygwin/bin/;'.$HOME.'/Tools/'
 endif
 
