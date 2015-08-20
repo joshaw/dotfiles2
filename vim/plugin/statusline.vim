@@ -1,5 +1,5 @@
 " Created:  Wed 16 Apr 2014
-" Modified: Tue 18 Aug 2015
+" Modified: Thu 20 Aug 2015
 " Author:   Josh Wainwright
 " Filename: statusline.vim
 
@@ -25,7 +25,7 @@ endfunction
 function! statusline#colour()
 	" Basic color presets
 	call s:statuslineconvert(5, 'Comment')
-	call s:statuslineconvert(6, 'Operator')
+" 	call s:statuslineconvert(6, 'Operator')
 	call s:statuslineconvert(7, 'Operator')
 	call s:statuslineconvert(8, 'Identifier')
 	call s:statuslineconvert(9, 'Normal')
@@ -75,17 +75,17 @@ function! statusline#optflags()
 endfunction
 
 let s:stl= ""
-let s:stl.="%1* %{statusline#mode()} %9* "       " mode (changes color)
-let s:stl.="%5*%<%{statusline#filepath()}"       " file path
+let s:stl.="%1* %{statusline#mode()} "           " mode (changes color)
+let s:stl.="%5* %<%{statusline#filepath()}"      " file path
 let s:stl.="%9*%t "                              " file name
-let s:stl.="%(%7*[%M] %)%9*"                     " modified flag
+let s:stl.="%7*%([%M]%) "                        " modified flag
 
 let s:stl.="%="                                  " right-align
 
-let s:stl.="%7*%{(exists('g:status_var') ? g:status_var : '')}%9*"
-let s:stl.="%(%{statusline#optflags()}%) "       " option flags
-let s:stl.="%8*%(%{&filetype} %)%9*"             " file type
-let s:stl.="%(%{(&ff=='unix'?'u':&ff)}%)"        " file format
+let s:stl.="%7*%{(exists('g:status_var') ? g:status_var : '')} "
+let s:stl.="%9*%{statusline#optflags()} "        " option flags
+let s:stl.="%8*%{&filetype} "                    " file type
+let s:stl.="%9*%{(&ff=='unix'?'u':&ff)}"         " file format
 let s:stl.="%(%{(&fenc=='utf-8'?'8':&fenc)} |%)" " file encoding
 let s:stl.="%3.c:"                               " column number
 let s:stl.="%7*%3.l%8*/%-2.L\ "                  " line number / total lines
