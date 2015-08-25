@@ -1,5 +1,5 @@
 " Created:  Thu 09 Jul 2015
-" Modified: Thu 09 Jul 2015
+" Modified: Thu 20 Aug 2015
 " Author:   Josh Wainwright
 " Filename: incremental.vim
 
@@ -29,7 +29,7 @@ function! incremental#incremental(arg, direction)
 	for lst in s:mods
 		let idx = index(lst, w)
 		if idx >= 0
-			let retval = lst[(idx + a:direction) % len(lst)]
+			let retval = lst[(idx + v:count1*a:direction) % len(lst)]
 			if a:arg =~# '^\l*$'
 				let reptype = 0
 			elseif a:arg =~# '^\u*$'
@@ -48,9 +48,9 @@ function! incremental#incremental(arg, direction)
 
 	if retval == ''
 		if a:direction == 1
-			silent execute "normal! \<C-a>"
+			silent execute "normal! ".v:count1."\<C-a>"
 		else
-			silent execute "normal! \<C-x>"
+			silent execute "normal! ".v:count1."\<C-x>"
 		endif
 	else
 		let idx = match(getline('.'), a:arg, col('.')-len(a:arg), 1)
