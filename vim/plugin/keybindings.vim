@@ -134,8 +134,9 @@ function! Dirvishfindcur()
 		endif
 	endif
 endfunction
-nnoremap - :call Dirvishfindcur()<CR>
+" nnoremap - :call Dirvishfindcur()<CR>
 " nnoremap - :Dirvish<cr>
+nnoremap - :Navd<cr>
 
 augroup my_dirvish_events
 	au!

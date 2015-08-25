@@ -54,7 +54,7 @@ function! s:lod(path)
 	exe 'source ' . g:vimhome . 'plugged/' . a:path . '/plugin/*.vim'
 endfunction
 
-call s:lod('vim-dirvish')
+" call s:lod('vim-dirvish')
 call s:lod('vim-buftabline')
 call s:lod('tabular')
 call s:lod('tgpg_vim')
