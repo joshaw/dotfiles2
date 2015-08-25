@@ -51,7 +51,7 @@ PROMPT_COMMAND='set_prompt'
 ## History
 export HISTCONTROL=ignorespace:ignoredups:erasedups
 export HISTFILE=~/.bash/history
-export HISTFILESIZE=3000
+export HISTFILESIZE=50000
 
 bind 'set colored-stats on'
 bind 'set page-completions off'
