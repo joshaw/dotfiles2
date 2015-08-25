@@ -1,5 +1,5 @@
 " Created:  Mon 12 Jan 2015
-" Modified: Tue 14 Jul 2015
+" Modified: Thu 20 Aug 2015
 " Author:   Josh Wainwright
 " Filename: functions.vim
 
@@ -165,4 +165,22 @@ function! functions#nextFileInDir(direction)
 		let index = index(files, expand('%:p'))
 		exe 'edit' files[(index + a:direction) % tot]
 	endif
+endfunction
+
+" Nroff formatting of HTML file {{{1
+function! functions#html2nroff(...)
+	let l:tw = a:0 > 0 ? a:1 : &tw
+	silent StripTrailing
+	silent! %s/<\(h\d\).\{-}>\(.\{-}\)<\/\1>/.tl '\2'''/
+	silent! %s/<\(title\).\{-}>\(.\{-}\)<\/\1>/.ce 1\r\2/
+	silent! %s/<.\{-}>//ge
+	silent! %s/^\s\+//e
+	silent! %s/\(“\|”\)/"/ge
+	silent! %s/’/'/ge
+	silent! %s/—/--/ge
+	silent! %s/\s?…\s?/.../ge
+	call append(0, '.ll '.l:tw)
+	call append(0, '.nh')
+	silent %!nroff
+	silent StripTrailing
 endfunction

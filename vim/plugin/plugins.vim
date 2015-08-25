@@ -74,11 +74,10 @@ command! IPtablesSort :call functions#IPtablesSort()
 command! FirstTimeRun :call functions#FirstTimeRun()
 
 "
-" Incremental
-nnoremap <silent> <c-a> :call incremental#incremental(expand('<cword>'), 1)<cr>
-nnoremap <silent> <c-x> :call incremental#incremental(expand('<cword>'), -1)<cr>
-
-"
 " Surroundings
 nnoremap <silent> ys :call surroundings#surroundings(0)<cr>
 xnoremap <silent> S :call surroundings#surroundings(visualmode() ==# 'v'? 1: 2)<cr>
+
+"
+" Nroff formatting of html files
+command! -nargs=? Html2Nroff :call functions#html2nroff(<args>)
