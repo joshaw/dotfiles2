@@ -1,5 +1,5 @@
 " Created:  Mon 27 Apr 2015
-" Modified: Mon 17 Aug 2015
+" Modified: Tue 25 Aug 2015
 " Author:   Josh Wainwright
 " Filename: keybindings.vim
 
@@ -207,6 +207,8 @@ endif
 " Visual increment numbers
 xnoremap <c-a> :call functions#BlockIncr(1)<cr>gv
 xnoremap <c-x> :call functions#BlockIncr(-1)<cr>gv
+nnoremap <silent> <c-a> :<c-u>call incremental#incremental(expand('<cword>'), 1)<cr>
+nnoremap <silent> <c-x> :<c-u>call incremental#incremental(expand('<cword>'), -1)<cr>
 
 " GrepString
 nnoremap <c-g> :call functions#GrepString()<cr>:grep<space><space>.<left><left>
