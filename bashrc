@@ -50,7 +50,7 @@ PROMPT_COMMAND='set_prompt'
 
 ## History
 export HISTCONTROL=ignorespace:ignoredups:erasedups
-export HISTFILE=~/.bash/history
+export HISTFILE=~/.bash/history/history_$(date "+%m%Y")
 export HISTFILESIZE=50000
 
 bind 'set colored-stats on'
