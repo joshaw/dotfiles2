@@ -1,11 +1,11 @@
 #!/bin/bash
 # Created:  Mon 02 Feb 2015
-# Modified: Wed 29 Jul 2015
+# Modified: Mon 21 Sep 2015
 # Author:   Josh Wainwright
 # Filename: settings.sh
 
 # Languages
-lang_c=(946     950 951)
+lang_c=(946     951 952)
 lang_a=(946 947        )
 lang_j=(946            )
 

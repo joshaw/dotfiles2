@@ -13,6 +13,7 @@ for /d %%x in (%tmpdir%\*) do @rd /s /q ^"%%x^"
 mkdir %tmpdir%\jaw
 
 start C:\home\JoshWainwright\Tools\TextEditorAnywhere\TextEditorAnywhere.exe
+start C:\Program Files (x86)\WinHotKey\WinHotKey.exe
 
 ::
 :: Is weekday? {{{1
@@ -33,7 +34,7 @@ if "%dow%" GEQ "6" GOTO:eof
 ::
 :: Set flags in Testbed.ini {{{1
 ::
-set TBINI="C:\LDRA_Toolsuite\C_C++\950\TBini.exe"
+set TBINI="C:\LDRA_Toolsuite\C_C++\952\TBini.exe"
 for %%x in (
 	"C/C++ LDRA Testbed"
 	"Ada95 LDRA Testbed"
