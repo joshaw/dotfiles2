@@ -1,6 +1,7 @@
-#
-# ~/.bashrc
-#
+# Created:  Mon 21 Sep 2015
+# Modified: Fri 06 Nov 2015
+# Author:   Josh Wainwright
+# Filename: bashrc
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -10,8 +11,8 @@ export EDITOR=vim
 export PAGER=less
 
 ## Aliases
-source ~/.zsh/aliases.zsh
-source ~/.zsh/git.zsh
+source ~/.bash/aliases.bash
+source ~/.bash/git.bash
 source ~/.bash/ldra.bash
 alias ls='ls --color=auto'
 alias ll='ls -Gghmn --time-style=+"" --group-directories-first'
