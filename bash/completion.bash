@@ -1,5 +1,5 @@
 # Created:  Fri 26 Jun 2015
-# Modified: Wed 19 Aug 2015
+# Modified: Wed 18 Nov 2015
 # Author:   Josh Wainwright
 # Filename: completion.bash
 
@@ -7,7 +7,7 @@ shopt -s extglob progcomp
 complete -A alias unalias
 complete -A binding bind
 complete -A builtin builtin
-complete -A command -A alias -A builtin -A function sudo
+complete -A command -A alias -A builtin -A file -A function sudo
 complete -A command command type which
 complete -A command man
 complete -A directory cd rmdir pushd
@@ -23,6 +23,7 @@ complete -A stopped -P '"%' -S '"' bg
 complete -A variable readonly unset
 complete -C "sed -e 's/^\(\S*\)\s.*$/\1/' .cdbookmarks" cdb
 complete -F _make_complete -A file make
+complete -F _pacman_complete pacman
 complete -W "h v l d u x i r s a R" -P "-" amr
 
 export CDPATH=.:~:$HOME/Documents/Details
@@ -38,4 +39,9 @@ _make_complete() {
 	local list=$(grep -E "^[a-zA-Z][a-zA-Z0-9]*:" ${files} | sed 's/:.*//')
 	local cur=${COMP_WORDS[COMP_CWORD]}
 	COMPREPLY=( $(compgen -W "$list" -- $cur) )
+}
+_pacman_complete() {
+	 local list=$(pacman -Qq)
+	 local cur=${COMP_WORDS[COMP_CWORD]}
+	 COMPREPLY=( $(compgen -W "$list" -- $cur) )
 }
