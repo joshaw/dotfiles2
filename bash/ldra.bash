@@ -1,5 +1,5 @@
 # Created:  Thu 30 Jul 2015
-# Modified: Thu 30 Jul 2015
+# Modified: Tue 01 Dec 2015
 # Author:   Josh Wainwright
 # Filename: ldra.bash
 
@@ -38,3 +38,5 @@ _ldra_complete() {
 }
 
 complete -F _ldra_complete ldra
+
+alias vimhosts='vim /cygdrive/c/Windows/System32/drivers/etc/hosts'
