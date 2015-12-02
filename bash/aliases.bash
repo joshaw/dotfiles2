@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 06 Nov 2015
+# Modified: Mon 23 Nov 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -279,12 +279,6 @@ function cdb() {
 		fi
 	done
 }
-
-function _cdb() {
-	reply=(`cat "$SH_BOOKMARKS" | sed -e 's#^\(.*\)\s.*$#\1#g'`)
-}
-
-#compctl -K _cdb cdb
 
 # Ranger Automatic cd {{{1
 # Automatically change the directory in bash after closing ranger
