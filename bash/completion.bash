@@ -1,5 +1,5 @@
 # Created:  Fri 26 Jun 2015
-# Modified: Wed 18 Nov 2015
+# Modified: Mon 23 Nov 2015
 # Author:   Josh Wainwright
 # Filename: completion.bash
 
@@ -21,7 +21,7 @@ complete -A setopt set
 complete -A shopt shopt
 complete -A stopped -P '"%' -S '"' bg
 complete -A variable readonly unset
-complete -C "sed -e 's/^\(\S*\)\s.*$/\1/' .cdbookmarks" cdb
+complete -F _cdb_complete cdb
 complete -F _make_complete -A file make
 complete -F _pacman_complete pacman
 complete -W "h v l d u x i r s a R" -P "-" amr
@@ -33,6 +33,12 @@ bind 'set completion-ignore-case on'
 bind 'set completion-map-case on'
 bind 'set menu-complete-display-prefix on'
 bind 'set show-all-if-unmodified on'
+
+_cdb_complete() {
+	local list=$(cut -d ' ' -f 1 "$SH_BOOKMARKS")
+	local cur=${COMP_WORDS[COMP_CWORD]}
+	COMPREPLY=( $(compgen -W "$list" -- $cur) )
+}
 
 _make_complete() {
 	local files=$(find -maxdepth 1 -iname "makefile" -o -iname "*.mak")
