@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Mon 23 Nov 2015
+# Modified: Tue 08 Dec 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -29,7 +29,7 @@ alias vimrc='vim -c ":e \$MYVIMRC"'
 
 alias ls='ls --color=always --group-directories-first' # Lists with colour enabled
 alias l='ls -1A'           # Lists in one column, hidden files.
-alias ll='ls -lh'          # Lists human readable sizes.
+alias ll='ls -Gghmn --time-style=+"" --group-directories-first'
 alias lll='ls -Alh --sort=size . | tr -s " " | cut -d " " -f 5,9'
 alias lr='ll -R'           # Lists human readable sizes, recursively.
 alias la='ll -A'           # Lists human readable sizes, hidden files.

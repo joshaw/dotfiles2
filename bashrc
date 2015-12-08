@@ -1,5 +1,5 @@
 # Created:  Mon 21 Sep 2015
-# Modified: Fri 06 Nov 2015
+# Modified: Tue 08 Dec 2015
 # Author:   Josh Wainwright
 # Filename: bashrc
 
@@ -9,14 +9,12 @@
 PATH=$PATH:~/Bin:~/Tools
 export EDITOR=vim
 export PAGER=less
+# export VIMRUNTIME=/usr/local/share/vim/vim74/
 
 ## Aliases
 source ~/.bash/aliases.bash
 source ~/.bash/git.bash
 source ~/.bash/ldra.bash
-alias ls='ls --color=auto'
-alias ll='ls -Gghmn --time-style=+"" --group-directories-first'
-alias la='ll -A'
 
 ## Options
 shopt -s autocd
@@ -116,5 +114,3 @@ bind '"\e\e[D": backward-word'
 
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
-
-bind -x '"\C-e":ef'
