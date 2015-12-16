@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Tue 08 Dec 2015
+# Modified: Mon 14 Dec 2015
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -16,9 +16,9 @@ function exists() {
 
 # Define general aliases.
 alias _='sudo'
-alias b='${(z)BROWSER}'
-alias e='${(z)VISUAL:-${(z)EDITOR}}'
-alias p='${(z)PAGER}'
+alias b='${BROWSER}'
+alias e='${VISUAL:-${EDITOR}}'
+alias p='${PAGER}'
 alias type='type -a'
 alias x='exit'
 
@@ -40,27 +40,19 @@ alias lt='ll -tr'          # Lists sorted by date, most recent last.
 alias lc='lt -c'           # Lists sorted by date, most recent last, shows change time.
 alias lu='lt -u'           # Lists sorted by date, most recent last, shows access time.
 
-if exists vcp; then
-	alias cp='vcp -tv'
-fi
-
 if ! exists clear; then
 	alias clear='printf "\033c"'
 fi
 
-alias bat="upower -d | grep -E --color=none 'state|percentage' | sed 's/ \+/ /g' | column -s: -t"
 alias chromeos="sudo cgpt add -i 6 -P 0 -S 0 /dev/mmcblk0"
-
-function chpwd() {
-	emulate -L zsh
-	ls -lh
-}
 
 # File Download
 if exists curl; then
 	alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
 elif exists wget; then
 	alias get='wget --continue --progress=bar --timestamping'
+elif exists axel; then
+	alias get='axel -a'
 fi
 
 # Resource Usage
@@ -76,24 +68,12 @@ alias apt-all='sudo -- sh -c "apt-get update && apt-get upgrade && apt-get dist-
 
 # Miscellaneous
 
-# Remind
-# alias remind='remind ~/.remind/reminders.rem'
-function remind() {
-	[ -z $COLUMNS ] || [ $COLUMNS -gt 150 ] && cols=150 || cols=$COLUMNS
-	output=$(command remind -w${cols},4,0 $@ ~/.remind/reminders.rem)
-	[ "$output" != "No reminders." ] && printf "$output\n" || true
-}
-alias rem=remind
-alias remc='remind -clm'
-
 alias suspend='sudo systemctl suspend'
 # Lists the ten most used commands.
 alias history-stat="cat ~/.bash/history/* | awk '{print \$1}' | sort | uniq -c | sort -n"
 function histgrep() {
 	cat ~/.bash/history/* | grep "$*" | sort | uniq
 }
-
-alias reload!='. ~/.zshrc'
 
 alias mv='mv -i -v'
 alias rm='rm -v'
@@ -113,19 +93,9 @@ alias mpa='mpv --no-video'
 alias mplayer='mplayer -msgcolor -nolirc -nojoystick'
 alias mute-beep='xset -b && sudo rmmod pcspkr'
 alias play-dvd='mplayer -nocache -dvd-device /dev/sr0 -mouse-movements dvdnav://'
+alias vimp='vim ~/Documents/Details/pass.gpg'
 
 # Functions {{{1
-
-# vimp {{{2
-function vimp {
-	local search=$1
-	local file="~/Documents/Details/pass.jgpg"
-	if [ -z $search ]; then
-		vim $file -c "normal gg"
-	else
-		vim $file -c "/\c^$search"
-	fi
-}
 
 # mcd {{{2
 # Makes a directory and changes to it.
@@ -192,44 +162,6 @@ function pwgen() {
 	< /dev/urandom tr -dc A-Za-z0-9 | head -c${1:-16};echo;
 }
 
-# cdf {{{2
-function cf() {
-	if exists slmenu; then
-		local dmenu="slmenu -i -l 8"
-	else
-		return
-	fi
-
-	if [[ -f ~/.files ]]; then
-		local cd_file="$(eval $dmenu < ~/.files)"
-	elif exists lsall; then
-		local cd_file="$(lsall | eval $dmenu)"
-	fi
-	printf "%b" "\r\033[K"
-	if [[ ! -z $cd_file ]]; then
-		local cd_path="$(dirname "$cd_file")"
-		cd_path="${cd_path//\~/$HOME}"
-		eval "cd \"$cd_path\""
-	fi
-}
-
-function ef() {
-	if exists slmenu; then
-		local dmenu="slmenu -i -l 8"
-	else
-		return
-	fi
-
-	if [[ -f ~/.files ]]; then
-		local edit_file="$(eval $dmenu < ~/.files)"
-	elif exists lsall; then
-		local edit_file="$(lsall | eval $dmenu)"
-	fi
-	if [[ ! -z "$edit_file" ]]; then
-		eval "$EDITOR $edit_file"
-	fi
-}
-
 # locate {{{2
 function locate() {
 	files=~/.files
@@ -253,8 +185,8 @@ function axelpw() {
 	url=${url#http://}
 	axel -a http://$usr:$pass@$url
 }
-# Zsh Bookmark movements {{{1
 
+# Zsh Bookmark movements {{{1
 SH_BOOKMARKS="$HOME/.cdbookmarks"
 
 function cdb_edit() {
@@ -279,26 +211,3 @@ function cdb() {
 		fi
 	done
 }
-
-# Ranger Automatic cd {{{1
-# Automatically change the directory in bash after closing ranger
-#
-# This is a bash function for .bashrc to automatically change the directory to
-# the last visited one after ranger quits.
-# To undo the effect of this function, you can type "cd -" to return to the
-# original directory.
-
-function ranger-cd {
-    tempfile='/tmp/chosendir'
-    ranger --choosedir="$tempfile" "${@:-$(pwd)}"
-    test -f "$tempfile" &&
-    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
-        cd -- "$(cat "$tempfile")"
-    fi
-    rm -f -- "$tempfile" > /dev/null
-}
-
-# {{{1
-#. ~/.zsh/aliases_ldra.zsh
-
-# vim: fdm=marker

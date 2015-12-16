@@ -1,5 +1,5 @@
 # Created:  Mon 21 Sep 2015
-# Modified: Tue 08 Dec 2015
+# Modified: Mon 14 Dec 2015
 # Author:   Josh Wainwright
 # Filename: bashrc
 
@@ -49,7 +49,7 @@ PROMPT_COMMAND='set_prompt'
 
 ## History
 export HISTCONTROL=ignorespace:ignoredups:erasedups
-export HISTFILE=~/.bash/history/history_$(date "+%m%Y")
+export HISTFILE=~/.bash/history/history_$(date "+%Y%m")
 export HISTFILESIZE=50000
 
 bind 'set colored-stats on'
