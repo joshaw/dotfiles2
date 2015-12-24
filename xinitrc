@@ -25,18 +25,18 @@ sh ~/.fehbg
 #xset -b
 
 #conky -c ~/.scripts/dwm/conkyrc | while read -r; do xsetroot -name "$REPLY"; done &
-while true; do
-	~/Bin/dwmstatus_src/dwmstatus.o
-	#xsetroot -name "$(cat /tmp/dwm_status_bar/content)"
-	sleep 10s
-done &
-exec ~/.packages/dwm/startdwm
+#while true; do
+#	~/Bin/dwmstatus_src/dwmstatus.o
+#	#xsetroot -name "$(cat /tmp/dwm_status_bar/content)"
+#	sleep 10s
+#done &
+#exec ~/.packages/dwm/startdwm
 #exec selectwm
 #exec goomwwm
 #exec i3
 #exec wmii
 #exec awesome
-#exec openbox-session
+exec openbox-session
 #exec startxfce4 --with-ck-launch
 #exec startxfce4
 #exec enlightenment_start

@@ -13,7 +13,7 @@ for /d %%x in (%tmpdir%\*) do @rd /s /q ^"%%x^"
 mkdir %tmpdir%\jaw
 
 start C:\home\JoshWainwright\Tools\TextEditorAnywhere\TextEditorAnywhere.exe
-start C:\Program Files (x86)\WinHotKey\WinHotKey.exe
+:: "C:\Program Files (x86)\WinHotKey\WinHotKey.exe"
 
 ::
 :: Is weekday? {{{1
