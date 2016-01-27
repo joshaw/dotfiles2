@@ -1,5 +1,5 @@
 # Created:  Thu 30 Jul 2015
-# Modified: Wed 09 Dec 2015
+# Modified: Fri 15 Jan 2016
 # Author:   Josh Wainwright
 # Filename: ldra.bash
 
@@ -25,19 +25,21 @@ ldra() {
 	fi
 }
 
-_ldra_complete() {
-	local cur=${COMP_WORDS[COMP_CWORD]}
-	local cmds="tbmanager tbrun tbvision testbed start_licenseserver stop_licenseserver re-read_licensefile launcher"
-	if [ "${#COMP_WORDS[@]}" -eq 2 ]; then
-		COMPREPLY=( $(compgen -W "${cmds}" -- $cur) )
-	elif [ "${#COMP_WORDS[@]}" -eq 3 ]; then
-		COMPREPLY=( $(compgen -W "Ada C_C++" -- $cur) )
-	elif [ "${#COMP_WORDS[@]}" -eq 4 ]; then
-		COMPREPLY=( $(compgen -W "944 945 946 950 951" -- $cur) )
-	fi
-}
+if [ $BASH ]; then
+	_ldra_complete() {
+		local cur=${COMP_WORDS[COMP_CWORD]}
+		local cmds="tbmanager tbrun tbvision testbed start_licenseserver stop_licenseserver re-read_licensefile launcher"
+		if [ "${#COMP_WORDS[@]}" -eq 2 ]; then
+			COMPREPLY=( $(compgen -W "${cmds}" -- $cur) )
+		elif [ "${#COMP_WORDS[@]}" -eq 3 ]; then
+			COMPREPLY=( $(compgen -W "Ada C_C++" -- $cur) )
+		elif [ "${#COMP_WORDS[@]}" -eq 4 ]; then
+			COMPREPLY=( $(compgen -W "944 945 946 950 951" -- $cur) )
+		fi
+	}
 
-complete -F _ldra_complete ldra
+	complete -F _ldra_complete ldra
+fi
 
 alias vimhosts='vim /cygdrive/c/Windows/System32/drivers/etc/hosts'
 

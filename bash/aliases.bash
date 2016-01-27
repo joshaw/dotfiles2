@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Mon 14 Dec 2015
+# Modified: Fri 15 Jan 2016
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -7,7 +7,7 @@
 #
 
 # exists
-function exists() {
+exists() {
 	hash "$1" > /dev/null 2>&1
 	return $?
 }
@@ -71,7 +71,7 @@ alias apt-all='sudo -- sh -c "apt-get update && apt-get upgrade && apt-get dist-
 alias suspend='sudo systemctl suspend'
 # Lists the ten most used commands.
 alias history-stat="cat ~/.bash/history/* | awk '{print \$1}' | sort | uniq -c | sort -n"
-function histgrep() {
+histgrep() {
 	cat ~/.bash/history/* | grep "$*" | sort | uniq
 }
 
@@ -99,13 +99,13 @@ alias vimp='vim ~/Documents/Details/pass.gpg'
 
 # mcd {{{2
 # Makes a directory and changes to it.
-function mcd {
+mcd() {
 	[[ -n "$1" ]] && mkdir -p "$1" && builtin cd "$1"
 }
 
 # newest {{{2
 # show newest files
-function newest () {
+newest () {
 	# http://www.commandlinefu.com/commands/view/9015/find-the-most-recently-changed-files-recursively
 	find . -type f -printf '%TY-%Tm-%Td %TT %p\n' | grep -v cache | grep -v ".git" | sort -r | less
 }
@@ -116,7 +116,7 @@ if exists pdfgrep; then
 	pdfgrep "$@"
 # 	return $?
 else
-	function pdfgrep {
+	pdfgrep() {
 		if exists pdftotext; then
 			pdftotext=$(which pdftotext)
 		else
@@ -127,26 +127,26 @@ else
 	fi
 
 # paclist {{{2
-function paclist() {
+paclist() {
 	sudo pacman -Qei $(pacman -Qu|cut -d" " -f 1)|awk ' BEGIN {FS=":"}/^Name/{printf("\033[1;36m%s\033[1;37m", $2)}/^Description/{print $2}'
 }
 
 # svg2pdf {{{2
 # Convert svg to pdf
-function svg2pdf (){
+svg2pdf() {
 	rsvg-convert -f pdf $1 >! $1:r.pdf
 }
 
 # pocket {{{2
 # Send link to pocket
-function pocket() {
+pocket() {
 	for ARG in "$@"; do
 		echo $ARG | /usr/bin/mutt -s link add@getpocket.com
 	done
 }
 
 # bakuf {{{2
-function bakuf () {
+bakuf () {
     oldname=$1;
     if [ "$oldname" != "" ]; then
         datepart=$(date +%Y%m%d);
@@ -158,14 +158,14 @@ function bakuf () {
 }
 
 # pwgen {{{2
-function pwgen() {
+pwgen() {
 	< /dev/urandom tr -dc A-Za-z0-9 | head -c${1:-16};echo;
 }
 
 # locate {{{2
-function locate() {
+locate() {
 	files=~/.files
-	if [[ -f $files ]]; then
+	if [ -f $files ]; then
 		find $files -mtime +8 -exec sh -c \
 			'mdays=$((($(date +%s) - $(stat --printf="%Y" .files)) / (60*60*24) )); \
 			echo "database is more than 8 days old (actual age is $mdays)"' \;
@@ -177,7 +177,7 @@ function locate() {
 }
 
 # axelpw {{{2
-function axelpw() {
+axelpw() {
 	exists axel || return 1
 	url=$1
 	usr=$2
@@ -189,11 +189,11 @@ function axelpw() {
 # Zsh Bookmark movements {{{1
 SH_BOOKMARKS="$HOME/.cdbookmarks"
 
-function cdb_edit() {
+cdb_edit() {
 	$EDITOR "$SH_BOOKMARKS"
 }
 
-function cdb() {
+cdb() {
 	local entry
 	index=0
 	if [ "$1" == "list" ]; then

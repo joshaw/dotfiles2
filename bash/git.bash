@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 06 Nov 2015
+# Modified: Fri 15 Jan 2016
 # Author:   Josh Wainwright
 # Filename: git.zsh
 #
@@ -165,7 +165,7 @@ alias gSx='git-submodule-remove'
 
 # Working Copy (w)
 #alias gws='git status --ignore-submodules --short'
-function gws() { git status --ignore-submodules --short || amr "$@"; }
+gws() { git status --ignore-submodules --short || amr "$@"; }
 alias gwS='git status --ignore-submodules'
 alias gwd='git diff --no-ext-diff'
 alias gwD='git diff --no-ext-diff --word-diff'
