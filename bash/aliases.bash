@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 15 Jan 2016
+# Modified: Fri 05 Feb 2016
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -112,10 +112,7 @@ newest () {
 
 # pdfgrep {{{2
 # Search through multiple pdf files for string
-if exists pdfgrep; then
-	pdfgrep "$@"
-# 	return $?
-else
+if ! exists pdfgrep; then
 	pdfgrep() {
 		if exists pdftotext; then
 			pdftotext=$(which pdftotext)
@@ -124,7 +121,7 @@ else
 		fi
 		find . -name '*.pdf' -exec sh -c "$pdftotext \"{}\" - | grep -i --with-filename --label=\"{}\" --color \"$1\"" \;
 	}
-	fi
+fi
 
 # paclist {{{2
 paclist() {
