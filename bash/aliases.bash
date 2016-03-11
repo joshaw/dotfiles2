@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 05 Feb 2016
+# Modified: Tue 08 Mar 2016
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -15,30 +15,17 @@ exists() {
 # Aliases {{{1
 
 # Define general aliases.
-alias _='sudo'
-alias b='${BROWSER}'
-alias e='${VISUAL:-${EDITOR}}'
-alias p='${PAGER}'
 alias type='type -a'
-alias x='exit'
 
 # Editor
-hash nvim 2> /dev/null && alias vim='VIMRUNTIME= nvim'
-alias e='vim'
 alias vimrc='vim -c ":e \$MYVIMRC"'
+alias vimbuild='make distclean && ./configure --enable-pythoninterp --enable-python3interp --enable-luainterp && make'
 
 alias ls='ls --color=always --group-directories-first' # Lists with colour enabled
 alias l='ls -1A'           # Lists in one column, hidden files.
 alias ll='ls -Gghmn --time-style=+"" --group-directories-first'
 alias lll='ls -Alh --sort=size . | tr -s " " | cut -d " " -f 5,9'
-alias lr='ll -R'           # Lists human readable sizes, recursively.
 alias la='ll -A'           # Lists human readable sizes, hidden files.
-alias lm='la | "$PAGER"'   # Lists human readable sizes, hidden files through pager.
-alias lx='ll -XB'          # Lists sorted by extension (GNU only).
-alias lk='ll -Sr'          # Lists sorted by size, largest last.
-alias lt='ll -tr'          # Lists sorted by date, most recent last.
-alias lc='lt -c'           # Lists sorted by date, most recent last, shows change time.
-alias lu='lt -u'           # Lists sorted by date, most recent last, shows access time.
 
 if ! exists clear; then
 	alias clear='printf "\033c"'
@@ -67,13 +54,7 @@ fi
 alias apt-all='sudo -- sh -c "apt-get update && apt-get upgrade && apt-get dist-upgrade && apt-get autoremove && apt-get autoclean && apt-get clean"'
 
 # Miscellaneous
-
 alias suspend='sudo systemctl suspend'
-# Lists the ten most used commands.
-alias history-stat="cat ~/.bash/history/* | awk '{print \$1}' | sort | uniq -c | sort -n"
-histgrep() {
-	cat ~/.bash/history/* | grep "$*" | sort | uniq
-}
 
 alias mv='mv -i -v'
 alias rm='rm -v'

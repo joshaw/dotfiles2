@@ -1,5 +1,5 @@
 # Created:  Fri 26 Jun 2015
-# Modified: Mon 23 Nov 2015
+# Modified: Thu 03 Mar 2016
 # Author:   Josh Wainwright
 # Filename: completion.bash
 
@@ -33,6 +33,7 @@ bind 'set completion-ignore-case on'
 bind 'set completion-map-case on'
 bind 'set menu-complete-display-prefix on'
 bind 'set show-all-if-unmodified on'
+bind 'set page-completions off'
 
 _cdb_complete() {
 	local list=$(cut -d ' ' -f 1 "$SH_BOOKMARKS")
