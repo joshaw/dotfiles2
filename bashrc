@@ -1,12 +1,12 @@
 # Created:  Mon 21 Sep 2015
-# Modified: Fri 15 Jan 2016
+# Modified: Thu 17 Mar 2016
 # Author:   Josh Wainwright
 # Filename: bashrc
 
 # If not running interactively, don't do anything
 # [[ $- != *i* ]] && return
 
-PATH=$PATH:~/Bin:~/Tools
+PATH=$PATH:~/Bin:~/Tools/bin
 export EDITOR=vim
 export PAGER=less
 

@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Tue 08 Mar 2016
+# Modified: Thu 17 Mar 2016
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -19,7 +19,8 @@ alias type='type -a'
 
 # Editor
 alias vimrc='vim -c ":e \$MYVIMRC"'
-alias vimbuild='make distclean && ./configure --enable-pythoninterp --enable-python3interp --enable-luainterp && make'
+alias vimbuild='make distclean && ./configure --enable-pythoninterp --enable-python3interp --enable-luainterp && make && make install && vim -c"TestFeatures"'
+alias vis='VIS_PATH=~/Tools/repo_vis/ vis'
 
 alias ls='ls --color=always --group-directories-first' # Lists with colour enabled
 alias l='ls -1A'           # Lists in one column, hidden files.
