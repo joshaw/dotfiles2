@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<theme version="2.0">
+    <name>Light</name>
+    <background type="solid">
+        <color>#ffffff</color>
+    </background>
+    <font type="main">
+        <name>Segoe UI</name>
+        <color>#000000</color>
+        <size>50</size>
+        <bold>False</bold>
+        <italics>False</italics>
+        <line_adjustment>10</line_adjustment>
+        <location height="800" override="True" width="1800" x="50" y="50"/>
+        <shadow shadowColor="#000000" shadowSize="5">False</shadow>
+        <outline outlineColor="#000000" outlineSize="2">False</outline>
+    </font>
+    <font type="footer">
+        <name>Arial</name>
+        <color>#686868</color>
+        <size>12</size>
+        <bold>False</bold>
+        <italics>False</italics>
+        <line_adjustment>0</line_adjustment>
+        <location height="78" override="False" width="1004" x="10" y="690"/>
+        <shadow shadowColor="#000000" shadowSize="5">True</shadow>
+        <outline outlineColor="#000000" outlineSize="2">False</outline>
+    </font>
+    <display>
+        <horizontalAlign>0</horizontalAlign>
+        <verticalAlign>0</verticalAlign>
+        <slideTransition>False</slideTransition>
+    </display>
+</theme>

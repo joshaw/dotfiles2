@@ -5,18 +5,18 @@
         <color>#000000</color>
     </background>
     <font type="main">
-        <name>Latin Modern Sans</name>
+        <name>Arial</name>
         <color>#FFFFFF</color>
-        <size>50</size>
+        <size>40</size>
         <bold>False</bold>
         <italics>False</italics>
-        <line_adjustment>5</line_adjustment>
+        <line_adjustment>0</line_adjustment>
         <location height="690" override="False" width="1004" x="10" y="10"/>
-        <shadow shadowColor="#000000" shadowSize="5">False</shadow>
+        <shadow shadowColor="#000000" shadowSize="5">True</shadow>
         <outline outlineColor="#000000" outlineSize="2">False</outline>
     </font>
     <font type="footer">
-        <name>Droid Sans [unknown]</name>
+        <name>Arial</name>
         <color>#FFFFFF</color>
         <size>12</size>
         <bold>False</bold>
