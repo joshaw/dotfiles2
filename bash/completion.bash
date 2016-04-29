@@ -42,8 +42,8 @@ _cdb_complete() {
 }
 
 _make_complete() {
-	local files=$(find -maxdepth 1 -iname "makefile" -o -iname "*.mak")
-	local list=$(grep -E "^[a-zA-Z][a-zA-Z0-9]*:" ${files} | sed 's/:.*//')
+	local files=$(find -maxdepth 1 -iname "*makefile" -o -iname "*.mak")
+	local list=$(grep -E "^[a-zA-Z][a-zA-Z0-9_]*:" ${files} | sed 's/:.*//')
 	local cur=${COMP_WORDS[COMP_CWORD]}
 	COMPREPLY=( $(compgen -W "$list" -- $cur) )
 }

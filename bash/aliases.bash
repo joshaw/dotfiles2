@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Thu 17 Mar 2016
+# Modified: Fri 08 Apr 2016
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -19,13 +19,13 @@ alias type='type -a'
 
 # Editor
 alias vimrc='vim -c ":e \$MYVIMRC"'
-alias vimbuild='make distclean && ./configure --enable-pythoninterp --enable-python3interp --enable-luainterp && make && make install && vim -c"TestFeatures"'
-alias vis='VIS_PATH=~/Tools/repo_vis/ vis'
+alias vimbuild='make distclean && ./configure --with-features=huge --disable-acl --disable-workshop --disable-netbeans --disable-hangulinput --enable-pythoninterp --enable-python3interp --enable-luainterp --disable-darwin --disable-smack --disable-selinux --disable-xsmp --disable-mzschemeinterp --disable-netbeans --disable-hangulinput --disable-xim --disable-gui --disable-gtktest && make && make install && vim -c"TestFeatures"'
+alias vis='VIS_PATH=~/.config/vis/ vis'
 
 alias ls='ls --color=always --group-directories-first' # Lists with colour enabled
 alias l='ls -1A'           # Lists in one column, hidden files.
-alias ll='ls -Gghmn --time-style=+"" --group-directories-first'
-alias lll='ls -Alh --sort=size . | tr -s " " | cut -d " " -f 5,9'
+alias ll='ls -NGghmn --time-style=+"" --group-directories-first'
+alias lll='ls -NAlh --sort=size . | tr -s " " | cut -d " " -f 5,9'
 alias la='ll -A'           # Lists human readable sizes, hidden files.
 
 if ! exists clear; then
@@ -94,6 +94,7 @@ newest () {
 
 # pdfgrep {{{2
 # Search through multiple pdf files for string
+alias pdftotext='/cygdrive/c/progs/Git/bin/pdftotext.exe'
 if ! exists pdfgrep; then
 	pdfgrep() {
 		if exists pdftotext; then
@@ -157,12 +158,13 @@ locate() {
 
 # axelpw {{{2
 axelpw() {
-	exists axel || return 1
+# 	exists axel || return 1
 	url=$1
 	usr=$2
 	pass=$3
-	url=${url#http://}
-	axel -a http://$usr:$pass@$url
+# 	url=${url#http://}
+# 	axel -a http://$usr:$pass@$url
+	curl -O -u $usr:$pass $url
 }
 
 # Zsh Bookmark movements {{{1
