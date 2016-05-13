@@ -158,13 +158,14 @@ locate() {
 
 # axelpw {{{2
 axelpw() {
-# 	exists axel || return 1
+	exists aria2c || return 1
 	url=$1
 	usr=$2
 	pass=$3
-# 	url=${url#http://}
+ 	url=${url#http://}
 # 	axel -a http://$usr:$pass@$url
-	curl -O -u $usr:$pass $url
+#	curl -O -u $usr:$pass $url
+	aria2c -x 16 -s 16 --file-allocation=none http://${usr}:${pass}@${url}
 }
 
 # Zsh Bookmark movements {{{1
