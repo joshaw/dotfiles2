@@ -5,7 +5,7 @@ local bg = ',back:default,'
 
 lexers.STYLE_DEFAULT = bg..fg
 lexers.STYLE_NOTHING = bg
-lexers.STYLE_CLASS = 'fore:yellow'
+lexers.STYLE_CLASS = 'fore:173'
 lexers.STYLE_COMMENT = 'fore:101'
 lexers.STYLE_CONSTANT = 'fore:141'
 lexers.STYLE_DEFINITION = 'fore:81'
@@ -15,7 +15,7 @@ lexers.STYLE_KEYWORD = 'fore:197'
 lexers.STYLE_LABEL = 'fore:185'
 lexers.STYLE_NUMBER = 'fore:141'
 lexers.STYLE_OPERATOR = 'fore:197'
-lexers.STYLE_REGEX = 'fore:green'
+lexers.STYLE_REGEX = 'fore:112'
 lexers.STYLE_STRING = 'fore:185'
 lexers.STYLE_PREPROCESSOR = 'fore:112'
 lexers.STYLE_TAG = 'fore:197'
