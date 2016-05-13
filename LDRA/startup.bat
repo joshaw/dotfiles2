@@ -13,7 +13,6 @@ for /d %%x in (%tmpdir%\*) do @rd /s /q ^"%%x^"
 mkdir %tmpdir%\jaw
 
 start C:\home\JoshWainwright\Tools\TextEditorAnywhere\TextEditorAnywhere.exe
-:: "C:\Program Files (x86)\WinHotKey\WinHotKey.exe"
 
 ::
 :: Is weekday? {{{1
@@ -34,7 +33,7 @@ if "%dow%" GEQ "6" GOTO:eof
 ::
 :: Set flags in Testbed.ini {{{1
 ::
-set TBINI="C:\LDRA_Toolsuite\C_C++\952\TBini.exe"
+set TBINI="C:\LDRA_Toolsuite\C_C++\954\TBini.exe"
 for %%x in (
 	"C/C++ LDRA Testbed"
 	"Ada95 LDRA Testbed"
@@ -45,6 +44,9 @@ for %%x in (
 	%TBINI% -Section=%%x REDIRECT_MAILTO=TRUE
 
 	%TBINI% -Section=%%x TBBROWSE_HTML_FONT_SIZE=2
+	%TBINI% -Section=%%x USE_DEFAULT_HTML_BROWSER=TRUE
+	%TBINI% -Section=%%x SOURCE_CODE_BROWSER="C:\Program Files (x86)\vim\vim74\gvim.exe" %1%2
+	%TBINI% -Section=%%x BROWSE_FILE_AT_LINE_ARG_FORMAT=+%d
 	%TBINI% -Section=%%x TBRUN_COLOURED_GUI=TRUE
 )
 
