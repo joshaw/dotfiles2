@@ -31,3 +31,4 @@ vim/custom/spell/*
 vim/plugged/
 vim/undodir/
 vim/tmp/
+vis/vis.info
