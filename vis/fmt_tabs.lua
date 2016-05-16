@@ -47,8 +47,8 @@ fmt_line_end = function(win, lineend)
 end
 
 vis:command_register('FmtSpace', function(argv, force, win, cursor, range)
-	local spaces = string.rep(' ', width)
-	fmt_space_tab(win, spaces, width)
+	local spaces = string.rep(' ', argv[1])
+	fmt_space_tab(win, spaces, argv[1])
 end)
 vis:command_register('FmtTab', function(argv, force, win, cursor, range)
 	fmt_space_tab(win, '\t', width)
