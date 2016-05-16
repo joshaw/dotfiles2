@@ -2,7 +2,7 @@
 require('vis')
 
 require('utils')
-require('navd')
+require('navd_p')
 require('tag_jump')
 require('reg_save')
 require('fmt_tabs')
