@@ -11,7 +11,7 @@ navd = function(path, search)
 			search = ""
 		end
 	end
-	local list = os.capture('ls -1 -A -p -b --group-directories-first ' .. path, 'r')
+	local list = os.capture('ls -1 -A -p -b --group-directories-first ' .. path)
 	vis:message('# ' .. path .. '\n' .. list)
 	vis:command('set syntax navd')
 	vis:feedkeys('dggj')

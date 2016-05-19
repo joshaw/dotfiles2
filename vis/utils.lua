@@ -128,16 +128,10 @@ end
 
 -- Capture - execute external command and return ouput
 -- 		   - [cmd] is the command to run
---         - [raw] do not remove whitespace
-function os.capture(cmd, raw)
+os.capture = function(cmd, raw)
 	local f = assert(io.popen(cmd, 'r'))
 	local s = assert(f:read('*a'))
 	f:close()
-	if raw then 
-		return s 
-	end
-	s = string.gsub(s, '^%s+', '')
-	s = string.gsub(s, '%s+$', '')
-	s = string.gsub(s, '[\n\r]+', ' ')
+	s = s:gsub('%s+$', '')
 	return s
 end
