@@ -1,3 +1,8 @@
+-- Created:  2016-05-09
+-- Modified: 2016-05-19
+-- Author:   Josh Wainwright
+-- Filename: visrc.lua
+
 -- load standard vis module, providing parts of the Lua API
 require('vis')
 
@@ -10,7 +15,6 @@ require('statusline')
 require('add_info')
 require('diff_orig')
 
-vis.info_file = os.getenv('HOME') .. '/.config/vis/vis.info'
 vis.pwd = os.getenv('PWD') .. '/'
 
 vis.events.win_open = function(win)
@@ -27,6 +31,7 @@ vis.events.win_open = function(win)
 
 	user_keybindings(win)
 	registers_restore(win)
+	header_update(win)
 	statusline(win)
 end
 
