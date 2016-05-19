@@ -1,3 +1,8 @@
+-- Created:  2016-05-19
+-- Modified: 2016-05-19
+-- Author:   Josh Wainwright
+-- Filename: tag_jump.lua
+
 word_at_pos = function(line, pos)
 	local word_end = line:match('[%w_]+', pos + 1) or ''
 	
