@@ -8,6 +8,7 @@ require('reg_save')
 require('fmt_tabs')
 require('statusline')
 require('add_info')
+require('diff_orig')
 
 vis.info_file = os.getenv('HOME') .. '/.config/vis/vis.info'
 vis.pwd = os.getenv('PWD') .. '/'
