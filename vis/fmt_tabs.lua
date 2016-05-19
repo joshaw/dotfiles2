@@ -1,3 +1,8 @@
+-- Created:  2016-05-12
+-- Modified: 2016-05-19
+-- Author:   Josh Wainwright
+-- Filename: fmt_tabs.lua
+
 local fmt_space_tab = function(win, repl, width)
 	local save_line, save_col = win.cursor.line, win.cursor.col
 	local lines = {}
@@ -47,11 +52,11 @@ fmt_line_end = function(win, lineend)
 end
 
 vis:command_register('FmtSpace', function(argv, force, win, cursor, range)
-	local spaces = string.rep(' ', argv[1])
-	fmt_space_tab(win, spaces, argv[1])
+	local spaces = string.rep(' ', argv[1] or 4)
+	fmt_space_tab(win, spaces, argv[1] or 4)
 end)
 vis:command_register('FmtTab', function(argv, force, win, cursor, range)
-	fmt_space_tab(win, '\t', width)
+	fmt_space_tab(win, '\t', width or 4)
 end)
 vis:command_register('FmtTrailing', function(argv, force, win, cursor, range)
 	fmt_trailing(win)
@@ -61,4 +66,9 @@ vis:command_register('FmtNL', function(argv, force, win, cursor, range)
 end)
 vis:command_register('FmtCRNL', function(argv, force, win, cursor, range)
 	fmt_line_end(win, '\r\n')
+end)
+vis:command_register('Fmt', function(argv, force, win, cursor, range)
+	fmt_space_tab(win, '\t', 4)
+	fmt_trailing(win)
+	fmt_line_end(win, '\n')
 end)
