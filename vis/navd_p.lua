@@ -1,5 +1,9 @@
 -- Open navd window
 navd = function(path, search)
+	if vis.win.file.name and vis.win.file.modified then
+		vis:info('No write since last change')
+		return
+	end
 	if not path then
 		path = vis.cwd
 	end
@@ -32,6 +36,7 @@ navd = function(path, search)
 	end)
 	
 	win:map(vis.MODE_NORMAL, '-', function()
+		local path = win.file.lines[1]:gsub('^# ', '')
 		dirpath = os.capture('dirname ' .. path) .. '/'
 		search = basename(path)
 		navd(dirpath, search)
@@ -47,7 +52,6 @@ navd = function(path, search)
 end
 
 basename = function(path)
-	vis:info('# ' .. path)
 	if path:sub(-1,-1) == '/' then
 		path = path:sub(1, -2)
 	end
