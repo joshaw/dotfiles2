@@ -1,11 +1,11 @@
--- Created:  2016-05-19
--- Modified: 2016-05-19
+-- Created:  Fri 13 May 2016
+-- Modified: Fri 20 May 2016
 -- Author:   Josh Wainwright
 -- Filename: tag_jump.lua
 
 word_at_pos = function(line, pos)
 	local word_end = line:match('[%w_]+', pos + 1) or ''
-	
+
 	local rev_cur_pos = line:len() - pos + 1
 	local word_start = line:reverse():match('[%w_]+', rev_cur_pos) or ''
 
@@ -33,7 +33,7 @@ jump_tag = function()
 	end
 	tagaddress = tagaddress:sub(1,-3)
 	tagaddress = tagaddress:gsub('([()])', '\\%1')
-	vis:info('TagJump: ' .. tagname .. ' | ' .. tagfile .. ' | ' .. tagaddress .. '|')
+	vis:info('TagJump: ' .. tagname .. ' | ' .. tagfile .. ' | ' .. tagaddress)
 	vis:command('e ' .. tagfile)
 	vis:feedkeys(tagaddress .. 'G')
 end
