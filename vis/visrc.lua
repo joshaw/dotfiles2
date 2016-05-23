@@ -1,5 +1,5 @@
 -- Created:  2016-05-09
--- Modified: 2016-05-19
+-- Modified: Fri 20 May 2016
 -- Author:   Josh Wainwright
 -- Filename: visrc.lua
 
@@ -9,18 +9,26 @@ require('vis')
 require('utils')
 require('navd_p')
 require('tag_jump')
-require('reg_save')
+reg_save = require('reg_save')
 require('fmt_tabs')
 require('statusline')
-require('add_info')
+header_info = require('header_info')
 require('diff_orig')
+fs = require('fs')
 
 vis.pwd = os.getenv('PWD') .. '/'
 
 vis.events.win_open = function(win)
 	-- enable syntax highlighting for known file types
 	vis.filetype_detect(win)
-	vis.cwd = os.capture('dirname ' .. os.getenv('PWD') .. '/' .. (win.file.name or '.')) .. '/'
+	fname = win.file.name or '.'
+	local dir
+	if fname:sub(1, 1) == '/' then
+		dir = fname
+	else
+		dir = vis.pwd .. '/' .. fname
+	end
+	vis.cwd = os.capture('dirname ' .. dir) .. '/'
 
 	vis:command('set theme molokai')
 	vis:command('set number')
@@ -30,13 +38,12 @@ vis.events.win_open = function(win)
 	vis:command('set show tabs')
 
 	user_keybindings(win)
-	registers_restore(win)
-	header_update(win)
-	statusline(win)
+	reg_save.restore(win)
+	header_info.update(win)
 end
 
 vis.events.win_close = function(win)
-	registers_save(win)
+	reg_save.save(win)
 end
 
 user_keybindings = function(win)
@@ -55,6 +62,8 @@ user_keybindings = function(win)
 	vis:command('map! insert <C-Left> <cursor-word-start-prev>')
 
 	vis:map(vis.MODE_NORMAL, 'K', function() statusline(vis.win) end)
+	vis:map(vis.MODE_NORMAL, 'Q', function() reg_save.save(vis.win) end)
+	vis:map(vis.MODE_NORMAL, 'W', function() reg_save.restore(vis.win) end)
 	
 	vis:map(vis.MODE_NORMAL, '<C-]>', jump_tag)
 end
