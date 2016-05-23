@@ -46,7 +46,7 @@ for %%x in (
 	%TBINI% -Section=%%x TBBROWSE_HTML_FONT_SIZE=2
 	%TBINI% -Section=%%x USE_DEFAULT_HTML_BROWSER=TRUE
 	%TBINI% -Section=%%x SOURCE_CODE_BROWSER="C:\Program Files (x86)\vim\vim74\gvim.exe" %1%2
-	%TBINI% -Section=%%x BROWSE_FILE_AT_LINE_ARG_FORMAT=+%d
+	%TBINI% -Section=%%x BROWSE_FILE_AT_LINE_ARG_FORMAT=+d
 	%TBINI% -Section=%%x TBRUN_COLOURED_GUI=TRUE
 )
 
