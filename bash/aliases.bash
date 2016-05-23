@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 08 Apr 2016
+# Modified: Mon 23 May 2016
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -20,7 +20,6 @@ alias type='type -a'
 # Editor
 alias vimrc='vim -c ":e \$MYVIMRC"'
 alias vimbuild='make distclean && ./configure --with-features=huge --disable-acl --disable-workshop --disable-netbeans --disable-hangulinput --enable-pythoninterp --enable-python3interp --enable-luainterp --disable-darwin --disable-smack --disable-selinux --disable-xsmp --disable-mzschemeinterp --disable-netbeans --disable-hangulinput --disable-xim --disable-gui --disable-gtktest && make && make install && vim -c"TestFeatures"'
-alias vis='VIS_PATH=~/.config/vis/ vis'
 
 alias ls='ls --color=always --group-directories-first' # Lists with colour enabled
 alias l='ls -1A'           # Lists in one column, hidden files.
