@@ -1,13 +1,14 @@
 -- Created:  2016-05-12
--- Modified: 2016-05-19
+-- Modified: Fri 20 May 2016
 -- Author:   Josh Wainwright
 -- Filename: reg_save.lua
 
-require('utils')
-local json = require("dkjson")
-vis.info_file = os.getenv('HOME') .. '/.config/vis/.vis.info'
+local reg_save = {}
 
-get_fname = function(win)
+local json = require("dkjson")
+reg_save.info_file = os.getenv('HOME') .. '/.config/vis/.vis.info'
+
+local get_fname = function(win)
 	local fname = win.file.name
 	if not fname then return end
 	if fname:sub(1, 1) ~= '/' then
@@ -16,7 +17,34 @@ get_fname = function(win)
 	return fname
 end
 
-registers_save = function(win)
+local registers_write = function(tbl)
+	local json_str = json.encode(tbl, {indent=true})
+	local f = assert(io.open(reg_save.info_file, 'w'))
+	f:write(json_str)
+	f:close()
+end
+
+local registers_read = function()
+	local f = assert(io.open(reg_save.info_file, 'r'))
+	local info_input = f:read('*all')
+	f:close()
+	local obj, pos, err = json.decode(info_input)
+	if err then
+		return {}
+	end
+	return obj
+end
+
+local file_exists = function(name)
+	local f = io.open(name, "r")
+	if f == nil then 
+		return false 
+	end
+	f:close() 
+	return true 
+end
+
+reg_save.save = function(win)
 	local fname = get_fname(win)
 	if not fname then return end
 	-- List of flags to save in info file
@@ -29,34 +57,20 @@ registers_save = function(win)
 			flags[reg] = regval
 		end
 	end
+	local tbl = registers_read()
+	local file_tbl = tbl[fname] or {}
 	local file_info = {
 		registers = flags,
 		date = os.time(),
 		cursor = { win.cursor.line, win.cursor.col },
 		syntax = win.syntax or json.null,
+		count = (file_tbl.count or 0) + 1
 	}
-	local tbl = registers_read()
 	tbl[fname] = file_info
-	local json_str = json.encode(tbl, {indent=true})
-	--vis:message(json_str)
-	local f = assert(io.open(vis.info_file, 'w'))
-	f:write(json_str)
-	f:flush()
-	f:close()
+	registers_write(tbl)
 end
 
-registers_read = function()
-	local f = assert(io.open(vis.info_file, 'r'))
-	local info_input = f:read('*all')
-	f:close()
-	local obj, pos, err = json.decode(info_input)
-	if err then
-		return {}
-	end
-	return obj
-end
-
-registers_restore = function(win)
+reg_save.restore = function(win)
 	local fname = get_fname(win)
 	local file_info = registers_read()[fname]
 	if not file_info then
@@ -80,28 +94,63 @@ registers_restore = function(win)
 	end
 end
 
-oldfiles = function(num)
+local oldfiles = function(num)
 	local tbl = registers_read()
 	local files = {}
 	for i, n in pairs(tbl) do
-		table.insert(files, {fname = i, date = n.date})
+		table.insert(files, {fname = i, date = n.date, count = n.count})
 	end
 
 	table.sort(files, function(a,b) return a.date>b.date end)
 
 	local lines = {}
+	local ngone = 0
 	for i, n in ipairs(files) do
-		table.insert(lines, os.date('%c', n.date) .. ' | ' .. n.fname)
+		local gone = ' '
+		if not file_exists(n.fname) then
+			gone = '*'
+			ngone = ngone +1
+		end
+		local date = os.date('%c', n.date)
+		local nl = string.format('%s %s | %s | %s', gone, (n.count or 1), date, n.fname)
+		table.insert(lines, nl)
 	end
 
 	local start = #lines - (num or #lines) + 1
 	start = start < 0 and 1 or start
 
-	local header = ':: ' .. #lines .. ' Files ::\n'
+	local header = ':: ' .. #lines .. ' Files' 
+	if ngone > 0 then
+		header = header .. ' (' .. ngone .. ' removed)'
+	end
+	header = header .. ' ::\n'
+	
 	vis:message(header .. table.concat(lines, '\n', start))
 	vis:feedkeys('dgg')
 end
 
+local remove_old = function()
+	local tbl = registers_read()
+	local cnt = 0
+	local new_tbl = {}
+	for fname, info in pairs(tbl) do
+		if not file_exists(fname) then
+			cnt = cnt + 1
+		else
+			new_tbl[fname] = info
+		end
+	end
+	vis:info('Removed ' .. cnt .. ' entries from info file')
+	registers_write(new_tbl)
+	oldfiles()
+end
+
 vis:command_register('oldfiles', function(argv, force, win, cursor, range)
-	oldfiles(argv[1])
+	if force then
+		remove_old()
+	else
+		oldfiles(argv[1])
+	end
 end)
+
+return reg_save
