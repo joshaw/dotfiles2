@@ -1,5 +1,5 @@
 -- Created:  2016-05-12
--- Modified: 2016-05-19
+-- Modified: Fri 20 May 2016
 -- Author:   Josh Wainwright
 -- Filename: fmt_tabs.lua
 
@@ -24,7 +24,7 @@ local fmt_space_tab = function(win, repl, width)
 	win.cursor:to(save_line, save_col)
 end
 
-fmt_trailing = function(win)
+local fmt_trailing = function(win)
 	local save_line, save_col = win.cursor.line, win.cursor.col
 	local lines = {}
 	for i=1, #win.file.lines, 1 do
@@ -38,14 +38,14 @@ fmt_trailing = function(win)
 	win.cursor:to(save_line, save_col)
 end
 
-fmt_line_end = function(win, lineend)
+local fmt_line_end = function(win, lineend)
 	local save_line, save_col = win.cursor.line, win.cursor.col
 	local lines = {}
 	for i=1, #win.file.lines, 1 do
 		local line = win.file.lines[i]
 		table.insert(lines, line)
 	end
-	local str = table.concat(lines, lineend)
+	local str = table.concat(lines, lineend) .. lineend
 	win.file:delete(0, win.file.size)
 	win.file:insert(0, str)
 	win.cursor:to(save_line, save_col)
@@ -56,7 +56,7 @@ vis:command_register('FmtSpace', function(argv, force, win, cursor, range)
 	fmt_space_tab(win, spaces, argv[1] or 4)
 end)
 vis:command_register('FmtTab', function(argv, force, win, cursor, range)
-	fmt_space_tab(win, '\t', width or 4)
+	fmt_space_tab(win, '\t', argv[1] or 4)
 end)
 vis:command_register('FmtTrailing', function(argv, force, win, cursor, range)
 	fmt_trailing(win)
