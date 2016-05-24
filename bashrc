@@ -1,5 +1,5 @@
 # Created:  Mon 21 Sep 2015
-# Modified: Thu 17 Mar 2016
+# Modified: Tue 24 May 2016
 # Author:   Josh Wainwright
 # Filename: bashrc
 
@@ -9,6 +9,7 @@
 PATH=$PATH:~/Bin:~/Tools/bin
 export EDITOR=vim
 export PAGER=less
+TERM=xterm-256color
 
 ## Aliases
 . ~/.bash/aliases.bash
