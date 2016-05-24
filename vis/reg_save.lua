@@ -1,5 +1,5 @@
 -- Created:  2016-05-12
--- Modified: Fri 20 May 2016
+-- Modified: Tue 24 May 2016
 -- Author:   Josh Wainwright
 -- Filename: reg_save.lua
 
@@ -25,7 +25,10 @@ local registers_write = function(tbl)
 end
 
 local registers_read = function()
-	local f = assert(io.open(reg_save.info_file, 'r'))
+	local f = io.open(reg_save.info_file, 'r')
+	if not f then
+		return {}
+	end
 	local info_input = f:read('*all')
 	f:close()
 	local obj, pos, err = json.decode(info_input)
