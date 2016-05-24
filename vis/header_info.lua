@@ -1,5 +1,5 @@
 -- Created:  Thu 12 May 2016
--- Modified: Fri 20 May 2016
+-- Modified: Tue 24 May 2016
 -- Author:   Josh Wainwright
 -- Filename: header_info.lua
 
@@ -49,6 +49,7 @@ header_info.update = function(win)
 		check_line(i)
 	end
 	win.cursor:to(save_line, save_col)
+	--win.file.modified = false -- Not currently writable
 end
 
 vis:map(vis.MODE_INSERT, '\\i', function() header_insert(vis.win) end)
