@@ -25,18 +25,19 @@ sh ~/.fehbg
 #xset -b
 
 #conky -c ~/.scripts/dwm/conkyrc | while read -r; do xsetroot -name "$REPLY"; done &
-#while true; do
-#	~/Bin/dwmstatus_src/dwmstatus.o
-#	#xsetroot -name "$(cat /tmp/dwm_status_bar/content)"
-#	sleep 10s
-#done &
+while true; do
+	bat="/sys/class/power_supply/sbs-104-000b/capacity"
+	xsetroot -name "$(printf ' %s | %s ' "$(cat $bat)" "$(date +"%T %F")")"
+	sleep 10s
+done &
 #exec ~/.packages/dwm/startdwm
+exec dwm
 #exec selectwm
 #exec goomwwm
 #exec i3
 #exec wmii
 #exec awesome
-exec openbox-session
+#exec openbox-session
 #exec startxfce4 --with-ck-launch
 #exec startxfce4
 #exec enlightenment_start
