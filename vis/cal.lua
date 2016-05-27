@@ -1,10 +1,10 @@
 -- Created:  Tue 24 May 2016
--- Modified: Tue 24 May 2016
+-- Modified: Wed 25 May 2016
 -- Author:   Josh Wainwright
 -- Filename: cal.lua
 
 local TRANS_YEAR = 1752
-local TRANS_MONTH = 8 -- September
+local TRANS_MONTH = 9 -- September
 local TRANS_DAY = 2
 
 local center = function(width, str)
@@ -27,10 +27,10 @@ end
 
 local monthlength = function(year, month, cal)
 	local mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
-	if month == 1 and isleap(year, cal) then
+	if month == 2 and isleap(year, cal) then
 		return 29
 	else
-		return mdays[month-1]
+		return mdays[month]
 	end
 end
 
@@ -40,9 +40,9 @@ local dayofweek = function(year, month, dom, cal)
 	local m = month + 12 * a - 1
 	
 	if cal == 'GREGORIAN' then
-		return (dom + y + y/4 - y/100 + y/400 + (31*m)/12) % 7
+		return ((dom + y + y/4 - y/100 + y/400 + (31*m)/12) % 7) + 1
 	else -- cal == 'JULIAN'
-		return (5 + dom + y + y/4 + (31*m)/12) % 7
+		return ((5 + dom + y + y/4 + (31*m)/12) % 7) + 1
 	end
 end
 
@@ -73,7 +73,7 @@ local getgrid = function(year, month, line)
 		end
 	end
 	
-	local thismonth = (year == os.date('%Y') and month+1 == os.date('%m'))
+	local thismonth = (year == os.date('%Y') and month == os.date('%m'))
 	while d < 7 and dom <= monthlength(year, month, cal) do
 		if thismonth and dom == os.date('%d') then
 			ret = ret .. string.format('%2d|', dom)
@@ -101,8 +101,7 @@ local getcal = function(year, month, showyear)
 		'July', 'August', 'September', 'October', 'November', 'December'}
 	local days = {'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'}
 	
-	month = (month % 12) + 1
-	local mon_name = smon[month] .. (showyear and ' ' .. year)
+	local mon_name = smon[month] .. (showyear and ' ' .. year or '')
 	local mon_line = center(20, mon_name)
 	table.insert(cal, string.format('%-21s', mon_line))
 	
@@ -122,8 +121,10 @@ local getcal = function(year, month, showyear)
 	return cal
 end
 
-for n=1, 12 do
-	for i, line in ipairs(getcal(2016, n, true)) do
+-- TODO
+
+for n=1, 1 do
+	for i, line in ipairs(getcal(2016, n, false)) do
 		print(line)
 	end
 end
