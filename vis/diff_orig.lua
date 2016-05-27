@@ -1,5 +1,5 @@
 -- Created:  2016-05-17
--- Modified: Fri 20 May 2016
+-- Modified: Thu 26 May 2016
 -- Author:   Josh Wainwright
 -- Filename: diff_orig.lua
 
@@ -14,8 +14,9 @@ diff_orig = function(win)
 	tmp:write(a)
 	tmp:close()
 
-	local diff_cmd = 'diff -u '
-	local diff_out = os.capture(diff_cmd .. fname .. ' ' .. tmpname)
+	local diff_exe = 'diff -u '
+	local diff_cmd = string.format('%s %s %s', diff_exe, fname, tmpname)
+	local diff_out = os.capture(diff_cmd)
 	os.remove(tmpname)
 	if diff_out == '' then
 		vis:info('No difference')
