@@ -1,5 +1,5 @@
 -- Created:  2016-05-09
--- Modified: Fri 20 May 2016
+-- Modified: Thu 26 May 2016
 -- Author:   Josh Wainwright
 -- Filename: visrc.lua
 
@@ -15,6 +15,7 @@ require('statusline')
 header_info = require('header_info')
 require('diff_orig')
 fs = require('fs')
+require('toggle')
 require('comment')
 
 vis.pwd = os.getenv('PWD') .. '/'
@@ -62,9 +63,5 @@ user_keybindings = function(win)
 	vis:command('map! insert <C-Right> <cursor-word-start-next>')
 	vis:command('map! insert <C-Left> <cursor-word-start-prev>')
 
-	vis:map(vis.MODE_NORMAL, 'K', function() statusline(vis.win) end)
-	vis:map(vis.MODE_NORMAL, 'Q', function() reg_save.save(vis.win) end)
-	vis:map(vis.MODE_NORMAL, 'W', function() reg_save.restore(vis.win) end)
-	
 	vis:map(vis.MODE_NORMAL, '<C-]>', jump_tag)
 end
