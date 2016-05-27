@@ -15,6 +15,7 @@ require('statusline')
 header_info = require('header_info')
 require('diff_orig')
 fs = require('fs')
+require('comment')
 
 vis.pwd = os.getenv('PWD') .. '/'
 
