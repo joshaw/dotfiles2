@@ -1,5 +1,5 @@
 -- Created:  2016-05-12
--- Modified: Tue 24 May 2016
+-- Modified: Thu 26 May 2016
 -- Author:   Josh Wainwright
 -- Filename: reg_save.lua
 
@@ -52,14 +52,14 @@ reg_save.save = function(win)
 	if not fname then return end
 	-- List of flags to save in info file
 	local flags = {}
-	for _, reg in pairs({'a','b','c','d','e','f','g','h','i','j','k','l','m',
-			'n','o', 'p','q','r','s','t','u','v','w','x','y','z','"','@',':',
-			'/','0'}) do
-		local regval = nil -- TODO vis:getreg(reg)
-		if regval ~= nil then
-			flags[reg] = regval
-		end
-	end
+	--for _, reg in pairs({'a','b','c','d','e','f','g','h','i','j','k','l','m',
+	--		'n','o', 'p','q','r','s','t','u','v','w','x','y','z','"','@',':',
+	--		'/','0'}) do
+	--	local regval = vis:getreg(reg) -- TODO
+	--	if regval ~= nil then
+	--		flags[reg] = regval
+	--	end
+	--end
 	local tbl = registers_read()
 	local file_tbl = tbl[fname] or {}
 	local file_info = {
