@@ -1,12 +1,12 @@
 -- Created:  2016-05-12
--- Modified: Fri 20 May 2016
+-- Modified: Thu 26 May 2016
 -- Author:   Josh Wainwright
 -- Filename: fmt_tabs.lua
 
 local fmt_space_tab = function(win, repl, width)
 	local save_line, save_col = win.cursor.line, win.cursor.col
 	local lines = {}
-	for i=1, #win.file.lines, 1 do
+	for i=1, #win.file.lines do
 		local line = win.file.lines[i]
 		local indent, content = line:match('^(%s+)(.*)$')
 		if indent then
@@ -27,7 +27,7 @@ end
 local fmt_trailing = function(win)
 	local save_line, save_col = win.cursor.line, win.cursor.col
 	local lines = {}
-	for i=1, #win.file.lines, 1 do
+	for i=1, #win.file.lines do
 		local line = win.file.lines[i]
 		line = line:gsub('%s+$', '')
 		table.insert(lines, line)
@@ -41,7 +41,7 @@ end
 local fmt_line_end = function(win, lineend)
 	local save_line, save_col = win.cursor.line, win.cursor.col
 	local lines = {}
-	for i=1, #win.file.lines, 1 do
+	for i=1, #win.file.lines do
 		local line = win.file.lines[i]
 		table.insert(lines, line)
 	end
@@ -51,24 +51,22 @@ local fmt_line_end = function(win, lineend)
 	win.cursor:to(save_line, save_col)
 end
 
-vis:command_register('FmtSpace', function(argv, force, win, cursor, range)
-	local spaces = string.rep(' ', argv[1] or 4)
-	fmt_space_tab(win, spaces, argv[1] or 4)
-end)
-vis:command_register('FmtTab', function(argv, force, win, cursor, range)
-	fmt_space_tab(win, '\t', argv[1] or 4)
-end)
-vis:command_register('FmtTrailing', function(argv, force, win, cursor, range)
-	fmt_trailing(win)
-end)
-vis:command_register('FmtNL', function(argv, force, win, cursor, range)
-	fmt_line_end(win, '\n')
-end)
-vis:command_register('FmtCRNL', function(argv, force, win, cursor, range)
-	fmt_line_end(win, '\r\n')
-end)
 vis:command_register('Fmt', function(argv, force, win, cursor, range)
-	fmt_space_tab(win, '\t', 4)
-	fmt_trailing(win)
-	fmt_line_end(win, '\n')
+	local cmd = argv[1]
+	if not cmd then
+		fmt_space_tab(win, '\t', 4)
+		fmt_trailing(win)
+		fmt_line_end(win, '\n')
+	elseif cmd == 'space' then
+		local spaces = string.rep(' ', argv[2] or 4)
+		fmt_space_tab(win, spaces, argv[2] or 4)
+	elseif cmd == 'tab' then
+		fmt_space_tab(win, '\t', argv[2] or 4)
+	elseif cmd == 'trail' then
+		fmt_trailing(win)
+	elseif cmd == 'nl' then
+		fmt_line_end(win, '\n')
+	elseif cmd == 'crnl' then
+		fmt_line_end(win, '\r\n')
+	end
 end)
