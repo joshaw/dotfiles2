@@ -1,5 +1,5 @@
 -- Created:  2016-05-13
--- Modified: Thu 26 May 2016
+-- Modified: Fri 27 May 2016
 -- Author:   Josh Wainwright
 -- Filename: statusline.lua
 
@@ -25,25 +25,17 @@ local modes = {
 	[vis.MODE_REPLACE] = 'REPLACE',
 }
 
-local user_home = os.getenv('HOME')
-
 vis.events.win_status = function(win)
 	local left = {}
 	local right = {}
-	local file = win.file
-	local cursor = win.cursor
-	local delim_len = 1
 
 	local mode = modes[vis.mode]
 	if mode ~= '' and vis.win == win then
 		table.insert(left, mode)
 	end
 
-	local fname
-	if file.name then
-		fname = file.name:gsub(user_home, '~')
-	end
-	table.insert(left, (fname or '[No Name]') ..
+	local file = win.file
+	table.insert(left, (file.name or '[No Name]') ..
 				(file.modified and ' [+]' or '') .. 
 				(vis.recording and ' @' or ''))
 	if win.syntax ~= '' then
@@ -54,14 +46,15 @@ vis.events.win_status = function(win)
 		table.insert(right, file.newlines)
 	end
 
-	if #win.cursors > 1 then
-		table.insert(right, cursor.number..'/'..#win.cursors)
-	end
-
 	local size = file.size
+	local cursor = win.cursor
 	table.insert(right, human_bytes(size))
 	table.insert(right, 
 			(size == 0 and "0" or math.ceil(cursor.pos/size*100)).."%")
+
+	if #win.cursors > 1 then
+		table.insert(right, cursor.number..'/'..#win.cursors)
+	end
 
 	if not win.large then
 		local col = cursor.col
