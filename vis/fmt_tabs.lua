@@ -1,5 +1,5 @@
 -- Created:  2016-05-12
--- Modified: Thu 26 May 2016
+-- Modified: Mon 06 Jun 2016
 -- Author:   Josh Wainwright
 -- Filename: fmt_tabs.lua
 
@@ -62,7 +62,7 @@ vis:command_register('Fmt', function(argv, force, win, cursor, range)
 		fmt_space_tab(win, spaces, argv[2] or 4)
 	elseif cmd == 'tab' then
 		fmt_space_tab(win, '\t', argv[2] or 4)
-	elseif cmd == 'trail' then
+	elseif cmd == 'trailing' then
 		fmt_trailing(win)
 	elseif cmd == 'nl' then
 		fmt_line_end(win, '\n')
