@@ -1,5 +1,5 @@
 -- Created:  2016-05-12
--- Modified: Thu 26 May 2016
+-- Modified: Tue 31 May 2016
 -- Author:   Josh Wainwright
 -- Filename: reg_save.lua
 
@@ -114,8 +114,8 @@ local oldfiles = function(num)
 			gone = '*'
 			ngone = ngone +1
 		end
-		local date = os.date('%c', n.date)
-		local nl = string.format('%s %s | %s | %s', gone, (n.count or 1), date, n.fname)
+		local date = os.date('%Y-%m-%d %H:%M:%S', n.date)
+		local nl = string.format('%s %-3s | %s | %s', gone, (n.count or 1), date, n.fname)
 		table.insert(lines, nl)
 	end
 
@@ -134,16 +134,16 @@ end
 
 local remove_old = function()
 	local tbl = registers_read()
-	local cnt = 0
+	local count = 0
 	local new_tbl = {}
 	for fname, info in pairs(tbl) do
 		if not file_exists(fname) then
-			cnt = cnt + 1
+			count = count + 1
 		else
 			new_tbl[fname] = info
 		end
 	end
-	vis:info('Removed ' .. cnt .. ' entries from info file')
+	vis:info('Removed ' .. count .. ' entries from info file')
 	registers_write(new_tbl)
 	oldfiles()
 end
