@@ -48,20 +48,6 @@ return
 return
 #IfWinActive
 
-; Not vim or cygwin (mintty)
-#If !WinActive("ahk_class Vim") and !WinActive("ahk_class mintty")
-{
-	^w::
-		if (A_Cursor == "IBeam")
-		{
-			SendInput, ^+{Left}{delete}
-		} else {
-			SendInput, ^w
-		}
-	return
-}
-#If
-
 ; Abbreviations {{{1
 ::vimpath::C:\Program Files (x86)\vim\vim74\gvim.exe
 ::dtyd::
