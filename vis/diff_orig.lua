@@ -1,9 +1,7 @@
 -- Created:  2016-05-17
--- Modified: Thu 26 May 2016
+-- Modified: Thu 15 Sep 2016
 -- Author:   Josh Wainwright
 -- Filename: diff_orig.lua
-
---require('utils')
 
 diff_orig = function(win)
 	local fname = win.file.name
@@ -16,7 +14,10 @@ diff_orig = function(win)
 
 	local diff_exe = 'diff -u '
 	local diff_cmd = string.format('%s %s %s', diff_exe, fname, tmpname)
-	local diff_out = os.capture(diff_cmd)
+	local f = assert(io.popen(diff_cmd, 'r'))
+	local diff_out = assert(f:read('*a'))
+	f:close()
+
 	os.remove(tmpname)
 	if diff_out == '' then
 		vis:info('No difference')
