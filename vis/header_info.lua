@@ -1,5 +1,5 @@
 -- Created:  Thu 12 May 2016
--- Modified: Tue 24 May 2016
+-- Modified: Wed 08 Jun 2016
 -- Author:   Josh Wainwright
 -- Filename: header_info.lua
 
@@ -52,7 +52,7 @@ header_info.update = function(win)
 	--win.file.modified = false -- Not currently writable
 end
 
-vis:map(vis.MODE_INSERT, '\\i', function() header_insert(vis.win) end)
+vis:map(vis.MODE_INSERT, '<M-C-I>', function() header_insert(vis.win) end)
 
 vis:command_register('HeaderInfo', function(argv, force, win, cursor, range)
 	header_info.update(win) 
