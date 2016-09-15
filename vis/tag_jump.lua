@@ -1,5 +1,5 @@
 -- Created:  Fri 13 May 2016
--- Modified: Fri 20 May 2016
+-- Modified: Wed 15 Jun 2016
 -- Author:   Josh Wainwright
 -- Filename: tag_jump.lua
 
@@ -17,7 +17,7 @@ jump_tag = function()
 	local win = vis.win
 	local line = win.file.lines[win.cursor.line]
 	local word = word_at_pos(line, win.cursor.col)
-	local tags_f = assert(io.open(vis.cwd .. 'tags', 'r'))
+	local tags_f = assert(io.open(os.getenv('PWD') .. '/tags', 'r'))
 	local tag_line = ""
 	for line in tags_f:lines() do
 		local match = line:find('^' .. word)
@@ -37,3 +37,5 @@ jump_tag = function()
 	vis:command('e ' .. tagfile)
 	vis:feedkeys(tagaddress .. 'G')
 end
+
+vis:map(vis.MODE_NORMAL, '<C-]>', jump_tag)

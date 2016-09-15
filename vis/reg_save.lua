@@ -1,5 +1,5 @@
 -- Created:  2016-05-12
--- Modified: Tue 31 May 2016
+-- Modified: Tue 21 Jun 2016
 -- Author:   Josh Wainwright
 -- Filename: reg_save.lua
 
@@ -10,9 +10,8 @@ reg_save.info_file = os.getenv('HOME') .. '/.config/vis/.vis.info'
 
 local get_fname = function(win)
 	local fname = win.file.name
-	if not fname then return end
-	if fname:sub(1, 1) ~= '/' then
-		fname = os.capture('realpath ' .. vis.pwd .. fname)
+	if fname and fname:sub(1,1) ~= '/' then
+		fname = os.getenv('PWD') .. '/' .. fname
 	end
 	return fname
 end
@@ -66,7 +65,7 @@ reg_save.save = function(win)
 		registers = flags,
 		date = os.time(),
 		cursor = { win.cursor.line, win.cursor.col },
-		syntax = win.syntax or json.null,
+		syntax = nil,
 		count = (file_tbl.count or 0) + 1
 	}
 	tbl[fname] = file_info
@@ -89,19 +88,19 @@ reg_save.restore = function(win)
 		vis:command('set syntax ' .. syntax)
 	end
 
-	local registers = file_info.registers
-	if registers then
-		for reg, content in pairs(registers) do
-			--vis:setreg(reg, content)
-		end
-	end
+	--local registers = file_info.registers
+	--if registers then
+	--	for reg, content in pairs(registers) do
+	--		vis:setreg(reg, content)
+	--	end
+	--end
 end
 
 local oldfiles = function(num)
 	local tbl = registers_read()
 	local files = {}
 	for i, n in pairs(tbl) do
-		table.insert(files, {fname = i, date = n.date, count = n.count})
+		table.insert(files, {fname = i, date = n.date, count = (n.count or 1)})
 	end
 
 	table.sort(files, function(a,b) return a.date>b.date end)
@@ -115,7 +114,8 @@ local oldfiles = function(num)
 			ngone = ngone +1
 		end
 		local date = os.date('%Y-%m-%d %H:%M:%S', n.date)
-		local nl = string.format('%s %-3s | %s | %s', gone, (n.count or 1), date, n.fname)
+		local name = n.fname:gsub(os.getenv('HOME'), '~')
+		local nl = string.format('%s%2s | %s | %s', gone, n.count, date, name)
 		table.insert(lines, nl)
 	end
 
@@ -145,12 +145,12 @@ local remove_old = function()
 	end
 	vis:info('Removed ' .. count .. ' entries from info file')
 	registers_write(new_tbl)
-	oldfiles()
 end
 
 vis:command_register('oldfiles', function(argv, force, win, cursor, range)
 	if force then
 		remove_old()
+		oldfiles()
 	else
 		oldfiles(argv[1])
 	end

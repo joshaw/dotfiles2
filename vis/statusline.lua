@@ -1,8 +1,9 @@
 -- Created:  2016-05-13
--- Modified: Fri 27 May 2016
+-- Modified: Thu 15 Sep 2016
 -- Author:   Josh Wainwright
 -- Filename: statusline.lua
 
+local suffixes = {'B', 'KB', 'MB'}
 local human_bytes = function(bytes)
 	if bytes <= 0 then
 		return ''
@@ -12,8 +13,7 @@ local human_bytes = function(bytes)
 		n = n + 1
 		bytes = bytes / 1024
 	end
-	local s = {'B', 'KB', 'MB'}
-	return string.format('%.2f', bytes) .. s[n]
+	return string.format('%.2f', bytes) .. suffixes[n]
 end
 
 local modes = {
@@ -31,34 +31,33 @@ vis.events.win_status = function(win)
 
 	local mode = modes[vis.mode]
 	if mode ~= '' and vis.win == win then
-		table.insert(left, mode)
+		left[#left+1] = mode
 	end
 
 	local file = win.file
-	table.insert(left, (file.name or '[No Name]') ..
-				(file.modified and ' [+]' or '') .. 
-				(vis.recording and ' @' or ''))
+	left[#left+1] = (file.name or '[No Name]') ..
+				(file.modified and ' [+]' or '') ..
+				(vis.recording and ' @' or '')
 	if win.syntax ~= '' then
-		table.insert(left, win.syntax)
+		left[#left+1] = win.syntax
 	end
 
 	if file.newlines ~= "nl" then
-		table.insert(right, file.newlines)
+		right[#right+1] = file.newlines
 	end
 
 	local size = file.size
 	local cursor = win.cursor
-	table.insert(right, human_bytes(size))
-	table.insert(right, 
-			(size == 0 and "0" or math.ceil(cursor.pos/size*100)).."%")
+	right[#right+1] = human_bytes(size)
+	right[#right+1] = (size==0 and "0" or math.ceil(cursor.pos/size*100)).."%"
 
 	if #win.cursors > 1 then
-		table.insert(right, cursor.number..'/'..#win.cursors)
+		right[#right+1] = cursor.number .. '/' .. #win.cursors
 	end
 
 	if not win.large then
 		local col = cursor.col
-		table.insert(right, cursor.line..', '..col)
+		right[#right+1] = cursor.line .. ', ' .. col
 		if size > 33554432 or col > 65536 then
 			win.large = true
 		end
@@ -68,3 +67,40 @@ vis.events.win_status = function(win)
 	local right_str = ' ' .. table.concat(right, " « ") .. ' '
 	win:status(left_str, right_str)
 end
+
+local status = function(win)
+	local info = {}
+	local fname = win.file.name
+	if win.file.name:sub(1,1) ~= '/' then
+		fname = os.getenv('PWD') .. '/' .. fname
+	end
+	info[#info+1] = 'Full file path:\n' .. fname
+
+	local cmd = 'stat --printf "Creation:     %w\nAccess:       %x' ..
+		'\nModification: %y\nStatus:       %z" "' .. win.file.name .. '"'
+	local f = assert(io.popen(cmd, 'r'))
+	local s = assert(f:read('*a'))
+	f:close()
+	info[#info+1] = s
+
+	info[#info+1] = 'File size:    ' .. win.file.size ..
+		' (' .. human_bytes(win.file.size) .. ')'
+	info[#info+1] = 'Lines:        ' .. #win.file.lines
+
+	local words, chars = 0, 0
+	for i in win.file:lines_iterator() do
+		chars = chars + i:len()
+		for j in i:gmatch('%S+') do
+			words = words + 1
+		end
+	end
+	info[#info+1] = 'Words:        ' .. words
+	info[#info+1] = 'Chars:        ' .. chars
+
+	vis:message(table.concat(info, '\n'))
+	vis:feedkeys('dgg')
+end
+
+vis:command_register('Status', function(argv, force, win, cursor, range)
+	status(win)
+end)
