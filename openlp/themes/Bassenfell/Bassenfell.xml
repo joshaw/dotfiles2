@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <theme version="2.0">
-    <name>Light</name>
-    <background type="solid">
-        <color>#ffffff</color>
+    <name>Bassenfell</name>
+    <background type="image">
+        <filename>background1.JPG</filename>
+        <borderColor>#000000</borderColor>
     </background>
     <font type="main">
-        <name>Calibri</name>
-        <color>#000000</color>
-        <size>40</size>
-        <bold>False</bold>
+        <name>Century Gothic</name>
+        <color>#FFFFFF</color>
+        <size>60</size>
+        <bold>True</bold>
         <italics>False</italics>
-        <line_adjustment>13</line_adjustment>
-        <location height="600" override="True" width="900" x="70" y="70"/>
+        <line_adjustment>8</line_adjustment>
+        <location height="872" override="True" width="1800" x="50" y="50"/>
         <shadow shadowColor="#000000" shadowSize="5">False</shadow>
         <outline outlineColor="#000000" outlineSize="2">False</outline>
     </font>
     <font type="footer">
         <name>Arial</name>
-        <color>#686868</color>
+        <color>#a3a3a3</color>
         <size>12</size>
         <bold>False</bold>
         <italics>False</italics>
         <line_adjustment>0</line_adjustment>
-        <location height="78" override="False" width="1004" x="10" y="690"/>
+        <location height="108" override="False" width="1900" x="10" y="972"/>
         <shadow shadowColor="#000000" shadowSize="5">True</shadow>
         <outline outlineColor="#000000" outlineSize="2">False</outline>
     </font>
     <display>
         <horizontalAlign>0</horizontalAlign>
-        <verticalAlign>0</verticalAlign>
+        <verticalAlign>1</verticalAlign>
         <slideTransition>False</slideTransition>
     </display>
 </theme>
