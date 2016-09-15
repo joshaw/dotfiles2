@@ -5,7 +5,7 @@ subst h: c:\home\JoshWainwright
 subst l: c:\home\JoshWainwright\Resources
 
 ::
-:: Remove everythin inside the "tmp" directory {{{1
+:: Remove everything inside the "tmp" directory {{{1
 ::
 set tmpdir="c:\tmp"
 del /q %tmpdir%\*
@@ -23,9 +23,9 @@ set path=c:\Windows\System32\wbem;%PATH%
 SETLOCAL enabledelayedexpansion
 SET /a count=0
 FOR /F "skip=1" %%D IN ('wmic path win32_localtime get dayofweek') DO (
-    if "!count!" GTR "0" GOTO next
-    set dow=%%D
-    SET /a count+=1
+	if "!count!" GTR "0" GOTO next
+	set dow=%%D
+	SET /a count+=1
 )
 :next
 if "%dow%" GEQ "6" GOTO:eof
@@ -45,8 +45,8 @@ for %%x in (
 
 	%TBINI% -Section=%%x TBBROWSE_HTML_FONT_SIZE=2
 	%TBINI% -Section=%%x USE_DEFAULT_HTML_BROWSER=TRUE
-	%TBINI% -Section=%%x SOURCE_CODE_BROWSER="C:\Program Files (x86)\vim\vim74\gvim.exe" %1%2
-	%TBINI% -Section=%%x BROWSE_FILE_AT_LINE_ARG_FORMAT=+d
+	%TBINI% -Section=%%x SOURCE_CODE_BROWSER="C:\Program Files (x86)\vim\vim74\gvim.exe" %1 %2
+	%TBINI% -Section=%%x BROWSE_FILE_AT_LINE_ARG_FORMAT=" +%d"
 	%TBINI% -Section=%%x TBRUN_COLOURED_GUI=TRUE
 )
 

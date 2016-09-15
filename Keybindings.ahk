@@ -18,6 +18,8 @@ return
 	Run, C:\progs\locate32_x64-3.1.11.7100\locate32.exe
 return
 
+F1::return
+
 #F2::
 	Run, %VIM% ~\Documents\Details\times\times.txt
 return
@@ -27,7 +29,10 @@ return
 return
 
 ; Reload this script
-^!r::Reload
+^!r::
+	MsgBox, Reloaded
+	Reload
+return
 
 ; Windows explorer active
 #IfWinActive ahk_class CabinetWClass
