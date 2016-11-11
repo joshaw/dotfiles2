@@ -1,5 +1,5 @@
 -- Created:  2016-05-12
--- Modified: Tue 21 Jun 2016
+-- Modified: Fri 16 Sep 2016
 -- Author:   Josh Wainwright
 -- Filename: reg_save.lua
 
@@ -65,7 +65,7 @@ reg_save.save = function(win)
 		registers = flags,
 		date = os.time(),
 		cursor = { win.cursor.line, win.cursor.col },
-		syntax = nil,
+		syntax = win.syntax,
 		count = (file_tbl.count or 0) + 1
 	}
 	tbl[fname] = file_info

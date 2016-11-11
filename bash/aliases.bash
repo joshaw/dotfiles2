@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Mon 23 May 2016
+# Modified: Fri 16 Sep 2016
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -24,7 +24,7 @@ alias vimbuild='make distclean && ./configure --with-features=huge --disable-acl
 alias ls='ls --color=always --group-directories-first' # Lists with colour enabled
 alias l='ls -1A'           # Lists in one column, hidden files.
 alias ll='ls -NGghmn --time-style=+"" --group-directories-first'
-alias lll='ls -NAlh --sort=size . | tr -s " " | cut -d " " -f 5,9'
+alias lll='ls -NAlh --sort=size . | tr -s " " | cut -d " " -f 5,9-'
 alias la='ll -A'           # Lists human readable sizes, hidden files.
 
 if ! exists clear; then
@@ -40,6 +40,8 @@ elif exists wget; then
 	alias get='wget --continue --progress=bar --timestamping'
 elif exists axel; then
 	alias get='axel -a'
+elif exists aria2c; then
+	alias get='aria2c -j 8'
 fi
 
 # Resource Usage
@@ -66,7 +68,7 @@ alias g++='g++ -Wall -o'
 alias junit='java org.junit.runner.JUnitCore'
 
 # Pointess command to look wierd and cool
-alias useless='while [ true ]; do head -n 100 /dev/urandom; sleep .1; done | hexdump -C | grep "ca fe"'
+alias useless='while true; do head -n 100 /dev/urandom; sleep .1; done | hexdump -C | grep "ca fe"'
 
 # Media -------------------------------
 alias mpv='mpv --save-position-on-quit'
@@ -88,7 +90,7 @@ mcd() {
 # show newest files
 newest () {
 	# http://www.commandlinefu.com/commands/view/9015/find-the-most-recently-changed-files-recursively
-	find . -type f -printf '%TY-%Tm-%Td %TT %p\n' | grep -v cache | grep -v ".git" | sort -r | less
+	find . -type f -printf '%TY-%Tm-%Td %TT %p\n' | grep -v cache | grep -v ".git" | sort -r | less -S
 }
 
 # pdfgrep {{{2
@@ -114,14 +116,6 @@ paclist() {
 # Convert svg to pdf
 svg2pdf() {
 	rsvg-convert -f pdf $1 >! $1:r.pdf
-}
-
-# pocket {{{2
-# Send link to pocket
-pocket() {
-	for ARG in "$@"; do
-		echo $ARG | /usr/bin/mutt -s link add@getpocket.com
-	done
 }
 
 # bakuf {{{2

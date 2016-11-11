@@ -16,6 +16,7 @@ return
 
 #w::
 	Run, C:\progs\locate32_x64-3.1.11.7100\locate32.exe
+	;Run, C:\progs\Everything\Everything.exe
 return
 
 F1::return
@@ -50,6 +51,10 @@ return
 
 ^d::
 	SendInput, {F4}^aL:\FAE\Documentation{Enter}
+return
+
+^p::
+	SendInput, {F4}^aC:\progs{Enter}
 return
 #IfWinActive
 

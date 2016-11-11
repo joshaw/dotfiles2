@@ -1,5 +1,5 @@
 # Created:  Thu 30 Jul 2015
-# Modified: Fri 15 Jan 2016
+# Modified: Thu 15 Sep 2016
 # Author:   Josh Wainwright
 # Filename: ldra.bash
 
@@ -14,12 +14,11 @@ ldra() {
 			./${cmd}.sh
 			builtin cd - > /dev/null
 		fi
-	elif [ $# -eq 3 ]; then
+	elif [ $# -eq 2 ]; then
 		name="$1"
 		lang="$2"
-		ver="$3"
-		cp ~/.ldra/Testbed.ini.${lang}${ver} ~/.ldra/Testbed.ini
-		~/LDRA_Toolsuite/${ver}/${lang}/${name} &
+		cp ~/.ldra/Testbed.ini.${lang} ~/.ldra/Testbed.ini
+		~/LDRA_Toolsuite/${lang}/${name} &
 	else
 		echo "Wrong number of arguments" 1>&2
 	fi
@@ -33,8 +32,6 @@ if [ $BASH ]; then
 			COMPREPLY=( $(compgen -W "${cmds}" -- $cur) )
 		elif [ "${#COMP_WORDS[@]}" -eq 3 ]; then
 			COMPREPLY=( $(compgen -W "Ada C_C++" -- $cur) )
-		elif [ "${#COMP_WORDS[@]}" -eq 4 ]; then
-			COMPREPLY=( $(compgen -W "944 945 946 950 951" -- $cur) )
 		fi
 	}
 
