@@ -1,5 +1,5 @@
 -- Created:  Fri 13 May 2016
--- Modified: Wed 15 Jun 2016
+-- Modified: Thu 08 Dec 2016
 -- Author:   Josh Wainwright
 -- Filename: tag_jump.lua
 
@@ -38,4 +38,4 @@ jump_tag = function()
 	vis:feedkeys(tagaddress .. 'G')
 end
 
-vis:map(vis.MODE_NORMAL, '<C-]>', jump_tag)
+vis:map(vis.modes.NORMAL, '<C-]>', jump_tag)

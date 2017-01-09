@@ -1,5 +1,5 @@
 -- Created:  2016-05-12
--- Modified: Mon 06 Jun 2016
+-- Modified: Fri 09 Dec 2016
 -- Author:   Josh Wainwright
 -- Filename: fmt_tabs.lua
 
@@ -54,9 +54,11 @@ end
 vis:command_register('Fmt', function(argv, force, win, cursor, range)
 	local cmd = argv[1]
 	if not cmd then
+		local s = win.file.size
 		fmt_space_tab(win, '\t', 4)
 		fmt_trailing(win)
 		fmt_line_end(win, '\n')
+		vis:info('Size difference: ' .. (win.file.size - s) .. ' bytes')
 	elseif cmd == 'space' then
 		local spaces = string.rep(' ', argv[2] or 4)
 		fmt_space_tab(win, spaces, argv[2] or 4)

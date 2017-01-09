@@ -1,5 +1,5 @@
 -- Created:  Wed 25 May 2016
--- Modified: Thu 26 May 2016
+-- Modified: Fri 16 Dec 2016
 -- Author:   Josh Wainwright
 -- Filename: toggle.lua
 
@@ -14,9 +14,7 @@ local mods = {
 
 local index = function(tbl, value)
 	for i, j in ipairs(tbl) do
-		if j == value then
-			return i
-		end
+		if j == value then return i end
 	end
 	return nil
 end
@@ -66,7 +64,7 @@ local incr = function(win, arg, dir)
 		local line = win.file.lines[win.cursor.line]
 		local newline = replace_word(line, win.cursor.col, arg, newword)
 		win.file.lines[win.cursor.line] = newline
-		vis:feedkeys('<editor-redraw>')
+		win:draw()
 	else
 		local cmd = math.abs(dir) .. (dir > 0 and '<number-increment>' 
 				or '<number-decrement>')
@@ -92,5 +90,5 @@ local cword = function(win)
 	return word_start:reverse() .. word_end:sub(2, -1)
 end
 
-vis:map(vis.MODE_NORMAL, '<C-a>', function() incr(vis.win, cword(vis.win), 1) end)
-vis:map(vis.MODE_NORMAL, '<C-x>', function() incr(vis.win, cword(vis.win), -1) end)
+vis:map(vis.modes.NORMAL, '<C-a>', function() incr(vis.win, cword(vis.win), 1) end)
+vis:map(vis.modes.NORMAL, '<C-x>', function() incr(vis.win, cword(vis.win), -1) end)

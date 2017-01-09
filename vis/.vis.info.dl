@@ -1,0 +1,2557 @@
+return {
+["/cygdrive/c/LDRA_Toolsuite/C_C++/957/Compconfig/PRE_INSTALL_C_C++_9.5.7_TESTBED.INI_19072016_091740.TXT"]={
+	count=1,
+	cursor={399,1},
+	date=1469009795,
+	registers={}
+},
+["/cygdrive/c/LDRA_Toolsuite/C_C++/957/TXT_MENU.DAT"]={
+	count=1,
+	cursor={88,53},
+	date=1469009781,
+	registers={}
+},
+["/cygdrive/c/LDRA_Workarea/C/Lein-AD_tbwrkfls/Lein-AD.glh"]={
+	count=1,
+	cursor={2,6},
+	date=1479379706,
+	registers={}
+},
+["/cygdrive/c/Program Files (x86)/Notepad++/shortcuts.xml"]={
+	count=1,
+	cursor={10,117},
+	date=1470342953,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.bash/colours.bash"]={
+	count=3,
+	cursor={7,1},
+	date=1473933314,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.bash/ls_colors"]={
+	count=1,
+	cursor={1,1},
+	date=1473865025,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.bashrc"]={
+	count=29,
+	cursor={75,1},
+	date=1481124725,
+	registers={},
+	syntax="bash"
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/.vis.info"]={
+	count=4,
+	cursor={922,15},
+	date=1474036747,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/abbr.lua"]={
+	count=2,
+	cursor={7,1},
+	date=1467276208,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/cal.lua"]={
+	count=1,
+	cursor={131,1},
+	date=1481124648,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/diff_orig.lua"]={
+	count=2,
+	cursor={31,64},
+	date=1473933505,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/dkjson.lua"]={
+	cursor={1,1},
+	date=1463738091,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/fmt_tabs.lua"]={
+	count=3,
+	cursor={2,1},
+	date=1481124982,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/git-lp.lua"]={
+	count=4,
+	cursor={29,1},
+	date=1481188577,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/header_info.lua"]={
+	count=3,
+	cursor={38,1},
+	date=1481127501,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/menu.lua"]={
+	count=7,
+	cursor={78,16},
+	date=1467633636,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/navd_p.lua"]={
+	count=3,
+	cursor={2,2},
+	date=1481124778,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/reg_save.lua"]={
+	count=2,
+	cursor={160,1},
+	date=1474037141,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/statusline.lua"]={
+	count=8,
+	cursor={107,1},
+	date=1473933565,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/tmp"]={
+	count=8,
+	cursor={1,1},
+	date=1481030098,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.config/vis/visrc.lua"]={
+	count=24,
+	cursor={59,5},
+	date=1481124761,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/.git/config"]={
+	count=2,
+	cursor={1,1},
+	date=1465219372,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/Keybindings.ahk"]={
+	count=2,
+	cursor={1,1},
+	date=1473928709,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/LDRA/startup.bat"]={
+	count=3,
+	cursor={20,3},
+	date=1481181948,
+	registers={},
+	syntax="batch"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/bash/aliases.bash"]={
+	count=2,
+	cursor={104,44},
+	date=1479723407,
+	registers={},
+	syntax="bash"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/bash/colours.bash"]={
+	count=3,
+	cursor={8,33},
+	date=1473327839,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/bash/completion.bash"]={
+	count=2,
+	cursor={17,29},
+	date=1480593997,
+	registers={},
+	syntax="bash"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/bash/ls_colors"]={
+	count=2,
+	cursor={1,1},
+	date=1473325539,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/gitlp"]={
+	count=16,
+	cursor={1,1},
+	date=1481181979,
+	registers={},
+	syntax="diff"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/.vis.info"]={
+	count=16,
+	cursor={286,1},
+	date=1467369775,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/.vis.info.dl/.vis.info.dl"]={
+	count=2,
+	cursor={1818,1},
+	date=1481286611
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/.vis.info/.vis.info"]={
+	count=2,
+	cursor={576,19},
+	date=1481284705
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/comment.lua"]={
+	count=1,
+	cursor={9,2},
+	date=1465917603,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/diff_orig.lua"]={
+	count=2,
+	cursor={6,1},
+	date=1465990338,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/fmt_tabs.lua"]={
+	count=4,
+	cursor={73,1},
+	date=1474978270,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/header_info.lua"]={
+	count=3,
+	cursor={59,1},
+	date=1467101622,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/header_info.lua/header_info.lua"]={
+	count=1,
+	cursor={51,19},
+	date=1481281769,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/menu.lua"]={
+	count=1,
+	cursor={2,1},
+	date=1479393630,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/navd_p.lua"]={
+	count=11,
+	cursor={2,1},
+	date=1479393609,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/reg_save.lua"]={
+	count=16,
+	cursor={47,4},
+	date=1466765260,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/statusline.lua"]={
+	count=21,
+	cursor={2,1},
+	date=1466761032,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/tag_jump.lua"]={
+	count=3,
+	cursor={20,54},
+	date=1465988552,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/themes/molokai.lua/themes/molokai.lua"]={
+	count=1,
+	cursor={28,31},
+	date=1481204203,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/toggle.lua"]={
+	count=1,
+	cursor={2,1},
+	date=1465988501,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/visrc.lua"]={
+	count=45,
+	cursor={78,1},
+	date=1481029109,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.dotfiles/vis/visrc.lua/visrc.lua"]={
+	count=16,
+	cursor={73,1},
+	date=1481284391,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/.signature"]={
+	count=1,
+	cursor={1,1},
+	date=1472561280,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.signature2"]={
+	count=1,
+	cursor={3,27},
+	date=1472561290,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/.vim/autoload/langton.vim"]={
+	count=1,
+	cursor={62,1},
+	date=1473090923,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Bin/Archive/Factorial.vim"]={
+	count=1,
+	cursor={40,1},
+	date=1466703909,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Bin/Archive/demos/README"]={
+	count=4,
+	cursor={116,5},
+	date=1481124440,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Bin/Archive/demos/date2secs.lua"]={
+	count=4,
+	cursor={27,30},
+	date=1481124425,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Bin/Archive/demos/str-concat.lua"]={
+	count=4,
+	cursor={1,1},
+	date=1481124126,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Bin/Archive/rndmwlk.html"]={
+	count=1,
+	cursor={92,2},
+	date=1473081940,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Bin/amr"]={
+	count=1,
+	cursor={120,1},
+	date=1466710870,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Bin/colordump"]={
+	count=2,
+	cursor={44,10},
+	date=1472717332,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Bin/fed"]={
+	count=1,
+	cursor={3,1},
+	date=1479299991,
+	registers={},
+	syntax="bash"
+},
+["/cygdrive/c/home/JoshWainwright/Bin/fwatch.sh"]={
+	count=1,
+	cursor={1,1},
+	date=1467039971,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Bin/git-autocommit.sh"]={
+	count=1,
+	cursor={7,24},
+	date=1467990362,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Bin/git-commit-size.sh"]={
+	count=1,
+	cursor={12,32},
+	date=1480692492,
+	registers={},
+	syntax="bash"
+},
+["/cygdrive/c/home/JoshWainwright/Bin/git-lp"]={
+	count=7,
+	cursor={7,17},
+	date=1481131874,
+	registers={},
+	syntax="bash"
+},
+["/cygdrive/c/home/JoshWainwright/Bin/git-lp.lua"]={
+	count=3,
+	cursor={1,1},
+	date=1481131795,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Bin/lsall"]={
+	count=2,
+	cursor={112,83},
+	date=1473525038,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Bin/massrename"]={
+	count=1,
+	cursor={1,1},
+	date=1463929015,
+	registers={},
+	syntax="python"
+},
+["/cygdrive/c/home/JoshWainwright/Bin/mpdmenu"]={
+	count=1,
+	cursor={12,33},
+	date=1471616559,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Bin/navd.py"]={
+	count=1,
+	cursor={1,1},
+	date=1466176575,
+	registers={},
+	syntax="python"
+},
+["/cygdrive/c/home/JoshWainwright/Bin/open"]={
+	count=1,
+	cursor={40,1},
+	date=1481028345,
+	registers={},
+	syntax="bash"
+},
+["/cygdrive/c/home/JoshWainwright/Bin/update_website"]={
+	count=3,
+	cursor={10,23},
+	date=1479384794,
+	registers={},
+	syntax="bash"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/.git/config"]={
+	count=1,
+	cursor={8,1},
+	date=1466510099,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/Finances/Transactions_ac_NW.txt"]={
+	count=1,
+	cursor={1384,49},
+	date=1464965361,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/Finances/makefile"]={
+	count=1,
+	cursor={4,14},
+	date=1465313043,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/Poems/Kubla-Kahn.md"]={
+	count=1,
+	cursor={5,1},
+	date=1465304693,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/Poems/The-Raven.md"]={
+	count=2,
+	cursor={3,2},
+	date=1473165654,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/Poems/makefile"]={
+	count=5,
+	cursor={28,14},
+	date=1473166601,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/Songs/Amazing-grace.md"]={
+	count=1,
+	cursor={22,2},
+	date=1465309610,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/Songs/makefile"]={
+	count=3,
+	cursor={8,8},
+	date=1472818548,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/bills/bills.lua"]={
+	count=6,
+	cursor={14,17},
+	date=1480681504,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/bills/bills.md"]={
+	count=10,
+	cursor={1,1},
+	date=1473161647,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/bills/bills_graph.lua"]={
+	count=2,
+	cursor={161,19},
+	date=1478533447,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/bills/bills_h:q"]={
+	count=1,
+	cursor={1,1},
+	date=1478521611,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/bills/electricity.json"]={
+	count=5,
+	cursor={25,6},
+	date=1466439414,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/bills/electricity.lua"]={
+	count=19,
+	cursor={32,1},
+	date=1479994103,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/bills/gas.json"]={
+	count=5,
+	cursor={19,20},
+	date=1466440296,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/bills/gas.lua"]={
+	count=10,
+	cursor={2,1},
+	date=1479993321,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/bills/internet.json"]={
+	count=1,
+	cursor={1,1},
+	date=1477650208,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/bills/makefile"]={
+	count=22,
+	cursor={34,1},
+	date=1480594064,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/bills/water.json"]={
+	count=4,
+	cursor={44,1},
+	date=1466439693,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/bills/water.lua"]={
+	count=9,
+	cursor={109,1},
+	date=1467284982,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/books-all-raw.json"]={
+	count=13,
+	cursor={7587,12},
+	date=1480685495,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/books-data.lua"]={
+	count=11,
+	cursor={44,1},
+	date=1470745846,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/books.dl"]={
+	count=3,
+	cursor={1,1},
+	date=1479825226,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/books.gnu"]={
+	count=5,
+	cursor={7,36},
+	date=1465479502,
+	registers={},
+	syntax="gnuplot"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/books.json"]={
+	count=20,
+	cursor={1051,7},
+	date=1479825061,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/books.lua"]={
+	count=83,
+	cursor={126,46},
+	date=1480691271,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/books.md"]={
+	count=12,
+	cursor={18,50},
+	date=1465486407,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/books.py"]={
+	count=2,
+	cursor={57,1},
+	date=1465211981,
+	registers={},
+	syntax="python"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/books_graph"]={
+	count=1,
+	cursor={1,1},
+	date=1480681511,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/books_graph.lua"]={
+	count=18,
+	cursor={59,2},
+	date=1480690907,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/books_graph_pub.lua"]={
+	count=7,
+	cursor={2,1},
+	date=1480004227,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/library/copy_covers.sh"]={
+	count=3,
+	cursor={7,2},
+	date=1473505291,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/library/gen.lua"]={
+	count=1,
+	cursor={15,1},
+	date=1473259811,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/library/library.lua"]={
+	count=25,
+	cursor={116,1},
+	date=1481122968,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/library/makefile"]={
+	count=24,
+	cursor={17,11},
+	date=1480690905,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/library/makefile.lua"]={
+	count=1,
+	cursor={2,1},
+	date=1480690809,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/library/styles.css"]={
+	count=7,
+	cursor={1,1},
+	date=1473687001,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/makefile"]={
+	count=58,
+	cursor={35,52},
+	date=1479825441,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/time.lua"]={
+	count=2,
+	cursor={5,24},
+	date=1479824521,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/verify.lua"]={
+	count=2,
+	cursor={7,1},
+	date=1480593999,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/books/verify.py"]={
+	count=3,
+	cursor={3,1},
+	date=1465460116,
+	registers={},
+	syntax="python"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/build/books/books.html"]={
+	count=2,
+	cursor={190,10},
+	date=1472816394,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/build/books/library/covers/cmd.sh"]={
+	count=1,
+	cursor={4,24},
+	date=1473262649,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/build/books/library/covers/cmd.txt"]={
+	count=1,
+	cursor={7,2},
+	date=1473251091,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/build/books/library/covers/copy_covers.sh"]={
+	count=1,
+	cursor={20,1},
+	date=1473262980,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/build/films/films.html"]={
+	count=1,
+	cursor={11,2},
+	date=1465994401,
+	registers={},
+	syntax="html"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/build/index.html"]={
+	count=3,
+	cursor={23,22},
+	date=1474280814,
+	registers={},
+	syntax="html"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/build/mak"]={
+	count=1,
+	cursor={1,1},
+	date=1479384807,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/build/other/cars-driven.html"]={
+	count=1,
+	cursor={220,3},
+	date=1472808210,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/build/res/css.css"]={
+	count=4,
+	cursor={176,2},
+	date=1479904603,
+	registers={},
+	syntax="css"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/build/res/menu.html"]={
+	count=2,
+	cursor={1,8},
+	date=1474282440,
+	registers={},
+	syntax="html"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/build/timeline/holidays.svg.html"]={
+	count=2,
+	cursor={8,1},
+	date=1467286933,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/build/walks/20150523/20150523.html"]={
+	count=1,
+	cursor={29,1},
+	date=1472819126,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/cgi-bin/cgi.py"]={
+	count=1,
+	cursor={8,8},
+	date=1473781947,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/cgi-bin/films.lua"]={
+	count=2,
+	cursor={91,2},
+	date=1473782038,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/cgi-bin/python.py"]={
+	count=1,
+	cursor={20,11},
+	date=1473780942,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/cgi.py"]={
+	count=1,
+	cursor={9,92},
+	date=1473781961,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/dolua.lua"]={
+	count=3,
+	cursor={13,1},
+	date=1480681760,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/films/films.dl"]={
+	count=6,
+	cursor={232,23},
+	date=1480802933,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/films/films.json"]={
+	count=69,
+	cursor={576,1},
+	date=1479808707,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/films/films.lua"]={
+	count=86,
+	cursor={61,8},
+	date=1480681030,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/films/films.md"]={
+	count=9,
+	cursor={1,1},
+	date=1465222252,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/films/films_graph.lua"]={
+	count=9,
+	cursor={165,1},
+	date=1479809927,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/films/makefile"]={
+	count=24,
+	cursor={26,37},
+	date=1479809629,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/films/tmp"]={
+	count=1,
+	cursor={1,1},
+	date=1479742771,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/films/tmp.lua"]={
+	count=5,
+	cursor={576,1},
+	date=1479808689,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/films/verify.lua"]={
+	count=2,
+	cursor={21,17},
+	date=1480593272,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/Expences.md"]={
+	count=15,
+	cursor={5,46},
+	date=1480592381,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/Transactions.gnu"]={
+	count=3,
+	cursor={8,1},
+	date=1473671537,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/Transactions.py"]={
+	count=6,
+	cursor={87,1},
+	date=1473674267,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/Transactions_ac_CovISA.txt"]={
+	count=3,
+	cursor={12,47},
+	date=1479220170,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/Transactions_ac_NP.txt"]={
+	count=2,
+	cursor={109,1},
+	date=1479220126,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/Transactions_ac_NW.txt"]={
+	count=14,
+	cursor={1529,1},
+	date=1480589310,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/Transactions_ac_Sai.txt"]={
+	count=2,
+	cursor={12,52},
+	date=1480589592,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/Transactions_current.gnu"]={
+	count=1,
+	cursor={9,1},
+	date=1466686847,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/Transactions_current.py"]={
+	count=1,
+	cursor={1,1},
+	date=1466686774,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/Transactions_months.gnu"]={
+	count=2,
+	cursor={26,30},
+	date=1466690217,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/Transactions_work.gnu"]={
+	count=5,
+	cursor={8,1},
+	date=1473324859,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/accounts.md"]={
+	count=8,
+	cursor={32,5},
+	date=1478610130,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/makefile"]={
+	count=30,
+	cursor={51,1},
+	date=1480592361,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/paychecks/makefile"]={
+	count=26,
+	cursor={24,1},
+	date=1480002022,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/paychecks/paychecks.gnu"]={
+	count=2,
+	cursor={7,9},
+	date=1465910379,
+	registers={},
+	syntax="gnuplot"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/paychecks/paychecks.json"]={
+	count=7,
+	cursor={207,2},
+	date=1466674453,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/paychecks/paychecks.lua"]={
+	count=15,
+	cursor={101,54},
+	date=1480673072,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/paychecks/paychecks.md"]={
+	count=3,
+	cursor={30,86},
+	date=1466686600,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/paychecks/paychecks_graph.lua"]={
+	count=2,
+	cursor={113,1},
+	date=1478268909,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/styles.css"]={
+	count=3,
+	cursor={6,1},
+	date=1473946309,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/transactions.lua"]={
+	count=11,
+	cursor={115,25},
+	date=1480592923,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/finances/verify.lua"]={
+	count=1,
+	cursor={10,25},
+	date=1478608660,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/fuel/fuel.dl"]={
+	count=3,
+	cursor={367,1},
+	date=1479978846,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/fuel/fuel.gnu"]={
+	count=9,
+	cursor={38,66},
+	date=1472744148,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/fuel/fuel.json"]={
+	count=8,
+	cursor={328,2},
+	date=1472739522,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/fuel/fuel.lua"]={
+	count=20,
+	cursor={54,25},
+	date=1480672952,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/fuel/fuel.md"]={
+	count=2,
+	cursor={58,1},
+	date=1473164481,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/fuel/fuel.py"]={
+	count=7,
+	cursor={29,31},
+	date=1472742485,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/fuel/fuel_graph.lua"]={
+	count=4,
+	cursor={17,58},
+	date=1479978920,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/fuel/makefile"]={
+	count=18,
+	cursor={12,1},
+	date=1473164864,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/getlinks.lua"]={
+	count=1,
+	cursor={6,1},
+	date=1474283745,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/gitlp"]={
+	count=5,
+	cursor={1,1},
+	date=1481131967,
+	registers={},
+	syntax="diff"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/books/DG01_DGHDA.md"]={
+	count=3,
+	cursor={6587,60},
+	date=1473668868,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/books/makefile"]={
+	count=6,
+	cursor={9,17},
+	date=1465891748,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/index.md"]={
+	count=3,
+	cursor={46,1},
+	date=1473166762,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/makefile"]={
+	count=14,
+	cursor={8,8},
+	date=1473166699,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/radio/makefile"]={
+	count=6,
+	cursor={9,17},
+	date=1466589940,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/timelines/DGHDA_radio.dotf"]={
+	count=1,
+	cursor={2,1},
+	date=1466839874,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/timelines/HHGTTG_book.dotf"]={
+	count=2,
+	cursor={21,53},
+	date=1473801253,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/timelines/HHGTTG_radio.dotf"]={
+	count=5,
+	cursor={181,1},
+	date=1473846455,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/timelines/colours.dat"]={
+	count=1,
+	cursor={55,1},
+	date=1474103364,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/timelines/discworld.dotf"]={
+	count=1,
+	cursor={29,9},
+	date=1466590185,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/timelines/discworld_characters.dotf"]={
+	count=2,
+	cursor={67,3},
+	date=1474216611,
+	registers={},
+	syntax="dot"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/timelines/makefile"]={
+	count=12,
+	cursor={48,1},
+	date=1474036635,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/timelines/narnia.dotf"]={
+	count=11,
+	cursor={68,42},
+	date=1474036701,
+	registers={},
+	syntax="dot"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/hhgttg/timelines/reference.dotf"]={
+	count=1,
+	cursor={1,1},
+	date=1474103449,
+	registers={},
+	syntax="dot"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/holidays/20150327-9.md"]={
+	count=1,
+	cursor={1,1},
+	date=1465977361,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/holidays/20150522-4.md"]={
+	count=2,
+	cursor={3,43},
+	date=1465980002,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/holidays/20150626-3.md"]={
+	count=1,
+	cursor={2,1},
+	date=1465977358,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/holidays/20150718-7.md"]={
+	count=1,
+	cursor={1,1},
+	date=1465977356,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/holidays/20150822-2.md"]={
+	count=2,
+	cursor={1,1},
+	date=1465977356,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/holidays/20160304-3.md"]={
+	count=3,
+	cursor={3,1},
+	date=1465977355,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/holidays/20160429-3.md"]={
+	count=1,
+	cursor={3,1},
+	date=1465977349,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/holidays/20160610-3.md"]={
+	count=2,
+	cursor={3,2},
+	date=1465977353,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/holidays/20160723-7.md"]={
+	count=1,
+	cursor={19,1},
+	date=1470757630,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/holidays/holidays.lua"]={
+	count=9,
+	cursor={39,4},
+	date=1470759846,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/holidays/makefile"]={
+	count=11,
+	cursor={24,26},
+	date=1473165332,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/index.lua"]={
+	count=13,
+	cursor={69,1},
+	date=1480671250,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/index.lua/index.lua"]={
+	count=1,
+	cursor={2,1},
+	date=1481281685,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/index.md"]={
+	count=22,
+	cursor={24,38},
+	date=1480433835,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/makefile"]={
+	count=107,
+	cursor={86,55},
+	date=1481028804,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/cars-driven.md"]={
+	count=5,
+	cursor={35,64},
+	date=1473324999,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/links.md"]={
+	count=2,
+	cursor={2,6},
+	date=1473165117,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/makefile"]={
+	count=16,
+	cursor={17,1},
+	date=1480500966,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/optical-prescriptions.md"]={
+	count=4,
+	cursor={15,57},
+	date=1478268980,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/polarclock.html"]={
+	count=2,
+	cursor={10,1},
+	date=1479733048,
+	registers={},
+	syntax="html"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/polarclock.lua"]={
+	count=1,
+	cursor={44,18},
+	date=1479732979,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/polarclock.svg"]={
+	count=1,
+	cursor={4,36},
+	date=1479726147,
+	registers={},
+	syntax="xml"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/randomwalk.js"]={
+	count=1,
+	cursor={1,1},
+	date=1473082159,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/rndmwlk.html"]={
+	count=1,
+	cursor={5,24},
+	date=1473082134,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/tmp.html"]={
+	count=1,
+	cursor={19,28},
+	date=1479730666,
+	registers={},
+	syntax="html"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/tree.lua"]={
+	count=1,
+	cursor={17,48},
+	date=1472828727,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/tree/makefile"]={
+	count=7,
+	cursor={25,53},
+	date=1478533880,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/tree/tree.lua"]={
+	count=8,
+	cursor={1,1},
+	date=1478533466,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/other/tree/tree2.lua"]={
+	count=5,
+	cursor={1,1},
+	date=1479306126,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/poems/makefile"]={
+	count=3,
+	cursor={33,13},
+	date=1465309502,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/repos/makefile"]={
+	count=6,
+	cursor={31,12},
+	date=1473165097,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/repos/repos.json"]={
+	count=11,
+	cursor={13,1},
+	date=1471439940,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/repos/repos.lua"]={
+	count=18,
+	cursor={23,10},
+	date=1473506215,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/repos/repos.sh"]={
+	count=15,
+	cursor={54,26},
+	date=1471439946,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/res/css.css"]={
+	count=46,
+	cursor={176,1},
+	date=1481122760,
+	registers={},
+	syntax="css"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/res/sorttable.js"]={
+	count=2,
+	cursor={9,1},
+	date=1465478019,
+	registers={},
+	syntax="javascript"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/res/svg.template"]={
+	count=4,
+	cursor={4,47},
+	date=1471257365,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/res/update_website"]={
+	count=1,
+	cursor={10,1},
+	date=1480691564,
+	registers={},
+	syntax="bash"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/rndmwlk.html"]={
+	count=1,
+	cursor={51,47},
+	date=1473082110,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/songs/makefile"]={
+	count=4,
+	cursor={31,2},
+	date=1465309696,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/subscriptions/makefile"]={
+	count=12,
+	cursor={13,1},
+	date=1480500916,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/subscriptions/subs.html"]={
+	count=17,
+	cursor={209,1},
+	date=1480446343,
+	registers={},
+	syntax="html"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/subscriptions/subs.lua"]={
+	count=8,
+	cursor={21,13},
+	date=1480439290,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/subscriptions/subscription_manager"]={
+	count=4,
+	cursor={3,42},
+	date=1480439167,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/subscriptions/subscriptions.lua"]={
+	count=20,
+	cursor={2,1},
+	date=1480432915,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/subscriptions/youtube.css"]={
+	count=1,
+	cursor={1,1},
+	date=1479384106,
+	registers={},
+	syntax="css"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/subscriptions/youtube.html"]={
+	count=6,
+	cursor={1,1},
+	date=1480423210,
+	registers={},
+	syntax="html"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/timeline/events.dl"]={
+	count=5,
+	cursor={26,41},
+	date=1479816614,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/timeline/events.html"]={
+	count=8,
+	cursor={1,1},
+	date=1472820134,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/timeline/events.json"]={
+	count=13,
+	cursor={4,11},
+	date=1479815285,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/timeline/events.lua"]={
+	count=30,
+	cursor={2,1},
+	date=1480501258,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/timeline/holidays.dl"]={
+	count=4,
+	cursor={86,45},
+	date=1480514497,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/timeline/holidays.json"]={
+	count=13,
+	cursor={1,1},
+	date=1479814343,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/timeline/houses.dl"]={
+	count=1,
+	cursor={16,10},
+	date=1479815086,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/timeline/houses.json"]={
+	count=3,
+	cursor={13,36},
+	date=1467626837,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/timeline/makefile"]={
+	count=38,
+	cursor={61,1},
+	date=1479815213,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/timeline/styles.css"]={
+	count=16,
+	cursor={20,1},
+	date=1467287361,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/timeline/timeline.lua"]={
+	count=43,
+	cursor={67,16},
+	date=1480672784,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/times/makefile"]={
+	count=30,
+	cursor={27,1},
+	date=1479895350,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/times/times.dl"]={
+	count=2,
+	cursor={1,3763},
+	date=1479894030,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/times/times.gnu"]={
+	count=7,
+	cursor={151,24},
+	date=1471001928,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/times/times.json"]={
+	count=31,
+	cursor={1750,1},
+	date=1466782971,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/times/times.lua"]={
+	count=38,
+	cursor={130,37},
+	date=1480673088,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/times/times.py"]={
+	count=5,
+	cursor={79,42},
+	date=1471000805,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/times/times.txt"]={
+	count=26,
+	cursor={24,18},
+	date=1472813575,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/times/times_freq.gnu"]={
+	count=1,
+	cursor={7,9},
+	date=1465910158,
+	registers={},
+	syntax="gnuplot"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/times/times_freq.lua"]={
+	count=3,
+	cursor={48,1},
+	date=1479894682,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/times/times_graph.lua"]={
+	count=6,
+	cursor={32,62},
+	date=1481125044,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/too:q"]={
+	count=1,
+	cursor={1,1},
+	date=1472818340,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/tools/dependancies.sh"]={
+	count=6,
+	cursor={6,1},
+	date=1473759675,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/tools/dkjson.lua"]={
+	count=4,
+	cursor={710,17},
+	date=1471432832,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/tools/git_report.lua"]={
+	count=2,
+	cursor={12,13},
+	date=1471439256,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/tools/html.lua"]={
+	count=36,
+	cursor={23,1},
+	date=1480681569,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/tools/process.py"]={
+	count=1,
+	cursor={2,1},
+	date=1465829833,
+	registers={},
+	syntax="python"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/tools/test.lua"]={
+	count=3,
+	cursor={2,1},
+	date=1480594257,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/tools/test.sh"]={
+	count=7,
+	cursor={137,38},
+	date=1472820590,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/tools/uk:q"]={
+	count=1,
+	cursor={1,1},
+	date=1472818329,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/tools/utils.mak"]={
+	count=42,
+	cursor={2,1},
+	date=1473846263,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/tools/wiki.lua"]={
+	count=74,
+	cursor={147,15},
+	date=1480500754,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/tools/wiki.lua/wiki.lua"]={
+	count=1,
+	cursor={246,4},
+	date=1481284534,
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/walks/makefile"]={
+	count=8,
+	cursor={23,23},
+	date=1480501027,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/weather/makefile"]={
+	count=8,
+	cursor={9,8},
+	date=1472818100,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/weather/weather.gnu"]={
+	count=3,
+	cursor={7,9},
+	date=1465297022,
+	registers={},
+	syntax="gnuplot"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/weather/weather.py"]={
+	count=1,
+	cursor={1,1},
+	date=1472815825,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Details/weather/weather_cycle.gnu"]={
+	count=1,
+	cursor={7,9},
+	date=1465297041,
+	registers={},
+	syntax="gnuplot"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Dropbox/Camp/Leaders applications/Qualifications/zzzResponses/leaders_list.lua"]={
+	count=5,
+	cursor={2,1},
+	date=1467838099,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Forms/Holidays/holiday-taken.md"]={
+	count=1,
+	cursor={65,14},
+	date=1466519732,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Jobs/CVs/cv.tex"]={
+	count=1,
+	cursor={96,11},
+	date=1480702827,
+	registers={},
+	syntax="latex"
+},
+["/cygdrive/c/home/JoshWainwright/Documents/Recipes/stuffed-peppers"]={
+	count=1,
+	cursor={1,1},
+	date=1465314376,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Download/Audiobooks/TheHouseofSilk/THOS01_modified.mp3"]={
+	count=1,
+	cursor={19,27},
+	date=1473494251,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Download/E-Books/.git/config"]={
+	count=1,
+	cursor={9,40},
+	date=1479136325,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Download/E-Books/books-all-raw.json"]={
+	count=1,
+	cursor={1,1},
+	date=1479126670,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/Download/E-Books/docs/makefile"]={
+	count=1,
+	cursor={11,11},
+	date=1479136393,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Download/E-Books/index.lua"]={
+	count=4,
+	cursor={92,1},
+	date=1479141080,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Download/E-Books/makefile"]={
+	count=3,
+	cursor={13,28},
+	date=1479129067,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Download/E-Books/metadata_db_prefs_backup.json"]={
+	count=1,
+	cursor={932,2},
+	date=1464979030,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/Download/E-Books/metadata_db_prefs_backup.json.txt"]={
+	count=1,
+	cursor={514,1},
+	date=1464979022,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Download/iplayer/urls"]={
+	count=1,
+	cursor={1,1},
+	date=1480622831,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Projects/E-Books/docs/ag"]={
+	count=1,
+	cursor={1,1},
+	date=1479385387,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Projects/E-Books/docs/css"]={
+	count=1,
+	cursor={1,1},
+	date=1479385386,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Projects/E-Books/docs/css.css"]={
+	count=1,
+	cursor={162,1},
+	date=1479385455,
+	registers={},
+	syntax="css"
+},
+["/cygdrive/c/home/JoshWainwright/Projects/E-Books/docs/index.html"]={
+	count=1,
+	cursor={290,5},
+	date=1479479033,
+	registers={},
+	syntax="html"
+},
+["/cygdrive/c/home/JoshWainwright/Projects/E-Books/docs/index.lua"]={
+	count=4,
+	cursor={84,85},
+	date=1481132463,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Projects/SCSK/csplus_template.py"]={
+	count=4,
+	cursor={27,1},
+	date=1479377483,
+	registers={},
+	syntax="python"
+},
+["/cygdrive/c/home/JoshWainwright/Projects/sheetmusic/docs/css.css"]={
+	count=2,
+	cursor={164,1},
+	date=1479385456,
+	registers={},
+	syntax="css"
+},
+["/cygdrive/c/home/JoshWainwright/Projects/sheetmusic/docs/gitlp"]={
+	count=20,
+	cursor={1,1},
+	date=1481132309,
+	registers={},
+	syntax="diff"
+},
+["/cygdrive/c/home/JoshWainwright/Projects/sheetmusic/docs/index.lua"]={
+	count=13,
+	cursor={70,85},
+	date=1481132429,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Projects/sheetmusic/docs/makefile"]={
+	count=6,
+	cursor={6,35},
+	date=1479129073,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Projects/website/gitlp"]={
+	count=8,
+	cursor={1,1},
+	date=1481132165,
+	registers={},
+	syntax="diff"
+},
+["/cygdrive/c/home/JoshWainwright/Resources/TLPs/trunk/Keil/Keil_uVision4_LPC1769_ULINK2/Config.add.ini"]={
+	count=1,
+	cursor={129,1},
+	date=1472831880,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/inc.mk"]={
+	count=4,
+	cursor={32,26},
+	date=1472553445,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/makefile"]={
+	count=8,
+	cursor={203,18},
+	date=1479908012,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_commonmark/spec.txt"]={
+	count=1,
+	cursor={24,1},
+	date=1464287392,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_discount/mkdio.h"]={
+	count=1,
+	cursor={8,21},
+	date=1464426161,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_luafilesystem/config"]={
+	count=2,
+	cursor={1,1},
+	date=1467452901,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_luafilesystem/config.win"]={
+	count=1,
+	cursor={1,1},
+	date=1467452131,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vim/gitlp"]={
+	count=337,
+	cursor={1,1},
+	date=1481188572,
+	registers={},
+	syntax="diff"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/0_fillchars.patch"]={
+	count=1,
+	cursor={10,40},
+	date=1464105459,
+	registers={},
+	syntax="diff"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/GNUmakefile"]={
+	count=1,
+	cursor={1,9},
+	date=1467361139,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/Makefile"]={
+	count=4,
+	cursor={2,1},
+	date=1477666984,
+	registers={},
+	syntax="makefile"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/README.md"]={
+	count=2,
+	cursor={573,1},
+	date=1464105353,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/config.def.h"]={
+	count=1,
+	cursor={1,1},
+	date=1464105076,
+	registers={},
+	syntax="cpp"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/config.h"]={
+	count=5,
+	cursor={322,2},
+	date=1465914729,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/config.mk"]={
+	count=1,
+	cursor={1,1},
+	date=1467361129,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/gitlp"]={
+	count=667,
+	cursor={1,1},
+	date=1481204212,
+	registers={},
+	syntax="diff"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/lexers/lexer.lua"]={
+	count=2,
+	cursor={1,1},
+	date=1474037685,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/main.c"]={
+	count=2,
+	cursor={426,14},
+	date=1464105385,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/sam.c"]={
+	count=2,
+	cursor={1061,1},
+	date=1466177581,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/test/core/ccan/tap/test/run.c"]={
+	count=1,
+	cursor={20,1},
+	date=1466177246,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/text.c"]={
+	count=5,
+	cursor={97,1},
+	date=1467304760,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/ui-curses.c"]={
+	count=1,
+	cursor={794,11},
+	date=1467305044,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/ui.h"]={
+	count=3,
+	cursor={62,1},
+	date=1467304798,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/view.c"]={
+	count=6,
+	cursor={106,32},
+	date=1479907475,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/vis-cmds.c"]={
+	count=2,
+	cursor={665,24},
+	date=1467309768,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/vis-cmds.c/vis-cmds.c"]={
+	count=1,
+	cursor={96,53},
+	date=1481205322,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/vis-core.h"]={
+	count=4,
+	cursor={110,1},
+	date=1465916960,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/vis-lua.c"]={
+	count=11,
+	cursor={814,28},
+	date=1467364261,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/vis-modes.c"]={
+	count=1,
+	cursor={23,2},
+	date=1465914018,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/vis-prompt.c"]={
+	count=6,
+	cursor={179,12},
+	date=1467304844,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/vis.c"]={
+	count=7,
+	cursor={1,1},
+	date=1472553441,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/vis.h"]={
+	count=1,
+	cursor={125,17},
+	date=1465915124,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/vis.lua"]={
+	count=12,
+	cursor={13,1},
+	date=1474037985,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/repo_vis/visrc.lua"]={
+	count=1,
+	cursor={1,1},
+	date=1464104669,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/Tools/urls"]={
+	count=1,
+	cursor={4,6},
+	date=1464109819,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/date2secs.lua"]={
+	count=1,
+	cursor={20,1},
+	date=1481124043,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/electrician.txt"]={
+	count=3,
+	cursor={6,1},
+	date=1466010597,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/email/email"]={
+	count=1,
+	cursor={1,1},
+	date=1481200892,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/faes.json"]={
+	count=9,
+	cursor={61,15},
+	date=1479211052,
+	registers={},
+	syntax="json"
+},
+["/cygdrive/c/home/JoshWainwright/faes.py"]={
+	count=8,
+	cursor={113,1},
+	date=1479211503,
+	registers={},
+	syntax="python"
+},
+["/cygdrive/c/home/JoshWainwright/keyboard.lua"]={
+	count=1,
+	cursor={9,2},
+	date=1481182099,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/keyboard.lua/keyboard.lua"]={
+	count=6,
+	cursor={1,1},
+	date=1481205316,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/c/home/JoshWainwright/ldra_download_links.txt"]={
+	count=2,
+	cursor={3,1},
+	date=1467967345,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/tmp"]={
+	count=1,
+	cursor={1,1},
+	date=1481124712,
+	registers={}
+},
+["/cygdrive/c/home/JoshWainwright/tmp.html"]={
+	count=1,
+	cursor={5,14},
+	date=1480681765,
+	registers={},
+	syntax="html"
+},
+["/cygdrive/c/home/JoshWainwright/tmp.lua"]={
+	count=1,
+	cursor={1,20},
+	date=1473779606,
+	registers={}
+},
+["/cygdrive/e/Audiobooks/.music_info/VolumeAudiobooks/files"]={
+	count=1,
+	cursor={276,43},
+	date=1480497542,
+	registers={}
+},
+["/cygdrive/e/Audiobooks/.music_info/details.md"]={
+	count=1,
+	cursor={79,1},
+	date=1480496796,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/e/Audiobooks/.music_info/getinfo.lua"]={
+	count=3,
+	cursor={61,32},
+	date=1480500747,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/e/Music/.music_info/details.md"]={
+	count=2,
+	cursor={72,12},
+	date=1480495915,
+	registers={},
+	syntax="markdown"
+},
+["/cygdrive/e/Music/.music_info/getinfo.lua"]={
+	count=3,
+	cursor={36,26},
+	date=1480514249,
+	registers={},
+	syntax="lua"
+},
+["/cygdrive/h/Documents/Details/bills/MIDATA_npower.csv"]={
+	count=2,
+	cursor={20,19},
+	date=1473067718,
+	registers={}
+},
+["/cygdrive/h/Documents/Details/bills/MIDATA_npower.md"]={
+	count=2,
+	cursor={8,18},
+	date=1473067944,
+	registers={}
+},
+["/cygdrive/h/Documents/Details/bills/bills.md"]={
+	count=1,
+	cursor={60,1},
+	date=1473068915,
+	registers={}
+},
+["/cygdrive/h/Documents/Details/bills/makefile"]={
+	count=1,
+	cursor={12,8},
+	date=1473068722,
+	registers={}
+},
+["/cygdrive/h/Documents/Details/finances/Expences.md"]={
+	count=1,
+	cursor={1,1},
+	date=1473069323,
+	registers={}
+},
+["/cygdrive/h/Documents/Details/finances/Transactions_ac_NW.txt"]={
+	count=1,
+	cursor={1439,1},
+	date=1473069384,
+	registers={}
+},
+["/cygdrive/h/Documents/Details/makefile"]={
+	count=2,
+	cursor={29,1},
+	date=1473074469,
+	registers={}
+},
+["/cygdrive/h/Documents/Dropbox/Camp/Leaders applications/Qualifications/zzzResponses/leaders_list.lua"]={
+	count=2,
+	cursor={31,10},
+	date=1467473676,
+	registers={}
+},
+["/cygdrive/h/Documents/Jobs/Applications/20161128_TVP/coverletter.txt"]={
+	count=1,
+	cursor={1,1},
+	date=1480872048,
+	registers={}
+},
+["/cygdrive/h/Documents/Jobs/CVs/cv.pdf"]={
+	count=1,
+	cursor={1,1},
+	date=1480340583,
+	registers={}
+},
+["/cygdrive/h/Documents/Jobs/CVs/cv.tex"]={
+	count=1,
+	cursor={107,1},
+	date=1480340690,
+	registers={},
+	syntax="latex"
+},
+["/cygdrive/h/Download/LDRA Downloads/LMEOL_01/app/inszt_main.c"]={
+	count=5,
+	cursor={9124,1},
+	date=1466082724,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/h/Download/LDRA Downloads/LMEOL_01/app/source/dal/canCommunication.c"]={
+	count=1,
+	cursor={267,1},
+	date=1466082584,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/h/Download/LDRA Downloads/LMEOL_01/app/source/dal/inszt_adc_conversion.c"]={
+	count=1,
+	cursor={725,38},
+	date=1466082087,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/h/Download/LDRA Downloads/LMEOL_01/app/source/dal/inszt_canCommunication.c"]={
+	count=4,
+	cursor={12677,16},
+	date=1466082020,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/h/Download/LDRA Downloads/LMEOL_01/app/source/dal/inszt_tec_ctrl.c"]={
+	count=1,
+	cursor={427,1},
+	date=1466081537,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/h/Download/LDRA Downloads/LMEOL_01/hal/include/can.h"]={
+	count=1,
+	cursor={892,14},
+	date=1466082601,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/h/Download/LDRA Downloads/LMEOL_01/hal/include/os_portable.h"]={
+	count=1,
+	cursor={96,1},
+	date=1466081808,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/h/Download/LDRA Downloads/LMEOL_01/hal/include/os_portmacro.h"]={
+	count=2,
+	cursor={300,4},
+	date=1466082231,
+	registers={},
+	syntax="ansi_c"
+},
+["/cygdrive/h/Projects/sheetmusic/.git/config"]={
+	count=1,
+	cursor={8,1},
+	date=1479226134,
+	registers={}
+},
+["/cygdrive/l/FAE/Documentation/other/tree.sh"]={
+	count=4,
+	cursor={8,28},
+	date=1479212216,
+	registers={},
+	syntax="bash"
+},
+["/cygdrive/l/TLPs/trunk/Cosmic/Cosmic_HC12/Installer/Toolsuite/Compiler_spec/Cosmic/HC12/Cosmic_Strip.py"]={
+	count=1,
+	cursor={12,1},
+	date=1480519768,
+	registers={},
+	syntax="python"
+},
+["/cygdrive/l/TLPs/trunk/Cosmic/Cosmic_HC12/Installer/Toolsuite/Compiler_spec/Cosmic/HC12/Hc12_run.bat"]={
+	count=1,
+	cursor={30,65},
+	date=1480518471,
+	registers={},
+	syntax="batch"
+},
+["/cygdrive/l/TLPs/trunk/Cosmic/Cosmic_HC12/Installer/Toolsuite/Compiler_spec/Cosmic/HC12/Make_tcf.py"]={
+	count=1,
+	cursor={106,15},
+	date=1480522381,
+	registers={},
+	syntax="python"
+},
+["/cygdrive/l/TLPs/trunk/Cosmic/Cosmic_HC12/Installer/Toolsuite/Compiler_spec/Cosmic/HC12/history.exh"]={
+	count=1,
+	cursor={1,1},
+	date=1480517713,
+	registers={}
+},
+["/cygdrive/l/TLPs/trunk/Cosmic/Cosmic_HC12/Installer/Workarea/Examples/Tlps/Cosmic/HC12_Workspace/MC9S12DG256B_Dice/create_set.pu"]={
+	count=1,
+	cursor={1,1},
+	date=1480518609,
+	registers={}
+},
+["/cygdrive/l/TLPs/trunk/Cosmic/Cosmic_HC12/Installer/Workarea/Examples/Tlps/Cosmic/HC12_Workspace/MC9S12DG256B_Dice/create_set.py"]={
+	count=1,
+	cursor={101,1},
+	date=1480521593,
+	registers={},
+	syntax="python"
+},
+["/etc/group"]={
+	count=2,
+	cursor={20,1},
+	date=1466416594,
+	registers={},
+	syntax="dsv"
+},
+["/etc/nsswitch.conf"]={
+	count=1,
+	cursor={9,21},
+	date=1466416755,
+	registers={}
+},
+["/etc/passwd"]={
+	count=2,
+	cursor={10,1},
+	date=1466416550,
+	registers={},
+	syntax="dsv"
+},
+["/home/JoshWainwright/.config/vis/visrc.lua"]={
+	count=1,
+	cursor={52,1},
+	date=1464105407,
+	registers={},
+	syntax="lua"
+},
+["/home/josh/Documents/Details/books/dolua.lua"]={
+	count=1,
+	cursor={1,1},
+	date=1478879888,
+	registers={},
+	syntax="lua"
+},
+["/home/josh/Documents/Details/tools/test.lua"]={
+	count=1,
+	cursor={15,1},
+	date=1478879423,
+	registers={},
+	syntax="lua"
+},
+["/media/sf_H_DRIVE/.dotfiles/vis/visrc.lua"]={
+	count=1,
+	cursor={1,1},
+	date=1478879832,
+	registers={},
+	syntax="lua"
+},
+["/tmp/jaw/New folder/asm_py.py"]={
+	count=2,
+	cursor={27,21},
+	date=1473248142,
+	registers={}
+},
+["/tmp/jaw/WeatherTrack - Sheet 1.tsv"]={
+	count=1,
+	cursor={1239,139},
+	date=1477993137,
+	registers={}
+},
+["/tmp/jaw/darkhttpd/Makefile"]={
+	count=1,
+	cursor={1,1},
+	date=1473694447,
+	registers={}
+},
+["/tmp/jaw/jawhost/index.lua"]={
+	count=1,
+	cursor={20,14},
+	date=1479052492,
+	registers={},
+	syntax="lua"
+},
+["/tmp/jaw/jawhost/sheetmusic/docs/index.lua"]={
+	count=1,
+	cursor={82,2},
+	date=1479117265,
+	registers={},
+	syntax="lua"
+},
+["/tmp/jaw/jawhost/sheetmusic/index.lua"]={
+	count=1,
+	cursor={46,23},
+	date=1479113074,
+	registers={},
+	syntax="lua"
+},
+["/tmp/jaw/joshaw.bitbucket.org/resetpush.sh"]={
+	count=8,
+	cursor={4,38},
+	date=1473331266,
+	registers={}
+},
+["/tmp/jaw/music_info/Volume/a.lua"]={
+	count=1,
+	cursor={39,30},
+	date=1473459152,
+	registers={}
+},
+["/tmp/jaw/music_info/Volume/songs.lua"]={
+	count=1,
+	cursor={35,5},
+	date=1473525057,
+	registers={}
+},
+["/tmp/jaw/subscription"]={
+	count=1,
+	cursor={1,1},
+	date=1478864009,
+	registers={}
+},
+["/tmp/jaw/subscription_manager"]={
+	count=1,
+	cursor={2,7},
+	date=1478875836,
+	registers={}
+},
+["/tmp/jaw/subscriptions.lua"]={
+	count=3,
+	cursor={162,39},
+	date=1478871052,
+	registers={},
+	syntax="lua"
+},
+["/usr/bin/json_pp"]={
+	count=3,
+	cursor={9,1},
+	date=1464432511,
+	registers={},
+	syntax="perl"
+},
+["/usr/lib/graphviz-2.38/config6"]={
+	count=1,
+	cursor={300,1},
+	date=1473845841,
+	registers={}
+},
+["/usr/local/share/vis/lexers/diff.lua"]={
+	count=1,
+	cursor={1,1},
+	date=1481128743,
+	registers={},
+	syntax="lua"
+}
+}

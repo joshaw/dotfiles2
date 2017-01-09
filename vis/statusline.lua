@@ -1,5 +1,5 @@
 -- Created:  2016-05-13
--- Modified: Thu 15 Sep 2016
+-- Modified: Mon 19 Dec 2016
 -- Author:   Josh Wainwright
 -- Filename: statusline.lua
 
@@ -17,12 +17,12 @@ local human_bytes = function(bytes)
 end
 
 local modes = {
-	[vis.MODE_NORMAL] = '',
-	[vis.MODE_OPERATOR_PENDING] = '',
-	[vis.MODE_VISUAL] = 'VISUAL',
-	[vis.MODE_VISUAL_LINE] = 'VISUAL-LINE',
-	[vis.MODE_INSERT] = 'INSERT',
-	[vis.MODE_REPLACE] = 'REPLACE',
+	[vis.modes.NORMAL] = '',
+	[vis.modes.OPERATOR_PENDING] = 'OPERATOR',
+	[vis.modes.VISUAL] = 'VISUAL',
+	[vis.modes.VISUAL_LINE] = 'VISUAL-LINE',
+	[vis.modes.INSERT] = 'INSERT',
+	[vis.modes.REPLACE] = 'REPLACE',
 }
 
 vis.events.win_status = function(win)
@@ -67,40 +67,3 @@ vis.events.win_status = function(win)
 	local right_str = ' ' .. table.concat(right, " « ") .. ' '
 	win:status(left_str, right_str)
 end
-
-local status = function(win)
-	local info = {}
-	local fname = win.file.name
-	if win.file.name:sub(1,1) ~= '/' then
-		fname = os.getenv('PWD') .. '/' .. fname
-	end
-	info[#info+1] = 'Full file path:\n' .. fname
-
-	local cmd = 'stat --printf "Creation:     %w\nAccess:       %x' ..
-		'\nModification: %y\nStatus:       %z" "' .. win.file.name .. '"'
-	local f = assert(io.popen(cmd, 'r'))
-	local s = assert(f:read('*a'))
-	f:close()
-	info[#info+1] = s
-
-	info[#info+1] = 'File size:    ' .. win.file.size ..
-		' (' .. human_bytes(win.file.size) .. ')'
-	info[#info+1] = 'Lines:        ' .. #win.file.lines
-
-	local words, chars = 0, 0
-	for i in win.file:lines_iterator() do
-		chars = chars + i:len()
-		for j in i:gmatch('%S+') do
-			words = words + 1
-		end
-	end
-	info[#info+1] = 'Words:        ' .. words
-	info[#info+1] = 'Chars:        ' .. chars
-
-	vis:message(table.concat(info, '\n'))
-	vis:feedkeys('dgg')
-end
-
-vis:command_register('Status', function(argv, force, win, cursor, range)
-	status(win)
-end)

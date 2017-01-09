@@ -1,5 +1,5 @@
 -- Created:  Mon 16 May 2016
--- Modified: Wed 15 Jun 2016
+-- Modified: Thu 08 Dec 2016
 -- Author:   Josh Wainwright
 -- Filename: navd_p.lua
 
@@ -12,7 +12,9 @@ vis.navd = function(path, search)
 	local fname = vis.win.file.name
 	if not path then
 		path = vis.dirname(os.getenv('PWD') .. '/' .. (fname or ''))
+		path = vis.dirname(vis.win.file.path)
 	end
+	path = path:gsub('/+', '/')
 	if not search then
 		search = ""
 		if fname then
@@ -23,39 +25,42 @@ vis.navd = function(path, search)
 	local lscmd = 'ls -1 -A -p -b --group-directories-first "' .. path .. '"'
 	local f = assert(io.popen(lscmd, 'r'))
 	local list = assert(f:read('*a'))
-	list = list:gsub('\\ ', ' ')
 	f:close()
-
-	vis:message('# ' .. path .. '\n' .. list)
-	vis:command('set syntax navd')
-	vis:feedkeys('dggj')
+	list = list:gsub('\\ ', ' ')
+	list = '# ' .. path .. '\n' .. list
+	
+	vis:message('')
+	vis:feedkeys('ggdG')
+	vis:message(list)
+	--vis:command('set syntax navd')
+	--vis:feedkeys('dggj')
 	vis:feedkeys('/' .. search .. '<Enter>')
 	local win = vis.win
 
-	win:map(vis.MODE_NORMAL, '<Enter>', function()
+	win:map(vis.modes.NORMAL, '<Enter>', function()
 		local line = win.file.lines[win.cursor.line]
+		local file = path .. '/' .. line
 		if line:sub(1,1) == '#' then return end
 		if line:sub(-1) == '/' then
-			vis.navd(path .. line)
+			vis.navd(file)
 		else
-			local file = path .. '/' .. line
 			vis:feedkeys(':q<Enter>')
 			vis:feedkeys(':e ' .. file .. '<Enter>')
 		end
 	end)
 
-	win:map(vis.MODE_NORMAL, '-', function()
+	win:map(vis.modes.NORMAL, '-', function()
 		local path = win.file.lines[1]:gsub('^# ', ''):gsub('/$', '')
 		local search = vis.basename(path)
 		local path = vis.dirname(path) .. '/'
 		vis.navd(path, search)
 	end)
 
-	win:map(vis.MODE_NORMAL, 'q', function()
+	win:map(vis.modes.NORMAL, 'q', function()
 		vis:feedkeys(':q<Enter>')
 	end)
 
-	win:map(vis.MODE_NORMAL, 'gh', function()
+	win:map(vis.modes.NORMAL, 'gh', function()
 		vis.navd(os.getenv('HOME'))
 	end)
 end
@@ -84,4 +89,4 @@ vis.dirname = function(path)
 	return path:sub(1, sl)
 end
 
-vis:map(vis.MODE_NORMAL, '-', vis.navd)
+vis:map(vis.modes.NORMAL, '-', vis.navd)

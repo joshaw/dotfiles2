@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Fri 16 Sep 2016
+# Modified: Mon 21 Nov 2016
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -101,7 +101,7 @@ if ! exists pdfgrep; then
 		if exists pdftotext; then
 			pdftotext=$(which pdftotext)
 		else
-			pdftotext=/cygdrive/c/progs/Git/bin/pdftotext.exe
+			pdftotext=/cygdrive/c/progs/Git/mingw64/bin/pdftotext.exe
 		fi
 		find . -name '*.pdf' -exec sh -c "$pdftotext \"{}\" - | grep -i --with-filename --label=\"{}\" --color \"$1\"" \;
 	}

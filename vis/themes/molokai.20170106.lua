@@ -25,9 +25,9 @@ lexers.STYLE_WHITESPACE = ''
 lexers.STYLE_EMBEDDED = 'back:45'
 lexers.STYLE_IDENTIFIER = fg
 
-lexers.STYLE_LINENUMBER = 'fore:250,back:237'
-lexers.STYLE_CURSOR = 'fore:235,back:230'
+lexers.STYLE_CURSOR = 'reverse'
 lexers.STYLE_CURSOR_PRIMARY = 'fore:235,back:214'
 lexers.STYLE_CURSOR_LINE = 'back:237'
-lexers.STYLE_COLOR_COLUMN = 'back:237'
 lexers.STYLE_SELECTION = 'back:239'
+lexers.STYLE_LINENUMBER = 'fore:250,back:237'
+lexers.STYLE_COLOR_COLUMN = 'back:237'

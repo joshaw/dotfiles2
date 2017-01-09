@@ -1,5 +1,5 @@
 -- Created:  Thu 26 May 2016
--- Modified: Thu 26 May 2016
+-- Modified: Thu 08 Dec 2016
 -- Author:   Josh Wainwright
 -- Filename: comment.lua
 
@@ -39,4 +39,4 @@ local toggle_comment = function(win)
 	end
 end
 
-vis:map(vis.MODE_NORMAL, 'gcc', function() toggle_comment(vis.win) end)
+vis:map(vis.modes.NORMAL, 'gcc', function() toggle_comment(vis.win) end)

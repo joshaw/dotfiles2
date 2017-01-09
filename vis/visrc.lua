@@ -1,5 +1,5 @@
 -- Created:  2016-05-09
--- Modified: Fri 01 Jul 2016
+-- Modified: Fri 16 Dec 2016
 -- Author:   Josh Wainwright
 -- Filename: visrc.lua
 
@@ -8,38 +8,39 @@ require('vis')
 
 require('navd_p')
 require('tag_jump')
-reg_save = require('reg_save')
+require('reg_save')
 require('fmt_tabs')
 require('statusline')
-header_info = require('header_info')
+require('header_info')
 require('diff_orig')
 require('toggle')
 require('comment')
-require('menu')
+--require('menu')
+require('git-lp')
+require('complete')
 
-vis.events.win_open = function(win)
+vis.events.subscribe(vis.events.INIT, function()
 	-- enable syntax highlighting for known file types
-	vis.filetype_detect(win)
+	--vis.filetype_detect(win)
+	require('plugins/filetype')
 
 	vis:command('set theme molokai')
-	vis:command('set number')
+	vis:command('set escdelay 10')
+end)
+
+vis.events.subscribe(vis.events.WIN_OPEN, function(win)
+	vis:command('set number on')
 	vis:command('set tabwidth 4')
-	vis:command('set autoindent')
+	vis:command('set autoindent on')
 	vis:command('set colorcolumn 80')
-	vis:command('set show tabs')
+	vis:command('set show-tabs on')
 
-	reg_save.restore(win)
-	header_info.update(win)
-	local fmt = "\x1b]2;%s/[%s]\x07"
-	print(fmt:format(os.getenv('PWD'), win.file.name or '.'))
-end
+	local fmt = "\x1b]2;%s/[%s]\x07\n"
+	local pwd = os.getenv('PWD'):gsub(os.getenv('HOME'), '~')
+	io.write(fmt:format(pwd, vis.win.file.name or '.'))
+end)
 
-vis.events.win_close = function(win)
-	reg_save.save(win)
-end
-
---vis:command('map! normal j <cursor-screenline-down>')
-vis:command('map! normal k <cursor-screenline-up>')
+vis:command('map! normal ; <prompt-show>')
 vis:command('map! normal S <insert-newline>')
 vis:command('map! normal "[ " 0<insert-newline>')
 vis:command('map! normal "] " $l<insert-newline>k')
@@ -51,7 +52,7 @@ vis:command('map! insert <C-a> <cursor-line-start>')
 vis:command('map! insert <C-Right> <cursor-word-start-next>')
 vis:command('map! insert <C-Left> <cursor-word-start-prev>')
 
-vis:map(vis.MODE_NORMAL, '<F5>', function()
+vis:map(vis.modes.NORMAL, '<F5>', function()
 	vis:command('w')
 	os.execute('make')
 end)

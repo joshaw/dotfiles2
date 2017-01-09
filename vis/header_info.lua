@@ -1,5 +1,5 @@
 -- Created:  Thu 12 May 2016
--- Modified: Wed 08 Jun 2016
+-- Modified: Fri 09 Dec 2016
 -- Author:   Josh Wainwright
 -- Filename: header_info.lua
 
@@ -24,7 +24,7 @@ local header_insert = function(win)
 	win.file:insert(cur_pos, str)
 end
 
-header_info.update = function(win)
+local function update(win)
 	local fname = win.file.name
 	if not fname then return end
 	local save_line, save_col = win.cursor.line, win.cursor.col
@@ -52,10 +52,12 @@ header_info.update = function(win)
 	--win.file.modified = false -- Not currently writable
 end
 
-vis:map(vis.MODE_INSERT, '<M-C-I>', function() header_insert(vis.win) end)
+vis:map(vis.modes.INSERT, '<M-C-I>', function() header_insert(vis.win) end)
 
 vis:command_register('HeaderInfo', function(argv, force, win, cursor, range)
 	header_info.update(win) 
 end)
+
+vis.events.subscribe(vis.events.WIN_OPEN, update)
 
 return header_info

@@ -1,53 +1,30 @@
 -- Created:  2016-05-12
--- Modified: Fri 16 Sep 2016
+-- Modified: Fri 09 Dec 2016
 -- Author:   Josh Wainwright
 -- Filename: reg_save.lua
 
-local reg_save = {}
+local reg_save_path = os.getenv('HOME') .. '/.config/vis'
+local info_file = reg_save_path .. '/.vis.info'
+local serialize = dofile(reg_save_path .. '/serialize.lua')
 
-local json = require("dkjson")
-reg_save.info_file = os.getenv('HOME') .. '/.config/vis/.vis.info'
-
-local get_fname = function(win)
-	local fname = win.file.name
-	if fname and fname:sub(1,1) ~= '/' then
-		fname = os.getenv('PWD') .. '/' .. fname
-	end
-	return fname
-end
-
-local registers_write = function(tbl)
-	local json_str = json.encode(tbl, {indent=true})
-	local f = assert(io.open(reg_save.info_file, 'w'))
-	f:write(json_str)
+local function registers_write(tbl)
+	local dl_str = serialize(tbl)
+	local f = assert(io.open(info_file, 'w'))
+	f:write(dl_str)
 	f:close()
 end
 
-local registers_read = function()
-	local f = io.open(reg_save.info_file, 'r')
-	if not f then
-		return {}
-	end
-	local info_input = f:read('*all')
-	f:close()
-	local obj, pos, err = json.decode(info_input)
-	if err then
-		return {}
-	end
-	return obj
-end
-
-local file_exists = function(name)
+local function file_exists(name)
 	local f = io.open(name, "r")
-	if f == nil then 
-		return false 
+	if f == nil then
+		return false
 	end
-	f:close() 
-	return true 
+	f:close()
+	return true
 end
 
-reg_save.save = function(win)
-	local fname = get_fname(win)
+local function save(win)
+	local fname = win.file.path
 	if not fname then return end
 	-- List of flags to save in info file
 	local flags = {}
@@ -59,10 +36,10 @@ reg_save.save = function(win)
 	--		flags[reg] = regval
 	--	end
 	--end
-	local tbl = registers_read()
+	local tbl = dofile(info_file)
 	local file_tbl = tbl[fname] or {}
 	local file_info = {
-		registers = flags,
+		--registers = flags,
 		date = os.time(),
 		cursor = { win.cursor.line, win.cursor.col },
 		syntax = win.syntax,
@@ -71,10 +48,11 @@ reg_save.save = function(win)
 	tbl[fname] = file_info
 	registers_write(tbl)
 end
+vis.events.subscribe(vis.events.WIN_CLOSE, save)
 
-reg_save.restore = function(win)
-	local fname = get_fname(win)
-	local file_info = registers_read()[fname]
+local function restore(win)
+	local fname = win.file.path
+	local file_info = dofile(info_file)[fname]
 	if not file_info then
 		return
 	end
@@ -85,7 +63,8 @@ reg_save.restore = function(win)
 	-- Syntax highlighting
 	local syntax = file_info.syntax
 	if syntax then
-		vis:command('set syntax ' .. syntax)
+		--vis:command('set syntax ' .. syntax)
+		win.syntax = syntax
 	end
 
 	--local registers = file_info.registers
@@ -95,12 +74,13 @@ reg_save.restore = function(win)
 	--	end
 	--end
 end
+vis.events.subscribe(vis.events.WIN_OPEN, restore)
 
 local oldfiles = function(num)
-	local tbl = registers_read()
+	local tbl = dofile(info_file)
 	local files = {}
 	for i, n in pairs(tbl) do
-		table.insert(files, {fname = i, date = n.date, count = (n.count or 1)})
+		files[#files+1] = {fname=i, date=n.date, count=(n.count or 1)}
 	end
 
 	table.sort(files, function(a,b) return a.date>b.date end)
@@ -115,25 +95,24 @@ local oldfiles = function(num)
 		end
 		local date = os.date('%Y-%m-%d %H:%M:%S', n.date)
 		local name = n.fname:gsub(os.getenv('HOME'), '~')
-		local nl = string.format('%s%2s | %s | %s', gone, n.count, date, name)
+		local nl = string.format('%s%3s | %s | %s', gone, n.count, date, name)
 		table.insert(lines, nl)
 	end
 
 	local start = #lines - (num or #lines) + 1
 	start = start < 0 and 1 or start
 
-	local header = ':: ' .. #lines .. ' Files' 
+	local header = ':: ' .. #lines .. ' Files'
 	if ngone > 0 then
 		header = header .. ' (' .. ngone .. ' removed)'
 	end
 	header = header .. ' ::\n'
-	
+
 	vis:message(header .. table.concat(lines, '\n', start))
-	vis:feedkeys('dgg')
 end
 
 local remove_old = function()
-	local tbl = registers_read()
+	local tbl = dofile(info_file)
 	local count = 0
 	local new_tbl = {}
 	for fname, info in pairs(tbl) do
@@ -155,5 +134,3 @@ vis:command_register('oldfiles', function(argv, force, win, cursor, range)
 		oldfiles(argv[1])
 	end
 end)
-
-return reg_save
