@@ -1,5 +1,5 @@
 -- Created:  2016-05-09
--- Modified: Fri 16 Dec 2016
+-- Modified: Tue 28 Feb 2017
 -- Author:   Josh Wainwright
 -- Filename: visrc.lua
 
@@ -15,13 +15,11 @@ require('header_info')
 require('diff_orig')
 require('toggle')
 require('comment')
---require('menu')
 require('git-lp')
 require('complete')
 
 vis.events.subscribe(vis.events.INIT, function()
 	-- enable syntax highlighting for known file types
-	--vis.filetype_detect(win)
 	require('plugins/filetype')
 
 	vis:command('set theme molokai')
@@ -40,22 +38,45 @@ vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	io.write(fmt:format(pwd, vis.win.file.name or '.'))
 end)
 
-vis:command('map! normal ; <prompt-show>')
-vis:command('map! normal S <insert-newline>')
-vis:command('map! normal "[ " 0<insert-newline>')
-vis:command('map! normal "] " $l<insert-newline>k')
-vis:command('map! normal <C-Up> ddkP')
-vis:command('map! normal <C-Down> ddp')
+vis:map(vis.modes.NORMAL, ';', '<vis-prompt-show>')
+vis:map(vis.modes.NORMAL, 'S', '<vis-insert-newline>')
+vis:map(vis.modes.NORMAL, '<C-Up>', 'ddkP')
+vis:map(vis.modes.NORMAL, '<C-Down>', 'ddp')
 
-vis:command('map! insert <C-e> <cursor-line-end>')
-vis:command('map! insert <C-a> <cursor-line-start>')
-vis:command('map! insert <C-Right> <cursor-word-start-next>')
-vis:command('map! insert <C-Left> <cursor-word-start-prev>')
+vis:map(vis.modes.INSERT, '<C-e>', '<vis-motion-line-end>')
+vis:map(vis.modes.INSERT, '<C-a>', '<vis-motion-line-start>')
+vis:map(vis.modes.INSERT, '<C-Right>', '<vis-motion-word-start-next>')
+vis:map(vis.modes.INSERT, '<C-Left>', '<vis-motion-word-start-prev>')
 
 vis:map(vis.modes.NORMAL, '<F5>', function()
 	vis:command('w')
-	os.execute('make')
-end)
+	local cmd = 'make -s'
+	local success = os.execute(cmd..' 2>&1 | tee /tmp/jaw/vis-make-output; (exit ${PIPESTATUS[0]})')
+	if not success then
+		local f = io.open('/tmp/jaw/vis-make-output', 'r')
+		local output = f:read('*all')
+		vis:message(output)
+		vis.win:map(vis.modes.NORMAL, 'q', function() vis:command('q!') end)
+	else
+		vis:feedkeys('<vis-redraw>')
+	end
+end, 'Run make in current directory')
+
+vis:map(vis.modes.NORMAL, '[ ', function()
+	for i=1, (vis.count or 1) do
+		vis:feedkeys('<vis-mark-set>a<vis-motion-line-begin><vis-insert-newline><vis-mark-goto>a')
+	end
+end, 'Insert newline above current line')
+
+vis:map(vis.modes.NORMAL, '] ', function()
+	for i=1, (vis.count or 1) do
+		vis:feedkeys('<vis-mark-set>a<vis-motion-line-end><vis-insert-newline><vis-mark-goto>a')
+	end
+end, 'Insert newline below current line')
+
+vis:command_register('setf', function(argv, force, win, cursor, range)
+	vis:command('set syntax ' .. argv[1])
+end, 'Alias for set syntax ...')
 
 local maxline = function(win, force)
 	local line
@@ -77,4 +98,9 @@ end
 
 vis:command_register('MaxLine', function(argv, force, win, cursor, range)
 	maxline(win, force)
+end, 'Find the longest line in the current file')
+
+
+vis:command_register('pwd', function(argv, force, win, cursor, range)
+	vis:info(win.file.name)
 end)

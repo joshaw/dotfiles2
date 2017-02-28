@@ -1,5 +1,5 @@
 -- Created:  2016-05-12
--- Modified: Fri 09 Dec 2016
+-- Modified: Tue 28 Feb 2017
 -- Author:   Josh Wainwright
 -- Filename: reg_save.lua
 
@@ -23,23 +23,12 @@ local function file_exists(name)
 	return true
 end
 
-local function save(win)
+vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
 	local fname = win.file.path
 	if not fname then return end
-	-- List of flags to save in info file
-	local flags = {}
-	--for _, reg in pairs({'a','b','c','d','e','f','g','h','i','j','k','l','m',
-	--		'n','o', 'p','q','r','s','t','u','v','w','x','y','z','"','@',':',
-	--		'/','0'}) do
-	--	local regval = vis:getreg(reg) -- TODO
-	--	if regval ~= nil then
-	--		flags[reg] = regval
-	--	end
-	--end
 	local tbl = dofile(info_file)
 	local file_tbl = tbl[fname] or {}
 	local file_info = {
-		--registers = flags,
 		date = os.time(),
 		cursor = { win.cursor.line, win.cursor.col },
 		syntax = win.syntax,
@@ -47,10 +36,9 @@ local function save(win)
 	}
 	tbl[fname] = file_info
 	registers_write(tbl)
-end
-vis.events.subscribe(vis.events.WIN_CLOSE, save)
+end)
 
-local function restore(win)
+vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	local fname = win.file.path
 	local file_info = dofile(info_file)[fname]
 	if not file_info then
@@ -58,23 +46,11 @@ local function restore(win)
 	end
 
 	-- Cursor position
-	win.cursor:to(unpack(file_info.cursor))
+	win.cursor:to(table.unpack(file_info.cursor))
 
 	-- Syntax highlighting
-	local syntax = file_info.syntax
-	if syntax then
-		--vis:command('set syntax ' .. syntax)
-		win.syntax = syntax
-	end
-
-	--local registers = file_info.registers
-	--if registers then
-	--	for reg, content in pairs(registers) do
-	--		vis:setreg(reg, content)
-	--	end
-	--end
-end
-vis.events.subscribe(vis.events.WIN_OPEN, restore)
+	win.syntax = file_info.syntax or nil
+end)
 
 local oldfiles = function(num)
 	local tbl = dofile(info_file)

@@ -1,5 +1,5 @@
 -- Created:  2016-05-13
--- Modified: Mon 19 Dec 2016
+-- Modified: Tue 28 Feb 2017
 -- Author:   Josh Wainwright
 -- Filename: statusline.lua
 
@@ -63,7 +63,7 @@ vis.events.win_status = function(win)
 		end
 	end
 
-	local left_str = ' ' .. table.concat(left, " » ") .. ' '
-	local right_str = ' ' .. table.concat(right, " « ") .. ' '
+	local left_str = ' ' .. table.concat(left, " | ") .. ' '
+	local right_str = ' ' .. table.concat(right, " | ") .. ' '
 	win:status(left_str, right_str)
 end

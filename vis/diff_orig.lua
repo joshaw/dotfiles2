@@ -1,5 +1,5 @@
 -- Created:  2016-05-17
--- Modified: Thu 15 Sep 2016
+-- Modified: Tue 28 Feb 2017
 -- Author:   Josh Wainwright
 -- Filename: diff_orig.lua
 
@@ -25,7 +25,7 @@ diff_orig = function(win)
 	end
 	vis:message(diff_out)
 	vis:feedkeys('dgg')
-	vis:command('set syntax diff')
+	win.syntax = 'diff'
 end
 
 vis:command_register('Diff', function() diff_orig(vis.win) end)

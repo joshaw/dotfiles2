@@ -1,5 +1,5 @@
 -- Created:  Fri 16 Dec 2016
--- Modified: Mon 09 Jan 2017
+-- Modified: Tue 28 Feb 2017
 -- Author:   Josh Wainwright
 -- Filename: complete.lua
 vis.compl = {}
@@ -175,42 +175,43 @@ local function matches_word(matches, pat)
 end
 
 -- Complete Command -----------------------------------------------------------
+local cmds = {
+	'bdelete ',
+	'cd ',
+	'earlier ',
+	'help',
+	'langmap ',
+	'later ',
+	'map ',
+	'map-window ',
+	'new',
+	'open ',
+	'qall',
+	'set ',
+		'set shell',
+		'set escdelay',
+		'set autoindent',
+		'set expandtab',
+		'set tabwidth',
+		'set theme',
+		'set syntax',
+		'set show-',
+			'set show-spaces',
+			'set show-tabs',
+			'set show-newlines',
+		'set numbers',
+		'set relativenumbers',
+		'set cursorline',
+		'set colorcolumn',
+		'set horizon',
+		'set savemethod',
+	'split ',
+	'unmap ',
+	'unmap-window '
+}
 local function matches_cmd(matches, pat)
 	local pat = pat:lower()
 	local patlen = pat:len()
-	local cmds = {
-		'bdelete ',
-		'cd ',
-		'earlier ',
-		'help',
-		'langmap ',
-		'later ',
-		'map ',
-		'map-window ',
-		'new',
-		'open ',
-		'qall',
-		'set ',
-			'set shell',
-			'set escdelay',
-			'set autoindent',
-			'set expandtab',
-			'set tabwidth',
-			'set theme',
-			'set syntax',
-			'set show-',
-				'set show-spaces',
-				'set show-tabs',
-				'set show-newlines',
-			'set numbers',
-			'set relativenumbers',
-			'set cursorline',
-			'set colorcolumn',
-			'set horizon',
-			'set savemethod',
-		'split ',
-		'unmap ',
-		'unmap-window '}
 
 	for i, cmd in ipairs(cmds) do
 		if cmd:sub(1, patlen) == pat then
@@ -222,14 +223,18 @@ end
 -- Smart Tab Completion -------------------------------------------------------
 local function smart_tab(dir)
 	local win = vis.win
+	if #win.cursors > 1 then
+		vis:feedkeys('<vis-cursors-align-indent-left>')
+		return
+	end
 	local file = win.file
 	local line = file.lines[win.cursor.line]
 
 	if file.name == nil and line:sub(1,1) == ':' then
 		complete_generic(dir, matches_cmd, '(.)(.*)')
 
-	elseif line:sub(1, win.cursor.col):match('%S+/%S+$') then
-		complete_generic(dir, matches_file, '(.-)(%S*)')
+	--elseif line:sub(1, win.cursor.col):match('%S+/%S+$') then
+	--	complete_generic(dir, matches_file, '(.-)(%S*)')
 
 	else
 		complete_generic(dir, matches_word, '(.-)([%w_]*)')

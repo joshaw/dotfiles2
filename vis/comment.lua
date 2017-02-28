@@ -1,5 +1,5 @@
 -- Created:  Thu 26 May 2016
--- Modified: Thu 08 Dec 2016
+-- Modified: Mon 16 Jan 2017
 -- Author:   Josh Wainwright
 -- Filename: comment.lua
 
@@ -29,14 +29,22 @@ local dict = {
 
 local toggle_comment = function(win)
 	local syntax = win.syntax
+	local selection = win.cursor.selection
 	local com_char = dict[syntax]
 	if com_char ~= nil then
-		local line = win.cursor.line
+		--if selection then
+		--	for line in selection do
+		--		add comment char
+		--	end
+		--end
+		local line, col = win.cursor.line, win.cursor.col
 		win.file.lines[line] = com_char  .. ' ' .. win.file.lines[line]
-		vis:feedkeys('<editor-redraw>')
+		win.cursor:to(line, col)
+		--win:draw()
 	else
 		vis:info(syntax .. ': no comment char')
 	end
 end
 
 vis:map(vis.modes.NORMAL, 'gcc', function() toggle_comment(vis.win) end)
+vis:map(vis.modes.VISUAL, 'gc', function() toggle_comment(vis.win) end)

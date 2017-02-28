@@ -1,7 +1,33 @@
 -- Created:  Mon 16 May 2016
--- Modified: Thu 08 Dec 2016
+-- Modified: Mon 16 Jan 2017
 -- Author:   Josh Wainwright
 -- Filename: navd_p.lua
+
+local function basename(path)
+	if path:sub(-1,-1) == '/' then
+		path = path:sub(1, -2)
+	end
+	local sl = path:reverse():find('/', 1, true)
+	if not sl then
+		return path
+	end
+	sl = path:len() - sl + 2
+	return path:sub(sl)
+end
+
+local function dirname(path)
+	if not path then
+		return '.'
+	elseif path:sub(-1,-1) == '/' then
+		return path:sub(1,-2)
+	end
+	local sl = path:reverse():find('/', 1, true)
+	if not sl then
+		return path
+	end
+	sl = path:len() - sl
+	return path:sub(1, sl)
+end
 
 -- Open navd window
 vis.navd = function(path, search)
@@ -10,15 +36,14 @@ vis.navd = function(path, search)
 		return
 	end
 	local fname = vis.win.file.name
-	if not path then
-		path = vis.dirname(os.getenv('PWD') .. '/' .. (fname or ''))
-		path = vis.dirname(vis.win.file.path)
+	if not path or path == '' then
+		path = dirname(vis.win.file.path)
 	end
 	path = path:gsub('/+', '/')
 	if not search then
 		search = ""
 		if fname then
-			search = vis.basename(fname)
+			search = basename(fname)
 		end
 	end
 
@@ -28,12 +53,11 @@ vis.navd = function(path, search)
 	f:close()
 	list = list:gsub('\\ ', ' ')
 	list = '# ' .. path .. '\n' .. list
-	
+
 	vis:message('')
 	vis:feedkeys('ggdG')
 	vis:message(list)
-	--vis:command('set syntax navd')
-	--vis:feedkeys('dggj')
+	vis:command('set syntax navd')
 	vis:feedkeys('/' .. search .. '<Enter>')
 	local win = vis.win
 
@@ -51,8 +75,8 @@ vis.navd = function(path, search)
 
 	win:map(vis.modes.NORMAL, '-', function()
 		local path = win.file.lines[1]:gsub('^# ', ''):gsub('/$', '')
-		local search = vis.basename(path)
-		local path = vis.dirname(path) .. '/'
+		local search = basename(path)
+		local path = dirname(path) .. '/'
 		vis.navd(path, search)
 	end)
 
@@ -63,30 +87,6 @@ vis.navd = function(path, search)
 	win:map(vis.modes.NORMAL, 'gh', function()
 		vis.navd(os.getenv('HOME'))
 	end)
-end
-
-vis.basename = function(path)
-	if path:sub(-1,-1) == '/' then
-		path = path:sub(1, -2)
-	end
-	local sl = path:reverse():find('/', 1, true)
-	if not sl then
-		return path
-	end
-	sl = path:len() - sl + 2
-	return path:sub(sl)
-end
-
-vis.dirname = function(path)
-	if path:sub(-1,-1) == '/' then
-		return path:sub(1,-2)
-	end
-	local sl = path:reverse():find('/', 1, true)
-	if not sl then
-		return path
-	end
-	sl = path:len() - sl
-	return path:sub(1, sl)
 end
 
 vis:map(vis.modes.NORMAL, '-', vis.navd)
