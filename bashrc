@@ -1,15 +1,19 @@
 # Created:  Mon 21 Sep 2015
-# Modified: Mon 14 Nov 2016
+# Modified: Fri 20 Jan 2017
 # Author:   Josh Wainwright
 # Filename: bashrc
 
 # If not running interactively, don't do anything
 # [[ $- != *i* ]] && return
 
-export PATH=~/Bin:~/Tools/bin:$PATH
-export EDITOR=vim
+export PATH=~/Bin:~/Tools/bin:$PATH:"/cygdrive/c/Program Files/Mozilla Firefox"
+export EDITOR=vis
 export PAGER=less
+export BROWSER=firefox
+export MEDIA=mpv
 export WIKIDIR=~/Documents/Details
+
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig"
 
 ## Aliases
 . ~/.bash/aliases.bash
@@ -33,7 +37,6 @@ set -o noclobber
 ## Prompt
 set_prompt() {
 	lastcmd=$?
-	history -a
 	P_RED='\[\e[0;31m\]'
 	P_CYAN='\[\e[0;36m\]'
 	P_GREEN='\[\e[0;32m\]'
@@ -44,6 +47,7 @@ set_prompt() {
 	PS1="\n${P_CYAN}\w  ${P_GREY}\j\n"
 	if [ $lastcmd -eq 0 ]; then
 		PS1+=${P_GREEN}
+		history -a
 	else
 		PS1+=${P_RED}
 	fi
