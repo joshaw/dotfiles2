@@ -1,12 +1,12 @@
 # Created:  Thu 30 Jul 2015
-# Modified: Thu 15 Sep 2016
+# Modified: Mon 20 Feb 2017
 # Author:   Josh Wainwright
 # Filename: ldra.bash
 
 ldra() {
 	if [ $# -eq 1 ]; then
 		if [[ "$1" == *"launcher"* ]]; then
-			~/ldra/launcher/ldralauncher
+			~/ldra/launcher/ldralncher
 		else
 			cmd="$1"
 			builtin cd ~/LDRA_flexlm/ > /dev/null
@@ -38,6 +38,6 @@ if [ $BASH ]; then
 	complete -F _ldra_complete ldra
 fi
 
-alias vimhosts='vim /cygdrive/c/Windows/System32/drivers/etc/hosts'
+alias vimhosts='$EDITOR /cygdrive/c/Windows/System32/drivers/etc/hosts'
 
 export TESTBED=/home/joshwainwright/.ldra/
