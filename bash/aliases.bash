@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Mon 21 Nov 2016
+# Modified: Tue 07 Feb 2017
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -34,14 +34,14 @@ fi
 alias chromeos="sudo cgpt add -i 6 -P 0 -S 0 /dev/mmcblk0"
 
 # File Download
-if exists curl; then
+if exists aria2c; then
+	alias get='aria2c -j 8 -x 8 -s 8 --continue'
+elif exists axel; then
+	alias get='axel -a'
+elif exists curl; then
 	alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
 elif exists wget; then
 	alias get='wget --continue --progress=bar --timestamping'
-elif exists axel; then
-	alias get='axel -a'
-elif exists aria2c; then
-	alias get='aria2c -j 8'
 fi
 
 # Resource Usage
@@ -158,7 +158,8 @@ axelpw() {
  	url=${url#http://}
 # 	axel -a http://$usr:$pass@$url
 #	curl -O -u $usr:$pass $url
-	aria2c -x 16 -s 16 --file-allocation=none http://${usr}:${pass}@${url}
+#	aria2c -x 16 -s 16 --file-allocation=none http://${usr}:${pass}@${url}
+	get http://${usr}:${pass}@${url}
 }
 
 # Zsh Bookmark movements {{{1
