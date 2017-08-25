@@ -1,5 +1,5 @@
 -- Created:  Fri 16 Dec 2016
--- Modified: Tue 28 Feb 2017
+-- Modified: Mon 17 Jul 2017
 -- Author:   Josh Wainwright
 -- Filename: complete.lua
 vis.compl = {}
@@ -22,7 +22,7 @@ end
 local function complete_generic(dir, get_matches, matchpat)
 	local win = vis.win
 	local file = win.file
-	local curline = vis.win.cursor.line
+	local curline = vis.win.selection.line
 	local line = file.lines[curline]
 
 	-- Reset completion matches because the text has changed
@@ -32,8 +32,8 @@ local function complete_generic(dir, get_matches, matchpat)
 
 	-- Get matches
 	if vis.compl.matches == nil then
-		local pre, pat = line:sub(1, win.cursor.col-1):match('^'..matchpat..'$')
-		local post = line:sub(win.cursor.col)
+		local pre, pat = line:sub(1, win.selection.col-1):match('^'..matchpat..'$')
+		local post = line:sub(win.selection.col)
 		local patlen = pat:len()
 
 		-- No pattern, so insert tab character
@@ -43,7 +43,7 @@ local function complete_generic(dir, get_matches, matchpat)
 			local col = replacement:len() + 1
 			win.file.lines[curline] = newline
 			win:draw()
-			win.cursor:to(curline, col)
+			win.selection:to(curline, col)
 			return
 		end
 
@@ -75,7 +75,7 @@ local function complete_generic(dir, get_matches, matchpat)
 	local col = (vis.compl.pre .. match):len() + 1
 	win.file.lines[curline] = newline
 	win:draw()
-	win.cursor:to(curline, col)
+	win.selection:to(curline, col)
 
 	vis.compl.prevline = newline
 end
@@ -112,7 +112,7 @@ end
 local function matches_line(matches, pat)
 	local patlen = pat:len()
 
-	local curline = vis.win.cursor.line
+	local curline = vis.win.selection.line
 	local n = 0
 	for line in vis.win.file:lines_iterator() do
 		n = n + 1
@@ -124,7 +124,7 @@ end
 
 -- Complete Dictionary --------------------------------------------------------
 local function matches_dict(matches, pat)
-	local dict_f = io.open('/usr/share/dict/words')
+	local dict_f = io.open('/usr/share/dict/words', 'r')
 	local pat = pat:lower()
 	local patlen = pat:len()
 	for line in dict_f:lines() do
@@ -155,7 +155,7 @@ local function matches_word(matches, pat)
 	end
 
 	local file = vis.win.file
-	local curline = vis.win.cursor.line
+	local curline = vis.win.selection.line
 
 	-- Get matches from current line backwards to start of file ...
 	for l=curline-1, 1, -1 do
@@ -223,17 +223,17 @@ end
 -- Smart Tab Completion -------------------------------------------------------
 local function smart_tab(dir)
 	local win = vis.win
-	if #win.cursors > 1 then
-		vis:feedkeys('<vis-cursors-align-indent-left>')
+	if #win.selections > 1 then
+		vis:feedkeys('<vis-selections-align-indent-left>')
 		return
 	end
 	local file = win.file
-	local line = file.lines[win.cursor.line]
+	local line = file.lines[win.selection.line]
 
 	if file.name == nil and line:sub(1,1) == ':' then
 		complete_generic(dir, matches_cmd, '(.)(.*)')
 
-	--elseif line:sub(1, win.cursor.col):match('%S+/%S+$') then
+	--elseif line:sub(1, win.selection.col):match('%S+/%S+$') then
 	--	complete_generic(dir, matches_file, '(.-)(%S*)')
 
 	else

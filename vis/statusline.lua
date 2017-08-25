@@ -1,9 +1,9 @@
 -- Created:  2016-05-13
--- Modified: Tue 28 Feb 2017
+-- Modified: Mon 17 Jul 2017
 -- Author:   Josh Wainwright
 -- Filename: statusline.lua
 
-local suffixes = {'B', 'KB', 'MB'}
+local suffixes = {'B', 'KB', 'MB', 'GB', 'TB'}
 local human_bytes = function(bytes)
 	if bytes <= 0 then
 		return ''
@@ -47,17 +47,18 @@ vis.events.win_status = function(win)
 	end
 
 	local size = file.size
-	local cursor = win.cursor
+	local selection = win.selection
+	local pos = selection.pos or 0
 	right[#right+1] = human_bytes(size)
-	right[#right+1] = (size==0 and "0" or math.ceil(cursor.pos/size*100)).."%"
+	right[#right+1] = (size==0 and "0" or math.ceil(pos/size*100)).."%"
 
-	if #win.cursors > 1 then
-		right[#right+1] = cursor.number .. '/' .. #win.cursors
+	if #win.selections > 1 then
+		right[#right+1] = selection.number .. '/' .. #win.selections
 	end
 
 	if not win.large then
-		local col = cursor.col
-		right[#right+1] = cursor.line .. ', ' .. col
+		local col = selection.col
+		right[#right+1] = selection.line .. ', ' .. col
 		if size > 33554432 or col > 65536 then
 			win.large = true
 		end

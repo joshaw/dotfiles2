@@ -1,5 +1,5 @@
 -- Created:  2016-05-12
--- Modified: Tue 28 Feb 2017
+-- Modified: Mon 17 Jul 2017
 -- Author:   Josh Wainwright
 -- Filename: reg_save.lua
 
@@ -30,12 +30,13 @@ vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
 	local file_tbl = tbl[fname] or {}
 	local file_info = {
 		date = os.time(),
-		cursor = { win.cursor.line, win.cursor.col },
+		cursor = { win.selection.line, win.selection.col },
 		syntax = win.syntax,
 		count = (file_tbl.count or 0) + 1
 	}
 	tbl[fname] = file_info
 	registers_write(tbl)
+	tbl = nil
 end)
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
@@ -45,11 +46,13 @@ vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 		return
 	end
 
-	-- Cursor position
-	win.cursor:to(table.unpack(file_info.cursor))
+	-- selection position
+	win.selection:to(table.unpack(file_info.cursor))
 
 	-- Syntax highlighting
-	win.syntax = file_info.syntax or nil
+	win:set_syntax(file_info.syntax)
+
+	file_info = nil
 end)
 
 local oldfiles = function(num)
@@ -59,11 +62,12 @@ local oldfiles = function(num)
 		files[#files+1] = {fname=i, date=n.date, count=(n.count or 1)}
 	end
 
-	table.sort(files, function(a,b) return a.date>b.date end)
+	table.sort(files, function(a,b) return a.date > b.date end)
 
 	local lines = {}
 	local ngone = 0
-	for i, n in ipairs(files) do
+	for i=1, #files do
+		n = files[i]
 		local gone = ' '
 		if not file_exists(n.fname) then
 			gone = '*'
@@ -71,8 +75,8 @@ local oldfiles = function(num)
 		end
 		local date = os.date('%Y-%m-%d %H:%M:%S', n.date)
 		local name = n.fname:gsub(os.getenv('HOME'), '~')
-		local nl = string.format('%s%3s | %s | %s', gone, n.count, date, name)
-		table.insert(lines, nl)
+		local nl = ('%s%3s | %s | %s'):format(gone, n.count, date, name)
+		lines[#lines+1] = nl
 	end
 
 	local start = #lines - (num or #lines) + 1

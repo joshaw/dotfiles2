@@ -1,5 +1,5 @@
 -- Created:  Wed 25 May 2016
--- Modified: Tue 28 Feb 2017
+-- Modified: Wed 19 Jul 2017
 -- Author:   Josh Wainwright
 -- Filename: toggle.lua
 
@@ -19,7 +19,7 @@ local index = function(tbl, value)
 	return nil
 end
 
-local replace_word = function(line, col, word, replace)
+local function replace_word(line, col, word, replace)
 	local start = col - string.len(word)
 	if start < 0 then start = 0 end
 	local idx_s, idx_e = string.find(line, word, start, true)
@@ -37,7 +37,7 @@ local replace_word = function(line, col, word, replace)
 	return newline, newcol
 end
 
-local increment_word = function(word, direction)
+local function increment_word(word, direction)
 	if not word then return end
 
 	local number = tonumber(word)
@@ -66,34 +66,39 @@ local increment_word = function(word, direction)
 	end
 end
 
-local cword = function(win, cursor)
+local function cword(win, cursor)
 	local line = win.file.lines[cursor.line]
 	local col = cursor.col
+	local char = line:sub(col, col)
 
-	-- Check if we're on whitespace, return nothing
-	if ({[' ']=true, ['\t']=true, ['\n']=true})[line:sub(col,col)] then
-		return nil
+	-- Check if on whitespace, return nothing
+	if char:match('%s') then return nil end
+
+	local word_pat_for = '[%w_]+'
+	local word_pat_bac = '[%w_]+%-?'
+	if char:match('%d') then
+		word_pat_for = '%d+'
+		word_pat_bac = '%d+%-?'
 	end
-	local word_pat = '[%w_]+'
-	local word_end = line:match(word_pat, col) or ''
 
-	local word_pat = '[%w_]+%-?'
+	local word_end = line:match(word_pat_for, col) or ''
+
 	local rev_cur_pos = line:len() - col + 1
-	local word_start = line:reverse():match(word_pat, rev_cur_pos) or ''
+	local word_start = line:reverse():match(word_pat_bac, rev_cur_pos) or ''
 
 	return word_start:reverse() .. word_end:sub(2, -1)
 end
 
-local incr = function(win, dir)
-	for cursor in win:cursors_iterator() do
-		local arg = cword(win, cursor)
+local function incr(win, dir)
+	for selection in win:selections_iterator() do
+		local arg = cword(win, selection)
 		local newword = increment_word(arg, (vis.count or 1) * dir)
 		if newword then
-			local linenr = cursor.line
+			local linenr = selection.line
 			local line = win.file.lines[linenr]
-			local newline, newcol = replace_word(line, cursor.col, arg, newword)
+			local newline, newcol = replace_word(line, selection.col, arg, newword)
 			win.file.lines[linenr] = newline
-			cursor:to(linenr, newcol)
+			selection:to(linenr, newcol)
 		end
 	end
 	vis.count = nil

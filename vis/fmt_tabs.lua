@@ -1,10 +1,10 @@
 -- Created:  2016-05-12
--- Modified: Fri 09 Dec 2016
+-- Modified: Mon 17 Jul 2017
 -- Author:   Josh Wainwright
 -- Filename: fmt_tabs.lua
 
 local fmt_space_tab = function(win, repl, width)
-	local save_line, save_col = win.cursor.line, win.cursor.col
+	local save_line, save_col = win.selection.line, win.selection.col
 	local lines = {}
 	for i=1, #win.file.lines do
 		local line = win.file.lines[i]
@@ -21,11 +21,11 @@ local fmt_space_tab = function(win, repl, width)
 	local str = table.concat(lines, '\n')
 	win.file:delete(0, win.file.size)
 	win.file:insert(0, str)
-	win.cursor:to(save_line, save_col)
+	win.selection:to(save_line, save_col)
 end
 
 local fmt_trailing = function(win)
-	local save_line, save_col = win.cursor.line, win.cursor.col
+	local save_line, save_col = win.selection.line, win.selection.col
 	local lines = {}
 	for i=1, #win.file.lines do
 		local line = win.file.lines[i]
@@ -35,11 +35,11 @@ local fmt_trailing = function(win)
 	local str = table.concat(lines, '\n')
 	win.file:delete(0, win.file.size)
 	win.file:insert(0, str)
-	win.cursor:to(save_line, save_col)
+	win.selection:to(save_line, save_col)
 end
 
 local fmt_line_end = function(win, lineend)
-	local save_line, save_col = win.cursor.line, win.cursor.col
+	local save_line, save_col = win.selection.line, win.selection.col
 	local lines = {}
 	for i=1, #win.file.lines do
 		local line = win.file.lines[i]
@@ -48,10 +48,10 @@ local fmt_line_end = function(win, lineend)
 	local str = table.concat(lines, lineend) .. lineend
 	win.file:delete(0, win.file.size)
 	win.file:insert(0, str)
-	win.cursor:to(save_line, save_col)
+	win.selection:to(save_line, save_col)
 end
 
-vis:command_register('Fmt', function(argv, force, win, cursor, range)
+vis:command_register('Fmt', function(argv, force, win, selection, range)
 	local cmd = argv[1]
 	if not cmd then
 		local s = win.file.size

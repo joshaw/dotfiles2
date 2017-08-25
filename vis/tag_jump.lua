@@ -1,5 +1,5 @@
 -- Created:  Fri 13 May 2016
--- Modified: Thu 08 Dec 2016
+-- Modified: Wed 22 Mar 2017
 -- Author:   Josh Wainwright
 -- Filename: tag_jump.lua
 
@@ -13,7 +13,7 @@ word_at_pos = function(line, pos)
 	return word
 end
 
-jump_tag = function()
+vis:map(vis.modes.NORMAL, '<C-]>', function()
 	local win = vis.win
 	local line = win.file.lines[win.cursor.line]
 	local word = word_at_pos(line, win.cursor.col)
@@ -36,6 +36,33 @@ jump_tag = function()
 	vis:info('TagJump: ' .. tagname .. ' | ' .. tagfile .. ' | ' .. tagaddress)
 	vis:command('e ' .. tagfile)
 	vis:feedkeys(tagaddress .. 'G')
-end
+end)
 
-vis:map(vis.modes.NORMAL, '<C-]>', jump_tag)
+local function showtags(argv, force, win, cursor, range)
+	local fname = win.file.name
+	local path = win.file.path
+
+	local cmd = 'ctags --output-format=xref --_xformat="%l\t%k\t%n\t%N" --sort=no '
+	cmd = cmd .. path
+	
+	local f = assert(io.popen(cmd, 'r'))
+	local tags = assert(f:read('*a'))
+	f:close()
+	vis:message("")
+	local msg_win = vis.win
+	msg_win.file:delete(0, msg_win.file.size)
+	msg_win.file:insert(0, tags)
+
+	msg_win:map(vis.modes.NORMAL, '<Enter>', function()
+		local line = msg_win.file.lines[msg_win.cursor.line]
+		local lang, ttype, line, name = line:match('(%S+)\t(.)\t(%d+)\t(%S)')
+		win.cursor:to(line, 1)
+		if force then
+			vis:command(':q')
+		end
+	end)
+end
+vis:command_register("ShowTags", showtags)
+vis:map(vis.modes.NORMAL, '<C-]>', function()
+	showtags(nil, true, vis.win, vis.win.cursor, nil)
+end)

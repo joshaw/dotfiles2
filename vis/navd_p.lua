@@ -1,5 +1,5 @@
 -- Created:  Mon 16 May 2016
--- Modified: Mon 16 Jan 2017
+-- Modified: Mon 17 Jul 2017
 -- Author:   Josh Wainwright
 -- Filename: navd_p.lua
 
@@ -17,7 +17,7 @@ end
 
 local function dirname(path)
 	if not path then
-		return '.'
+		return os.getenv('PWD')
 	elseif path:sub(-1,-1) == '/' then
 		return path:sub(1,-2)
 	end
@@ -55,14 +55,16 @@ vis.navd = function(path, search)
 	list = '# ' .. path .. '\n' .. list
 
 	vis:message('')
-	vis:feedkeys('ggdG')
-	vis:message(list)
-	vis:command('set syntax navd')
-	vis:feedkeys('/' .. search .. '<Enter>')
 	local win = vis.win
+	win.file:delete(0, win.file.size)
+	win.file:insert(0, list)
+	win:set_syntax('diff')
+	win.selection:to(1,1)
+
+	vis:feedkeys('/' .. search .. '<Enter>')
 
 	win:map(vis.modes.NORMAL, '<Enter>', function()
-		local line = win.file.lines[win.cursor.line]
+		local line = win.file.lines[win.selection.line]
 		local file = path .. '/' .. line
 		if line:sub(1,1) == '#' then return end
 		if line:sub(-1) == '/' then
