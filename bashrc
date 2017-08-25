@@ -1,11 +1,12 @@
 # Created:  Mon 21 Sep 2015
-# Modified: Fri 20 Jan 2017
+# Modified: Tue 22 Aug 2017
 # Author:   Josh Wainwright
 # Filename: bashrc
 
 # If not running interactively, don't do anything
 # [[ $- != *i* ]] && return
 
+export TMP=/tmp
 export PATH=~/Bin:~/Tools/bin:$PATH:"/cygdrive/c/Program Files/Mozilla Firefox"
 export EDITOR=vis
 export PAGER=less
@@ -51,7 +52,7 @@ set_prompt() {
 	else
 		PS1+=${P_RED}
 	fi
-	str=$(printf "%${SHLVL}s")
+	printf -v str "%${SHLVL}s"
 	PS1+="${str// />}"
 	PS1+="${P_NC} "
 	pwd=${PWD/$HOME/\~}

@@ -1,5 +1,5 @@
 ; Settings {{{1
-VIM = C:\Program Files (x86)\Vim\vim74\gvim.exe
+VIM = C:\Program Files (x86)\Vim\vim80\gvim.exe
 SetWorkingDir, C:\home\JoshWainwright\
 
 ; General Keybindings {{{1
@@ -16,7 +16,6 @@ return
 
 #w::
 	Run, C:\progs\locate32_x64-3.1.11.7100\locate32.exe
-	;Run, C:\progs\Everything\Everything.exe
 return
 
 F1::return
@@ -46,7 +45,7 @@ return
 return
 
 ^t::
-	SendInput, {F4}^aC:\tmp\jaw{Enter}
+	SendInput, {F4}^aC:\tmp{Enter}
 return
 
 ^d::

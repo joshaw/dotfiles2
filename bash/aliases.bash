@@ -1,5 +1,5 @@
 # Created:  Tue 15 Oct 2013
-# Modified: Tue 07 Feb 2017
+# Modified: Mon 21 Aug 2017
 # Author:   Josh Wainwright
 # Filename: aliases.zsh
 #
@@ -92,20 +92,6 @@ newest () {
 	# http://www.commandlinefu.com/commands/view/9015/find-the-most-recently-changed-files-recursively
 	find . -type f -printf '%TY-%Tm-%Td %TT %p\n' | grep -v cache | grep -v ".git" | sort -r | less -S
 }
-
-# pdfgrep {{{2
-# Search through multiple pdf files for string
-alias pdftotext='/cygdrive/c/progs/Git/bin/pdftotext.exe'
-if ! exists pdfgrep; then
-	pdfgrep() {
-		if exists pdftotext; then
-			pdftotext=$(which pdftotext)
-		else
-			pdftotext=/cygdrive/c/progs/Git/mingw64/bin/pdftotext.exe
-		fi
-		find . -name '*.pdf' -exec sh -c "$pdftotext \"{}\" - | grep -i --with-filename --label=\"{}\" --color \"$1\"" \;
-	}
-fi
 
 # paclist {{{2
 paclist() {

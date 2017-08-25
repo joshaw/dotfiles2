@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<theme version="2.0">
+    <name>Bassenfell Small</name>
+    <background type="image">
+        <filename>backgrounds small2.JPG</filename>
+        <borderColor>#000000</borderColor>
+    </background>
+    <font type="main">
+        <name>Century Gothic</name>
+        <color>#FFFFFF</color>
+        <size>38</size>
+        <bold>True</bold>
+        <italics>False</italics>
+        <line_adjustment>8</line_adjustment>
+        <location height="632" override="True" width="940" x="40" y="50"/>
+        <shadow shadowColor="#000000" shadowSize="5">False</shadow>
+        <outline outlineColor="#000000" outlineSize="2">False</outline>
+    </font>
+    <font type="footer">
+        <name>Arial</name>
+        <color>#a3a3a3</color>
+        <size>12</size>
+        <bold>False</bold>
+        <italics>False</italics>
+        <line_adjustment>0</line_adjustment>
+        <location height="108" override="False" width="1900" x="10" y="972"/>
+        <shadow shadowColor="#000000" shadowSize="5">True</shadow>
+        <outline outlineColor="#000000" outlineSize="2">False</outline>
+    </font>
+    <display>
+        <horizontalAlign>0</horizontalAlign>
+        <verticalAlign>1</verticalAlign>
+        <slideTransition>False</slideTransition>
+    </display>
+</theme>
