@@ -1,5 +1,5 @@
 # Created:  Mon 21 Sep 2015
-# Modified: Tue 22 Aug 2017
+# Modified: Mon 25 Sep 2017
 # Author:   Josh Wainwright
 # Filename: bashrc
 
@@ -7,7 +7,7 @@
 # [[ $- != *i* ]] && return
 
 export TMP=/tmp
-export PATH=~/Bin:~/Tools/bin:$PATH:"/cygdrive/c/Program Files/Mozilla Firefox"
+export PATH=~/Bin:~/Tools/bin:$PATH:"/usr/sbin":"/cygdrive/c/Program Files/Mozilla Firefox"
 export EDITOR=vis
 export PAGER=less
 export BROWSER=firefox
