@@ -1,5 +1,5 @@
 -- Created:  Fri 16 Dec 2016
--- Modified: Mon 17 Jul 2017
+-- Modified: Fri 01 Sep 2017
 -- Author:   Josh Wainwright
 -- Filename: complete.lua
 vis.compl = {}
@@ -40,10 +40,9 @@ local function complete_generic(dir, get_matches, matchpat)
 		if patlen == 0 then
 			local replacement = pre .. pat .. '\t'
 			local newline =  replacement .. post
-			local col = replacement:len() + 1
 			win.file.lines[curline] = newline
 			win:draw()
-			win.selection:to(curline, col)
+			win.selection:to(curline, replacement:len() + 1)
 			return
 		end
 
@@ -71,8 +70,9 @@ local function complete_generic(dir, get_matches, matchpat)
 
 	-- Insert match into text
 	local match = matches[current]
-	local newline = vis.compl.pre .. match .. vis.compl.post
-	local col = (vis.compl.pre .. match):len() + 1
+	local newline = vis.compl.pre .. match
+	local col = newline:len() + 1
+	newline = newline .. vis.compl.post
 	win.file.lines[curline] = newline
 	win:draw()
 	win.selection:to(curline, col)
