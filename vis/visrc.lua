@@ -1,5 +1,5 @@
 -- Created:  2016-05-09
--- Modified: Mon 21 Aug 2017
+-- Modified: Thu 14 Sep 2017
 -- Author:   Josh Wainwright
 -- Filename: visrc.lua
 
@@ -17,6 +17,8 @@ require('toggle')
 require('comment')
 require('git-lp')
 require('complete')
+
+require('player')
 
 vis.events.subscribe(vis.events.INIT, function()
 	-- enable syntax highlighting for known file types
@@ -58,15 +60,21 @@ end, 'Set the program to run when invoking make')
 vis:command_register('make', function(argv, force, win, cursor, range)
 	if vis.win then vis:command('w') end
 	local cmd = vis.win.makeprg or 'ninja -v'
-	local success = os.execute(cmd..' 2>&1 | tee $TMP/vis-make-output; (exit ${PIPESTATUS[0]})')
+	local tmpname = os.tmpname()
+	local success = os.execute(cmd..' 2>&1 | tee '..tmpname..'; (exit ${PIPESTATUS[0]})')
 	if not success then
-		local f = io.open('$TMP/vis-make-output', 'r')
+		local f = assert(io.open(tmpname, 'r'))
 		local output = f:read('*all')
 		f:close()
-		vis:message(output)
+		os.remove(tmpname)
+		vis:message('')
+		local win = vis.win
+		win.file:delete(0, win.file.size)
+		win.file:insert(0, output)
 		vis.win:map(vis.modes.NORMAL, 'q', function() vis:command('q!') end)
 	else
 		vis:feedkeys('<vis-redraw>')
+		vis:info('Exit success: '..cmd)
 	end
 end, 'Run the command specified by makeprg (defaults to make)')
 
