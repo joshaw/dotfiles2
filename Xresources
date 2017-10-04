@@ -1,5 +1,5 @@
 ! Created:  Wed 16 Apr 2014
-! Modified: Mon 29 Jun 2015
+! Modified: Tue 03 Oct 2017
 ! Author:   Josh Wainwright
 ! Filename: Xresources
 
@@ -11,7 +11,7 @@ XTerm*faceSize: 10
 xterm*charClass: 33:48, 37:48, 42:48, 45-47:48, 58:48, 63-64:48, 126:48
 XTerm*on3Clicks: regex ([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
 XTerm*selectToClipboard: true
-XTerm*ScrollBar: false
+XTerm*ScrollBar: true
 XTerm*ScrollKey: true
 Xterm*borderWidth: 0
 XTerm*scaleHeight: 1.10
