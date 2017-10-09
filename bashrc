@@ -1,5 +1,5 @@
 # Created:  Mon 21 Sep 2015
-# Modified: Tue 03 Oct 2017
+# Modified: Mon 09 Oct 2017
 # Author:   Josh Wainwright
 # Filename: bashrc
 
@@ -58,8 +58,8 @@ PROMPT_COMMAND='set_prompt'
 ## History
 HISTCONTROL=ignorespace:ignoredups:erasedups
 HISTFILE=~/.bash_history
-HISTSIZE=-1
-HISTFILESIZE=-1
+HISTSIZE=
+HISTFILESIZE=
 HISTIGNORE="&:[ ]*:exit:ls:ll:bg:fg*:history:clear:vim"
 HISTTIMEFORMAT='%F %T'
 
