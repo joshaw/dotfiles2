@@ -23,10 +23,15 @@ local function file_exists(name)
 	return true
 end
 
+local function getinfo()
+	local info = dofile(info_file)
+	return info or {}
+end
+
 vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
 	local fname = win.file.path
 	if not fname then return end
-	local tbl = dofile(info_file)
+	local tbl = getinfo()
 	local file_tbl = tbl[fname] or {}
 	local file_info = {
 		date = os.time(),
@@ -41,7 +46,7 @@ end)
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	local fname = win.file.path
-	local file_info = dofile(info_file)[fname]
+	local file_info = getinfo()[fname]
 	if not file_info then
 		return
 	end
@@ -56,7 +61,7 @@ vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 end)
 
 local oldfiles = function(num)
-	local tbl = dofile(info_file)
+	local tbl = getinfo()
 	local files = {}
 	for i, n in pairs(tbl) do
 		files[#files+1] = {fname=i, date=n.date, count=(n.count or 1)}
@@ -92,7 +97,7 @@ local oldfiles = function(num)
 end
 
 local remove_old = function()
-	local tbl = dofile(info_file)
+	local tbl = getinfo()
 	local count = 0
 	local new_tbl = {}
 	for fname, info in pairs(tbl) do

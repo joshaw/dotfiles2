@@ -1,5 +1,5 @@
 -- Created:  Fri 16 Dec 2016
--- Modified: Fri 01 Sep 2017
+-- Modified: Tue 10 Oct 2017
 -- Author:   Josh Wainwright
 -- Filename: complete.lua
 vis.compl = {}
@@ -109,13 +109,15 @@ local function matches_file(matches, pat)
 end
 
 -- Complete Line --------------------------------------------------------------
-local function matches_line(matches, pat)
+local function matches_line(matches, pat_orig)
+	local pat = pat_orig:gsub('^%s+', '')
 	local patlen = pat:len()
 
 	local curline = vis.win.selection.line
 	local n = 0
-	for line in vis.win.file:lines_iterator() do
+	for line_orig in vis.win.file:lines_iterator() do
 		n = n + 1
+		local line = line_orig:gsub('^%s+', '')
 		if n ~= curline and line:sub(1, patlen) == pat then
 			matches[#matches+1] = line
 		end
@@ -124,7 +126,12 @@ end
 
 -- Complete Dictionary --------------------------------------------------------
 local function matches_dict(matches, pat)
-	local dict_f = io.open('/usr/share/dict/words', 'r')
+	local dict_fname = '/usr/share/dict/words'
+	local dict_f = io.open(dict_fname, 'r')
+	if not dict_f then
+		vis:info('No dictionary file found at '..dict_fname)
+		return
+	end
 	local pat = pat:lower()
 	local patlen = pat:len()
 	for line in dict_f:lines() do
@@ -245,21 +252,21 @@ vis:map(vis.modes.INSERT, '<Tab>', function() smart_tab(1) end)
 vis:map(vis.modes.INSERT, '<S-Tab>', function() smart_tab(-1) end)
 
 vis:map(vis.modes.INSERT, '<C-x><C-l>', function()
-	complete_generic(dir, matches_line, '(.-)(.*)')
-end)
+	complete_generic(dir, matches_line, '(%s*)(.*)')
+end, 'Complete line')
 
 vis:map(vis.modes.INSERT, '<C-x><C-f>', function()
 	complete_generic(dir, matches_file, '(.-)(%S*)')
-end)
+end, 'Complete file')
 
 vis:map(vis.modes.INSERT, '<C-x><C-n>', function()
 	complete_generic(dir, matches_word, '(.-)([%w_]*)')
-end)
+end, 'Complete from buffer')
 
 vis:map(vis.modes.INSERT, '<C-x><C-s>', function()
 	complete_generic(dir, matches_dict, '(.-)([%w_]*)')
-end)
+end, 'Complete from dictionary')
 
 vis:map(vis.modes.INSERT, '<C-x><C-c>', function()
 	complete_generic(dir, matches_cmd, '(.-)(%S*)')
-end)
+end, 'Complete command')
