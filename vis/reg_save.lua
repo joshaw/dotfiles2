@@ -1,5 +1,5 @@
 -- Created:  2016-05-12
--- Modified: Mon 17 Jul 2017
+-- Modified: Wed 04 Oct 2017
 -- Author:   Josh Wainwright
 -- Filename: reg_save.lua
 
@@ -24,8 +24,8 @@ local function file_exists(name)
 end
 
 local function getinfo()
-	local info = dofile(info_file)
-	return info or {}
+	local status, err = pcall(dofile, info_file)
+	return status and err or {}
 end
 
 vis.events.subscribe(vis.events.WIN_CLOSE, function(win)
