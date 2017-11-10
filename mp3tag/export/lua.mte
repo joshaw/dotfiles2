@@ -1,0 +1,21 @@
+$filename(tracks.dl,utf-8)local tracks = {
+$loop(%tracks%){
+	album='[['%album%']]',
+	artist='[['%artist%']]',
+	filename=''%_filename_ext%'',
+	len=%_length_seconds%, -- %_length%
+	mod=%_file_mod_datetime_raw%, -- %_file_mod_datetime%
+	size=%_file_size_bytes%, -- %_file_size%
+	title='[['%title%']]',
+	track=''%track%'',
+},
+$loopend()}
+
+local info = {
+	files=%_total_files%,
+	size=%_total_size_raw%, -- %_total_size%
+	time=%_total_time_raw%, -- %_total_time%
+	export='[['%_datetime%']]',
+}
+
+return tracks, info

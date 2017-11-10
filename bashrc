@@ -1,5 +1,5 @@
 # Created:  Mon 21 Sep 2015
-# Modified: Mon 09 Oct 2017
+# Modified: Fri 03 Nov 2017
 # Author:   Josh Wainwright
 # Filename: bashrc
 
@@ -126,6 +126,7 @@ alias vimp='vim ~/Documents/Details/pass.gpg'
 _git_log_oneline_format='%C(yellow)%h%C(reset) %C(green) %ad %C(reset) %s %C(white)- %an%C(reset)%C(yellow)%d%C(reset)'
 alias gl='git log --topo-order --pretty=format:${_git_log_medium_format}'
 alias gll='git log --graph --abbrev-commit --date=relative --format=format:"${_git_log_oneline_format}" --all'
+alias glh='git log --graph --abbrev-commit --date=relative --format=format:"${_git_log_oneline_format}" origin/master..master'
 alias gws='git status --ignore-submodules --short'
 alias gwd='git diff --no-ext-diff'
 
@@ -135,4 +136,8 @@ function pwgen() {
 function cd {
 	builtin cd "$@" > /dev/null && ll
 }
-
+function swap {
+	local F=tmp.$$
+	mv "$1" "$F" && mv "$2" "$1" && mv "$F" "$2"
+	rm -f "$F"
+}

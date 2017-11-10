@@ -11,7 +11,7 @@ return
 	Run, C:\home\JoshWainwright\Tools\SysinternalsSuite\ZoomIt.exe
 
 #s::
-	Run, C:\cygwin\bin\mintty.exe -i /Cygwin-Terminal.ico -
+	Run, C:\cygwin2\bin\mintty.exe -i /Cygwin-Terminal.ico -
 return
 
 #w::
