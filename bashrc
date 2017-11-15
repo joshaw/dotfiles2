@@ -1,10 +1,13 @@
 # Created:  Mon 21 Sep 2015
-# Modified: Fri 03 Nov 2017
+# Modified: Wed 15 Nov 2017
 # Author:   Josh Wainwright
 # Filename: bashrc
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
+# bring window to front
+echo -e "\e[2t\e[1t"
 
 export TMP=/tmp
 export PATH=$PATH:"/cygdrive/c/Program Files/Mozilla Firefox"
@@ -65,27 +68,8 @@ HISTTIMEFORMAT='%F %T'
 
 export LANG=en_GB.UTF-8
 
-bind 'Space: magic-space'
-bind '"\e[1;5C": forward-word'
-bind '"\e[1;5D": backward-word'
-bind '"\e[5C": forward-word'
-bind '"\e[5D": backward-word'
-bind '"\e\e[C": forward-word'
-bind '"\e\e[D": backward-word'
-
-bind '"\e[A":history-search-backward'
-bind '"\e[B":history-search-forward'
-
+# To allow ctrl-w to remove last word in inputrc
 stty werase undef
-bind '"\C-w": backward-kill-word'
-bind 'set bell-style none'
-bind 'set completion-ignore-case on'
-bind 'set show-all-if-ambiguous on'
-bind 'set expand-tilde on'
-bind 'set mark-directories on'
-bind 'set mark-symlinked-directories on'
-bind 'set match-hidden-files on'
-bind 'set colored-stats on'
 
 # Colours
 LS_COLORS="no=90:fi=0:di=32:ln=35:so=34:pi=34:ex=33:bd=34:cd=34:su=34:sg=34:tw=1;32:ow=1;32"

@@ -1,0 +1,27 @@
+Space: magic-space
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\e[5C": forward-word
+"\e[5D": backward-word
+"\e\e[C": forward-word
+"\e\e[D": backward-word
+
+"\C-w": backward-kill-word
+
+"\e[A":history-search-backward
+"\e[B":history-search-forward
+
+"\C-xa": alias-expand-line' # perform alias expansion
+"\C-xq": "\eb\"\ef\""' # Quote the current or previous word
+
+set bell-style none
+set blink-matching-paren on
+set colored-completion-prefix on
+set colored-stats on
+set completion-ignore-case on
+set completion-query-items 300
+set mark-directories on
+set mark-symlinked-directories on
+set match-hidden-files on
+set show-all-if-ambiguous on
+set visible-stats on
