@@ -1,5 +1,5 @@
 # Created:  Mon 21 Sep 2015
-# Modified: Wed 15 Nov 2017
+# Modified: Thu 16 Nov 2017
 # Author:   Josh Wainwright
 # Filename: bashrc
 
@@ -11,11 +11,21 @@ echo -e "\e[2t\e[1t"
 
 export TMP=/tmp
 export PATH=$PATH:"/cygdrive/c/Program Files/Mozilla Firefox"
-export EDITOR=vim #vis
+
+if hash vis &>/dev/null; then
+	export EDITOR=vis
+elif hash vim &>/dev/null; then
+	export EDITOR=vim
+fi
 export PAGER=less
 export BROWSER=firefox
 export MEDIA=mpv
-export WIKIDIR=~/Documents/Details
+
+if [ $HOSTNAME = archusb ]; then
+	export WIKIDIR=/mnt/Documents/Details
+else
+	export WIKIDIR=~/Documents/Details
+fi
 
 ## Options
 shopt -s autocd
@@ -70,6 +80,7 @@ export LANG=en_GB.UTF-8
 
 # To allow ctrl-w to remove last word in inputrc
 stty werase undef
+bind 'Space: magic-space'
 
 # Colours
 LS_COLORS="no=90:fi=0:di=32:ln=35:so=34:pi=34:ex=33:bd=34:cd=34:su=34:sg=34:tw=1;32:ow=1;32"
