@@ -1,5 +1,5 @@
 # Created:  Mon 21 Sep 2015
-# Modified: Thu 16 Nov 2017
+# Modified: Tue 28 Nov 2017
 # Author:   Josh Wainwright
 # Filename: bashrc
 
@@ -10,7 +10,7 @@
 echo -e "\e[2t\e[1t"
 
 export TMP=/tmp
-export PATH=$PATH:"/cygdrive/c/Program Files/Mozilla Firefox"
+export PATH=$PATH:"~/Bin"
 
 if hash vis &>/dev/null; then
 	export EDITOR=vis
