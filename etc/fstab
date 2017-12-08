@@ -1,0 +1,11 @@
+# 
+# /etc/fstab: static file system information
+#
+# <file system>	<dir>	<type>	<options>	<dump>	<pass>
+# /dev/sdb1
+UUID=0bbb79c9-e3db-4b20-a7ce-354f7abee310	/         	ext4    rw,relatime,data=ordered	0 1
+#
+UUID=CA7B-16EF                                  /mnt            vfat    rw,relatime,gid=100,fmask=0000,dmask=0000  0 1
+# Baranduin
+UUID=01D354D93C9A06C0                           /mnt/www/media  ntfs    rw,nosuid,nodev,relatime,uid=0000,gid=0000  0 1
+
